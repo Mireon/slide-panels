@@ -1,0 +1,6 @@
+/.idea
+/docker
+/vendor
+/coverage
+/public
+composer.lock
