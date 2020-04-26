@@ -1,29 +1,58 @@
-const path = require('path');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCSSAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
-const TerserWebpackPlugin = require('terser-webpack-plugin');
+/**
+ * Plugin for getting paths.
+ *
+ * @type {Object}
+ */
+const Path = require('path');
+
+/**
+ * Plugin for coping files.
+ *
+ * @type {CopyPlugin}
+ */
+const CopyPlugin = require('copy-webpack-plugin');
+
+/**
+ * Plugin for extracting CSS styles into separate files.
+ *
+ * @type {CSSExtractPlugin}
+ */
+const CSSExtractPlugin = require('mini-css-extract-plugin');
+
+/**
+ * Plugin to minify CSS styles.
+ *
+ * @type {OptimizeCSSPlugin}
+ */
+const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
+
+/**
+ * Plugin to minify JS scripts.
+ *
+ * @type {TerserPlugin}
+ */
+const TerserPlugin = require('terser-webpack-plugin');
 
 /**
  * The path to sources.
  *
  * @type {string}
  */
-const sourcePath = path.resolve(__dirname, 'resources');
+const sourcePath = Path.resolve(__dirname, 'resources');
 
 /**
  * The path to assets.
  *
  * @type {string}
  */
-const assetsPath = path.resolve(__dirname, 'resources/assets');
+const assetsPath = Path.resolve(__dirname, 'resources/assets');
 
 /**
  * The path to the public folder.
  *
  * @type {string}
  */
-const publicPath = path.resolve(__dirname, 'public');
+const publicPath = Path.resolve(__dirname, 'public');
 
 /**
  * The mode.
@@ -52,17 +81,62 @@ const isProductionMode = mode === 'production';
  * @returns {Object}
  */
 const optimization = () => {
-    const config = {};
+    const config = {
+        minimize: isProductionMode,
+    };
 
     if (isProductionMode) {
         config.minimizer = [
-            new OptimizeCSSAssetsWebpackPlugin(),
-            new TerserWebpackPlugin(),
+            new TerserPlugin(),
+            new OptimizeCSSPlugin({
+                cssProcessor: require('cssnano'),
+                cssProcessorPluginOptions: { preset: ['default', { discardComments: { removeAll: true }}]},
+            }),
         ];
     }
 
     return config;
 };
+
+/**
+ * The rule for JS files.
+ *
+ * @returns {function}
+ */
+const jsRule = () => ({
+    test: /\.js$/,
+    exclude: /node_modules/,
+    use: [
+        {
+            loader: 'babel-loader',
+            options: {
+                presets: ['@babel/preset-env'],
+                plugins: ['@babel/plugin-proposal-object-rest-spread'],
+            },
+        },
+        'eslint-loader',
+    ],
+});
+
+/**
+ * The rule for SCSS files.
+ *
+ * @returns {function}
+ */
+const scssRule = () => ({
+    test: /\.scss$/,
+    use: [
+        CSSExtractPlugin.loader,
+        {
+            loader: 'css-loader',
+            options: {
+                importLoaders: 1,
+                modules: true,
+            },
+        },
+        'sass-loader',
+    ],
+});
 
 /**
  * The webpack configuration.
@@ -83,36 +157,17 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.scss'],
         alias: {
-            '@scripts': path.resolve(sourcePath, 'scripts'),
-            '@styles': path.resolve(sourcePath, 'styles'),
+            '@scripts': Path.resolve(sourcePath, 'scripts'),
+            '@styles': Path.resolve(sourcePath, 'styles'),
         },
     },
-    devtool: isDevelopmentMode ? 'source-map' : null,
+    devtool: isDevelopmentMode ? 'source-map' : false,
     optimization: optimization(),
     plugins: [
-        new CopyWebpackPlugin([{ from: assetsPath, to: publicPath }]),
-        new MiniCSSExtractPlugin({ filename: 'styles/[name].css' }),
+        new CopyPlugin([{ from: assetsPath, to: publicPath }]),
+        new CSSExtractPlugin({ filename: 'styles/[name].css' }),
     ],
     module: {
-        rules: [
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: [
-                    {
-                        loader: 'babel-loader',
-                        options: {
-                            presets: ['@babel/preset-env'],
-                            plugins: ['@babel/plugin-proposal-object-rest-spread'],
-                        },
-                    },
-                    'eslint-loader',
-                ],
-            },
-            {
-                test: /\.scss$/,
-                use: [ MiniCSSExtractPlugin.loader, 'css-loader', 'sass-loader' ],
-            },
-        ],
+        rules: [ jsRule(), scssRule() ],
     },
 };
