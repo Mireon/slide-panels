@@ -1,3 +1,5 @@
 import '@styles/slide-panels';
+import Levers from './Levers/Levers';
+import Stage from './Stage/Stage';
 
-console.log('Hello App! 2');
+Levers.setOnClickLeverListener((e, lever) => Stage.execute(lever));

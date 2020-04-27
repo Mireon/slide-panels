@@ -32,7 +32,10 @@ const jsRule = () => ({
             loader: 'babel-loader',
             options: {
                 presets: ['@babel/preset-env'],
-                plugins: ['@babel/plugin-proposal-object-rest-spread'],
+                plugins: [
+                    '@babel/plugin-proposal-object-rest-spread',
+                    '@babel/plugin-proposal-class-properties',
+                ],
             },
         },
         'eslint-loader',
@@ -48,13 +51,8 @@ const scssRule = () => ({
     test: /\.scss$/,
     use: [
         CSSExtractPlugin.loader,
-        {
-            loader: 'css-loader',
-            options: {
-                importLoaders: 1,
-                modules: true,
-            },
-        },
+        'css-loader',
+        'postcss-loader',
         'sass-loader',
     ],
 });

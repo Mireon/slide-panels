@@ -1,0 +1,21 @@
+.slide-panels__backstage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1010;
+  background: #000000;
+  transition: visibility .3s, opacity .3s;
+
+  &_visible {
+    visibility: visible;
+    opacity: 0.6;
+  }
+
+  &_hidden {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+}

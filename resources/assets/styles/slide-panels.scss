@@ -1,5 +1,4 @@
 @import "~normalize.css";
-
-body {
-    background: red;
-}
+@import "slide-panels__stage";
+@import "slide-panels__backstage";
+@import "slide-panels__panels";
