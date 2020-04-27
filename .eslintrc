@@ -5,9 +5,15 @@
     "sourceType": "module"
   },
   "rules": {
-    "no-unused-vars": "warn",
-    "semi": ["warn", "always"],
-    "quotes": ["warn", "single"]
+    "eol-last": ["warn", "always"],
+    "semi": "off",
+    "quotes": ["warn", "single"],
+    "no-empty-function": ["error", { "allow": ["constructors"] }],
+    "no-unused-vars": "error",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/semi": "warn",
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-empty-function": ["error", { "allow": ["constructors"] }],
   },
   "env": {
     "es6": true,
