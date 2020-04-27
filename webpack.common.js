@@ -31,7 +31,10 @@ const jsRule = () => ({
         {
             loader: 'babel-loader',
             options: {
-                presets: ['@babel/preset-env'],
+                presets: [
+                    '@babel/preset-env',
+                    '@babel/preset-typescript',
+                ],
                 plugins: [
                     '@babel/plugin-proposal-object-rest-spread',
                     '@babel/plugin-proposal-class-properties',
@@ -40,6 +43,17 @@ const jsRule = () => ({
         },
         'eslint-loader',
     ],
+});
+
+/**
+ * The rule for Typescript files.
+ *
+ * @returns {function}
+ */
+const tsRule = () => ({
+    test: /\.ts$/,
+    exclude: /node_modules/,
+    use: 'ts-loader',
 });
 
 /**
@@ -72,7 +86,7 @@ module.exports = {
         filename: 'scripts/[name].js',
     },
     resolve: {
-        extensions: ['.js', '.scss'],
+        extensions: ['.js', '.ts', '.scss'],
         alias: {
             '@scripts': path.resolve(sourcePath, 'scripts'),
             '@styles': path.resolve(sourcePath, 'styles'),
@@ -82,6 +96,6 @@ module.exports = {
         new CSSExtractPlugin({ filename: 'styles/[name].css' }),
     ],
     module: {
-        rules: [ jsRule(), scssRule() ],
+        rules: [ jsRule(), tsRule(), scssRule() ],
     },
 };
