@@ -14,6 +14,7 @@
     "@typescript-eslint/semi": "warn",
     "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/no-empty-function": ["error", { "allow": ["constructors"] }],
+    "@typescript-eslint/no-var-requires": "off"
   },
   "env": {
     "es6": true,

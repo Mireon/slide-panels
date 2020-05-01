@@ -1,6 +1,10 @@
+import Lever from './Lever';
+
 /**
  * ...
  */
-export default interface LeverClickListener {
-    (lever: Element): void;
+interface LeverClickListener {
+    (lever: Lever): void;
 }
+
+export default LeverClickListener;

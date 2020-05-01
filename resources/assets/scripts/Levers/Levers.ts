@@ -1,3 +1,4 @@
+import Lever from './Lever';
 import LeverClickListener from './LeverClickListener';
 
 /**
@@ -7,38 +8,43 @@ class Levers {
     /**
      * ...
      *
-     * @type Levers
+     * @type Array<Lever>
      */
-    private static instance: Levers;
+    private toShowLevers = new Array<Lever>();
 
     /**
      * ...
      *
-     * @type NodeListOf<Element>
+     * @type Array<Lever>
      */
-    private elements: NodeListOf<Element>;
+    private toHideLevers = new Array<Lever>();
 
     /**
      * The constructor.
      */
     private constructor() {
-        const plugin = 'data-plugin="slide-panels"';
-        const action = 'data-action="open"';
-
-        this.elements = document.querySelectorAll(`[${plugin}][${action}]`);
+        this.createLevers();
     }
 
     /**
-     * Return the instance of this class.
+     * ...
      *
-     * @return Levers
+     * @return void
      */
-    public static getInstance(): Levers {
-        if (!Levers.instance) {
-            this.instance = new Levers();
-        }
+    private createLevers(): void {
+        const plugin = 'data-plugin="slide-panels"';
+        const type = 'data-type="lever"';
+        const selector = `[${plugin}][${type}]`;
 
-        return Levers.instance;
+        document.querySelectorAll(selector).forEach(element => {
+            const lever = new Lever(element);
+
+            if (lever.toShow()) {
+                this.toShowLevers.push(lever);
+            } else if (lever.toHide()) {
+                this.toHideLevers.push(lever);
+            }
+        });
     }
 
     /**
@@ -49,11 +55,21 @@ class Levers {
      *
      * @return void
      */
-    public setLeverClickListener(listener: LeverClickListener): void {
-        this.elements.forEach(lever => {
-            lever.addEventListener('click', () => listener(lever));
-        });
+    public setToShowClickListener(listener: LeverClickListener): void {
+        this.toShowLevers.forEach((lever: Lever) => lever.setClickListener(listener));
+    }
+
+    /**
+     * ...
+     *
+     * @param listener { LeverClickListener }
+     *   ...
+     *
+     * @return void
+     */
+    public setToHideClickListener(listener: LeverClickListener): void {
+        this.toHideLevers.forEach((lever: Lever) => lever.setClickListener(listener));
     }
 }
 
-export default Levers.getInstance();
+export default Levers;

@@ -84,6 +84,7 @@ module.exports = {
     output: {
         publicPath: '/',
         filename: 'scripts/[name].js',
+        library: 'SlidePanels',
     },
     resolve: {
         extensions: ['.js', '.ts', '.scss'],
