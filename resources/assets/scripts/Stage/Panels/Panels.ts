@@ -1,17 +1,10 @@
 import Selector from '@scripts/Utilities/Selector';
-import Sides from './Sides/Sides';
 import Panel from './Panel';
 
 /**
  * ...
  */
 class Panels {
-
-    /**
-     * ...
-     */
-    private sides: Sides;
-
     /**
      * ...
      *
@@ -22,8 +15,7 @@ class Panels {
     /**
      * The constructor.
      */
-    constructor() {
-        this.sides = new Sides();
+    public constructor() {
         this.initPanels();
     }
 
@@ -39,22 +31,37 @@ class Panels {
     /**
      * ...
      *
-     * @param target { Array<string> }
+     * @param id { string }
      *   ...
      *
-     * @return void
+     * @return Panel
      */
-    public show(target: Array<string>) {
-        this.sides.show(target);
+    public hasPanel(id: string): boolean {
+        for (const panel of this.panels) {
+            if (panel.isEqualId(id)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
      * ...
      *
-     * @return void
+     * @param id { string }
+     *   ...
+     *
+     * @return Panel
      */
-    public hide() {
-        this.sides.hide();
+    public getPanel(id: string): Panel {
+        for (const panel of this.panels) {
+            if (panel.isEqualId(id)) {
+                return panel;
+            }
+        }
+
+        return null;
     }
 }
 

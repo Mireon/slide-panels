@@ -1,6 +1,8 @@
 import StageAnimation from './StageAnimation';
 import Backstage from './Backstage/Backstage';
+import Sides from './Sides/Sides';
 import Panels from './Panels/Panels';
+import Target from '@scripts/Utilities/Target';
 
 /**
  * ...
@@ -8,16 +10,29 @@ import Panels from './Panels/Panels';
 class Stage {
     /**
      * ...
+     *
+     * @type StageAnimation
      */
     private animation: StageAnimation;
 
     /**
      * ...
+     *
+     * @type Backstage
      */
     private backstage: Backstage;
 
     /**
      * ...
+     *
+     * @type Sides
+     */
+    private sides: Sides;
+
+    /**
+     * ...
+     *
+     * @type Panels
      */
     private panels: Panels;
 
@@ -27,21 +42,24 @@ class Stage {
     private constructor() {
         this.animation = new StageAnimation();
         this.backstage = new Backstage();
+        this.sides = new Sides();
         this.panels = new Panels();
     }
 
     /**
      * ...
      *
-     * @param target { Array<string> }
+     * @param target { Target }
      *   ...
      *
      * @return void
      */
-    public show(target: Array<string>): void {
+    public show(target: Target): void {
+        if (!this.panels.hasPanel(target.getPanel())) { return; }
+
         this.animation.show();
         this.backstage.show();
-        this.panels.show(target);
+        this.sides.show(this.panels.getPanel(target.getPanel()).getSide());
     }
 
     /**
@@ -50,7 +68,7 @@ class Stage {
      * @return void
      */
     public hide(): void {
-        this.panels.hide();
+        this.sides.hide();
         this.backstage.hide();
         this.animation.hide();
     }

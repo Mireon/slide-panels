@@ -12,20 +12,27 @@ class Sides {
     /**
      * The constructor.
      */
-    constructor() {
+    public constructor() {
         this.animation = new SidesAnimation();
     }
 
     /**
      * ...
      *
-     * @param target { Array<string> }
+     * @param side { string }
      *   ...
      *
      * @return void
      */
-    public show(target: Array<string>) {
-        this.animation.show();
+    public show(side: string) {
+        switch (side) {
+            case 'left':
+                this.animation.showLeft();
+                break;
+            case 'right':
+                this.animation.showRight();
+                break;
+        }
     }
 
     /**

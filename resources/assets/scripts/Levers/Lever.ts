@@ -1,4 +1,5 @@
 import LeverClickListener from './LeverClickListener';
+import Target from '@scripts/Utilities/Target';
 
 /**
  * ...
@@ -29,16 +30,16 @@ class Lever {
     /**
      * ...
      *
-     * @type Array<string>
+     * @type Target
      */
-    private readonly target: Array<string>;
+    private readonly target: Target;
 
     /**
      * The constructor.
      *
      * @param element { Element }
      */
-    constructor(element: Element) {
+    public constructor(element: Element) {
         this.element = element;
         this.action = this.extractAction(element);
         this.target = this.extractTarget(element);
@@ -76,30 +77,12 @@ class Lever {
      * @param element { Element }
      *  ...
      *
-     * @return Array<string>
+     * @return Target
      */
-    public extractTarget(element: Element): Array<string> {
+    public extractTarget(element: Element): Target {
         const attribute = 'data-target';
 
-        if (!element.hasAttribute(attribute)) {
-            return null;
-        }
-
-        const hash = element.getAttribute(attribute);
-
-        if (hash === '') {
-            return null;
-        }
-
-        const target = hash.split('.')
-            .map((item: string) => item.trim())
-            .filter((item: string) => item !== '');
-
-        if (target.length === 0) {
-            return null;
-        }
-
-        return target;
+        return new Target(element.getAttribute(attribute));
     }
 
     /**
@@ -123,9 +106,9 @@ class Lever {
     /**
      * ...
      *
-     * @type Array<string>
+     * @type Target
      */
-    public getTarget(): Array<string> {
+    public getTarget(): Target {
         return this.target;
     }
 
@@ -135,7 +118,10 @@ class Lever {
      * @type boolean
      */
     public setClickListener(listener: LeverClickListener): void {
-        this.element.addEventListener('click', () => listener(this));
+        this.element.addEventListener('click', (e) => {
+            e.preventDefault();
+            listener(this);
+        });
     }
 }
 

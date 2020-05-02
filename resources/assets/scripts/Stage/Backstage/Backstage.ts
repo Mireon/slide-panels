@@ -12,7 +12,7 @@ class Backstage {
     /**
      * The constructor.
      */
-    constructor() {
+    public constructor() {
         this.animation = new BackstageAnimation();
     }
 
