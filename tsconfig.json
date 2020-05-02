@@ -5,6 +5,10 @@
     "target": "es5",
     "allowJs": true,
     "sourceMap": true,
-    "removeComments": true
+    "removeComments": true,
+    "baseUrl": "./resources/assets/scripts",
+    "paths": {
+      "@scripts/*": ["*"]
+    }
   }
 }
