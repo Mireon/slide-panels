@@ -39,7 +39,7 @@ class Stage {
     /**
      * The constructor.
      */
-    private constructor() {
+    public constructor() {
         this.animation = new StageAnimation();
         this.backstage = new Backstage();
         this.sides = new Sides();
@@ -59,6 +59,7 @@ class Stage {
 
         this.animation.show();
         this.backstage.show();
+        this.panels.show(target);
         this.sides.show(this.panels.getPanel(target.getPanel()).getSide());
     }
 
@@ -69,6 +70,7 @@ class Stage {
      */
     public hide(): void {
         this.sides.hide();
+        this.panels.hide();
         this.backstage.hide();
         this.animation.hide();
     }

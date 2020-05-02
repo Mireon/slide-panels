@@ -3,3 +3,23 @@
   height: 100%;
   width: 100%;
 }
+
+.slide-panels__panel {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background: red;
+
+  &_visible {
+    visibility: visible;
+    z-index: 1;
+    transition: visibility 0s, z-index 0s;
+  }
+
+  &_hidden {
+    visibility: hidden;
+    z-index: 0;
+    transition: visibility .3s .3s, z-index .3s .3s;
+  }
+
+}

@@ -24,7 +24,7 @@ class Levers {
     /**
      * The constructor.
      */
-    private constructor() {
+    public constructor() {
         this.initLevers();
     }
 

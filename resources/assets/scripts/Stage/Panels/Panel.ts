@@ -1,3 +1,6 @@
+import Target from '@scripts/Utilities/Target';
+import PanelAnimation from '@scripts/Stage/Panels/PanelAnimation';
+
 /**
  * ...
  */
@@ -17,6 +20,13 @@ class Panel {
     private readonly side: string;
 
     /**
+     * ...
+     *
+     * @type PanelAnimation
+     */
+    private readonly animation: PanelAnimation;
+
+    /**
      * The constructor.
      *
      * @param element { Element }
@@ -25,6 +35,7 @@ class Panel {
     public constructor(element: Element) {
         this.id = this.extractId(element);
         this.side = this.extractSide(element);
+        this.animation = new PanelAnimation(element);
     }
 
     /**
@@ -68,10 +79,8 @@ class Panel {
 
         const side = element.getAttribute(attribute);
 
-        switch (side) {
-            case 'left':
-            case 'right':
-                return side;
+        if (side === 'left' || side === 'right') {
+            return side;
         }
 
         return null;
@@ -96,6 +105,27 @@ class Panel {
      */
     public getSide(): string {
         return this.side;
+    }
+
+    /**
+     * ...
+     *
+     * @param target { Target }
+     *   ...
+     *
+     * @return void
+     */
+    public show(target: Target): void {
+        this.animation.show();
+    }
+
+    /**
+     * ...
+     *
+     * @return void
+     */
+    public hide(): void {
+        this.animation.hide();
     }
 }
 

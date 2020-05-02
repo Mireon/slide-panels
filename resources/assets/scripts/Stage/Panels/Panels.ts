@@ -1,5 +1,6 @@
 import Selector from '@scripts/Utilities/Selector';
 import Panel from './Panel';
+import Target from '@scripts/Utilities/Target';
 
 /**
  * ...
@@ -62,6 +63,35 @@ class Panels {
         }
 
         return null;
+    }
+
+    /**
+     * ...
+     *
+     * @param target { Target }
+     *   ...
+     *
+     * @return void
+     */
+    public show(target: Target): void {
+        for (const panel of this.panels) {
+            if (panel.isEqualId(target.getPanel())) {
+                panel.show(target);
+            } else {
+                panel.hide();
+            }
+        }
+    }
+
+    /**
+     * ...
+     *
+     * @return void
+     */
+    public hide(): void {
+        for (const panel of this.panels) {
+            panel.hide();
+        }
     }
 }
 
