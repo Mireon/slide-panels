@@ -1,5 +1,7 @@
 import Lever from './Lever';
 import LeverClickListener from './LeverClickListener';
+import Selector from '@scripts/Utilities/Selector';
+import { Locations } from '@scripts/Utilities/Selector';
 
 /**
  * ...
@@ -23,7 +25,7 @@ class Levers {
      * The constructor.
      */
     private constructor() {
-        this.createLevers();
+        this.initLevers();
     }
 
     /**
@@ -31,12 +33,8 @@ class Levers {
      *
      * @return void
      */
-    private createLevers(): void {
-        const plugin = 'data-plugin="slide-panels"';
-        const type = 'data-type="lever"';
-        const selector = `[${plugin}][${type}]`;
-
-        document.querySelectorAll(selector).forEach(element => {
+    private initLevers(): void {
+        Selector.element('lever', Locations.UBIQUITOUS).each((element: Element) => {
             const lever = new Lever(element);
 
             if (lever.toShow()) {

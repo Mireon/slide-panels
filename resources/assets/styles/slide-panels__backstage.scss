@@ -1,18 +1,17 @@
 .slide-panels__backstage {
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: absolute;
   height: 100%;
   width: 100%;
   background: #000000;
-  transition: visibility .3s, opacity .3s;
 
   &_visible {
+    transition: visibility .3s, opacity .3s;
     visibility: visible;
     opacity: 0.6;
   }
 
   &_hidden {
+    transition: visibility .3s .1s, opacity .3s .1s;
     visibility: hidden;
     opacity: 0;
   }

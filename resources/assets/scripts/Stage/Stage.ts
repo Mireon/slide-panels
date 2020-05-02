@@ -1,4 +1,4 @@
-import StageVision from './StageVision';
+import StageAnimation from './StageAnimation';
 import Backstage from './Backstage/Backstage';
 import Panels from './Panels/Panels';
 
@@ -9,7 +9,7 @@ class Stage {
     /**
      * ...
      */
-    private vision: StageVision;
+    private animation: StageAnimation;
 
     /**
      * ...
@@ -25,7 +25,7 @@ class Stage {
      * The constructor.
      */
     private constructor() {
-        this.vision = new StageVision();
+        this.animation = new StageAnimation();
         this.backstage = new Backstage();
         this.panels = new Panels();
     }
@@ -39,7 +39,7 @@ class Stage {
      * @return void
      */
     public show(target: Array<string>): void {
-        this.vision.show();
+        this.animation.show();
         this.backstage.show();
         this.panels.show(target);
     }
@@ -52,7 +52,7 @@ class Stage {
     public hide(): void {
         this.panels.hide();
         this.backstage.hide();
-        this.vision.hide();
+        this.animation.hide();
     }
 }
 

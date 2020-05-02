@@ -1,19 +1,21 @@
+import Selector from '@scripts/Utilities/Selector';
+
 /**
  * ...
  */
-class BackstageVision {
+class BackstageAnimation {
     /**
      * ...
      *
-     * @type HTMLElement
+     * @type Element
      */
-    private element: HTMLElement;
+    private element: Element;
 
     /**
      * The constructor.
      */
     constructor() {
-        this.element = document.getElementById('slide-panels__backstage');
+        this.element = Selector.element('backstage').get();
     }
 
     /**
@@ -37,4 +39,4 @@ class BackstageVision {
     }
 }
 
-export default BackstageVision;
+export default BackstageAnimation;

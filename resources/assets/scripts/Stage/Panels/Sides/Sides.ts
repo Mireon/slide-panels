@@ -1,27 +1,30 @@
-import BackstageAnimation from './BackstageAnimation';
+import SidesAnimation from './SidesAnimation';
 
 /**
  * ...
  */
-class Backstage {
+class Sides {
     /**
      * ...
      */
-    private animation: BackstageAnimation;
+    private animation: SidesAnimation;
 
     /**
      * The constructor.
      */
     constructor() {
-        this.animation = new BackstageAnimation();
+        this.animation = new SidesAnimation();
     }
 
     /**
      * ...
      *
+     * @param target { Array<string> }
+     *   ...
+     *
      * @return void
      */
-    public show() {
+    public show(target: Array<string>) {
         this.animation.show();
     }
 
@@ -35,4 +38,4 @@ class Backstage {
     }
 }
 
-export default Backstage;
+export default Sides;

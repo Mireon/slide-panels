@@ -1,3 +1,5 @@
+import Selector from '@scripts/Utilities/Selector';
+
 /**
  * ...
  */
@@ -9,13 +11,13 @@ enum States {
 /**
  * ...
  */
-class StageVision {
+class StageAnimation {
     /**
      * ...
      *
-     * @type HTMLElement
+     * @type Element
      */
-    private element: HTMLElement;
+    private element: Element;
 
     /**
      * ...
@@ -26,7 +28,7 @@ class StageVision {
      * The constructor.
      */
     public constructor() {
-        this.element = document.getElementById('slide-panels');
+        this.element = Selector.root().get();
     }
 
     /**
@@ -56,4 +58,4 @@ class StageVision {
     }
 }
 
-export default StageVision;
+export default StageAnimation;

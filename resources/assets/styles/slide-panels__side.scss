@@ -1,0 +1,33 @@
+.slide-panels__side {
+  position: absolute;
+  height: 100%;
+  width: 400px;
+  background: #ffffff;
+
+  &-left {
+    transition: left .3s;
+
+    &_visible {
+      left: 0;
+    }
+
+    &_hidden {
+      left: -400px;
+    }
+
+  }
+
+  &-right {
+    transition: right .3s;
+
+    &_visible {
+      right: 0;
+    }
+
+    &_hidden {
+      right: -400px;
+    }
+
+  }
+
+}

@@ -1,7 +1,6 @@
-/**
- * ...
- */
-import PanelsVision from './PanelsVision';
+import Selector from '@scripts/Utilities/Selector';
+import Sides from './Sides/Sides';
+import Panel from './Panel';
 
 /**
  * ...
@@ -11,13 +10,30 @@ class Panels {
     /**
      * ...
      */
-    private vision: PanelsVision;
+    private sides: Sides;
+
+    /**
+     * ...
+     *
+     * @type Array<Panel>
+     */
+    private panels = Array<Panel>();
 
     /**
      * The constructor.
      */
     constructor() {
-        this.vision = new PanelsVision();
+        this.sides = new Sides();
+        this.initPanels();
+    }
+
+    /**
+     * ...
+     *
+     * @return void
+     */
+    private initPanels(): void {
+        Selector.element('panel').each((element: Element) => this.panels.push(new Panel(element)));
     }
 
     /**
@@ -29,7 +45,7 @@ class Panels {
      * @return void
      */
     public show(target: Array<string>) {
-        this.vision.show();
+        this.sides.show(target);
     }
 
     /**
@@ -38,7 +54,7 @@ class Panels {
      * @return void
      */
     public hide() {
-        this.vision.hide();
+        this.sides.hide();
     }
 }
 
