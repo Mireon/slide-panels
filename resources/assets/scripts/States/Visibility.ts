@@ -1,29 +1,23 @@
-/**
- * ...
- */
-enum States {
-    VISIBLE,
-    HIDDEN,
-}
+import { C } from '@entities/C';
 
 /**
  * ...
  */
-class VisibilityState {
+class Visibility {
     /**
      * ...
      *
-     * @type States
+     * @type string
      */
-    private state: States;
+    private state: C.visibility;
 
     /**
      * ...
      *
-     * @param state { States }
+     * @param state { string }
      *   ...
      */
-    public constructor(state: States = States.HIDDEN) {
+    public constructor(state: C.visibility = C.visibility.HIDDEN) {
         this.state = state;
     }
 
@@ -33,7 +27,7 @@ class VisibilityState {
      * @return void
      */
     public setVisible(): void {
-        this.state = States.VISIBLE;
+        this.state = C.visibility.VISIBLE;
     }
 
     /**
@@ -42,7 +36,7 @@ class VisibilityState {
      * @return boolean
      */
     public isVisible(): boolean {
-        return this.state === States.VISIBLE;
+        return this.state === C.visibility.VISIBLE;
     }
 
     /**
@@ -51,7 +45,7 @@ class VisibilityState {
      * @return void
      */
     public setHidden(): void {
-        this.state = States.HIDDEN;
+        this.state = C.visibility.HIDDEN;
     }
 
     /**
@@ -60,8 +54,8 @@ class VisibilityState {
      * @return boolean
      */
     public isHidden(): boolean {
-        return this.state === States.HIDDEN;
+        return this.state === C.visibility.HIDDEN;
     }
 }
 
-export default VisibilityState;
+export default Visibility;

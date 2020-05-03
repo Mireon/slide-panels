@@ -8,12 +8,10 @@
 
   &_visible {
     visibility: visible;
-    transition: visibility;
   }
 
   &_hidden {
     visibility: hidden;
-    transition: visibility 0s linear .3s;
   }
 
 }

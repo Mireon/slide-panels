@@ -1,5 +1,5 @@
 import Selector from '@tools/Selector';
-import VisibilityState from '@states/VisibilityState';
+import Visibility from '@states/Visibility';
 
 /**
  * ...
@@ -15,16 +15,16 @@ class StageAnimation {
     /**
      * ...
      *
-     * @type VisibilityState
+     * @type Visibility
      */
-    private state: VisibilityState;
+    private state: Visibility;
 
     /**
      * The constructor.
      */
     public constructor() {
         this.element = Selector.root().get();
-        this.state = new VisibilityState();
+        this.state = new Visibility();
     }
 
     /**

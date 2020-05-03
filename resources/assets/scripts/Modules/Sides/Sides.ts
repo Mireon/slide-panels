@@ -1,4 +1,5 @@
-import SidesAnimation from '@modules/Sides/SidesAnimation';
+import Side from '@modules/Sides/Side';
+import { C } from '@entities/C';
 
 /**
  * ...
@@ -6,31 +7,43 @@ import SidesAnimation from '@modules/Sides/SidesAnimation';
 class Sides {
     /**
      * ...
+     *
+     * @type Side
      */
-    private animation: SidesAnimation;
+    private left: Side;
+
+    /**
+     * ...
+     *
+     * @type Side
+     */
+    private right: Side;
 
     /**
      * The constructor.
      */
     public constructor() {
-        this.animation = new SidesAnimation();
+        this.left = new Side(C.side.LEFT);
+        this.right = new Side(C.side.RIGHT);
     }
 
     /**
      * ...
      *
-     * @param side { string }
+     * @param side { C.side }
      *   ...
      *
      * @return void
      */
-    public show(side: string) {
+    public show(side: C.side) {
         switch (side) {
-            case 'left':
-                this.animation.showLeft();
+            case C.side.LEFT:
+                this.left.show();
+                this.right.hide();
                 break;
-            case 'right':
-                this.animation.showRight();
+            case C.side.RIGHT:
+                this.right.show();
+                this.left.hide();
                 break;
         }
     }
@@ -41,7 +54,8 @@ class Sides {
      * @return void
      */
     public hide() {
-        this.animation.hide();
+        this.left.hide();
+        this.right.hide();
     }
 }
 

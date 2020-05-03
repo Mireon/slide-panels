@@ -1,5 +1,6 @@
 import Target from '@entities/Target';
 import PanelAnimation from '@modules/Panels/PanelAnimation';
+import { C } from '@entities/C';
 
 /**
  * ...
@@ -15,9 +16,9 @@ class Panel {
     /**
      * ...
      *
-     * @type string
+     * @type C.side
      */
-    private readonly side: string;
+    private readonly side: C.side;
 
     /**
      * ...
@@ -70,7 +71,7 @@ class Panel {
      *
      * @return string
      */
-    public extractSide(element: Element): string {
+    public extractSide(element: Element): C.side {
         const attribute = 'data-side';
 
         if (!element.hasAttribute(attribute)) {
@@ -79,7 +80,7 @@ class Panel {
 
         const side = element.getAttribute(attribute);
 
-        if (side === 'left' || side === 'right') {
+        if (side === C.side.LEFT || side === C.side.RIGHT) {
             return side;
         }
 

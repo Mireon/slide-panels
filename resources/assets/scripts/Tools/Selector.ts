@@ -1,11 +1,4 @@
-/**
- * ...
- */
-export enum Locations {
-    INTERNAL,
-    EXTERNAL,
-    UBIQUITOUS,
-}
+import { C } from '@entities/C';
 
 /**
  * ...
@@ -14,9 +7,9 @@ class Selector {
     /**
      * ...
      *
-     * @type Locations
+     * @type C.location
      */
-    private location = Locations.INTERNAL;
+    private location = C.location.INTERNAL;
 
     /**
      * ...
@@ -57,7 +50,7 @@ class Selector {
      *
      * @type Selector
      */
-    public local(location: Locations): Selector {
+    public local(location: C.location): Selector {
         this.location = location;
         return this;
     }
@@ -85,13 +78,13 @@ class Selector {
         }
 
         switch (this.location) {
-            case Locations.INTERNAL:
+            case C.location.INTERNAL:
                 selectors = `#slide-panels ${selectors}`;
                 break;
-            case Locations.EXTERNAL:
+            case C.location.EXTERNAL:
                 selectors = `[data-plugin="slide-panels"]${selectors}`;
                 break;
-            case Locations.UBIQUITOUS:
+            case C.location.UBIQUITOUS:
                 selectors = `#slide-panels ${selectors}, [data-plugin="slide-panels"]${selectors}`;
                 break;
         }

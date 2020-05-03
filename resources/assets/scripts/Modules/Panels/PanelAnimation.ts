@@ -1,4 +1,4 @@
-import VisibilityState from '@states/VisibilityState';
+import Visibility from '@states/Visibility';
 
 /**
  * ...
@@ -14,9 +14,9 @@ class PanelAnimation {
     /**
      * ...
      *
-     * @type VisibilityState
+     * @type Visibility
      */
-    private state: VisibilityState;
+    private state: Visibility;
 
     /**
      * The constructor.
@@ -26,7 +26,7 @@ class PanelAnimation {
      */
     public constructor(element: Element) {
         this.element = element;
-        this.state = new VisibilityState();
+        this.state = new Visibility();
     }
 
     /**

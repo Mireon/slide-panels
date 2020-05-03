@@ -1,13 +1,6 @@
 import LeverClickListener from '@modules/Levers/LeverClickListener';
 import Target from '@entities/Target';
-
-/**
- * ...
- */
-enum Actions {
-    SHOW = 'show',
-    HIDE = 'hide',
-}
+import { C } from '@entities/C';
 
 /**
  * ...
@@ -23,9 +16,9 @@ class Lever {
     /**
      * ...
      *
-     * @type string
+     * @type C.action
      */
-    private readonly action: string;
+    private readonly action: C.action;
 
     /**
      * ...
@@ -53,18 +46,18 @@ class Lever {
      *
      * @return string
      */
-    public extractAction(element: Element): string {
+    public extractAction(element: Element): C.action {
         const attribute = 'data-action';
 
         if (!element.hasAttribute(attribute)) {
-            return Actions.SHOW;
+            return C.action.SHOW;
         }
 
         const action: string = element.getAttribute(attribute);
 
         switch (action) {
-            case Actions.SHOW:
-            case Actions.HIDE:
+            case C.action.SHOW:
+            case C.action.HIDE:
                 return action;
         }
 
@@ -91,7 +84,7 @@ class Lever {
      * @type boolean
      */
     public toShow(): boolean {
-        return this.action === Actions.SHOW && this.target !== null;
+        return this.action === C.action.SHOW && this.target !== null;
     }
 
     /**
@@ -100,7 +93,7 @@ class Lever {
      * @type boolean
      */
     public toHide(): boolean {
-        return this.action === Actions.HIDE;
+        return this.action === C.action.HIDE;
     }
 
     /**

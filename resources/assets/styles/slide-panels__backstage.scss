@@ -5,13 +5,11 @@
   background: #000000;
 
   &_visible {
-    transition: visibility .3s, opacity .3s;
     visibility: visible;
     opacity: 0.6;
   }
 
   &_hidden {
-    transition: visibility .3s .1s, opacity .3s .1s;
     visibility: hidden;
     opacity: 0;
   }

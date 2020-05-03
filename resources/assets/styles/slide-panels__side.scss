@@ -5,7 +5,6 @@
   background: #ffffff;
 
   &-left {
-    transition: left .3s;
 
     &_visible {
       left: 0;
@@ -18,7 +17,6 @@
   }
 
   &-right {
-    transition: right .3s;
 
     &_visible {
       right: 0;

@@ -1,4 +1,5 @@
 import Selector from '@tools/Selector';
+import { C } from '@entities/C';
 
 /**
  * ...
@@ -14,9 +15,9 @@ class Target {
     /**
      * ...
      *
-     * @type string
+     * @type C.side
      */
-    private readonly side: string;
+    private readonly side: C.side;
 
     /**
      * ...
@@ -53,9 +54,9 @@ class Target {
     /**
      * ...
      *
-     * @return string
+     * @return C.side
      */
-    private extractSide(): string {
+    private extractSide(): C.side {
         const attribute = 'data-side';
         const element = Selector.element('panel').attribute('data-id', this.panel).get();
 
@@ -69,7 +70,7 @@ class Target {
 
         const side = element.getAttribute(attribute);
 
-        if (side === 'left' || side === 'right') {
+        if (side === C.side.LEFT || side === C.side.RIGHT) {
             return side;
         }
 
@@ -133,9 +134,9 @@ class Target {
     /**
      * ...
      *
-     * @type string
+     * @type C.side
      */
-    public getSide(): string {
+    public getSide(): C.side {
         return this.side;
     }
 }

@@ -1,7 +1,7 @@
 import Lever from '@modules/Levers/Lever';
 import LeverClickListener from '@modules/Levers/LeverClickListener';
 import Selector from '@tools/Selector';
-import { Locations } from '@tools/Selector';
+import { C } from '@entities/C';
 
 /**
  * ...
@@ -34,7 +34,7 @@ class Levers {
      * @return void
      */
     private initLevers(): void {
-        Selector.element('lever').local(Locations.UBIQUITOUS).each((element: Element) => {
+        Selector.element('lever').local(C.location.UBIQUITOUS).each((element: Element) => {
             const lever = new Lever(element);
 
             if (lever.toShow()) {
