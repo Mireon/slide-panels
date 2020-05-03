@@ -62,8 +62,6 @@ class VisibilityState {
     public isHidden(): boolean {
         return this.state === States.HIDDEN;
     }
-
-
 }
 
 export default VisibilityState;

@@ -60,7 +60,7 @@ class Stage {
         this.animation.show();
         this.backstage.show();
         this.panels.show(target);
-        this.sides.show(this.panels.getPanel(target.getPanel()).getSide());
+        this.sides.show(target.getSide());
     }
 
     /**

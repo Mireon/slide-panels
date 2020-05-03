@@ -94,7 +94,7 @@ module.exports = {
         },
     },
     plugins: [
-        new CSSExtractPlugin({ filename: 'styles/[name].css' }),
+        new CSSExtractPlugin({ filename: 'styles/[name].min.css' }),
     ],
     module: {
         rules: [ jsRule(), tsRule(), scssRule() ],

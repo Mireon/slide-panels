@@ -48,8 +48,8 @@ class Selector {
      *
      * @type Selector
      */
-    public static element(element: string, location: Locations = Locations.INTERNAL): Selector {
-        return Selector.instance().add(`[data-element="${element}"]`).local(location);
+    public static element(element: string): Selector {
+        return Selector.instance().attribute('data-element', element);
     }
 
     /**
@@ -57,7 +57,7 @@ class Selector {
      *
      * @type Selector
      */
-    private local(location: Locations): Selector {
+    public local(location: Locations): Selector {
         this.location = location;
         return this;
     }
@@ -67,8 +67,8 @@ class Selector {
      *
      * @type Selector
      */
-    private add(selector: string): Selector {
-        this.selectors.push(selector);
+    public attribute(attribute: string, value: string): Selector {
+        this.selectors.push(`[${attribute}="${value}"]`);
         return this;
     }
 
