@@ -1,5 +1,6 @@
 import Target from '@entities/Target';
 import PanelAnimation from '@modules/Panels/PanelAnimation';
+import Visibility from '@states/Visibility';
 import { C } from '@entities/C';
 
 /**
@@ -28,6 +29,13 @@ class Panel {
     private readonly animation: PanelAnimation;
 
     /**
+     * ...
+     *
+     * @type Visibility
+     */
+    private state: Visibility;
+
+    /**
      * The constructor.
      *
      * @param element { Element }
@@ -37,6 +45,7 @@ class Panel {
         this.id = this.extractId(element);
         this.side = this.extractSide(element);
         this.animation = new PanelAnimation(element);
+        this.state = new Visibility();
     }
 
     /**
@@ -117,7 +126,10 @@ class Panel {
      * @return void
      */
     public show(target: Target): void {
+        if (this.state.isVisible()) { return; }
+
         this.animation.show();
+        this.state.setVisible();
     }
 
     /**
@@ -126,7 +138,10 @@ class Panel {
      * @return void
      */
     public hide(): void {
+        if (this.state.isHidden()) { return; }
+
         this.animation.hide();
+        this.state.setHidden();
     }
 }
 

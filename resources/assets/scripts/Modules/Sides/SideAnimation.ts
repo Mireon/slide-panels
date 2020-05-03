@@ -1,4 +1,3 @@
-import Location from '@states/Location';
 import Selector from '@tools/Selector';
 import { C } from '@entities/C';
 
@@ -21,13 +20,6 @@ class SideAnimation {
     private element: Element;
 
     /**
-     * ...
-     *
-     * @type state { Location }
-     */
-    private state: Location;
-
-    /**
      * The constructor.
      *
      * @param side { C.side }
@@ -36,7 +28,6 @@ class SideAnimation {
     public constructor(side: C.side) {
         this.side = side;
         this.element = Selector.element(`side-${side}`).get();
-        this.state = new Location();
     }
 
     /**
@@ -45,11 +36,8 @@ class SideAnimation {
      * @return void
      */
     public inside() {
-        if (this.state.isInside()) { return; }
-
         this.element.classList.add(`slide-panels__side-${this.side}_inside`);
         this.element.classList.remove(`slide-panels__side-${this.side}_outside`);
-        this.state.setInside();
     }
 
     /**
@@ -58,11 +46,8 @@ class SideAnimation {
      * @return void
      */
     public outside() {
-        if (this.state.isOutside()) { return; }
-
         this.element.classList.add(`slide-panels__side-${this.side}_outside`);
         this.element.classList.remove(`slide-panels__side-${this.side}_inside`);
-        this.state.setOutside();
     }
 }
 

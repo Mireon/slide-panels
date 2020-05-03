@@ -1,4 +1,5 @@
 import StageAnimation from '@modules/Stage/StageAnimation';
+import Visibility from '@states/Visibility';
 import Backstage from '@modules/Backstage/Backstage';
 import Sides from '@modules/Sides/Sides';
 import Panels from '@modules/Panels/Panels';
@@ -14,6 +15,13 @@ class Stage {
      * @type StageAnimation
      */
     private animation: StageAnimation;
+
+    /**
+     * ...
+     *
+     * @type Visibility
+     */
+    private state: Visibility;
 
     /**
      * ...
@@ -41,6 +49,7 @@ class Stage {
      */
     public constructor() {
         this.animation = new StageAnimation();
+        this.state = new Visibility();
         this.backstage = new Backstage();
         this.sides = new Sides();
         this.panels = new Panels();
@@ -57,7 +66,11 @@ class Stage {
     public show(target: Target): void {
         if (!this.panels.hasPanel(target.getPanel())) { return; }
 
-        this.animation.show();
+        if (this.state.isHidden()) {
+            this.animation.show();
+            this.state.setVisible();
+        }
+
         this.backstage.show();
         this.panels.show(target);
         this.sides.inside(target.getSide());
@@ -72,7 +85,11 @@ class Stage {
         this.sides.outside();
         this.backstage.hide();
         this.panels.hide();
-        this.animation.hide();
+
+        if (this.state.isVisible()) {
+            this.animation.hide();
+            this.state.setHidden();
+        }
     }
 }
 
