@@ -8,7 +8,10 @@
     "removeComments": true,
     "baseUrl": "./resources/assets/scripts",
     "paths": {
-      "@scripts/*": ["*"]
+      "@entities/*": ["Entities/*"],
+      "@modules/*": ["Modules/*"],
+      "@states/*": ["States/*"],
+      "@tools/*": ["Tools/*"]
     }
   }
 }

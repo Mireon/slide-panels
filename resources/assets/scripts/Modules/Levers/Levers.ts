@@ -1,7 +1,7 @@
-import Lever from './Lever';
-import LeverClickListener from './LeverClickListener';
-import Selector from '@scripts/Utilities/Selector';
-import { Locations } from '@scripts/Utilities/Selector';
+import Lever from '@modules/Levers/Lever';
+import LeverClickListener from '@modules/Levers/LeverClickListener';
+import Selector from '@tools/Selector';
+import { Locations } from '@tools/Selector';
 
 /**
  * ...

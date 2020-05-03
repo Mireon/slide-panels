@@ -1,8 +1,8 @@
-import StageAnimation from './StageAnimation';
-import Backstage from './Backstage/Backstage';
-import Sides from './Sides/Sides';
-import Panels from './Panels/Panels';
-import Target from '@scripts/Utilities/Target';
+import StageAnimation from '@modules/Stage/StageAnimation';
+import Backstage from '@modules/Backstage/Backstage';
+import Sides from '@modules/Sides/Sides';
+import Panels from '@modules/Panels/Panels';
+import Target from '@entities/Target';
 
 /**
  * ...

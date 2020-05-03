@@ -1,4 +1,4 @@
-import Lever from './Lever';
+import Lever from '@modules/Levers/Lever';
 
 /**
  * ...

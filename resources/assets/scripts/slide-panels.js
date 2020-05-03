@@ -1,6 +1,6 @@
 import '@styles/slide-panels';
-import Levers from './Levers/Levers';
-import Stage from './Stage/Stage';
+import Levers from '@modules/Levers/Levers';
+import Stage from '@modules/Stage/Stage';
 
 const stage = new Stage();
 const levers = new Levers();

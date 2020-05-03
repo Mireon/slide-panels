@@ -1,4 +1,4 @@
-import SidesAnimation from './SidesAnimation';
+import SidesAnimation from '@modules/Sides/SidesAnimation';
 
 /**
  * ...

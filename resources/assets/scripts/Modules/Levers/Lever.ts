@@ -1,5 +1,5 @@
-import LeverClickListener from './LeverClickListener';
-import Target from '@scripts/Utilities/Target';
+import LeverClickListener from '@modules/Levers/LeverClickListener';
+import Target from '@entities/Target';
 
 /**
  * ...

@@ -1,5 +1,5 @@
-import Selector from '@scripts/Utilities/Selector';
-import VisibilityState from '@scripts/Utilities/VisibilityState';
+import Selector from '@tools/Selector';
+import VisibilityState from '@states/VisibilityState';
 
 /**
  * ...

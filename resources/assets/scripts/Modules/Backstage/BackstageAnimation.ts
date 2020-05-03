@@ -1,9 +1,10 @@
-import VisibilityState from '@scripts/Utilities/VisibilityState';
+import Selector from '@tools/Selector';
+import VisibilityState from '@states/VisibilityState';
 
 /**
  * ...
  */
-class PanelAnimation {
+class BackstageAnimation {
     /**
      * ...
      *
@@ -20,12 +21,9 @@ class PanelAnimation {
 
     /**
      * The constructor.
-     *
-     * @param element { Element }
-     *   ...
      */
-    public constructor(element: Element) {
-        this.element = element;
+    public constructor() {
+        this.element = Selector.element('backstage').get();
         this.state = new VisibilityState();
     }
 
@@ -34,11 +32,11 @@ class PanelAnimation {
      *
      * @return void
      */
-    public show(): void {
+    public show() {
         if (this.state.isVisible()) { return; }
 
-        this.element.classList.add('slide-panels__panel_visible');
-        this.element.classList.remove('slide-panels__panel_hidden');
+        this.element.classList.add('slide-panels__backstage_visible');
+        this.element.classList.remove('slide-panels__backstage_hidden');
         this.state.setVisible();
     }
 
@@ -47,13 +45,13 @@ class PanelAnimation {
      *
      * @return void
      */
-    public hide(): void {
+    public hide() {
         if (this.state.isHidden()) { return; }
 
-        this.element.classList.add('slide-panels__panel_hidden');
-        this.element.classList.remove('slide-panels__panel_visible');
+        this.element.classList.add('slide-panels__backstage_hidden');
+        this.element.classList.remove('slide-panels__backstage_visible');
         this.state.setHidden();
     }
 }
 
-export default PanelAnimation;
+export default BackstageAnimation;

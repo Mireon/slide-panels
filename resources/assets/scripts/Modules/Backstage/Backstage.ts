@@ -1,4 +1,4 @@
-import BackstageAnimation from './BackstageAnimation';
+import BackstageAnimation from '@modules/Backstage/BackstageAnimation';
 
 /**
  * ...

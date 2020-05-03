@@ -1,5 +1,5 @@
-import Target from '@scripts/Utilities/Target';
-import PanelAnimation from '@scripts/Stage/Panels/PanelAnimation';
+import Target from '@entities/Target';
+import PanelAnimation from '@modules/Panels/PanelAnimation';
 
 /**
  * ...

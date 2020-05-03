@@ -1,4 +1,4 @@
-import Selector from '@scripts/Utilities/Selector';
+import Selector from '@tools/Selector';
 
 /**
  * ...

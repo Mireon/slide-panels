@@ -1,6 +1,6 @@
-import Selector from '@scripts/Utilities/Selector';
-import Panel from './Panel';
-import Target from '@scripts/Utilities/Target';
+import Selector from '@tools/Selector';
+import Panel from '@modules/Panels/Panel';
+import Target from '@entities/Target';
 
 /**
  * ...
