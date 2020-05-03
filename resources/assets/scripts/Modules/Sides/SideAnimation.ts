@@ -1,4 +1,4 @@
-import Visibility from '@states/Visibility';
+import Location from '@states/Location';
 import Selector from '@tools/Selector';
 import { C } from '@entities/C';
 
@@ -23,9 +23,9 @@ class SideAnimation {
     /**
      * ...
      *
-     * @type state { Visibility }
+     * @type state { Location }
      */
-    private state: Visibility;
+    private state: Location;
 
     /**
      * The constructor.
@@ -36,7 +36,7 @@ class SideAnimation {
     public constructor(side: C.side) {
         this.side = side;
         this.element = Selector.element(`side-${side}`).get();
-        this.state = new Visibility();
+        this.state = new Location();
     }
 
     /**
@@ -44,12 +44,12 @@ class SideAnimation {
      *
      * @return void
      */
-    public show() {
-        if (this.state.isVisible()) { return; }
+    public inside() {
+        if (this.state.isInside()) { return; }
 
-        this.element.classList.add(`slide-panels__side-${this.side}_visible`);
-        this.element.classList.remove(`slide-panels__side-${this.side}_hidden`);
-        this.state.setVisible();
+        this.element.classList.add(`slide-panels__side-${this.side}_inside`);
+        this.element.classList.remove(`slide-panels__side-${this.side}_outside`);
+        this.state.setInside();
     }
 
     /**
@@ -57,12 +57,12 @@ class SideAnimation {
      *
      * @return void
      */
-    public hide() {
-        if (this.state.isHidden()) { return; }
+    public outside() {
+        if (this.state.isOutside()) { return; }
 
-        this.element.classList.add(`slide-panels__side-${this.side}_hidden`);
-        this.element.classList.remove(`slide-panels__side-${this.side}_visible`);
-        this.state.setHidden();
+        this.element.classList.add(`slide-panels__side-${this.side}_outside`);
+        this.element.classList.remove(`slide-panels__side-${this.side}_inside`);
+        this.state.setOutside();
     }
 }
 

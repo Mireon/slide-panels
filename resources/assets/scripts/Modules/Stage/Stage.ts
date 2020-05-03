@@ -60,7 +60,7 @@ class Stage {
         this.animation.show();
         this.backstage.show();
         this.panels.show(target);
-        this.sides.show(target.getSide());
+        this.sides.inside(target.getSide());
     }
 
     /**
@@ -69,9 +69,9 @@ class Stage {
      * @return void
      */
     public hide(): void {
-        this.sides.hide();
-        this.panels.hide();
+        this.sides.outside();
         this.backstage.hide();
+        this.panels.hide();
         this.animation.hide();
     }
 }

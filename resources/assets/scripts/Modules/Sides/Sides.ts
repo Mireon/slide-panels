@@ -35,15 +35,15 @@ class Sides {
      *
      * @return void
      */
-    public show(side: C.side) {
+    public inside(side: C.side) {
         switch (side) {
             case C.side.LEFT:
-                this.left.show();
-                this.right.hide();
+                this.left.inside();
+                this.right.outside();
                 break;
             case C.side.RIGHT:
-                this.right.show();
-                this.left.hide();
+                this.right.inside();
+                this.left.outside();
                 break;
         }
     }
@@ -53,9 +53,9 @@ class Sides {
      *
      * @return void
      */
-    public hide() {
-        this.left.hide();
-        this.right.hide();
+    public outside() {
+        this.left.outside();
+        this.right.outside();
     }
 }
 

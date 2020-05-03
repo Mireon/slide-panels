@@ -26,8 +26,8 @@ class Side {
      *
      * @return void
      */
-    public show() {
-        this.animation.show();
+    public inside() {
+        this.animation.inside();
     }
 
     /**
@@ -35,8 +35,8 @@ class Side {
      *
      * @return void
      */
-    public hide() {
-        this.animation.hide();
+    public outside() {
+        this.animation.outside();
     }
 }
 

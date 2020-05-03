@@ -6,11 +6,11 @@
 
   &-left {
 
-    &_visible {
+    &_inside {
       left: 0;
     }
 
-    &_hidden {
+    &_outside {
       left: -320px;
     }
 
@@ -18,11 +18,11 @@
 
   &-right {
 
-    &_visible {
+    &_inside {
       right: 0;
     }
 
-    &_hidden {
+    &_outside {
       right: -320px;
     }
 

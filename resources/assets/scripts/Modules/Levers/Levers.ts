@@ -34,7 +34,7 @@ class Levers {
      * @return void
      */
     private initLevers(): void {
-        Selector.element('lever').local(C.location.UBIQUITOUS).each((element: Element) => {
+        Selector.element('lever').local(C.location.EVERYWHERE).each((element: Element) => {
             const lever = new Lever(element);
 
             if (lever.toShow()) {

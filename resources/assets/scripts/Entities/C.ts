@@ -30,8 +30,8 @@ export namespace C {
      * ...
      */
     export enum location {
-        INTERNAL = 'internal',
-        EXTERNAL = 'external',
-        UBIQUITOUS = 'ubiquitous',
+        INSIDE = 'inside',
+        OUTSIDE = 'outside',
+        EVERYWHERE = 'everywhere',
     }
 }

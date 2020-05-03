@@ -9,7 +9,7 @@ class Selector {
      *
      * @type C.location
      */
-    private location = C.location.INTERNAL;
+    private location = C.location.INSIDE;
 
     /**
      * ...
@@ -78,13 +78,13 @@ class Selector {
         }
 
         switch (this.location) {
-            case C.location.INTERNAL:
+            case C.location.INSIDE:
                 selectors = `#slide-panels ${selectors}`;
                 break;
-            case C.location.EXTERNAL:
+            case C.location.OUTSIDE:
                 selectors = `[data-plugin="slide-panels"]${selectors}`;
                 break;
-            case C.location.UBIQUITOUS:
+            case C.location.EVERYWHERE:
                 selectors = `#slide-panels ${selectors}, [data-plugin="slide-panels"]${selectors}`;
                 break;
         }

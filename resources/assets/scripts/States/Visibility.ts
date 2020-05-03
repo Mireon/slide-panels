@@ -14,7 +14,7 @@ class Visibility {
     /**
      * ...
      *
-     * @param state { string }
+     * @param state { C.visibility }
      *   ...
      */
     public constructor(state: C.visibility = C.visibility.HIDDEN) {
