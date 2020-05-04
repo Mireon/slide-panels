@@ -36,8 +36,13 @@ class SideAnimation {
      * @return void
      */
     public inside() {
-        this.element.classList.add(`slide-panels__side-${this.side}_inside`);
+        this.element.classList.add(`slide-panels__side-${this.side}_slide-inside`);
         this.element.classList.remove(`slide-panels__side-${this.side}_outside`);
+
+        setTimeout(() => {
+            this.element.classList.add(`slide-panels__side-${this.side}_inside`);
+            this.element.classList.remove(`slide-panels__side-${this.side}_slide-inside`);
+        }, 300);
     }
 
     /**
@@ -46,8 +51,13 @@ class SideAnimation {
      * @return void
      */
     public outside() {
-        this.element.classList.add(`slide-panels__side-${this.side}_outside`);
+        this.element.classList.add(`slide-panels__side-${this.side}_slide-outside`);
         this.element.classList.remove(`slide-panels__side-${this.side}_inside`);
+
+        setTimeout(() => {
+            this.element.classList.add(`slide-panels__side-${this.side}_outside`);
+            this.element.classList.remove(`slide-panels__side-${this.side}_slide-outside`);
+        }, 300);
     }
 }
 

@@ -111,9 +111,27 @@ class Panel {
     /**
      * ...
      *
+     * @return Visibility
+     */
+    public getState(): Visibility {
+        return this.state;
+    }
+
+    /**
+     * ...
+     *
      * @return string
      */
-    public getSide(): string {
+    public getId(): string {
+        return this.id;
+    }
+
+    /**
+     * ...
+     *
+     * @return C.side
+     */
+    public getSide(): C.side {
         return this.side;
     }
 
@@ -126,10 +144,8 @@ class Panel {
      * @return void
      */
     public show(target: Target): void {
-        if (this.state.isVisible()) { return; }
-
         this.animation.show();
-        this.state.setVisible();
+        setTimeout(() => this.state.setVisible(), 300);
     }
 
     /**
@@ -138,10 +154,28 @@ class Panel {
      * @return void
      */
     public hide(): void {
-        if (this.state.isHidden()) { return; }
-
         this.animation.hide();
-        this.state.setHidden();
+        setTimeout(() => this.state.setHidden(), 300);
+    }
+
+    /**
+     * ...
+     *
+     * @return void
+     */
+    public inside(): void {
+        this.animation.inside();
+        setTimeout(() => this.state.setVisible(), 300);
+    }
+
+    /**
+     * ...
+     *
+     * @return void
+     */
+    public outside(): void {
+        this.animation.outside();
+        setTimeout(() => this.state.setHidden(), 300);
     }
 }
 

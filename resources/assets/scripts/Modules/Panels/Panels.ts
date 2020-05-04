@@ -37,24 +37,6 @@ class Panels {
      *
      * @return Panel
      */
-    public hasPanel(id: string): boolean {
-        for (const panel of this.panels) {
-            if (panel.isEqualId(id)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * ...
-     *
-     * @param id { string }
-     *   ...
-     *
-     * @return Panel
-     */
     public getPanel(id: string): Panel {
         for (const panel of this.panels) {
             if (panel.isEqualId(id)) {
@@ -68,18 +50,56 @@ class Panels {
     /**
      * ...
      *
+     * @return Panel
+     */
+    public getVisiblePanel(): Panel {
+        for (const panel of this.panels) {
+            if (panel.getState().isVisible()) {
+                return panel;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * ...
+     *
+     * @return boolean
+     */
+    public hasVisiblePanel(): boolean {
+        for (const panel of this.panels) {
+            if (panel.getState().isVisible()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * ...
+     *
      * @param target { Target }
      *   ...
      *
      * @return void
      */
     public show(target: Target): void {
-        for (const panel of this.panels) {
-            if (panel.isEqualId(target.getPanel())) {
-                panel.show(target);
+        if (this.hasVisiblePanel()) {
+            const panel = this.getVisiblePanel();
+
+            if (panel.getSide() === target.getSide()) {
+                if (panel.getId() !== target.getPanelId()) {
+                    panel.outside();
+                    this.getPanel(target.getPanelId()).inside();
+                }
             } else {
-                panel.hide();
+                setTimeout(() => panel.hide(), 300);
+                this.getPanel(target.getPanelId()).show(target);
             }
+        } else {
+            this.getPanel(target.getPanelId()).show(target);
         }
     }
 

@@ -64,13 +64,7 @@ class Stage {
      * @return void
      */
     public show(target: Target): void {
-        if (!this.panels.hasPanel(target.getPanel())) { return; }
-
-        if (this.state.isHidden()) {
-            this.animation.show();
-            this.state.setVisible();
-        }
-
+        this.animation.show();
         this.backstage.show();
         this.panels.show(target);
         this.sides.inside(target.getSide());
@@ -84,12 +78,8 @@ class Stage {
     public hide(): void {
         this.sides.outside();
         this.backstage.hide();
-        this.panels.hide();
-
-        if (this.state.isVisible()) {
-            this.animation.hide();
-            this.state.setHidden();
-        }
+        setTimeout(() => this.panels.hide(), 300);
+        setTimeout(() => this.animation.hide(), 300);
     }
 }
 

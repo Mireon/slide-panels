@@ -1,7 +1,9 @@
+$side-width: 320px;
+
 .slide-panels__side {
   position: absolute;
   height: 100%;
-  width: 320px;
+  width: $side-width;
   background: #ffffff;
 
   &-left {
@@ -11,7 +13,7 @@
     }
 
     &_outside {
-      left: -320px;
+      left: -$side-width;
     }
 
   }
@@ -23,7 +25,7 @@
     }
 
     &_outside {
-      right: -320px;
+      right: -$side-width;
     }
 
   }

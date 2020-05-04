@@ -118,8 +118,8 @@ class Target {
      *
      * @type boolean
      */
-    public isValid(): boolean {
-        return this.panel !== undefined;
+    public isExistsPanel(): boolean {
+        return Selector.element('panel').attribute('data-id', this.panel).get() !== null;
     }
 
     /**
@@ -127,7 +127,7 @@ class Target {
      *
      * @type string
      */
-    public getPanel(): string {
+    public getPanelId(): string {
         return this.panel;
     }
 

@@ -34,7 +34,7 @@ class Backstage {
         if (this.state.isVisible()) { return; }
 
         this.animation.show();
-        this.state.setVisible();
+        setTimeout(() => this.state.setVisible(), 300);
     }
 
     /**
@@ -46,7 +46,7 @@ class Backstage {
         if (this.state.isHidden()) { return; }
 
         this.animation.hide();
-        this.state.setHidden();
+        setTimeout(() => this.state.setHidden(), 300);
     }
 }
 

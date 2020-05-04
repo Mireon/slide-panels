@@ -54,7 +54,11 @@ class Levers {
      * @return void
      */
     public setToShowClickListener(listener: LeverClickListener): void {
-        this.toShowLevers.forEach((lever: Lever) => lever.setClickListener(listener));
+        this.toShowLevers.forEach((lever: Lever) => {
+            if (lever.getTarget().isExistsPanel()) {
+                lever.setClickListener(listener);
+            }
+        });
     }
 
     /**
