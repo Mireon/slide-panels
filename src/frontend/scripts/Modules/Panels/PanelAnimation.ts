@@ -25,8 +25,13 @@ class PanelAnimation {
      * @return void
      */
     public show(): void {
-        this.element.classList.add('slide-panels__panel_visible');
+        this.element.classList.add('slide-panels__panel_showing');
         this.element.classList.remove('slide-panels__panel_hidden');
+
+        setTimeout(() => {
+            this.element.classList.add('slide-panels__panel_visible');
+            this.element.classList.remove('slide-panels__panel_showing');
+        }, 300);
     }
 
     /**
@@ -35,9 +40,12 @@ class PanelAnimation {
      * @return void
      */
     public hide(): void {
+        this.element.classList.add('slide-panels__panel_hiding');
+        this.element.classList.remove('slide-panels__panel_visible');
+
         setTimeout(() => {
             this.element.classList.add('slide-panels__panel_hidden');
-            this.element.classList.remove('slide-panels__panel_visible');
+            this.element.classList.remove('slide-panels__panel_hiding');
         }, 300);
     }
 
