@@ -6,11 +6,10 @@
     "allowJs": true,
     "sourceMap": true,
     "removeComments": true,
-    "baseUrl": "./resources/assets/scripts",
+    "baseUrl": "./src/frontend/scripts",
     "paths": {
       "@entities/*": ["Entities/*"],
       "@modules/*": ["Modules/*"],
-      "@states/*": ["States/*"],
       "@tools/*": ["Tools/*"]
     }
   }

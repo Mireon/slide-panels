@@ -17,7 +17,7 @@ const CSSExtractPlugin = require('mini-css-extract-plugin');
  *
  * @type {string}
  */
-const sourcePath = path.resolve(__dirname, 'resources/assets');
+const sourcePath = path.resolve(__dirname, 'src/frontend');
 
 /**
  * The rule for JS files.
@@ -91,7 +91,6 @@ module.exports = {
         alias: {
             '@entities': path.resolve(sourcePath, 'scripts/Entities'),
             '@modules': path.resolve(sourcePath, 'scripts/Modules'),
-            '@states': path.resolve(sourcePath, 'scripts/States'),
             '@tools': path.resolve(sourcePath, 'scripts/Tools'),
             '@styles': path.resolve(sourcePath, 'styles'),
         },
