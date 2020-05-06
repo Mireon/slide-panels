@@ -27,7 +27,7 @@ class SideAnimation {
      */
     public constructor(side: C.side) {
         this.side = side;
-        this.element = Selector.element(`side-${side}`).get();
+        this.element = Selector.element('side').attribute('data-side', side).get();
     }
 
     /**
@@ -38,6 +38,8 @@ class SideAnimation {
     public inside() {
         this.element.classList.add(`slide-panels__side-${this.side}_slide-inside`);
         this.element.classList.remove(`slide-panels__side-${this.side}_outside`);
+        this.element.classList.add('slide-panels__side_visible');
+        this.element.classList.remove('slide-panels__side_hidden');
 
         setTimeout(() => {
             this.element.classList.add(`slide-panels__side-${this.side}_inside`);
@@ -57,6 +59,8 @@ class SideAnimation {
         setTimeout(() => {
             this.element.classList.add(`slide-panels__side-${this.side}_outside`);
             this.element.classList.remove(`slide-panels__side-${this.side}_slide-outside`);
+            this.element.classList.add('slide-panels__side_hidden');
+            this.element.classList.remove('slide-panels__side_visible');
         }, 300);
     }
 }

@@ -1,0 +1,25 @@
+@keyframes slide-panels__close-label_spin {
+  100% { transform:rotate(-90deg); }
+}
+
+@keyframes slide-panels__close-label_spin-back {
+  100% { transform:rotate(90deg); }
+}
+
+.slide-panels__close-label {
+
+  i {
+    animation-name: slide-panels__close-label_spin-back;
+    animation-duration: 300ms;
+    animation-fill-mode: forwards;
+    transform-origin: 47.5% 52.5%;
+    animation-delay: 500ms;
+
+    &:hover {
+      animation-name: slide-panels__close-label_spin;
+      animation-delay: 0ms;
+    }
+
+  }
+
+}

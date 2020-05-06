@@ -8,6 +8,9 @@
   height: 100%;
   width: 100%;
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   &_visible {
     visibility: visible;
@@ -15,6 +18,31 @@
 
   &_hidden {
     visibility: hidden;
+  }
+
+  .panel {
+
+    &__header {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      width: 100%;
+      height: 60px;
+    }
+
+    &__content {
+      flex-grow: 1;
+    }
+
+    &__footer {
+      width: 100%;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      align-self: flex-end;
+    }
+
   }
 
 }

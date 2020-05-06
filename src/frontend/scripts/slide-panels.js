@@ -6,3 +6,7 @@ const stage = new Stage();
 const levers = new Levers();
 levers.setToShowClickListener((lever) => stage.show(lever.getTarget()));
 levers.setToHideClickListener(() => stage.hide());
+
+// TODO: Deleted after end.
+import Target from '@entities/Target';
+stage.show(new Target('mazda'));

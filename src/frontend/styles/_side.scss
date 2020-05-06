@@ -6,6 +6,14 @@ $side-width: 320px;
   width: $side-width;
   background: #ffffff;
 
+  &_visible {
+    visibility: visible;
+  }
+
+  &_hidden {
+    visibility: hidden;
+  }
+
   &-left {
 
     &_inside {
