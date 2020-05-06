@@ -37,9 +37,9 @@ class Panels {
      *
      * @return Panel
      */
-    public getPanel(id: string): Panel {
+    public getPanelById(id: string): Panel {
         for (const panel of this.panels) {
-            if (panel.isEqualId(id)) {
+            if (panel.equalId(id)) {
                 return panel;
             }
         }
@@ -52,7 +52,7 @@ class Panels {
      *
      * @return Panel
      */
-    public getVisiblePanel(): Panel {
+    public getCurrentPanel(): Panel {
         for (const panel of this.panels) {
             if (panel.getState().isVisible()) {
                 return panel;
@@ -65,41 +65,50 @@ class Panels {
     /**
      * ...
      *
-     * @return boolean
-     */
-    public hasVisiblePanel(): boolean {
-        for (const panel of this.panels) {
-            if (panel.getState().isVisible()) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * ...
-     *
      * @param target { Target }
      *   ...
      *
      * @return void
      */
     public show(target: Target): void {
-        if (this.hasVisiblePanel()) {
-            const panel = this.getVisiblePanel();
+        const current = this.getCurrentPanel();
+        const selected = this.getPanelById(target.getPanelId());
 
-            if (panel.getSide() === target.getSide()) {
-                if (panel.getId() !== target.getPanelId()) {
-                    panel.outside();
-                    this.getPanel(target.getPanelId()).inside();
-                }
-            } else {
-                setTimeout(() => panel.hide(), 300);
-                this.getPanel(target.getPanelId()).show(target);
-            }
-        } else {
-            this.getPanel(target.getPanelId()).show(target);
+        // There isn't one visible panel here.
+        // The stage, the backstage and a side with the selected panel are opening.
+        // The selected panel with layers is showing without animation.
+        if (!current) {
+            selected.show(target);
+            return;
+        }
+
+        // The selected panel is the current panel.
+        // Layers in the selected panel are showing with animation,
+        // because the selected panel is already showed.
+        if (selected === current) {
+            current.show(target);
+            return;
+        }
+
+        // The selected panel is on the same side as the current panel.
+        // The selected panel isn't the current panel. The case has already been processed.
+        // The current panel is hiding.
+        // The selected panel is showing.
+        // Layouts from the selected panel are showing without animation.
+        if (target.getSide() === current.getSide()) {
+            current.outside();
+            selected.inside(target);
+            return;
+        }
+
+        // The selected panel is on the other side relativity the current panel.
+        // A side of the current panel is hiding.
+        // The current panel will be hidden after the timeout, because the side is hiding gradually.
+        // The selected panel is showing with layers without animation.
+        if (target.getSide() !== current.getSide()) {
+            current.hide();
+            selected.show(target);
+            return;
         }
     }
 

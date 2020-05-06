@@ -24,7 +24,7 @@ class Target {
      *
      * @type Array<string>
      */
-    private readonly layouts: Array<string>;
+    private readonly layers: Array<string>;
 
     /**
      * The constructor.
@@ -35,7 +35,7 @@ class Target {
     public constructor(hash: string) {
         const elements = this.convertHashToArray(hash);
         this.panel = this.extractPanel(elements);
-        this.layouts = this.extractLayouts(elements);
+        this.layers = this.extractLayers(elements);
         this.side = this.extractSide();
     }
 
@@ -85,7 +85,7 @@ class Target {
      *
      * @return Array<string>
      */
-    private extractLayouts(elements: Array<string> | null): Array<string> {
+    private extractLayers(elements: Array<string> | null): Array<string> {
         return elements ? elements.slice(1) : null;
     }
 

@@ -1,5 +1,5 @@
 import StageAnimation from '@modules/Stage/StageAnimation';
-import Visibility from '@states/Visibility';
+import State from '@tools/State';
 import Backstage from '@modules/Backstage/Backstage';
 import Sides from '@modules/Sides/Sides';
 import Panels from '@modules/Panels/Panels';
@@ -19,9 +19,9 @@ class Stage {
     /**
      * ...
      *
-     * @type Visibility
+     * @type State
      */
-    private state: Visibility;
+    private state: State;
 
     /**
      * ...
@@ -49,7 +49,7 @@ class Stage {
      */
     public constructor() {
         this.animation = new StageAnimation();
-        this.state = new Visibility();
+        this.state = new State();
         this.backstage = new Backstage();
         this.sides = new Sides();
         this.panels = new Panels();
@@ -78,8 +78,8 @@ class Stage {
     public hide(): void {
         this.sides.outside();
         this.backstage.hide();
-        setTimeout(() => this.panels.hide(), 300);
-        setTimeout(() => this.animation.hide(), 300);
+        this.panels.hide();
+        this.animation.hide();
     }
 }
 

@@ -35,8 +35,10 @@ class PanelAnimation {
      * @return void
      */
     public hide(): void {
-        this.element.classList.add('slide-panels__panel_hidden');
-        this.element.classList.remove('slide-panels__panel_visible');
+        setTimeout(() => {
+            this.element.classList.add('slide-panels__panel_hidden');
+            this.element.classList.remove('slide-panels__panel_visible');
+        }, 300);
     }
 
     /**

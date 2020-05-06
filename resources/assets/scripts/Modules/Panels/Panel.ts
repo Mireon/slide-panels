@@ -1,6 +1,6 @@
 import Target from '@entities/Target';
 import PanelAnimation from '@modules/Panels/PanelAnimation';
-import Visibility from '@states/Visibility';
+import State from '@tools/State';
 import { C } from '@entities/C';
 
 /**
@@ -31,9 +31,9 @@ class Panel {
     /**
      * ...
      *
-     * @type Visibility
+     * @type State
      */
-    private state: Visibility;
+    private state: State;
 
     /**
      * The constructor.
@@ -45,7 +45,7 @@ class Panel {
         this.id = this.extractId(element);
         this.side = this.extractSide(element);
         this.animation = new PanelAnimation(element);
-        this.state = new Visibility();
+        this.state = new State();
     }
 
     /**
@@ -104,26 +104,17 @@ class Panel {
      *
      * @return string
      */
-    public isEqualId(id: string): boolean {
+    public equalId(id: string): boolean {
         return this.id === id;
     }
 
     /**
      * ...
      *
-     * @return Visibility
+     * @return State
      */
-    public getState(): Visibility {
+    public getState(): State {
         return this.state;
-    }
-
-    /**
-     * ...
-     *
-     * @return string
-     */
-    public getId(): string {
-        return this.id;
     }
 
     /**
@@ -144,8 +135,11 @@ class Panel {
      * @return void
      */
     public show(target: Target): void {
-        this.animation.show();
-        setTimeout(() => this.state.setVisible(), 300);
+        if (this.state.isHidden()) {
+            this.animation.show();
+            this.state.setShowing();
+            this.state.setVisible(300);
+        }
     }
 
     /**
@@ -154,18 +148,27 @@ class Panel {
      * @return void
      */
     public hide(): void {
-        this.animation.hide();
-        setTimeout(() => this.state.setHidden(), 300);
+        if (this.state.isVisible()) {
+            this.animation.hide();
+            this.state.setHiding();
+            this.state.setHidden(300);
+        }
     }
 
     /**
      * ...
      *
+     * @param target { Target }
+     *   ...
+     *
      * @return void
      */
-    public inside(): void {
-        this.animation.inside();
-        setTimeout(() => this.state.setVisible(), 300);
+    public inside(target: Target): void {
+        if (this.state.isHidden()) {
+            this.animation.inside();
+            this.state.setShowing();
+            this.state.setVisible(300);
+        }
     }
 
     /**
@@ -174,8 +177,11 @@ class Panel {
      * @return void
      */
     public outside(): void {
-        this.animation.outside();
-        setTimeout(() => this.state.setHidden(), 300);
+        if (this.state.isVisible()) {
+            this.animation.outside();
+            this.state.setHiding();
+            this.state.setHidden(300);
+        }
     }
 }
 

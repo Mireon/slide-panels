@@ -35,8 +35,10 @@ class StageAnimation {
      * @return void
      */
     public hide(): void {
-        this.element.classList.add('slide-panels__stage_hidden');
-        this.element.classList.remove('slide-panels__stage_visible');
+        setTimeout(() => {
+            this.element.classList.add('slide-panels__stage_hidden');
+            this.element.classList.remove('slide-panels__stage_visible');
+        }, 300);
     }
 }
 

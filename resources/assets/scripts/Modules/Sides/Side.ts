@@ -1,5 +1,5 @@
 import SideAnimation from '@modules/Sides/SideAnimation';
-import Location from '@states/Location';
+import State from '@tools/State';
 import { C } from '@entities/C';
 
 /**
@@ -14,9 +14,9 @@ class Side {
     /**
      * ...
      *
-     * @type state { Location }
+     * @type State
      */
-    private state: Location;
+    private state: State;
 
     /**
      * The constructor.
@@ -26,7 +26,7 @@ class Side {
      */
     public constructor(side: C.side) {
         this.animation = new SideAnimation(side);
-        this.state = new Location();
+        this.state = new State();
     }
 
     /**
@@ -36,10 +36,11 @@ class Side {
      * @return void
      */
     public inside() {
-        if (this.state.isInside()) { return; }
-
-        this.animation.inside();
-        this.state.setInside();
+        if (this.state.isHidden()) {
+            this.animation.inside();
+            this.state.setShowing();
+            this.state.setVisible(300);
+        }
     }
 
     /**
@@ -48,10 +49,11 @@ class Side {
      * @return void
      */
     public outside() {
-        if (this.state.isOutside()) { return; }
-
-        this.animation.outside();
-        this.state.setOutside();
+        if (this.state.isVisible()) {
+            this.animation.outside();
+            this.state.setHiding();
+            this.state.setHidden(300);
+        }
     }
 }
 

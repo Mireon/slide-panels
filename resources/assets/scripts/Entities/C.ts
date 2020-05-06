@@ -7,7 +7,9 @@ export namespace C {
      */
     export enum visibility {
         VISIBLE = 'visible',
+        SHOWING = 'showing',
         HIDDEN = 'hidden',
+        HIDING = 'hiding',
     }
 
     /**
