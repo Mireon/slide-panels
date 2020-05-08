@@ -1,12 +1,7 @@
-.slide-panels__layer {
+&__layer {
   position: absolute;
-  height: 100%;
   width: 100%;
   background: #ffffff;
   font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 400;
-
-  @import "layers-header";
-  @import "layers-text";
-  @import "layers-menu";
 }

@@ -15,7 +15,7 @@
   100% { visibility: hidden; }
 }
 
-.slide-panels__backstage {
+&__backstage {
 
   &_showing {
     @include common;

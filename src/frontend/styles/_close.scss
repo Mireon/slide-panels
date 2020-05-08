@@ -1,16 +1,16 @@
 $close-label-side: 40px;
 
-.slide-panels__close-empty-space {
+&__close-empty-space {
   position: absolute;
   height: 100%;
   width: 100%;
 }
 
-.slide-panels__close-label {
+&__close-label {
   width: $close-label-side;
   height: $close-label-side;
   position: absolute;
-  top: 10px;
+  top: 6px;
   right: -$close-label-side - 1px;
   cursor: pointer;
   border-top-right-radius: 10px;

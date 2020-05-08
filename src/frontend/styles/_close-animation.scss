@@ -6,7 +6,7 @@
   100% { transform:rotate(90deg); }
 }
 
-.slide-panels__close-label {
+&__close-label {
 
   i {
     animation-name: slide-panels__close-label_spin-back;

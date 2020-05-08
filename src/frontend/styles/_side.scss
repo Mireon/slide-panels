@@ -1,6 +1,6 @@
 $side-width: 320px;
 
-.slide-panels__side {
+&__side {
   position: absolute;
   height: 100%;
   width: $side-width;

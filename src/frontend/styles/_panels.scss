@@ -1,16 +1,14 @@
-.slide-panels__panels {
+&__panels {
   position: absolute;
   height: 100%;
   width: 100%;
 }
 
-.slide-panels__panel {
+&__panel {
   height: 100%;
   width: 100%;
   position: absolute;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  overflow-y: auto;
 
   &_visible {
     visibility: visible;

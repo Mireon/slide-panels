@@ -1,10 +1,16 @@
-@import "stage";
-@import "backstage";
-@import "backstage-animation";
-@import "close";
-@import "close-animation";
-@import "side";
-@import "side-animation";
-@import "panels";
-@import "panels-animation";
-@import "layers";
+.slide-panels {
+  @import "stage";
+  @import "backstage";
+  @import "backstage-animation";
+  @import "close";
+  @import "close-animation";
+  @import "side";
+  @import "side-animation";
+  @import "panels";
+  @import "panels-animation";
+  @import "layers";
+  @import "widgets-header";
+  @import "widgets-caption";
+  @import "widgets-list";
+  @import "widgets-menu";
+}

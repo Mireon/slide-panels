@@ -16,7 +16,7 @@ $slide-side: 300px;
   100% { top: -$slide-side; opacity: 0; }
 }
 
-.slide-panels__panel {
+&__panel {
 
   &_slide-inside {
     @include common;
