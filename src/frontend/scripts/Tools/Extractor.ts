@@ -13,20 +13,20 @@ class Extractor {
      *
      * @return string
      */
-    public static id(element: Element): string {
-        const attribute = 'data-id';
+    public static key(element: Element): string {
+        const attribute = 'data-key';
 
         if (!element.hasAttribute(attribute)) {
             return null;
         }
 
-        const id = element.getAttribute(attribute);
+        const key = element.getAttribute(attribute);
 
-        if (id === '') {
+        if (key === '') {
             return null;
         }
 
-        return id;
+        return key;
     }
 
     /**

@@ -1,7 +1,6 @@
 import Lever from '@modules/Levers/Lever';
 import LeverClickListener from '@modules/Levers/LeverClickListener';
 import Selector from '@tools/Selector';
-import { C } from '@entities/C';
 
 /**
  * ...
@@ -12,29 +11,20 @@ class Levers {
      *
      * @type Array<Lever>
      */
-    private toShowLevers = new Array<Lever>();
+    private readonly toShowLevers = new Array<Lever>();
 
     /**
      * ...
      *
      * @type Array<Lever>
      */
-    private toHideLevers = new Array<Lever>();
+    private readonly toHideLevers = new Array<Lever>();
 
     /**
      * The constructor.
      */
     public constructor() {
-        this.initLevers();
-    }
-
-    /**
-     * ...
-     *
-     * @return void
-     */
-    private initLevers(): void {
-        Selector.element('lever').local(C.location.EVERYWHERE).each((element: Element) => {
+        Selector.levers().forEach((element: Element) => {
             const lever = new Lever(element);
 
             if (lever.toShow()) {
@@ -54,11 +44,7 @@ class Levers {
      * @return void
      */
     public setToShowClickListener(listener: LeverClickListener): void {
-        this.toShowLevers.forEach((lever: Lever) => {
-            if (lever.getTarget().isExistsPanel()) {
-                lever.setClickListener(listener);
-            }
-        });
+        this.toShowLevers.forEach((lever: Lever) => lever.setClickListener(listener));
     }
 
     /**

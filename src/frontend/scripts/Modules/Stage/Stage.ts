@@ -4,7 +4,6 @@ import Backstage from '@modules/Backstage/Backstage';
 import Sides from '@modules/Sides/Sides';
 import Panels from '@modules/Panels/Panels';
 import Target from '@entities/Target';
-import Layers from '@modules/Layers/Layers';
 
 /**
  * ...
@@ -68,7 +67,7 @@ class Stage {
         this.animation.show();
         this.backstage.show();
         this.panels.show(target);
-        this.sides.inside(target.getSide());
+        this.sides.show(target);
     }
 
     /**
@@ -77,7 +76,7 @@ class Stage {
      * @return void
      */
     public hide(): void {
-        this.sides.outside();
+        this.sides.hide();
         this.backstage.hide();
         this.panels.hide();
         this.animation.hide();

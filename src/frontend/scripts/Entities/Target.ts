@@ -9,16 +9,9 @@ class Target {
     /**
      * ...
      *
-     * @type Element
-     */
-    private readonly element: Element;
-
-    /**
-     * ...
-     *
      * @type string
      */
-    private readonly panelId: string;
+    private readonly panelKey: string;
 
     /**
      * ...
@@ -32,44 +25,44 @@ class Target {
      *
      * @type Array<string>
      */
-    private readonly layerIds: Array<string>;
+    private readonly layerKeychain: Array<string>;
+
+    /**
+     * ...
+     *
+     * @type boolean
+     */
+    private readonly valid: boolean = false;
 
     /**
      * The constructor.
      *
-     * @param hash { string }
+     * @param target { string }
      *   ...
      */
-    public constructor(hash: string) {
-        const pieces = this.convertHashToPieces(hash);
-        this.panelId = this.extractPanelId(pieces);
-        this.layerIds = this.extractLayerIds(pieces);
-        this.element = Selector.element('panel').attribute('data-id', this.panelId).get();
-        this.side = Extractor.side(this.element);
-    }
+    public constructor(target: string) {
+        const keychain = this.extractKeychain(target);
 
-    /**
-     * ...
-     *
-     * @param elements { Array<string> | null }
-     *   ...
-     *
-     * @return string
-     */
-    private extractPanelId(elements: Array<string> | null): string {
-        return elements ? elements[0] : null;
-    }
+        if (keychain === null) {
+            return;
+        }
 
-    /**
-     * ...
-     *
-     * @param elements { Array<string> | null }
-     *   ...
-     *
-     * @return Array<string>
-     */
-    private extractLayerIds(elements: Array<string> | null): Array<string> {
-        return elements ? elements.slice(1) : null;
+        this.panelKey = keychain[0];
+        this.layerKeychain = keychain.slice(1);
+
+        const panel = Selector.panel(this.panelKey);
+        const layer = Selector.layer(this.panelKey, this.layerKeychain.join('.'));
+
+        if (panel === null) {
+            return;
+        }
+
+        if (this.layerKeychain.length > 0 && layer === null) {
+            return;
+        }
+
+        this.valid = true;
+        this.side = Extractor.side(panel);
     }
 
     /**
@@ -80,7 +73,7 @@ class Target {
      *
      * @return Array<string>
      */
-    private convertHashToPieces(hash: string): Array<string> {
+    private extractKeychain(hash: string): Array<string> {
         if (hash === null || hash === '') {
             return null;
         }
@@ -99,19 +92,19 @@ class Target {
     /**
      * ...
      *
-     * @type boolean
+     * @type string
      */
-    public isExistsPanel(): boolean {
-        return this.element !== null;
+    public getPanelKey(): string {
+        return this.panelKey;
     }
 
     /**
      * ...
      *
-     * @type string
+     * @type Array<string>
      */
-    public getPanelId(): string {
-        return this.panelId;
+    public getLayerKeychain(): Array<string> {
+        return this.layerKeychain;
     }
 
     /**
@@ -121,6 +114,24 @@ class Target {
      */
     public getSide(): C.side {
         return this.side;
+    }
+
+    /**
+     * ...
+     *
+     * @type boolean
+     */
+    public isValid(): boolean {
+        return this.valid;
+    }
+
+    /**
+     * ...
+     *
+     * @type boolean
+     */
+    public hasLayers(): boolean {
+        return this.layerKeychain.length > 0;
     }
 }
 

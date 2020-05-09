@@ -27,7 +27,7 @@ class SideAnimation {
      */
     public constructor(side: C.side) {
         this.side = side;
-        this.element = Selector.element('side').attribute('data-side', side).get();
+        this.element = Selector.side(side);
     }
 
     /**

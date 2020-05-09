@@ -2,94 +2,31 @@ import { C } from '@entities/C';
 
 /**
  * ...
+ *
+ * @type string
+ */
+const root = '[id="slide-panels"]';
+
+/**
+ * ...
+ *
+ * @type string
+ */
+const specify = '[data-plugin="slide-panels"]';
+
+/**
+ * ...
  */
 class Selector {
     /**
      * ...
      *
-     * @type C.location
+     * @type NodeListOf<Element>
      */
-    private location = C.location.INSIDE;
+    public static levers(): NodeListOf<Element> {
+        const attribute = '[data-element="lever"]';
 
-    /**
-     * ...
-     *
-     * @type Array<string>
-     */
-    private selectors = Array<string>();
-
-    /**
-     * ...
-     *
-     * @type Selector
-     */
-    public static instance(): Selector {
-        return new Selector();
-    }
-
-    /**
-     * ...
-     *
-     * @type Selector
-     */
-    public static root(): Selector {
-        return Selector.instance();
-    }
-
-    /**
-     * ...
-     *
-     * @type Selector
-     */
-    public static element(element: string): Selector {
-        return Selector.instance().attribute('data-element', element);
-    }
-
-    /**
-     * ...
-     *
-     * @type Selector
-     */
-    public local(location: C.location): Selector {
-        this.location = location;
-        return this;
-    }
-
-    /**
-     * ...
-     *
-     * @type Selector
-     */
-    public attribute(attribute: string, value: string): Selector {
-        this.selectors.push(`[${attribute}="${value}"]`);
-        return this;
-    }
-
-    /**
-     * ...
-     *
-     * @type Selector
-     */
-    private build(): string {
-        let selectors = '';
-
-        if (this.selectors.length > 0) {
-            selectors = this.selectors.reduce((result: string, selector: string) => result + selector);
-        }
-
-        switch (this.location) {
-            case C.location.INSIDE:
-                selectors = `#slide-panels ${selectors}`;
-                break;
-            case C.location.OUTSIDE:
-                selectors = `[data-plugin="slide-panels"]${selectors}`;
-                break;
-            case C.location.EVERYWHERE:
-                selectors = `#slide-panels ${selectors}, [data-plugin="slide-panels"]${selectors}`;
-                break;
-        }
-
-        return `${selectors}`;
+        return document.querySelectorAll(`${root} ${attribute}, ${specify}${attribute}`);
     }
 
     /**
@@ -97,8 +34,33 @@ class Selector {
      *
      * @type Element
      */
-    public get(): Element {
-        return document.querySelector(this.build());
+    public static root(): Element {
+        return document.querySelector(root);
+    }
+
+    /**
+     * ...
+     *
+     * @type Element
+     */
+    public static backstage(): Element {
+        const attribute = '[data-element="backstage"]';
+
+        return document.querySelector(`${root} ${attribute}`);
+    }
+
+    /**
+     * ...
+     *
+     * @param side { C.side }
+     *   ...
+     *
+     * @type Element
+     */
+    public static side(side: C.side): Element {
+        const attribute = `[data-element="side"][data-side="${side}"]`;
+
+        return document.querySelector(`${root} ${attribute}`);
     }
 
     /**
@@ -106,17 +68,54 @@ class Selector {
      *
      * @type NodeListOf<Element>
      */
-    public all(): NodeListOf<Element> {
-        return document.querySelectorAll(this.build());
+    public static panels(): NodeListOf<Element> {
+        const attribute = '[data-element="panel"]';
+
+        return document.querySelectorAll(`${root} ${attribute}`);
     }
 
     /**
      * ...
      *
+     * @param panelKey { string }
+     *   ...
+     *
+     * @type Element
+     */
+    public static panel(panelKey: string): Element {
+        const attribute = `[data-element="panel"][data-key="${panelKey}"]`;
+
+        return document.querySelector(`${root} ${attribute}`);
+    }
+
+    /**
+     * ...
+     *
+     * @param panelKey { string }
+     *   ...
+     *
      * @type NodeListOf<Element>
      */
-    public each(handler: (element: Element) => void): void {
-        this.all().forEach(handler);
+    public static layers(panelKey: string): NodeListOf<Element> {
+        const attribute = `[data-element="panel"][data-key="${panelKey}"] [data-element="layer"]`;
+
+        return document.querySelectorAll(`${root} ${attribute}`);
+    }
+
+    /**
+     * ...
+     *
+     * @param panelKey { string }
+     *   ...
+     * @param layerKey { string }
+     *   ...
+     *
+     * @type Element
+     */
+    public static layer(panelKey: string, layerKey: string): Element {
+        const attribute = `[data-element="panel"][data-key="${panelKey}"] [data-element="layer"][data-key="${layerKey}"]`;
+
+        return document.querySelector(`${root} ${attribute}`);
     }
 }
 

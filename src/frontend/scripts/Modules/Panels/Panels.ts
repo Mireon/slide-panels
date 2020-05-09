@@ -9,33 +9,33 @@ class Panels {
     /**
      * ...
      *
-     * @type Array<Panel>
+     * @type Map
      */
-    private panels = Array<Panel>();
+    private panels = new Map();
 
     /**
      * The constructor.
      */
     public constructor() {
-        Selector.element('panel').each((element: Element) => this.panels.push(new Panel(element)));
+        Selector.panels().forEach((element: Element) => {
+            const panel = new Panel(element);
+
+            if (panel.isValid()) {
+                this.panels.set(panel.getKey(), panel);
+            }
+        });
     }
 
     /**
      * ...
      *
-     * @param id { string }
+     * @param key { string }
      *   ...
      *
      * @return Panel
      */
-    public getPanelById(id: string): Panel {
-        for (const panel of this.panels) {
-            if (panel.equalId(id)) {
-                return panel;
-            }
-        }
-
-        return null;
+    public getPanelByKey(key: string): Panel {
+        return this.panels.get(key);
     }
 
     /**
@@ -44,11 +44,11 @@ class Panels {
      * @return Panel
      */
     public getCurrentPanel(): Panel {
-        for (const panel of this.panels) {
+        this.panels.forEach((panel: Panel) => {
             if (panel.getState().isVisible()) {
                 return panel;
             }
-        }
+        });
 
         return null;
     }
@@ -63,7 +63,7 @@ class Panels {
      */
     public show(target: Target): void {
         const current = this.getCurrentPanel();
-        const selected = this.getPanelById(target.getPanelId());
+        const selected = this.getPanelByKey(target.getPanelKey());
 
         // There isn't one visible panel here.
         // The stage, the backstage and a side with the selected panel are opening.
@@ -77,7 +77,7 @@ class Panels {
         // Layers in the selected panel are showing with animation,
         // because the selected panel is already showed.
         if (selected === current) {
-            current.show(target);
+            current.show(target, true);
             return;
         }
 
@@ -99,7 +99,6 @@ class Panels {
         if (target.getSide() !== current.getSide()) {
             current.hide();
             selected.show(target);
-            return;
         }
     }
 
@@ -109,9 +108,7 @@ class Panels {
      * @return void
      */
     public hide(): void {
-        for (const panel of this.panels) {
-            panel.hide();
-        }
+        this.panels.forEach((panel: Panel) => panel.hide());
     }
 }
 

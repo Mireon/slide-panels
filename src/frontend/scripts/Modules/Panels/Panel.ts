@@ -3,6 +3,7 @@ import PanelAnimation from '@modules/Panels/PanelAnimation';
 import State from '@tools/State';
 import Target from '@entities/Target';
 import { C } from '@entities/C';
+import Layers from '@modules/Layers/Layers';
 
 /**
  * ...
@@ -13,7 +14,7 @@ class Panel {
      *
      * @type string
      */
-    private readonly id: string;
+    private readonly key: string;
 
     /**
      * ...
@@ -21,6 +22,13 @@ class Panel {
      * @type C.side
      */
     private readonly side: C.side;
+
+    /**
+     * ...
+     *
+     * @type Layers
+     */
+    private readonly layers: Layers;
 
     /**
      * ...
@@ -34,7 +42,7 @@ class Panel {
      *
      * @type State
      */
-    private state: State;
+    private readonly state: State;
 
     /**
      * The constructor.
@@ -43,8 +51,9 @@ class Panel {
      *   ...
      */
     public constructor(element: Element) {
-        this.id = Extractor.id(element);
+        this.key = Extractor.key(element);
         this.side = Extractor.side(element);
+        this.layers = new Layers(this.key);
         this.animation = new PanelAnimation(element);
         this.state = new State();
     }
@@ -52,13 +61,10 @@ class Panel {
     /**
      * ...
      *
-     * @param id { string }
-     *  ...
-     *
      * @return string
      */
-    public equalId(id: string): boolean {
-        return this.id === id;
+    public getKey(): string {
+        return this.key;
     }
 
     /**
@@ -82,15 +88,30 @@ class Panel {
     /**
      * ...
      *
+     * @return boolean
+     */
+    public isValid(): boolean {
+        return this.key !== null && this.side !== null;
+    }
+
+    /**
+     * ...
+     *
      * @param target { Target }
+     *   ...
+     * @param withAnimation { boolean }
      *   ...
      *
      * @return void
      */
-    public show(target: Target): void {
+    public show(target: Target, withAnimation = false): void {
         if (this.state.isHidden()) {
             this.animation.show();
             this.state.show();
+        }
+
+        if (target.hasLayers()) {
+            this.layers.show(target, withAnimation);
         }
     }
 
@@ -118,6 +139,10 @@ class Panel {
         if (this.state.isHidden()) {
             this.animation.inside();
             this.state.show();
+        }
+
+        if (target.hasLayers()) {
+            this.layers.show(target);
         }
     }
 

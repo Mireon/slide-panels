@@ -8,14 +8,14 @@ class Backstage {
     /**
      * ...
      */
-    private animation: BackstageAnimation;
+    private readonly animation: BackstageAnimation;
 
     /**
      * ...
      *
      * @type State
      */
-    private state: State;
+    private readonly state: State;
 
     /**
      * The constructor.

@@ -1,5 +1,6 @@
 import Side from '@modules/Sides/Side';
 import { C } from '@entities/C';
+import Target from '@entities/Target';
 
 /**
  * ...
@@ -30,13 +31,13 @@ class Sides {
     /**
      * ...
      *
-     * @param side { C.side }
+     * @param target { Target }
      *   ...
      *
      * @return void
      */
-    public inside(side: C.side) {
-        switch (side) {
+    public show(target: Target) {
+        switch (target.getSide()) {
             case C.side.LEFT:
                 this.left.inside();
                 this.right.outside();
@@ -53,7 +54,7 @@ class Sides {
      *
      * @return void
      */
-    public outside() {
+    public hide() {
         this.left.outside();
         this.right.outside();
     }

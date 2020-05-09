@@ -45,7 +45,7 @@ class Lever {
      * @type boolean
      */
     public toShow(): boolean {
-        return this.action === C.action.SHOW && this.target !== null;
+        return this.action === C.action.SHOW && this.target !== null && this.target.isValid();
     }
 
     /**

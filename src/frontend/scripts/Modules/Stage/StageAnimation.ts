@@ -16,7 +16,7 @@ class StageAnimation {
      * The constructor.
      */
     public constructor() {
-        this.element = Selector.root().get();
+        this.element = Selector.root();
     }
 
     /**

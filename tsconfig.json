@@ -11,6 +11,12 @@
       "@entities/*": ["Entities/*"],
       "@modules/*": ["Modules/*"],
       "@tools/*": ["Tools/*"]
-    }
+    },
+    "lib": [
+      "dom",
+      "es5",
+      "scripthost",
+      "es2015.collection"
+    ]
   }
 }

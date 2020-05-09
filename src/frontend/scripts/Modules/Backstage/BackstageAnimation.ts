@@ -9,13 +9,13 @@ class BackstageAnimation {
      *
      * @type Element
      */
-    private element: Element;
+    private readonly element: Element;
 
     /**
      * The constructor.
      */
     public constructor() {
-        this.element = Selector.element('backstage').get();
+        this.element = Selector.backstage();
     }
 
     /**
