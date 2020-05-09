@@ -1,5 +1,6 @@
 import Selector from '@tools/Selector';
 import { C } from '@entities/C';
+import Extractor from '@tools/Extractor';
 
 /**
  * ...
@@ -8,9 +9,16 @@ class Target {
     /**
      * ...
      *
+     * @type Element
+     */
+    private readonly element: Element;
+
+    /**
+     * ...
+     *
      * @type string
      */
-    private readonly panel: string;
+    private readonly panelId: string;
 
     /**
      * ...
@@ -24,7 +32,7 @@ class Target {
      *
      * @type Array<string>
      */
-    private readonly layers: Array<string>;
+    private readonly layerIds: Array<string>;
 
     /**
      * The constructor.
@@ -33,10 +41,11 @@ class Target {
      *   ...
      */
     public constructor(hash: string) {
-        const elements = this.convertHashToArray(hash);
-        this.panel = this.extractPanel(elements);
-        this.layers = this.extractLayers(elements);
-        this.side = this.extractSide();
+        const pieces = this.convertHashToPieces(hash);
+        this.panelId = this.extractPanelId(pieces);
+        this.layerIds = this.extractLayerIds(pieces);
+        this.element = Selector.element('panel').attribute('data-id', this.panelId).get();
+        this.side = Extractor.side(this.element);
     }
 
     /**
@@ -47,34 +56,8 @@ class Target {
      *
      * @return string
      */
-    private extractPanel(elements: Array<string> | null): string {
+    private extractPanelId(elements: Array<string> | null): string {
         return elements ? elements[0] : null;
-    }
-
-    /**
-     * ...
-     *
-     * @return C.side
-     */
-    private extractSide(): C.side {
-        const attribute = 'data-side';
-        const element = Selector.element('panel').attribute('data-id', this.panel).get();
-
-        if (element === null) {
-            return null;
-        }
-
-        if (!element.hasAttribute(attribute)) {
-            return null;
-        }
-
-        const side = element.getAttribute(attribute);
-
-        if (side === C.side.LEFT || side === C.side.RIGHT) {
-            return side;
-        }
-
-        return null;
     }
 
     /**
@@ -85,7 +68,7 @@ class Target {
      *
      * @return Array<string>
      */
-    private extractLayers(elements: Array<string> | null): Array<string> {
+    private extractLayerIds(elements: Array<string> | null): Array<string> {
         return elements ? elements.slice(1) : null;
     }
 
@@ -97,7 +80,7 @@ class Target {
      *
      * @return Array<string>
      */
-    private convertHashToArray(hash: string): Array<string> {
+    private convertHashToPieces(hash: string): Array<string> {
         if (hash === null || hash === '') {
             return null;
         }
@@ -119,7 +102,7 @@ class Target {
      * @type boolean
      */
     public isExistsPanel(): boolean {
-        return Selector.element('panel').attribute('data-id', this.panel).get() !== null;
+        return this.element !== null;
     }
 
     /**
@@ -128,7 +111,7 @@ class Target {
      * @type string
      */
     public getPanelId(): string {
-        return this.panel;
+        return this.panelId;
     }
 
     /**

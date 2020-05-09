@@ -1,6 +1,7 @@
-import Target from '@entities/Target';
+import Extractor from '@tools/Extractor';
 import PanelAnimation from '@modules/Panels/PanelAnimation';
 import State from '@tools/State';
+import Target from '@entities/Target';
 import { C } from '@entities/C';
 
 /**
@@ -42,58 +43,10 @@ class Panel {
      *   ...
      */
     public constructor(element: Element) {
-        this.id = this.extractId(element);
-        this.side = this.extractSide(element);
+        this.id = Extractor.id(element);
+        this.side = Extractor.side(element);
         this.animation = new PanelAnimation(element);
         this.state = new State();
-    }
-
-    /**
-     * ...
-     *
-     * @param element { Element }
-     *  ...
-     *
-     * @return string
-     */
-    public extractId(element: Element): string {
-        const attribute = 'data-id';
-
-        if (!element.hasAttribute(attribute)) {
-            return null;
-        }
-
-        const id = element.getAttribute(attribute);
-
-        if (id === '') {
-            return null;
-        }
-
-        return id;
-    }
-
-    /**
-     * ...
-     *
-     * @param element { Element }
-     *  ...
-     *
-     * @return string
-     */
-    public extractSide(element: Element): C.side {
-        const attribute = 'data-side';
-
-        if (!element.hasAttribute(attribute)) {
-            return null;
-        }
-
-        const side = element.getAttribute(attribute);
-
-        if (side === C.side.LEFT || side === C.side.RIGHT) {
-            return side;
-        }
-
-        return null;
     }
 
     /**
@@ -137,8 +90,7 @@ class Panel {
     public show(target: Target): void {
         if (this.state.isHidden()) {
             this.animation.show();
-            this.state.setShowing();
-            this.state.setVisible(300);
+            this.state.show();
         }
     }
 
@@ -150,8 +102,7 @@ class Panel {
     public hide(): void {
         if (this.state.isVisible()) {
             this.animation.hide();
-            this.state.setHiding();
-            this.state.setHidden(300);
+            this.state.hide();
         }
     }
 
@@ -166,8 +117,7 @@ class Panel {
     public inside(target: Target): void {
         if (this.state.isHidden()) {
             this.animation.inside();
-            this.state.setShowing();
-            this.state.setVisible(300);
+            this.state.show();
         }
     }
 
@@ -179,8 +129,7 @@ class Panel {
     public outside(): void {
         if (this.state.isVisible()) {
             this.animation.outside();
-            this.state.setHiding();
-            this.state.setHidden(300);
+            this.state.hide();
         }
     }
 }

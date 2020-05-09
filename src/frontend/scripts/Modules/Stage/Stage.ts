@@ -4,6 +4,7 @@ import Backstage from '@modules/Backstage/Backstage';
 import Sides from '@modules/Sides/Sides';
 import Panels from '@modules/Panels/Panels';
 import Target from '@entities/Target';
+import Layers from '@modules/Layers/Layers';
 
 /**
  * ...

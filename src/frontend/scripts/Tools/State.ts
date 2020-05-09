@@ -14,6 +14,13 @@ class State {
     /**
      * ...
      *
+     * @type number
+     */
+    private timeout: number;
+
+    /**
+     * ...
+     *
      * @param state { C.visibility }
      *   ...
      */
@@ -24,25 +31,79 @@ class State {
     /**
      * ...
      *
-     * @param timeout { number }
-     *   ...
-     *
-     * @return void
+     * @return State
      */
-    public setVisible(timeout = 0): void {
-        setTimeout(() => this.state = C.visibility.VISIBLE, timeout);
+    public show(delay = 300): State {
+        if (delay > 0) {
+            this.showing().delay(delay).visible();
+        } else {
+            this.visible();
+        }
+
+        return this;
     }
 
     /**
      * ...
      *
-     * @param timeout { number }
-     *   ...
-     *
      * @return void
      */
-    public setShowing(timeout = 0): void {
-        setTimeout(() => this.state = C.visibility.SHOWING, timeout);
+    public visible(): State {
+        setTimeout(() => this.state = C.visibility.VISIBLE, this.timeout);
+        this.timeout = 0;
+
+        return this;
+    }
+
+    /**
+     * ...
+     *
+     * @return State
+     */
+    public showing(): State {
+        setTimeout(() => this.state = C.visibility.SHOWING, this.timeout);
+        this.timeout = 0;
+
+        return this;
+    }
+
+    /**
+     * ...
+     *
+     * @return State
+     */
+    public hide(delay = 300): State {
+        if (delay > 0) {
+            this.hiding().delay(delay).hidden();
+        } else {
+            this.hidden();
+        }
+
+        return this;
+    }
+
+    /**
+     * ...
+     *
+     * @return State
+     */
+    public hidden(): State {
+        setTimeout(() => this.state = C.visibility.HIDDEN, this.timeout);
+        this.timeout = 0;
+
+        return this;
+    }
+
+    /**
+     * ...
+     *
+     * @return State
+     */
+    public hiding(): State {
+        setTimeout(() => this.state = C.visibility.HIDING, this.timeout);
+        this.timeout = 0;
+
+        return this;
     }
 
     /**
@@ -57,34 +118,21 @@ class State {
     /**
      * ...
      *
-     * @param timeout { number }
-     *   ...
-     *
-     * @return void
-     */
-    public setHidden(timeout = 0): void {
-        setTimeout(() => this.state = C.visibility.HIDDEN, timeout);
-    }
-
-    /**
-     * ...
-     *
-     * @param timeout { number }
-     *   ...
-     *
-     * @return void
-     */
-    public setHiding(timeout = 0): void {
-        setTimeout(() => this.state = C.visibility.HIDING, timeout);
-    }
-
-    /**
-     * ...
-     *
      * @return boolean
      */
     public isHidden(): boolean {
         return this.state === C.visibility.HIDDEN;
+    }
+
+    /**
+     * ...
+     *
+     * @return State
+     */
+    public delay(timeout = 300): State {
+        this.timeout = timeout;
+
+        return this;
     }
 }
 

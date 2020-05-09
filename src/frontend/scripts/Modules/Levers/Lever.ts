@@ -1,6 +1,7 @@
 import LeverClickListener from '@modules/Levers/LeverClickListener';
 import Target from '@entities/Target';
 import { C } from '@entities/C';
+import Extractor from '@tools/Extractor';
 
 /**
  * ...
@@ -34,48 +35,8 @@ class Lever {
      */
     public constructor(element: Element) {
         this.element = element;
-        this.action = this.extractAction(element);
-        this.target = this.extractTarget(element);
-    }
-
-    /**
-     * ...
-     *
-     * @param element { Element }
-     *   ...
-     *
-     * @return string
-     */
-    public extractAction(element: Element): C.action {
-        const attribute = 'data-action';
-
-        if (!element.hasAttribute(attribute)) {
-            return C.action.SHOW;
-        }
-
-        const action: string = element.getAttribute(attribute);
-
-        switch (action) {
-            case C.action.SHOW:
-            case C.action.HIDE:
-                return action;
-        }
-
-        return null;
-    }
-
-    /**
-     * ...
-     *
-     * @param element { Element }
-     *  ...
-     *
-     * @return Target
-     */
-    public extractTarget(element: Element): Target {
-        const attribute = 'data-target';
-
-        return new Target(element.getAttribute(attribute));
+        this.action = Extractor.action(element, C.action.SHOW);
+        this.target = Extractor.target(element);
     }
 
     /**

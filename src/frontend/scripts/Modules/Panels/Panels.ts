@@ -17,15 +17,6 @@ class Panels {
      * The constructor.
      */
     public constructor() {
-        this.initPanels();
-    }
-
-    /**
-     * ...
-     *
-     * @return void
-     */
-    private initPanels(): void {
         Selector.element('panel').each((element: Element) => this.panels.push(new Panel(element)));
     }
 

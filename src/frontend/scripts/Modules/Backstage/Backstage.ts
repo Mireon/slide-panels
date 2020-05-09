@@ -33,8 +33,7 @@ class Backstage {
     public show() {
         if (this.state.isHidden()) {
             this.animation.show();
-            this.state.setShowing();
-            this.state.setVisible(300);
+            this.state.show();
         }
     }
 
@@ -46,8 +45,7 @@ class Backstage {
     public hide() {
         if (this.state.isVisible()) {
             this.animation.hide();
-            this.state.setHiding();
-            this.state.setHidden(300);
+            this.state.hide();
         }
     }
 }

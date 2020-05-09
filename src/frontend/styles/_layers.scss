@@ -2,6 +2,13 @@
   position: absolute;
   width: 100%;
   background: #ffffff;
-  font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-weight: 400;
+
+  &_visible {
+    visibility: visible;
+  }
+
+  &_hidden {
+    visibility: hidden;
+  }
+
 }

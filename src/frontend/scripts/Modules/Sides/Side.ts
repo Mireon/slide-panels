@@ -38,8 +38,8 @@ class Side {
     public inside() {
         if (this.state.isHidden()) {
             this.animation.inside();
-            this.state.setShowing();
-            this.state.setVisible(300);
+            this.state.show();
+            this.state.show();
         }
     }
 
@@ -51,8 +51,7 @@ class Side {
     public outside() {
         if (this.state.isVisible()) {
             this.animation.outside();
-            this.state.setHiding();
-            this.state.setHidden(300);
+            this.state.hide();
         }
     }
 }
