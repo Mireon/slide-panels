@@ -1,0 +1,51 @@
+$distance: 320px;
+
+@mixin common {
+  visibility: visible;
+  animation-duration: 300ms;
+  animation-fill-mode: forwards;
+}
+
+@keyframes slide-panels__layer_slide-inside {
+  0% { left: $distance; }
+  100% { left: 0; }
+}
+
+@keyframes slide-panels__layer_slide-inside-reverse {
+  0% { left: -$distance; }
+  100% { left: 0; }
+}
+
+@keyframes slide-panels__layer_slide-outside {
+  0% { left: 0; }
+  100% { left: -$distance; }
+}
+
+@keyframes slide-panels__layer_slide-outside-reverse {
+  0% { left: 0; }
+  100% { left: $distance; }
+}
+
+&__layer {
+
+  &_slide-inside {
+    @include common;
+    animation-name: slide-panels__layer_slide-inside;
+  }
+
+  &_slide-inside-reverse {
+    @include common;
+    animation-name: slide-panels__layer_slide-inside-reverse;
+  }
+
+  &_slide-outside {
+    @include common;
+    animation-name: slide-panels__layer_slide-outside;
+  }
+
+  &_slide-outside-reverse {
+    @include common;
+    animation-name: slide-panels__layer_slide-outside-reverse;
+  }
+
+}

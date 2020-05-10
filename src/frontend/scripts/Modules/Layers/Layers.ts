@@ -32,20 +32,33 @@ class Layers {
     /**
      * ...
      *
+     * @return Layer
+     */
+    public getCurrentLayer(): Layer {
+        let result: Layer = null;
+
+        this.layers.forEach((layer: Layer) => {
+            if (layer.getState().isVisible()) {
+                result = this.layers.get(layer.getKey());
+            }
+        });
+
+        return result;
+    }
+
+    /**
+     * ...
+     *
      * @param target { Target }
-     *   ...
-     * @param withAnimation { boolean }
      *   ...
      *
      * @return void
      */
-    public show(target: Target, withAnimation = false): void {
-        console.log('withAnimation: ', withAnimation);
-        console.log('target: ', target);
-        console.log('keychain: ', target.getLayerKeychain().join('.'));
+    public show(target: Target): void {
+        if (!target.hasLayers()) { return; }
 
         this.hide();
-        this.layers.get(target.getLayerKeychain().join('.')).show();
+        this.layers.get(target.getLayerKey()).show();
     }
 
     /**
@@ -57,6 +70,40 @@ class Layers {
         this.layers.forEach((layer: Layer) => {
             layer.hide();
         });
+    }
+
+    /**
+     * ...
+     *
+     * @param target { Target }
+     *   ...
+     *
+     * @return void
+     */
+    public inside(target: Target): void {
+        const current = this.getCurrentLayer();
+        const selected: Layer = this.layers.get(target.getLayerKey());
+
+        // The selected layer isn't exists.
+        // The current layer is hiding.
+        if (!selected) {
+            current.outside(true);
+            return;
+        }
+
+        // The selected layer is the current layer.
+        // Not actions required.
+        if (selected === current) {
+            return;
+        }
+
+        // ...
+        current.outside();
+        selected.inside();
+
+        console.clear();
+        console.log('CURRENT: ', current.getKey());
+        console.log('SELECT: ', selected.getKey());
     }
 }
 

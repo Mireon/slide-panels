@@ -57,28 +57,29 @@ class Target {
             return;
         }
 
+        this.side = Extractor.side(panel);
+
         if (this.layerKeychain.length > 0 && layer === null) {
             return;
         }
 
         this.valid = true;
-        this.side = Extractor.side(panel);
     }
 
     /**
      * ...
      *
-     * @param hash { string }
+     * @param target { string }
      *   ...
      *
      * @return Array<string>
      */
-    private extractKeychain(hash: string): Array<string> {
-        if (hash === null || hash === '') {
+    private extractKeychain(target: string): Array<string> {
+        if (target === null || target === '') {
             return null;
         }
 
-        const result = hash.split('.')
+        const result = target.split('.')
             .map((item: string) => item.trim())
             .filter((item: string) => item !== '');
 
@@ -96,6 +97,15 @@ class Target {
      */
     public getPanelKey(): string {
         return this.panelKey;
+    }
+
+    /**
+     * ...
+     *
+     * @type string
+     */
+    public getLayerKey(): string {
+        return this.layerKeychain.join('.');
     }
 
     /**

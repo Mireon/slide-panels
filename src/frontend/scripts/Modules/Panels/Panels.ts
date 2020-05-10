@@ -29,28 +29,18 @@ class Panels {
     /**
      * ...
      *
-     * @param key { string }
-     *   ...
-     *
-     * @return Panel
-     */
-    public getPanelByKey(key: string): Panel {
-        return this.panels.get(key);
-    }
-
-    /**
-     * ...
-     *
      * @return Panel
      */
     public getCurrentPanel(): Panel {
+        let result: Panel = null;
+
         this.panels.forEach((panel: Panel) => {
             if (panel.getState().isVisible()) {
-                return panel;
+                result = this.panels.get(panel.getKey());
             }
         });
 
-        return null;
+        return result;
     }
 
     /**
@@ -63,7 +53,7 @@ class Panels {
      */
     public show(target: Target): void {
         const current = this.getCurrentPanel();
-        const selected = this.getPanelByKey(target.getPanelKey());
+        const selected: Panel = this.panels.get(target.getPanelKey());
 
         // There isn't one visible panel here.
         // The stage, the backstage and a side with the selected panel are opening.
@@ -77,7 +67,7 @@ class Panels {
         // Layers in the selected panel are showing with animation,
         // because the selected panel is already showed.
         if (selected === current) {
-            current.show(target, true);
+            current.show(target);
             return;
         }
 

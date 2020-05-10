@@ -1,4 +1,4 @@
-$slide-side: 300px;
+$distance: 300px;
 
 @mixin common {
   visibility: visible;
@@ -7,13 +7,13 @@ $slide-side: 300px;
 }
 
 @keyframes slide-panels__panel_slide-inside {
-  0% { top: $slide-side; opacity: 0; }
+  0% { top: $distance; opacity: 0; }
   100% { top: 0; opacity: 1; }
 }
 
 @keyframes slide-panels__panel_slide-outside {
   0% { top: 0; opacity: 1; }
-  100% { top: -$slide-side; opacity: 0; }
+  100% { top: -$distance; opacity: 0; }
 }
 
 &__panel {

@@ -51,6 +51,15 @@ class Layer {
     /**
      * ...
      *
+     * @return State
+     */
+    public getState(): State {
+        return this.state;
+    }
+
+    /**
+     * ...
+     *
      * @return boolean
      */
     public isValid(): boolean {
@@ -77,6 +86,36 @@ class Layer {
     public hide(): void {
         if (this.state.isVisible()) {
             this.animation.hide();
+            this.state.hide();
+        }
+    }
+
+    /**
+     * ...
+     *
+     * @param isReverse { boolean }
+     *   ...
+     *
+     * @return void
+     */
+    public inside(isReverse = false): void {
+        if (this.state.isHidden()) {
+            this.animation.inside(isReverse);
+            this.state.show();
+        }
+    }
+
+    /**
+     * ...
+     *
+     * @param isReverse { boolean }
+     *   ...
+     *
+     * @return void
+     */
+    public outside(isReverse = false): void {
+        if (this.state.isVisible()) {
+            this.animation.outside(isReverse);
             this.state.hide();
         }
     }

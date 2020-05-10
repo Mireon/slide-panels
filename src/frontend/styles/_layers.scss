@@ -4,11 +4,11 @@
   background: #ffffff;
 
   &_visible {
-    visibility: visible;
+    display: block;
   }
 
   &_hidden {
-    visibility: hidden;
+    display: none;
   }
 
 }

@@ -99,19 +99,16 @@ class Panel {
      *
      * @param target { Target }
      *   ...
-     * @param withAnimation { boolean }
-     *   ...
      *
      * @return void
      */
-    public show(target: Target, withAnimation = false): void {
+    public show(target: Target): void {
         if (this.state.isHidden()) {
+            this.layers.show(target);
             this.animation.show();
             this.state.show();
-        }
-
-        if (target.hasLayers()) {
-            this.layers.show(target, withAnimation);
+        } else {
+            this.layers.inside(target);
         }
     }
 
@@ -124,6 +121,9 @@ class Panel {
         if (this.state.isVisible()) {
             this.animation.hide();
             this.state.hide();
+
+            // TODO: This needs to be fixed.
+            setTimeout(() => this.layers.hide(), 300);
         }
     }
 
@@ -137,12 +137,9 @@ class Panel {
      */
     public inside(target: Target): void {
         if (this.state.isHidden()) {
+            this.layers.show(target);
             this.animation.inside();
             this.state.show();
-        }
-
-        if (target.hasLayers()) {
-            this.layers.show(target);
         }
     }
 
@@ -155,6 +152,9 @@ class Panel {
         if (this.state.isVisible()) {
             this.animation.outside();
             this.state.hide();
+
+            // TODO: This needs to be fixed.
+            setTimeout(() => this.layers.hide(), 300);
         }
     }
 }
