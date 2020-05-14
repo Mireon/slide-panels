@@ -97,9 +97,10 @@ class Layers {
             return;
         }
 
-        // ...
-        current.outside();
-        selected.inside();
+        const isReverse = current.getKey().indexOf(selected.getKey()) === 0;
+
+        current.outside(isReverse);
+        selected.inside(isReverse);
 
         console.clear();
         console.log('CURRENT: ', current.getKey());

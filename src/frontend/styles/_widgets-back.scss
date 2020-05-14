@@ -1,0 +1,30 @@
+.back {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  cursor: pointer;
+
+  &__icon {
+    color: #adadad;
+    font-size: 14px;
+    margin-right: 3px;
+  }
+
+  &__text {
+    color: #6d6d6d;
+    font-size: 14px;
+  }
+
+  &:hover {
+
+    .back__icon {
+      color: #676767;
+    }
+
+    .back__text {
+      color: #212121;
+    }
+
+  }
+
+}

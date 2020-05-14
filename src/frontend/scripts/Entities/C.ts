@@ -26,6 +26,7 @@ export namespace C {
     export enum action {
         SHOW = 'show',
         HIDE = 'hide',
+        BACK = 'back',
     }
 
     /**

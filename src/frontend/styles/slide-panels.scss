@@ -1,18 +1,19 @@
 .slide-panels {
-  @import "fonts";
-  @import "stage";
   @import "backstage";
   @import "backstage-animation";
   @import "close";
   @import "close-animation";
-  @import "side";
-  @import "side-animation";
-  @import "panels";
-  @import "panels-animation";
+  @import "fonts";
   @import "layers";
   @import "layers-animation";
-  @import "widgets-header";
+  @import "panels";
+  @import "panels-animation";
+  @import "stage";
+  @import "side";
+  @import "side-animation";
+  @import "widgets-back";
   @import "widgets-caption";
+  @import "widgets-header";
   @import "widgets-list";
   @import "widgets-menu";
 }

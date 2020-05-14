@@ -1,6 +1,6 @@
 import LeverClickListener from '@modules/Levers/LeverClickListener';
 import Target from '@entities/Target';
-import { C } from '@entities/C';
+import {C} from '@entities/C';
 import Extractor from '@tools/Extractor';
 
 /**
@@ -36,7 +36,7 @@ class Lever {
     public constructor(element: Element) {
         this.element = element;
         this.action = Extractor.action(element, C.action.SHOW);
-        this.target = Extractor.target(element);
+        this.target = Extractor.target(element, this.action);
     }
 
     /**
@@ -45,7 +45,11 @@ class Lever {
      * @type boolean
      */
     public toShow(): boolean {
-        return this.action === C.action.SHOW && this.target !== null && this.target.isValid();
+        if (this.action !== C.action.SHOW && this.action !== C.action.BACK) {
+            return false;
+        }
+
+        return this.target !== null && this.target.isValid();
     }
 
     /**
