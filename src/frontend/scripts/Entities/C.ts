@@ -1,9 +1,9 @@
 /**
- * ...
+ * The box of constants.
  */
 export namespace C {
     /**
-     * ...
+     * The list of constants visibility.
      */
     export enum visibility {
         VISIBLE = 'visible',
@@ -13,7 +13,7 @@ export namespace C {
     }
 
     /**
-     * ...
+     * The list of constants sides.
      */
     export enum side {
         LEFT = 'left',
@@ -21,20 +21,11 @@ export namespace C {
     }
 
     /**
-     * ...
+     * The list of constants actions.
      */
     export enum action {
         SHOW = 'show',
         HIDE = 'hide',
         BACK = 'back',
-    }
-
-    /**
-     * ...
-     */
-    export enum location {
-        INSIDE = 'inside',
-        OUTSIDE = 'outside',
-        EVERYWHERE = 'everywhere',
     }
 }

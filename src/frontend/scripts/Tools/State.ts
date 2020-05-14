@@ -1,35 +1,35 @@
 import { C } from '@entities/C';
 
 /**
- * ...
+ * The tool to managing of the state.
  */
-class State {
+export default class State {
     /**
-     * ...
+     * The state.
      *
      * @type string
      */
     private state: C.visibility;
 
     /**
-     * ...
+     * The timeout before applying a new state.
      *
      * @type number
      */
     private timeout: number;
 
     /**
-     * ...
+     * The constructor.
      *
      * @param state { C.visibility }
-     *   ...
+     *   A state.
      */
     public constructor(state: C.visibility = C.visibility.HIDDEN) {
         this.state = state;
     }
 
     /**
-     * ...
+     * The set of action to applying the visible state.
      *
      * @return State
      */
@@ -44,7 +44,7 @@ class State {
     }
 
     /**
-     * ...
+     * Set visible state.
      *
      * @return void
      */
@@ -56,7 +56,7 @@ class State {
     }
 
     /**
-     * ...
+     * Set showing state.
      *
      * @return State
      */
@@ -68,7 +68,7 @@ class State {
     }
 
     /**
-     * ...
+     * The set of action to applying the hidden state.
      *
      * @return State
      */
@@ -83,7 +83,7 @@ class State {
     }
 
     /**
-     * ...
+     * Set hidden state.
      *
      * @return State
      */
@@ -95,7 +95,7 @@ class State {
     }
 
     /**
-     * ...
+     * Set hiding state.
      *
      * @return State
      */
@@ -107,7 +107,7 @@ class State {
     }
 
     /**
-     * ...
+     * Tells whether state is the visible.
      *
      * @return boolean
      */
@@ -116,7 +116,7 @@ class State {
     }
 
     /**
-     * ...
+     * Tells whether state is the hidden.
      *
      * @return boolean
      */
@@ -125,7 +125,7 @@ class State {
     }
 
     /**
-     * ...
+     * Sets the timeout.
      *
      * @return State
      */
@@ -135,5 +135,3 @@ class State {
         return this;
     }
 }
-
-export default State;

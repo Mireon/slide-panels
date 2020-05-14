@@ -48,7 +48,7 @@ class Panel {
      * The constructor.
      *
      * @param element { Element }
-     *   ...
+     *   The DOM element.
      */
     public constructor(element: Element) {
         this.key = Extractor.key(element);

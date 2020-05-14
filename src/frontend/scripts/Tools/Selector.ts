@@ -1,25 +1,25 @@
 import { C } from '@entities/C';
 
 /**
- * ...
+ * The selector of root.
  *
  * @type string
  */
 const root = '[id="slide-panels"]';
 
 /**
- * ...
+ * The selector of specifying on this plugin.
  *
  * @type string
  */
 const specify = '[data-plugin="slide-panels"]';
 
 /**
- * ...
+ * The tool to selecting DOM elements of this plugin.
  */
-class Selector {
+export default class Selector {
     /**
-     * ...
+     * Returns the list of levers.
      *
      * @type NodeListOf<Element>
      */
@@ -30,7 +30,7 @@ class Selector {
     }
 
     /**
-     * ...
+     * Returns the root.
      *
      * @type Element
      */
@@ -39,7 +39,7 @@ class Selector {
     }
 
     /**
-     * ...
+     * Returns the backstage.
      *
      * @type Element
      */
@@ -50,10 +50,10 @@ class Selector {
     }
 
     /**
-     * ...
+     * Returns the side.
      *
      * @param side { C.side }
-     *   ...
+     *   A selected side.
      *
      * @type Element
      */
@@ -64,7 +64,7 @@ class Selector {
     }
 
     /**
-     * ...
+     * Returns the list of panels.
      *
      * @type NodeListOf<Element>
      */
@@ -75,10 +75,10 @@ class Selector {
     }
 
     /**
-     * ...
+     * Returns the panel selected by key.
      *
      * @param panelKey { string }
-     *   ...
+     *   A panel key.
      *
      * @type Element
      */
@@ -89,10 +89,10 @@ class Selector {
     }
 
     /**
-     * ...
+     * Returns the list of layers of selected panel.
      *
      * @param panelKey { string }
-     *   ...
+     *   A panel key.
      *
      * @type NodeListOf<Element>
      */
@@ -103,12 +103,12 @@ class Selector {
     }
 
     /**
-     * ...
+     * Returns the layer by key of selected panel.
      *
      * @param panelKey { string }
-     *   ...
+     *   A panel key.
      * @param layerKey { string }
-     *   ...
+     *   A layer key.
      *
      * @type Element
      */
@@ -118,5 +118,3 @@ class Selector {
         return document.querySelector(`${root} ${attribute}`);
     }
 }
-
-export default Selector;

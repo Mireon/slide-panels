@@ -8,7 +8,7 @@ import Extractor from '@tools/Extractor';
  */
 class Lever {
     /**
-     * ...
+     * The DOM element.
      *
      * @type Element
      */

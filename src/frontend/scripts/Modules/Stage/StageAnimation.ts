@@ -5,7 +5,7 @@ import Selector from '@tools/Selector';
  */
 class StageAnimation {
     /**
-     * ...
+     * The DOM element.
      *
      * @type Element
      */

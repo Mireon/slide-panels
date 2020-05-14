@@ -31,7 +31,7 @@ class Layer {
      * The constructor.
      *
      * @param element { Element }
-     *   ...
+     *   The DOM element.
      */
     public constructor(element: Element) {
         this.key = Extractor.key(element);
@@ -64,6 +64,18 @@ class Layer {
      */
     public isValid(): boolean {
         return this.key !== null;
+    }
+
+    /**
+     * ...
+     *
+     * @param layer { Layer }
+     *   ...
+     *
+     * @return boolean
+     */
+    public isChildOf(layer: Layer): boolean {
+        return this.getKey().indexOf(layer.getKey()) === 0;
     }
 
     /**

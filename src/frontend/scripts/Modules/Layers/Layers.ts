@@ -97,14 +97,11 @@ class Layers {
             return;
         }
 
-        const isReverse = current.getKey().indexOf(selected.getKey()) === 0;
+        const isReverse = current.isChildOf(selected);
 
+        // Normal actions.
         current.outside(isReverse);
         selected.inside(isReverse);
-
-        console.clear();
-        console.log('CURRENT: ', current.getKey());
-        console.log('SELECT: ', selected.getKey());
     }
 }
 

@@ -3,32 +3,32 @@ import { C } from '@entities/C';
 import Extractor from '@tools/Extractor';
 
 /**
- * ...
+ * The target of opening levers.
  */
-class Target {
+export default class Target {
     /**
-     * ...
+     * The panel key.
      *
      * @type string
      */
     private readonly panelKey: string;
 
     /**
-     * ...
+     * The side.
      *
      * @type C.side
      */
     private readonly side: C.side;
 
     /**
-     * ...
+     * The keychain of layers.
      *
      * @type Array<string>
      */
     private readonly layerKeychain: Array<string>;
 
     /**
-     * ...
+     * The status of validity.
      *
      * @type boolean
      */
@@ -38,7 +38,7 @@ class Target {
      * The constructor.
      *
      * @param target { string }
-     *   ...
+     *   The target as string of keys separated by dots.
      */
     public constructor(target: string) {
         const keychain = this.extractKeychain(target);
@@ -67,10 +67,10 @@ class Target {
     }
 
     /**
-     * ...
+     * Extracts keys from string and create array of keys.
      *
      * @param target { string }
-     *   ...
+     *   The target as string of keys separated by dots.
      *
      * @return Array<string>
      */
@@ -91,7 +91,7 @@ class Target {
     }
 
     /**
-     * ...
+     * Returns the panel key.
      *
      * @type string
      */
@@ -100,7 +100,7 @@ class Target {
     }
 
     /**
-     * ...
+     * Returns the layer key.
      *
      * @type string
      */
@@ -109,16 +109,7 @@ class Target {
     }
 
     /**
-     * ...
-     *
-     * @type Array<string>
-     */
-    public getLayerKeychain(): Array<string> {
-        return this.layerKeychain;
-    }
-
-    /**
-     * ...
+     * Returns the side.
      *
      * @type C.side
      */
@@ -127,7 +118,7 @@ class Target {
     }
 
     /**
-     * ...
+     * Tells about of validity.
      *
      * @type boolean
      */
@@ -136,7 +127,7 @@ class Target {
     }
 
     /**
-     * ...
+     * Tells about the presence of layers.
      *
      * @type boolean
      */
@@ -144,5 +135,3 @@ class Target {
         return this.layerKeychain.length > 0;
     }
 }
-
-export default Target;

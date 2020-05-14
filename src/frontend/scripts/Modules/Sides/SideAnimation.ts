@@ -13,7 +13,7 @@ class SideAnimation {
     private readonly side: C.side;
 
     /**
-     * ...
+     * The DOM element.
      *
      * @type Element
      */

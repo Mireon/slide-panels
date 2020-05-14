@@ -2,14 +2,14 @@ import { C } from '@entities/C';
 import Target from '@entities/Target';
 
 /**
- * ...
+ * The tool to extract attribute values from tags.
  */
-class Extractor {
+export default class Extractor {
     /**
-     * ...
+     * Extracts key.
      *
      * @param element { Element }
-     *  ...
+     *   The DOM element.
      *
      * @return string
      */
@@ -30,10 +30,10 @@ class Extractor {
     }
 
     /**
-     * ...
+     * Extracts side.
      *
      * @param element { Element }
-     *  ...
+     *   The DOM element.
      *
      * @return string
      */
@@ -54,12 +54,12 @@ class Extractor {
     }
 
     /**
-     * ...
+     * Extracts action.
      *
      * @param element { Element }
-     *   ...
+     *   The DOM element.
      * @param _default { string }
-     *   ...
+     *   The value by default.
      *
      * @return string
      */
@@ -83,12 +83,12 @@ class Extractor {
     }
 
     /**
-     * ...
+     * Extracts target.
      *
      * @param element { Element }
-     *   ...
+     *   The DOM element.
      * @param action { C.action }
-     *   ...
+     *   The action.
      *
      * @return Target
      */
@@ -111,10 +111,10 @@ class Extractor {
     }
 
     /**
-     * ...
+     * Extracts target from attribute of selected element.
      *
      * @param element { Element }
-     *   ...
+     *   The DOM element.
      *
      * @return Target
      */
@@ -135,10 +135,10 @@ class Extractor {
     }
 
     /**
-     * ...
+     * Extracts target from attribute of parent elements.
      *
      * @param element { Element }
-     *   ...
+     *   The DOM element.
      *
      * @return Target
      */
@@ -160,5 +160,3 @@ class Extractor {
         return new Target(target.join('.'));
     }
 }
-
-export default Extractor;

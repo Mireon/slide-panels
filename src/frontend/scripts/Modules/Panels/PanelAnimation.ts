@@ -3,7 +3,7 @@
  */
 class PanelAnimation {
     /**
-     * ...
+     * The DOM element.
      *
      * @type Element
      */
@@ -13,7 +13,7 @@ class PanelAnimation {
      * The constructor.
      *
      * @param element { Element }
-     *   ...
+     *   The DOM element.
      */
     public constructor(element: Element) {
         this.element = element;
