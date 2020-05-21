@@ -24,7 +24,7 @@ const common = require('./webpack.common.js');
  *
  * @type {string}
  */
-const publicPath = path.resolve(__dirname, 'public');
+const publicPath = path.resolve(__dirname, 'public/vendor/mireon/slide-panels');
 
 /**
  * The configuration.
