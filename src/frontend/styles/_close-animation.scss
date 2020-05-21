@@ -1,21 +1,22 @@
-@keyframes slide-panels__close-label_spin {
-  100% { transform:rotate(-90deg); }
+@keyframes slide-panels__close-label_animation-to {
+  from { opacity: 1; }
+  to { opacity: 0.6; }
 }
 
-@keyframes slide-panels__close-label_spin-back {
-  100% { transform:rotate(90deg); }
+@keyframes slide-panels__close-label_animation-back {
+  from { opacity: 0.6; }
+  to { opacity: 1; }
 }
 
 &__close-label {
 
   i {
-    animation-name: slide-panels__close-label_spin-back;
+    animation-name: slide-panels__close-label_animation-to;
     animation-duration: 300ms;
     animation-fill-mode: forwards;
-    transform-origin: 47.5% 52.5%;
 
     &:hover {
-      animation-name: slide-panels__close-label_spin;
+      animation-name: slide-panels__close-label_animation-back;
     }
 
   }

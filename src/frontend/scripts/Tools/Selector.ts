@@ -64,6 +64,20 @@ export default class Selector {
     }
 
     /**
+     * ...
+     *
+     * @param side { C.side }
+     *   A selected side.
+     *
+     * @type Element
+     */
+    public static sideButtonClose(side: C.side): Element {
+        const attribute = `[data-element="side"][data-side="${side}"] > [data-element="lever"][data-action="hide"]:first-child`;
+
+        return document.querySelector(`${root} ${attribute}`);
+    }
+
+    /**
      * Returns the list of panels.
      *
      * @type NodeListOf<Element>

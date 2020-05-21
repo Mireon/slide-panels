@@ -20,6 +20,13 @@ export default class SideAnimation {
     private readonly element: Element;
 
     /**
+     * The DOM element of a side button close.
+     *
+     * @type Element
+     */
+    private readonly buttonClose: Element;
+
+    /**
      * The constructor.
      *
      * @param side { C.side }
@@ -28,6 +35,7 @@ export default class SideAnimation {
     public constructor(side: C.side) {
         this.side = side;
         this.element = Selector.side(side);
+        this.buttonClose = Selector.sideButtonClose(side);
     }
 
     /**
@@ -41,6 +49,7 @@ export default class SideAnimation {
         this.element.classList.add('slide-panels__side_visible');
         this.element.classList.remove('slide-panels__side_hidden');
 
+        setTimeout(() => this.showButtonClose(), 50);
         setTimeout(() => {
             this.element.classList.add(`slide-panels__side-${this.side}_inside`);
             this.element.classList.remove(`slide-panels__side-${this.side}_slide-inside`);
@@ -56,11 +65,36 @@ export default class SideAnimation {
         this.element.classList.add(`slide-panels__side-${this.side}_slide-outside`);
         this.element.classList.remove(`slide-panels__side-${this.side}_inside`);
 
+        setTimeout(() => this.hideButtonClose(), 150);
         setTimeout(() => {
             this.element.classList.add(`slide-panels__side-${this.side}_outside`);
             this.element.classList.remove(`slide-panels__side-${this.side}_slide-outside`);
             this.element.classList.add('slide-panels__side_hidden');
             this.element.classList.remove('slide-panels__side_visible');
         }, 300);
+    }
+
+    /**
+     * Shows a side button close.
+     *
+     * @return void
+     */
+    private showButtonClose(): void {
+        if (this.buttonClose) {
+            this.buttonClose.classList.add('slide-panels__close-label_visible');
+            this.buttonClose.classList.remove('slide-panels__close-label_hidden');
+        }
+    }
+
+    /**
+     * Hides a side button close.
+     *
+     * @return void
+     */
+    private hideButtonClose(): void {
+        if (this.buttonClose) {
+            this.buttonClose.classList.add('slide-panels__close-label_hidden');
+            this.buttonClose.classList.remove('slide-panels__close-label_visible');
+        }
     }
 }
