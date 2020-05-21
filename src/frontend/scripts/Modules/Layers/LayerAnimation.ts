@@ -1,7 +1,7 @@
 /**
- * ...
+ * The layer animation.
  */
-class LayerAnimation {
+export default class LayerAnimation {
     /**
      * The DOM element.
      *
@@ -20,7 +20,7 @@ class LayerAnimation {
     }
 
     /**
-     * ...
+     * Shows a layer.
      *
      * @return void
      */
@@ -30,7 +30,7 @@ class LayerAnimation {
     }
 
     /**
-     * ...
+     * Hides a layer.
      *
      * @return void
      */
@@ -40,44 +40,42 @@ class LayerAnimation {
     }
 
     /**
-     * ...
+     * Inserts the layer to inside.
      *
      * @param isReverse { boolean }
-     *   ...
+     *   If true, the animation is reversed.
      *
      * @return void
      */
     public inside(isReverse = false): void {
-        const prefix = isReverse ? '-reverse' : '';
+        const suffix = isReverse ? '-reverse' : '';
 
-        this.element.classList.add(`slide-panels__layer_slide-inside${prefix}`);
+        this.element.classList.add(`slide-panels__layer_slide-inside${suffix}`);
         this.element.classList.remove('slide-panels__layer_hidden');
 
         setTimeout(() => {
             this.element.classList.add('slide-panels__layer_visible');
-            this.element.classList.remove(`slide-panels__layer_slide-inside${prefix}`);
+            this.element.classList.remove(`slide-panels__layer_slide-inside${suffix}`);
         }, 300);
     }
 
     /**
-     * ...
+     * Extracts a layer to outside.
      *
      * @param isReverse { boolean }
-     *   ...
+     *   If true, the animation is reversed.
      *
      * @return void
      */
     public outside(isReverse = false): void {
-        const prefix = isReverse ? '-reverse' : '';
+        const suffix = isReverse ? '-reverse' : '';
 
-        this.element.classList.add(`slide-panels__layer_slide-outside${prefix}`);
+        this.element.classList.add(`slide-panels__layer_slide-outside${suffix}`);
         this.element.classList.remove('slide-panels__layer_visible');
 
         setTimeout(() => {
             this.element.classList.add('slide-panels__layer_hidden');
-            this.element.classList.remove(`slide-panels__layer_slide-outside${prefix}`);
+            this.element.classList.remove(`slide-panels__layer_slide-outside${suffix}`);
         }, 300);
     }
 }
-
-export default LayerAnimation;

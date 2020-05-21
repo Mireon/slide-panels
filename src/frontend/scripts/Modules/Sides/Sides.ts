@@ -1,63 +1,110 @@
 import Side from '@modules/Sides/Side';
 import { C } from '@entities/C';
 import Target from '@entities/Target';
+import Selector from '@tools/Selector';
 
 /**
- * ...
+ * The set of sides.
  */
-class Sides {
+export default class Sides {
     /**
-     * ...
+     * The left side.
      *
      * @type Side
      */
-    private left: Side;
+    private readonly left: Side;
 
     /**
-     * ...
+     * The right side.
      *
      * @type Side
      */
-    private right: Side;
+    private readonly right: Side;
 
     /**
      * The constructor.
      */
     public constructor() {
-        this.left = new Side(C.side.LEFT);
-        this.right = new Side(C.side.RIGHT);
+        if (Selector.side(C.side.LEFT)) {
+            this.left = new Side(C.side.LEFT);
+        }
+        if (Selector.side(C.side.LEFT)) {
+            this.right = new Side(C.side.RIGHT);
+        }
     }
 
     /**
-     * ...
+     * Shows the side.
      *
      * @param target { Target }
-     *   ...
+     *   A target.
      *
      * @return void
      */
-    public show(target: Target) {
+    public show(target: Target): void {
         switch (target.getSide()) {
             case C.side.LEFT:
-                this.left.inside();
-                this.right.outside();
+                this.showLeft();
+                this.hideRight();
                 break;
             case C.side.RIGHT:
-                this.right.inside();
-                this.left.outside();
+                this.showRight();
+                this.hideLeft();
                 break;
         }
     }
 
     /**
-     * ...
+     * Shows the left side.
      *
      * @return void
      */
-    public hide() {
-        this.left.outside();
-        this.right.outside();
+    public showLeft(): void {
+        if (this.left) {
+            this.left.inside();
+        }
+    }
+
+    /**
+     * Shows the right side.
+     *
+     * @return void
+     */
+    public showRight(): void {
+        if (this.right) {
+            this.right.inside();
+        }
+    }
+
+    /**
+     * Hides all sides.
+     *
+     * @return void
+     */
+    public hide(): void {
+        this.hideLeft();
+        this.hideRight();
+    }
+
+    /**
+     * Hides the left side.
+     *
+     * @return void
+     */
+    public hideLeft(): void {
+        if (this.left) {
+            this.left.outside();
+        }
+    }
+
+    /**
+     * Hides the right side.
+     *
+     * @return void
+     */
+    public hideRight(): void {
+        if (this.right) {
+            this.right.outside();
+        }
     }
 }
-
-export default Sides;

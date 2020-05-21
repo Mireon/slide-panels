@@ -1,9 +1,9 @@
 import Selector from '@tools/Selector';
 
 /**
- * ...
+ * The animation of backstage.
  */
-class BackstageAnimation {
+export default class BackstageAnimation {
     /**
      * The DOM element.
      *
@@ -19,7 +19,7 @@ class BackstageAnimation {
     }
 
     /**
-     * ...
+     * Shows the backstage.
      *
      * @return void
      */
@@ -34,7 +34,7 @@ class BackstageAnimation {
     }
 
     /**
-     * ...
+     * Hides the backstage.
      *
      * @return void
      */
@@ -48,5 +48,3 @@ class BackstageAnimation {
         }, 300);
     }
 }
-
-export default BackstageAnimation;

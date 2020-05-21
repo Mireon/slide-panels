@@ -3,26 +3,26 @@ import State from '@tools/State';
 import { C } from '@entities/C';
 
 /**
- * ...
+ * The side.
  */
-class Side {
+export default class Side {
     /**
-     * ...
+     * The side animation.
      */
-    private animation: SideAnimation;
+    private readonly animation: SideAnimation;
 
     /**
-     * ...
+     * The side state.
      *
      * @type State
      */
-    private state: State;
+    private readonly state: State;
 
     /**
      * The constructor.
      *
      * @param side { C.side }
-     *   ...
+     *   A side.
      */
     public constructor(side: C.side) {
         this.animation = new SideAnimation(side);
@@ -30,12 +30,11 @@ class Side {
     }
 
     /**
-     * ...
-     *
+     * Inserts the side to inside.
      *
      * @return void
      */
-    public inside() {
+    public inside(): void {
         if (this.state.isHidden()) {
             this.animation.inside();
             this.state.show();
@@ -44,16 +43,14 @@ class Side {
     }
 
     /**
-     * ...
+     * Retrieves the side to outside.
      *
      * @return void
      */
-    public outside() {
+    public outside(): void {
         if (this.state.isVisible()) {
             this.animation.outside();
             this.state.hide();
         }
     }
 }
-
-export default Side;

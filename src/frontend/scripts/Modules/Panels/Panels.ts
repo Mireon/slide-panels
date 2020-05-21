@@ -3,11 +3,11 @@ import Panel from '@modules/Panels/Panel';
 import Target from '@entities/Target';
 
 /**
- * ...
+ * The set of panels.
  */
-class Panels {
+export default class Panels {
     /**
-     * ...
+     * The list of panels.
      *
      * @type Map
      */
@@ -27,7 +27,7 @@ class Panels {
     }
 
     /**
-     * ...
+     * Returns the current panel.
      *
      * @return Panel
      */
@@ -44,15 +44,15 @@ class Panels {
     }
 
     /**
-     * ...
+     * Shows the panel.
      *
      * @param target { Target }
-     *   ...
+     *   A target.
      *
      * @return void
      */
     public show(target: Target): void {
-        const current = this.getCurrentPanel();
+        const current: Panel = this.getCurrentPanel();
         const selected: Panel = this.panels.get(target.getPanelKey());
 
         // There isn't one visible panel here.
@@ -93,7 +93,7 @@ class Panels {
     }
 
     /**
-     * ...
+     * Hides the panel.
      *
      * @return void
      */
@@ -101,5 +101,3 @@ class Panels {
         this.panels.forEach((panel: Panel) => panel.hide());
     }
 }
-
-export default Panels;

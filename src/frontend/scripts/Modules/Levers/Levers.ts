@@ -3,18 +3,18 @@ import LeverClickListener from '@modules/Levers/LeverClickListener';
 import Selector from '@tools/Selector';
 
 /**
- * ...
+ * The set of levers.
  */
-class Levers {
+export default class Levers {
     /**
-     * ...
+     * The list of levers these for show.
      *
      * @type Array<Lever>
      */
     private readonly toShowLevers = new Array<Lever>();
 
     /**
-     * ...
+     * The list of levers these for hide.
      *
      * @type Array<Lever>
      */
@@ -36,10 +36,10 @@ class Levers {
     }
 
     /**
-     * ...
+     * Sets the click listener on levers these for show.
      *
      * @param listener { LeverClickListener }
-     *   ...
+     *   A click listener to lever.
      *
      * @return void
      */
@@ -48,10 +48,10 @@ class Levers {
     }
 
     /**
-     * ...
+     * Sets the click listener on levers these for hide.
      *
      * @param listener { LeverClickListener }
-     *   ...
+     *   A click listener to lever.
      *
      * @return void
      */
@@ -59,5 +59,3 @@ class Levers {
         this.toHideLevers.forEach((lever: Lever) => lever.setClickListener(listener));
     }
 }
-
-export default Levers;

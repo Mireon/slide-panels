@@ -2,11 +2,11 @@ import Selector from '@tools/Selector';
 import { C } from '@entities/C';
 
 /**
- * ...
+ * The side animation.
  */
-class SideAnimation {
+export default class SideAnimation {
     /**
-     * ...
+     * The side.
      *
      * @type C.side
      */
@@ -17,13 +17,13 @@ class SideAnimation {
      *
      * @type Element
      */
-    private element: Element;
+    private readonly element: Element;
 
     /**
      * The constructor.
      *
      * @param side { C.side }
-     *   ...
+     *   A side.
      */
     public constructor(side: C.side) {
         this.side = side;
@@ -31,11 +31,11 @@ class SideAnimation {
     }
 
     /**
-     * ...
+     * Inserts a side to inside.
      *
      * @return void
      */
-    public inside() {
+    public inside(): void {
         this.element.classList.add(`slide-panels__side-${this.side}_slide-inside`);
         this.element.classList.remove(`slide-panels__side-${this.side}_outside`);
         this.element.classList.add('slide-panels__side_visible');
@@ -48,11 +48,11 @@ class SideAnimation {
     }
 
     /**
-     * ...
+     * Retrieves a side to outside.
      *
      * @return void
      */
-    public outside() {
+    public outside(): void {
         this.element.classList.add(`slide-panels__side-${this.side}_slide-outside`);
         this.element.classList.remove(`slide-panels__side-${this.side}_inside`);
 
@@ -64,5 +64,3 @@ class SideAnimation {
         }, 300);
     }
 }
-
-export default SideAnimation;

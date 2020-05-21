@@ -4,9 +4,9 @@ import {C} from '@entities/C';
 import Extractor from '@tools/Extractor';
 
 /**
- * ...
+ * The lever.
  */
-class Lever {
+export default class Lever {
     /**
      * The DOM element.
      *
@@ -15,14 +15,14 @@ class Lever {
     private readonly element: Element;
 
     /**
-     * ...
+     * The lever action.
      *
      * @type C.action
      */
     private readonly action: C.action;
 
     /**
-     * ...
+     * The target.
      *
      * @type Target
      */
@@ -40,7 +40,7 @@ class Lever {
     }
 
     /**
-     * ...
+     * Indicates that the lever is for show.
      *
      * @type boolean
      */
@@ -53,7 +53,7 @@ class Lever {
     }
 
     /**
-     * ...
+     * Indicates that the lever is for hide.
      *
      * @type boolean
      */
@@ -62,7 +62,7 @@ class Lever {
     }
 
     /**
-     * ...
+     * Returns the target.
      *
      * @type Target
      */
@@ -71,16 +71,14 @@ class Lever {
     }
 
     /**
-     * ...
+     * Sets a listener on click to lever.
      *
      * @type boolean
      */
     public setClickListener(listener: LeverClickListener): void {
-        this.element.addEventListener('click', (e) => {
+        this.element.addEventListener('click', e => {
             e.preventDefault();
             listener(this);
         });
     }
 }
-
-export default Lever;

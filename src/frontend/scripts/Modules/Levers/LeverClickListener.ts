@@ -1,10 +1,8 @@
 import Lever from '@modules/Levers/Lever';
 
 /**
- * ...
+ * A click listener to lever.
  */
-interface LeverClickListener {
+export default interface LeverClickListener {
     (lever: Lever): void;
 }
-
-export default LeverClickListener;

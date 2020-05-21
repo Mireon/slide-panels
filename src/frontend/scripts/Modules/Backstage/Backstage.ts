@@ -2,16 +2,16 @@ import BackstageAnimation from '@modules/Backstage/BackstageAnimation';
 import State from '@tools/State';
 
 /**
- * ...
+ * The backstage.
  */
-class Backstage {
+export default class Backstage {
     /**
-     * ...
+     * The animation of backstage.
      */
     private readonly animation: BackstageAnimation;
 
     /**
-     * ...
+     * The state of backstage.
      *
      * @type State
      */
@@ -26,7 +26,7 @@ class Backstage {
     }
 
     /**
-     * ...
+     * Shows the backstage.
      *
      * @return void
      */
@@ -38,7 +38,7 @@ class Backstage {
     }
 
     /**
-     * ...
+     * Hides the backstage.
      *
      * @return void
      */
@@ -49,5 +49,3 @@ class Backstage {
         }
     }
 }
-
-export default Backstage;

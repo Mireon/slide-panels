@@ -1,16 +1,15 @@
 import Selector from '@tools/Selector';
 
 /**
- * ...
+ * The stage animation.
  */
-class StageAnimation {
+export default class StageAnimation {
     /**
      * The DOM element.
      *
      * @type Element
      */
-    private element: Element;
-
+    private readonly element: Element;
 
     /**
      * The constructor.
@@ -20,7 +19,7 @@ class StageAnimation {
     }
 
     /**
-     * ...
+     * Shows the stage.
      *
      * @return void
      */
@@ -30,7 +29,7 @@ class StageAnimation {
     }
 
     /**
-     * ...
+     * Hide the stage.
      *
      * @return void
      */
@@ -41,5 +40,3 @@ class StageAnimation {
         }, 300);
     }
 }
-
-export default StageAnimation;

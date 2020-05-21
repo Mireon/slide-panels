@@ -6,39 +6,39 @@ import { C } from '@entities/C';
 import Layers from '@modules/Layers/Layers';
 
 /**
- * ...
+ * The panel.
  */
-class Panel {
+export default class Panel {
     /**
-     * ...
+     * The panel key.
      *
      * @type string
      */
     private readonly key: string;
 
     /**
-     * ...
+     * The panel side.
      *
      * @type C.side
      */
     private readonly side: C.side;
 
     /**
-     * ...
+     * The panel layers.
      *
      * @type Layers
      */
     private readonly layers: Layers;
 
     /**
-     * ...
+     * The panel animation.
      *
      * @type PanelAnimation
      */
     private readonly animation: PanelAnimation;
 
     /**
-     * ...
+     * The panel state.
      *
      * @type State
      */
@@ -59,7 +59,7 @@ class Panel {
     }
 
     /**
-     * ...
+     * Returns the panel key.
      *
      * @return string
      */
@@ -68,7 +68,7 @@ class Panel {
     }
 
     /**
-     * ...
+     * Returns the panel state.
      *
      * @return State
      */
@@ -77,7 +77,7 @@ class Panel {
     }
 
     /**
-     * ...
+     * Returns the panel side.
      *
      * @return C.side
      */
@@ -86,7 +86,7 @@ class Panel {
     }
 
     /**
-     * ...
+     * Indicates about validity of the panel.
      *
      * @return boolean
      */
@@ -95,10 +95,10 @@ class Panel {
     }
 
     /**
-     * ...
+     * Shows the panel and its layers.
      *
      * @param target { Target }
-     *   ...
+     *   A target.
      *
      * @return void
      */
@@ -113,7 +113,7 @@ class Panel {
     }
 
     /**
-     * ...
+     * Hides the panel and its layers.
      *
      * @return void
      */
@@ -122,16 +122,15 @@ class Panel {
             this.animation.hide();
             this.state.hide();
 
-            // TODO: This needs to be fixed.
             setTimeout(() => this.layers.hide(), 300);
         }
     }
 
     /**
-     * ...
+     * Inserts the panel to inside.
      *
      * @param target { Target }
-     *   ...
+     *   A target.
      *
      * @return void
      */
@@ -144,7 +143,7 @@ class Panel {
     }
 
     /**
-     * ...
+     * Retrieves the panel to outside.
      *
      * @return void
      */
@@ -153,10 +152,7 @@ class Panel {
             this.animation.outside();
             this.state.hide();
 
-            // TODO: This needs to be fixed.
             setTimeout(() => this.layers.hide(), 300);
         }
     }
 }
-
-export default Panel;

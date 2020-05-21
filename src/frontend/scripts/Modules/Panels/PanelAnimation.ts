@@ -1,7 +1,7 @@
 /**
- * ...
+ * The panel animation.
  */
-class PanelAnimation {
+export default class PanelAnimation {
     /**
      * The DOM element.
      *
@@ -20,7 +20,7 @@ class PanelAnimation {
     }
 
     /**
-     * ...
+     * Shows a panel.
      *
      * @return void
      */
@@ -35,7 +35,7 @@ class PanelAnimation {
     }
 
     /**
-     * ...
+     * Hides a panel.
      *
      * @return void
      */
@@ -50,7 +50,7 @@ class PanelAnimation {
     }
 
     /**
-     * ...
+     * Inserts a panel to inside.
      *
      * @return void
      */
@@ -65,7 +65,7 @@ class PanelAnimation {
     }
 
     /**
-     * ...
+     * Retrieves a panel to outside.
      *
      * @return void
      */
@@ -79,5 +79,3 @@ class PanelAnimation {
         }, 300);
     }
 }
-
-export default PanelAnimation;

@@ -3,25 +3,25 @@ import State from '@tools/State';
 import Extractor from '@tools/Extractor';
 
 /**
- * ...
+ * The layer.
  */
-class Layer {
+export default class Layer {
     /**
-     * ...
+     * The layer key.
      *
      * @type string
      */
     private readonly key: string;
 
     /**
-     * ...
+     * The layer animation.
      *
      * @type PanelAnimation
      */
     private readonly animation: LayerAnimation;
 
     /**
-     * ...
+     * The layer state.
      *
      * @type State
      */
@@ -40,7 +40,7 @@ class Layer {
     }
 
     /**
-     * ...
+     * Returns the layer key.
      *
      * @return string
      */
@@ -49,7 +49,7 @@ class Layer {
     }
 
     /**
-     * ...
+     * Returns the layer state.
      *
      * @return State
      */
@@ -58,7 +58,7 @@ class Layer {
     }
 
     /**
-     * ...
+     * Indicates about validity of layer.
      *
      * @return boolean
      */
@@ -67,10 +67,10 @@ class Layer {
     }
 
     /**
-     * ...
+     * Indicates that one layer belongs to another layer.
      *
      * @param layer { Layer }
-     *   ...
+     *   A layer.
      *
      * @return boolean
      */
@@ -79,7 +79,7 @@ class Layer {
     }
 
     /**
-     * ...
+     * Shows the layer.
      *
      * @return void
      */
@@ -91,7 +91,7 @@ class Layer {
     }
 
     /**
-     * ...
+     * Hides the layer.
      *
      * @return void
      */
@@ -103,10 +103,10 @@ class Layer {
     }
 
     /**
-     * ...
+     * Inserts the layer to inside.
      *
      * @param isReverse { boolean }
-     *   ...
+     *   If true, the animation is reversed.
      *
      * @return void
      */
@@ -118,10 +118,10 @@ class Layer {
     }
 
     /**
-     * ...
+     * Extracts a layer to outside.
      *
      * @param isReverse { boolean }
-     *   ...
+     *   If true, the animation is reversed.
      *
      * @return void
      */
@@ -132,5 +132,3 @@ class Layer {
         }
     }
 }
-
-export default Layer;

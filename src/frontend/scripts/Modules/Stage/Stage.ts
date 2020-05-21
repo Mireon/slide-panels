@@ -6,43 +6,43 @@ import Panels from '@modules/Panels/Panels';
 import Target from '@entities/Target';
 
 /**
- * ...
+ * The stage.
  */
-class Stage {
+export default class Stage {
     /**
-     * ...
+     * The stage animation.
      *
      * @type StageAnimation
      */
-    private animation: StageAnimation;
+    private readonly animation: StageAnimation;
 
     /**
-     * ...
+     * The stage state.
      *
      * @type State
      */
-    private state: State;
+    private readonly state: State;
 
     /**
-     * ...
+     * The backstage.
      *
      * @type Backstage
      */
-    private backstage: Backstage;
+    private readonly backstage: Backstage;
 
     /**
-     * ...
+     * The set of sides.
      *
      * @type Sides
      */
-    private sides: Sides;
+    private readonly sides: Sides;
 
     /**
-     * ...
+     * The set of panels.
      *
      * @type Panels
      */
-    private panels: Panels;
+    private readonly panels: Panels;
 
     /**
      * The constructor.
@@ -56,10 +56,10 @@ class Stage {
     }
 
     /**
-     * ...
+     * Shows the stage and its elements.
      *
      * @param target { Target }
-     *   ...
+     *   A target.
      *
      * @return void
      */
@@ -71,7 +71,7 @@ class Stage {
     }
 
     /**
-     * ...
+     * Hides the stage and its elements.
      *
      * @return void
      */
@@ -82,5 +82,3 @@ class Stage {
         this.animation.hide();
     }
 }
-
-export default Stage;

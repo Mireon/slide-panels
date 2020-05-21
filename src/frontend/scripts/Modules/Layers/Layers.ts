@@ -3,11 +3,11 @@ import Target from '@entities/Target';
 import Layer from '@modules/Layers/Layer';
 
 /**
- * ...
+ * The set of layers.
  */
-class Layers {
+export default class Layers {
     /**
-     * ...
+     * The list of layers.
      *
      * @type Map
      */
@@ -17,7 +17,7 @@ class Layers {
      * The constructor.
      *
      * @param panelKey { string }
-     *   ...
+     *   A panel key.
      */
     public constructor(panelKey: string) {
         Selector.layers(panelKey).forEach((element: Element) => {
@@ -30,7 +30,7 @@ class Layers {
     }
 
     /**
-     * ...
+     * Returns the current layer.
      *
      * @return Layer
      */
@@ -47,10 +47,10 @@ class Layers {
     }
 
     /**
-     * ...
+     * Shows a layer.
      *
      * @param target { Target }
-     *   ...
+     *   A target.
      *
      * @return void
      */
@@ -62,21 +62,19 @@ class Layers {
     }
 
     /**
-     * ...
+     * Hides all layers.
      *
      * @return void
      */
     public hide(): void {
-        this.layers.forEach((layer: Layer) => {
-            layer.hide();
-        });
+        this.layers.forEach((layer: Layer) => layer.hide());
     }
 
     /**
-     * ...
+     * Inserts a layer to inside.
      *
      * @param target { Target }
-     *   ...
+     *   A target.
      *
      * @return void
      */
@@ -104,5 +102,3 @@ class Layers {
         selected.inside(isReverse);
     }
 }
-
-export default Layers;
