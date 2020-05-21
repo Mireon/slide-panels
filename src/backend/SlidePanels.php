@@ -2,6 +2,12 @@
 
 namespace Mireon\SlidePanels;
 
+use Mireon\SlidePanels\Modules\Panels\Panels;
+use Mireon\SlidePanels\Modules\Sides\SideLeft;
+use Mireon\SlidePanels\Modules\Sides\SideRight;
+use Mireon\SlidePanels\Modules\Sides\Sides;
+use Mireon\SlidePanels\Modules\Stage\Stage;
+
 /**
  * ...
  *
@@ -37,11 +43,28 @@ class SlidePanels
     /**
      * ...
      *
-     * @return void
+     * @return string
      */
-    public function getHtml(): void
+    public function getHtml(): string
     {
-        include __DIR__ . '/../../resources/views/stage.php';
+        $panels = new Panels();
+
+        $sideLeft = new SideLeft();
+        $sideLeft->setCloseButton();
+        $sideLeft->setPanels($panels);
+
+        $sideRight = new SideRight();
+        $sideRight->setCloseButton();
+        $sideRight->setPanels($panels);
+
+        $sides = new Sides();
+        $sides->setLeft($sideLeft);
+        $sides->setRight($sideRight);
+
+        $stage = new Stage();
+        $stage->setSides($sides);
+
+        return $stage->render();
     }
 
     /**
