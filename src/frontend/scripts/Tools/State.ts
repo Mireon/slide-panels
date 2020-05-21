@@ -33,12 +33,8 @@ export default class State {
      *
      * @return State
      */
-    public show(delay = 300): State {
-        if (delay > 0) {
-            this.showing().delay(delay).visible();
-        } else {
-            this.visible();
-        }
+    public show(): State {
+        this.showing().delay().visible();
 
         return this;
     }
@@ -72,12 +68,8 @@ export default class State {
      *
      * @return State
      */
-    public hide(delay = 300): State {
-        if (delay > 0) {
-            this.hiding().delay(delay).hidden();
-        } else {
-            this.hidden();
-        }
+    public hide(): State {
+        this.hiding().delay().hidden();
 
         return this;
     }
@@ -129,8 +121,8 @@ export default class State {
      *
      * @return State
      */
-    public delay(timeout = 300): State {
-        this.timeout = timeout;
+    public delay(): State {
+        this.timeout = 300;
 
         return this;
     }
