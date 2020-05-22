@@ -1,18 +1,22 @@
 <?php
 
-namespace Mireon\SlidePanels\Modules\Stage;
+namespace Mireon\SlidePanels\Components\Stage;
 
-use Mireon\SlidePanels\Modules\Sides\Sides;
-use Mireon\SlidePanels\Renders\Renderable;
-use Mireon\SlidePanels\View\View;
+use Exception;
+use Mireon\SlidePanels\Components\Sides\Sides;
+use Mireon\SlidePanels\Render\Renderable;
+use Mireon\SlidePanels\Render\RenderString;
+use Mireon\SlidePanels\Render\Render;
 
 /**
  * ...
  *
- * @package Mireon\SlidePanels\Modules\Stage
+ * @package Mireon\SlidePanels\Components\Stage
  */
 class Stage implements Renderable
 {
+    use RenderString;
+
     /**
      * ...
      *
@@ -50,26 +54,16 @@ class Stage implements Renderable
      */
     public function hasSides(): bool
     {
-        return !is_null($this->sides) && $this->sides->hasSide();
+        return !is_null($this->sides) && ($this->sides->hasLeft() || $this->sides->hasRight());
     }
 
     /**
      * @inheritDoc
+     *
+     * @throws Exception
      */
     public function render(): string
     {
-        return View::view('stage', [
-            'stage' => $this,
-        ]);
-    }
-
-    /**
-     * ...
-     *
-     * @return string
-     */
-    public function __toString(): string
-    {
-        return $this->render();
+        return Render::view('stage/stage', ['stage' => $this]);
     }
 }

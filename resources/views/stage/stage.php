@@ -1,8 +1,11 @@
 <?php
+
+use Mireon\SlidePanels\Components\Stage\Stage;
+
 /**
  * ...
  *
- * @var \Mireon\SlidePanels\Modules\Stage\Stage $stage
+ * @var Stage $stage
  *   ...
  */
 ?>
