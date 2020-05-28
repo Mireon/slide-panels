@@ -13,6 +13,7 @@ use Mireon\SlidePanels\Modules\Sides\SideRight;
 use Mireon\SlidePanels\Modules\Sides\Sides;
 use Mireon\SlidePanels\Modules\Stage\Stage;
 use Mireon\SlidePanels\Modules\Widgets\Header\Header;
+use Mireon\SlidePanels\Resources\Resources;
 
 /**
  * ...
@@ -23,17 +24,76 @@ class SlidePanels
 {
     /**
      * ...
+     *
+     * @var self|null
      */
-    public const ASSETS_PATH = '/vendor/mireon/slide-panels';
+    private static ?self $instance = null;
+
+    /**
+     * ...
+     */
+    private array $config = [];
+
+    /**
+     * The constructor.
+     *
+     * @param array|null $config
+     *   ...
+     */
+    protected function __construct(?array $config = null) {
+        $this->config = $config ?? $this->getConfig();
+    }
+
+    /**
+     * ...
+     */
+    protected function __clone() { }
 
     /**
      * ...
      *
-     * @return string
+     * @throws Exception
      */
-    public function getBaseUrl(): string
+    public function __wakeup(): void
     {
-        return $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . static::ASSETS_PATH;
+        throw new Exception('Cannot unserialize the ' . static::class . ' class.');
+    }
+
+    /**
+     * ...
+     *
+     * @param array $data
+     *  ...
+     *
+     * @throws Exception
+     */
+    public function __unserialize(array $data): void
+    {
+        throw new Exception('Cannot unserialize the ' . static::class . ' class.');
+    }
+
+    /**
+     * ...
+     *
+     * @return self
+     */
+    public static function getInstance(): self
+    {
+        if (is_null(self::$instance)) {
+            self::$instance = new static();
+        }
+
+        return self::$instance;
+    }
+
+    /**
+     * ...
+     *
+     * @return array
+     */
+    public function getConfig(): array
+    {
+        return require Resources::config();
     }
 
     /**
@@ -43,7 +103,23 @@ class SlidePanels
      */
     public function getStyles(): string
     {
-        return '<link rel="stylesheet" href="' . $this->getBaseUrl() . '/styles/slide-panels.min.css" type="text/css" />';
+        return sprintf('<link rel="stylesheet" href="%s/styles/slide-panels.min.css?%s" type="text/css" />',
+            $this->config['assets'] ?? '',
+            hash_file('md5', Resources::styles()),
+        );
+    }
+
+    /**
+     * ...
+     *
+     * @return string
+     */
+    public function getScripts(): string
+    {
+        return sprintf('<script src="%s/scripts/slide-panels.js?v%s"></script>',
+            $this->config['assets'] ?? '',
+            hash_file('md5', Resources::script()),
+        );
     }
 
     /**
@@ -204,15 +280,5 @@ class SlidePanels
         $stage->setSides($sides);
 
         return $stage->render();
-    }
-
-    /**
-     * ...
-     *
-     * @return string
-     */
-    public function getScripts(): string
-    {
-        return '<script src="' . $this->getBaseUrl() . '/scripts/slide-panels.js"></script>';
     }
 }

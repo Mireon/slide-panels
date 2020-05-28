@@ -3,6 +3,7 @@
 namespace Mireon\SlidePanels\Render;
 
 use Exception;
+use Mireon\SlidePanels\Resources\Resources;
 
 /**
  * ...
@@ -25,7 +26,7 @@ class Render
      */
     public static function view(string $view, array $params = []): string
     {
-        $path =  __DIR__ . "/../../../resources/views/$view.php";
+        $path = Resources::views($view);
 
         if (!file_exists($path)) {
             throw new Exception(sprintf('File "%s" could not be found.', $path));
@@ -34,7 +35,7 @@ class Render
         ob_start();
         extract($params);
 
-        include $path;
+        require $path;
 
         return ob_get_clean() ?: '';
     }
