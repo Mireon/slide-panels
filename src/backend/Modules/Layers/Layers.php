@@ -1,6 +1,6 @@
 <?php
 
-namespace Mireon\SlidePanels\Components\Layers;
+namespace Mireon\SlidePanels\Modules\Layers;
 
 use ArrayIterator;
 use Exception;
@@ -13,7 +13,7 @@ use Traversable;
 /**
  * ...
  *
- * @package Mireon\SlidePanels\Components\Layers
+ * @package Mireon\SlidePanels\Modules\Layers
  */
 class Layers implements Renderable, IteratorAggregate
 {

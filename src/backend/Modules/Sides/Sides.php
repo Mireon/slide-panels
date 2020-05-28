@@ -1,6 +1,6 @@
 <?php
 
-namespace Mireon\SlidePanels\Components\Sides;
+namespace Mireon\SlidePanels\Modules\Sides;
 
 use Exception;
 use Mireon\SlidePanels\Render\Renderable;
@@ -10,7 +10,7 @@ use Mireon\SlidePanels\Render\Render;
 /**
  * ...
  *
- * @package Mireon\SlidePanels\Components\Sides
+ * @package Mireon\SlidePanels\Modules\Sides
  */
 class Sides implements Renderable
 {

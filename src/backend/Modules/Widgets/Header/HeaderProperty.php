@@ -1,11 +1,11 @@
 <?php
 
-namespace Mireon\SlidePanels\Components\Widgets\Header;
+namespace Mireon\SlidePanels\Modules\Widgets\Header;
 
 /**
  * ...
  *
- * @package Mireon\SlidePanels\Components\Widgets\Header
+ * @package Mireon\SlidePanels\Modules\Widgets\Header
  */
 trait HeaderProperty
 {

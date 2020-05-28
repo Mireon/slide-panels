@@ -1,6 +1,6 @@
 <?php
 
-namespace Mireon\SlidePanels\Components\Widgets\Header;
+namespace Mireon\SlidePanels\Modules\Widgets\Header;
 
 use Exception;
 use Mireon\SlidePanels\Render\Renderable;
@@ -10,7 +10,7 @@ use Mireon\SlidePanels\Render\Render;
 /**
  * ...
  *
- * @package Mireon\SlidePanels\Components\Widgets\Header
+ * @package Mireon\SlidePanels\Modules\Widgets\Header
  */
 class Header implements Renderable
 {

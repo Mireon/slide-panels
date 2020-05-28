@@ -1,11 +1,11 @@
 <?php
 
-namespace Mireon\SlidePanels\Components\Sides;
+namespace Mireon\SlidePanels\Modules\Sides;
 
 /**
  * ...
  *
- * @package Mireon\SlidePanels\Components\Sides
+ * @package Mireon\SlidePanels\Modules\Sides
  */
 class SideLeft extends Side
 {

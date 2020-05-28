@@ -1,9 +1,9 @@
 <?php
 
-namespace Mireon\SlidePanels\Components\Layers;
+namespace Mireon\SlidePanels\Modules\Sides;
 
 use Exception;
-use Mireon\SlidePanels\Properties\Text;
+use Mireon\SlidePanels\Properties\Side;
 use Mireon\SlidePanels\Render\Renderable;
 use Mireon\SlidePanels\Render\RenderString;
 use Mireon\SlidePanels\Render\Render;
@@ -11,22 +11,12 @@ use Mireon\SlidePanels\Render\Render;
 /**
  * ...
  *
- * @package Mireon\SlidePanels\Components\Layers
+ * @package Mireon\SlidePanels\Modules\Sides
  */
-class Back implements Renderable
+class Collapser implements Renderable
 {
     use RenderString;
-    use Text;
-
-    /**
-     * ...
-     *
-     * @return bool
-     */
-    public function isValid(): bool
-    {
-        return $this->hasText();
-    }
+    use Side;
 
     /**
      * @inheritDoc

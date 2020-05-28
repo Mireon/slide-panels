@@ -2,16 +2,16 @@
 
 namespace Mireon\SlidePanels;
 
-use Mireon\SlidePanels\Components\Layers\Layer;
-use Mireon\SlidePanels\Components\Layers\Layers;
-use Mireon\SlidePanels\Components\Panels\Panel;
-use Mireon\SlidePanels\Components\Panels\Panels;
-use Mireon\SlidePanels\Components\Sides\Collapser;
-use Mireon\SlidePanels\Components\Sides\SideLeft;
-use Mireon\SlidePanels\Components\Sides\SideRight;
-use Mireon\SlidePanels\Components\Sides\Sides;
-use Mireon\SlidePanels\Components\Stage\Stage;
-use Mireon\SlidePanels\Components\Widgets\Header\Header;
+use Mireon\SlidePanels\Modules\Layers\Layer;
+use Mireon\SlidePanels\Modules\Layers\Layers;
+use Mireon\SlidePanels\Modules\Panels\Panel;
+use Mireon\SlidePanels\Modules\Panels\Panels;
+use Mireon\SlidePanels\Modules\Sides\Collapser;
+use Mireon\SlidePanels\Modules\Sides\SideLeft;
+use Mireon\SlidePanels\Modules\Sides\SideRight;
+use Mireon\SlidePanels\Modules\Sides\Sides;
+use Mireon\SlidePanels\Modules\Stage\Stage;
+use Mireon\SlidePanels\Modules\Widgets\Header\Header;
 
 /**
  * ...

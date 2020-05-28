@@ -1,12 +1,12 @@
 <?php
 
-namespace Mireon\SlidePanels\Components\Panels;
+namespace Mireon\SlidePanels\Modules\Panels;
 
 use Exception;
 use Mireon\SlidePanels\Properties\Key;
 use Mireon\SlidePanels\Properties\Side;
-use Mireon\SlidePanels\Components\Layers\Layers;
-use Mireon\SlidePanels\Components\Widgets\Header\HeaderProperty;
+use Mireon\SlidePanels\Modules\Layers\Layers;
+use Mireon\SlidePanels\Modules\Widgets\Header\HeaderProperty;
 use Mireon\SlidePanels\Render\Renderable;
 use Mireon\SlidePanels\Render\RenderString;
 use Mireon\SlidePanels\Render\Render;
@@ -14,7 +14,7 @@ use Mireon\SlidePanels\Render\Render;
 /**
  * ...
  *
- * @package Mireon\SlidePanels\Components\Panels
+ * @package Mireon\SlidePanels\Modules\Panels
  */
 class Panel implements Renderable
 {
