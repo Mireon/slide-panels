@@ -10,6 +10,6 @@ use Mireon\SlidePanels\Components\Sides\Collapser;
  */
 ?>
 
-<div data-element="lever" data-action="hide" class="slide-panels__close-label slide-panels__close-label_<?= $collapser->getSide(); ?> slide-panels__close-label_hidden">
+<div class="slide-panels__close-label slide-panels__close-label_<?= $collapser->getSide(); ?> slide-panels__close-label_hidden" data-element="lever" data-action="hide">
     <i></i>
 </div>

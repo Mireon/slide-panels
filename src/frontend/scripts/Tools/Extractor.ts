@@ -1,5 +1,5 @@
-import { C } from '@entities/C';
-import Target from '@entities/Target';
+import { Props } from '@tools/Props';
+import Target from '@tools/Target';
 
 /**
  * The tool to extract attribute values from tags.
@@ -37,7 +37,7 @@ export default class Extractor {
      *
      * @return string
      */
-    public static side(element: Element): C.side {
+    public static side(element: Element): Props.side {
         const attribute = 'data-side';
 
         if (!element.hasAttribute(attribute)) {
@@ -46,7 +46,7 @@ export default class Extractor {
 
         const side = element.getAttribute(attribute);
 
-        if (side === C.side.LEFT || side === C.side.RIGHT) {
+        if (side === Props.side.LEFT || side === Props.side.RIGHT) {
             return side;
         }
 
@@ -63,7 +63,7 @@ export default class Extractor {
      *
      * @return string
      */
-    public static action(element: Element, _default: C.action = null): C.action {
+    public static action(element: Element, _default: Props.action = null): Props.action {
         const attribute = 'data-action';
 
         if (!element.hasAttribute(attribute)) {
@@ -73,9 +73,9 @@ export default class Extractor {
         const action: string = element.getAttribute(attribute);
 
         switch (action) {
-            case C.action.SHOW:
-            case C.action.HIDE:
-            case C.action.BACK:
+            case Props.action.SHOW:
+            case Props.action.HIDE:
+            case Props.action.BACK:
                 return action;
             default:
                 return null;
@@ -87,17 +87,17 @@ export default class Extractor {
      *
      * @param element { Element }
      *   The DOM element.
-     * @param action { C.action }
+     * @param action { Props.action }
      *   The action.
      *
      * @return Target
      */
-    public static target(element: Element, action: C.action): Target {
-        if (action === C.action.SHOW) {
+    public static target(element: Element, action: Props.action): Target {
+        if (action === Props.action.SHOW) {
             return Extractor.targetFromAttribute(element);
         }
 
-        if (action === C.action.BACK) {
+        if (action === Props.action.BACK) {
             const target = Extractor.targetFromParents(element);
 
             if (target !== null && target.hasLayers()) {

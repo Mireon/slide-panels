@@ -10,5 +10,7 @@ use Mireon\SlidePanels\Components\Sides\Sides;
  */
 ?>
 
-<?= $sides->hasLeft() ? $sides->getLeft() : ''; ?>
-<?= $sides->hasRight() ? $sides->getRight() : ''; ?>
+<div class="slide-panels__sides">
+    <?= $sides->hasLeft() ? $sides->getLeft() : ''; ?>
+    <?= $sides->hasRight() ? $sides->getRight() : ''; ?>
+</div>

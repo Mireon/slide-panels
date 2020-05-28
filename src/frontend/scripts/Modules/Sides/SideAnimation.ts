@@ -1,5 +1,5 @@
 import Selector from '@tools/Selector';
-import { C } from '@entities/C';
+import { Props } from '@tools/Props';
 
 /**
  * The side animation.
@@ -8,9 +8,9 @@ export default class SideAnimation {
     /**
      * The side.
      *
-     * @type C.side
+     * @type Props.side
      */
-    private readonly side: C.side;
+    private readonly side: Props.side;
 
     /**
      * The DOM element.
@@ -29,10 +29,10 @@ export default class SideAnimation {
     /**
      * The constructor.
      *
-     * @param side { C.side }
+     * @param side { Props.side }
      *   A side.
      */
-    public constructor(side: C.side) {
+    public constructor(side: Props.side) {
         this.side = side;
         this.element = Selector.side(side);
         this.buttonClose = Selector.sideButtonClose(side);

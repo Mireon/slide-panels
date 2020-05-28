@@ -8,7 +8,6 @@
     "removeComments": true,
     "baseUrl": "./src/frontend/scripts",
     "paths": {
-      "@entities/*": ["Entities/*"],
       "@modules/*": ["Modules/*"],
       "@tools/*": ["Tools/*"]
     },

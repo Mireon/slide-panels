@@ -1,5 +1,5 @@
 import Selector from '@tools/Selector';
-import { C } from '@entities/C';
+import { Props } from '@tools/Props';
 import Extractor from '@tools/Extractor';
 
 /**
@@ -16,9 +16,9 @@ export default class Target {
     /**
      * The side.
      *
-     * @type C.side
+     * @type Props.side
      */
-    private readonly side: C.side;
+    private readonly side: Props.side;
 
     /**
      * The keychain of layers.
@@ -111,9 +111,9 @@ export default class Target {
     /**
      * Returns the side.
      *
-     * @type C.side
+     * @type Props.side
      */
-    public getSide(): C.side {
+    public getSide(): Props.side {
         return this.side;
     }
 

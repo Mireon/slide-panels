@@ -1,5 +1,5 @@
 import Selector from '@tools/Selector';
-import Target from '@entities/Target';
+import Target from '@tools/Target';
 import Layer from '@modules/Layers/Layer';
 
 /**

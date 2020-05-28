@@ -3,7 +3,7 @@ import State from '@tools/State';
 import Backstage from '@modules/Backstage/Backstage';
 import Sides from '@modules/Sides/Sides';
 import Panels from '@modules/Panels/Panels';
-import Target from '@entities/Target';
+import Target from '@tools/Target';
 
 /**
  * The stage.
@@ -64,10 +64,13 @@ export default class Stage {
      * @return void
      */
     public show(target: Target): void {
-        this.animation.show();
-        this.backstage.show();
-        this.panels.show(target);
-        this.sides.show(target);
+        if (this.state.isHidden()) {
+            this.animation.show();
+            this.state.show();
+            this.backstage.show();
+            this.panels.show(target);
+            this.sides.show(target);
+        }
     }
 
     /**
@@ -76,9 +79,12 @@ export default class Stage {
      * @return void
      */
     public hide(): void {
-        this.sides.hide();
-        this.backstage.hide();
-        this.panels.hide();
-        this.animation.hide();
+        if (this.state.isVisible()) {
+            this.sides.hide();
+            this.backstage.hide();
+            this.panels.hide();
+            this.animation.hide();
+            this.state.hide();
+        }
     }
 }

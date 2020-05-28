@@ -1,4 +1,4 @@
-import { C } from '@entities/C';
+import { Props } from '@tools/Props';
 
 /**
  * The selector of root.
@@ -52,12 +52,12 @@ export default class Selector {
     /**
      * Returns the side.
      *
-     * @param side { C.side }
+     * @param side { Props.side }
      *   A selected side.
      *
      * @type Element
      */
-    public static side(side: C.side): Element {
+    public static side(side: Props.side): Element {
         const attribute = `[data-element="side"][data-side="${side}"]`;
 
         return document.querySelector(`${root} ${attribute}`);
@@ -66,12 +66,12 @@ export default class Selector {
     /**
      * ...
      *
-     * @param side { C.side }
+     * @param side { Props.side }
      *   A selected side.
      *
      * @type Element
      */
-    public static sideButtonClose(side: C.side): Element {
+    public static sideButtonClose(side: Props.side): Element {
         const attribute = `[data-element="side"][data-side="${side}"] > [data-element="lever"][data-action="hide"]:first-child`;
 
         return document.querySelector(`${root} ${attribute}`);

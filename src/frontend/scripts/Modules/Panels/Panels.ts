@@ -1,6 +1,6 @@
 import Selector from '@tools/Selector';
 import Panel from '@modules/Panels/Panel';
-import Target from '@entities/Target';
+import Target from '@tools/Target';
 
 /**
  * The set of panels.

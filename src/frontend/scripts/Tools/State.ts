@@ -1,4 +1,4 @@
-import { C } from '@entities/C';
+import { Props } from '@tools/Props';
 
 /**
  * The tool to managing of the state.
@@ -9,7 +9,7 @@ export default class State {
      *
      * @type string
      */
-    private state: C.visibility;
+    private state: Props.visibility;
 
     /**
      * The timeout before applying a new state.
@@ -21,10 +21,10 @@ export default class State {
     /**
      * The constructor.
      *
-     * @param state { C.visibility }
+     * @param state { Props.visibility }
      *   A state.
      */
-    public constructor(state: C.visibility = C.visibility.HIDDEN) {
+    public constructor(state: Props.visibility = Props.visibility.HIDDEN) {
         this.state = state;
     }
 
@@ -45,7 +45,7 @@ export default class State {
      * @return void
      */
     public visible(): State {
-        setTimeout(() => this.state = C.visibility.VISIBLE, this.timeout);
+        setTimeout(() => this.state = Props.visibility.VISIBLE, this.timeout);
         this.timeout = 0;
 
         return this;
@@ -57,7 +57,7 @@ export default class State {
      * @return State
      */
     public showing(): State {
-        setTimeout(() => this.state = C.visibility.SHOWING, this.timeout);
+        setTimeout(() => this.state = Props.visibility.SHOWING, this.timeout);
         this.timeout = 0;
 
         return this;
@@ -80,7 +80,7 @@ export default class State {
      * @return State
      */
     public hidden(): State {
-        setTimeout(() => this.state = C.visibility.HIDDEN, this.timeout);
+        setTimeout(() => this.state = Props.visibility.HIDDEN, this.timeout);
         this.timeout = 0;
 
         return this;
@@ -92,7 +92,7 @@ export default class State {
      * @return State
      */
     public hiding(): State {
-        setTimeout(() => this.state = C.visibility.HIDING, this.timeout);
+        setTimeout(() => this.state = Props.visibility.HIDING, this.timeout);
         this.timeout = 0;
 
         return this;
@@ -104,7 +104,7 @@ export default class State {
      * @return boolean
      */
     public isVisible(): boolean {
-        return this.state === C.visibility.VISIBLE;
+        return this.state === Props.visibility.VISIBLE;
     }
 
     /**
@@ -113,7 +113,7 @@ export default class State {
      * @return boolean
      */
     public isHidden(): boolean {
-        return this.state === C.visibility.HIDDEN;
+        return this.state === Props.visibility.HIDDEN;
     }
 
     /**

@@ -1,8 +1,8 @@
 import Extractor from '@tools/Extractor';
 import PanelAnimation from '@modules/Panels/PanelAnimation';
 import State from '@tools/State';
-import Target from '@entities/Target';
-import { C } from '@entities/C';
+import Target from '@tools/Target';
+import { Props } from '@tools/Props';
 import Layers from '@modules/Layers/Layers';
 
 /**
@@ -19,9 +19,9 @@ export default class Panel {
     /**
      * The panel side.
      *
-     * @type C.side
+     * @type Props.side
      */
-    private readonly side: C.side;
+    private readonly side: Props.side;
 
     /**
      * The panel layers.
@@ -79,9 +79,9 @@ export default class Panel {
     /**
      * Returns the panel side.
      *
-     * @return C.side
+     * @return Props.side
      */
-    public getSide(): C.side {
+    public getSide(): Props.side {
         return this.side;
     }
 
@@ -121,8 +121,7 @@ export default class Panel {
         if (this.state.isVisible()) {
             this.animation.hide();
             this.state.hide();
-
-            setTimeout(() => this.layers.hide(), 300);
+            this.layers.hide();
         }
     }
 
@@ -151,8 +150,7 @@ export default class Panel {
         if (this.state.isVisible()) {
             this.animation.outside();
             this.state.hide();
-
-            setTimeout(() => this.layers.hide(), 300);
+            this.layers.hide();
         }
     }
 }

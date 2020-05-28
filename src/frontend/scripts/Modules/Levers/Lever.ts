@@ -1,6 +1,6 @@
 import LeverClickListener from '@modules/Levers/LeverClickListener';
-import Target from '@entities/Target';
-import {C} from '@entities/C';
+import Target from '@tools/Target';
+import { Props } from '@tools/Props';
 import Extractor from '@tools/Extractor';
 
 /**
@@ -17,9 +17,9 @@ export default class Lever {
     /**
      * The lever action.
      *
-     * @type C.action
+     * @type Props.action
      */
-    private readonly action: C.action;
+    private readonly action: Props.action;
 
     /**
      * The target.
@@ -35,7 +35,7 @@ export default class Lever {
      */
     public constructor(element: Element) {
         this.element = element;
-        this.action = Extractor.action(element, C.action.SHOW);
+        this.action = Extractor.action(element, Props.action.SHOW);
         this.target = Extractor.target(element, this.action);
     }
 
@@ -45,7 +45,7 @@ export default class Lever {
      * @type boolean
      */
     public toShow(): boolean {
-        if (this.action !== C.action.SHOW && this.action !== C.action.BACK) {
+        if (this.action !== Props.action.SHOW && this.action !== Props.action.BACK) {
             return false;
         }
 
@@ -58,7 +58,7 @@ export default class Lever {
      * @type boolean
      */
     public toHide(): boolean {
-        return this.action === C.action.HIDE;
+        return this.action === Props.action.HIDE;
     }
 
     /**

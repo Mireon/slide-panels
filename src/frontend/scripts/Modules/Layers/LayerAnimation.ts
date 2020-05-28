@@ -25,8 +25,13 @@ export default class LayerAnimation {
      * @return void
      */
     public show(): void {
-        this.element.classList.add('slide-panels__layer_visible');
+        this.element.classList.add('slide-panels__layer_showing');
         this.element.classList.remove('slide-panels__layer_hidden');
+
+        setTimeout(() => {
+            this.element.classList.add('slide-panels__layer_visible');
+            this.element.classList.remove('slide-panels__layer_showing');
+        }, 300);
     }
 
     /**
@@ -35,8 +40,13 @@ export default class LayerAnimation {
      * @return void
      */
     public hide(): void {
-        this.element.classList.add('slide-panels__layer_hidden');
+        this.element.classList.add('slide-panels__layer_hiding');
         this.element.classList.remove('slide-panels__layer_visible');
+
+        setTimeout(() => {
+            this.element.classList.add('slide-panels__layer_hidden');
+            this.element.classList.remove('slide-panels__layer_hiding');
+        }, 300);
     }
 
     /**

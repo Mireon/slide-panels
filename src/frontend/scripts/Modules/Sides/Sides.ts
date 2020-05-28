@@ -1,6 +1,6 @@
 import Side from '@modules/Sides/Side';
-import { C } from '@entities/C';
-import Target from '@entities/Target';
+import { Props } from '@tools/Props';
+import Target from '@tools/Target';
 import Selector from '@tools/Selector';
 
 /**
@@ -25,11 +25,11 @@ export default class Sides {
      * The constructor.
      */
     public constructor() {
-        if (Selector.side(C.side.LEFT)) {
-            this.left = new Side(C.side.LEFT);
+        if (Selector.side(Props.side.LEFT)) {
+            this.left = new Side(Props.side.LEFT);
         }
-        if (Selector.side(C.side.LEFT)) {
-            this.right = new Side(C.side.RIGHT);
+        if (Selector.side(Props.side.LEFT)) {
+            this.right = new Side(Props.side.RIGHT);
         }
     }
 
@@ -43,11 +43,11 @@ export default class Sides {
      */
     public show(target: Target): void {
         switch (target.getSide()) {
-            case C.side.LEFT:
+            case Props.side.LEFT:
                 this.showLeft();
                 this.hideRight();
                 break;
-            case C.side.RIGHT:
+            case Props.side.RIGHT:
                 this.showRight();
                 this.hideLeft();
                 break;

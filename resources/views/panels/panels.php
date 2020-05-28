@@ -14,6 +14,8 @@ use Mireon\SlidePanels\Components\Panels\Panels;
 
 ?>
 
-<?php foreach ($panels as $panel): ?>
-    <?= $panel; ?>
-<?php endforeach; ?>
+<div class="slide-panels__panels">
+    <?php foreach ($panels as $panel): ?>
+        <?= $panel; ?>
+    <?php endforeach; ?>
+</div>

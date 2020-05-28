@@ -1,7 +1,7 @@
 /**
  * The box of constants.
  */
-export namespace C {
+export namespace Props {
     /**
      * The list of constants visibility.
      */

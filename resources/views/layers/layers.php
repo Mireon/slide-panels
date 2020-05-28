@@ -14,6 +14,8 @@ use Mireon\SlidePanels\Components\Layers\Layers;
 
 ?>
 
-<?php foreach ($layers as $layer): ?>
-    <?= $layer; ?>
-<?php endforeach; ?>
+<div class="slide-panels__layers">
+    <?php foreach ($layers as $layer): ?>
+        <?= $layer; ?>
+    <?php endforeach; ?>
+</div>

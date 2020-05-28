@@ -1,6 +1,6 @@
 import SideAnimation from '@modules/Sides/SideAnimation';
 import State from '@tools/State';
-import { C } from '@entities/C';
+import { Props } from '@tools/Props';
 
 /**
  * The side.
@@ -21,10 +21,10 @@ export default class Side {
     /**
      * The constructor.
      *
-     * @param side { C.side }
+     * @param side { Props.side }
      *   A side.
      */
-    public constructor(side: C.side) {
+    public constructor(side: Props.side) {
         this.animation = new SideAnimation(side);
         this.state = new State();
     }
