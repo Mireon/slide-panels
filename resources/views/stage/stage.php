@@ -1,6 +1,6 @@
 <?php
 
-use Mireon\SlidePanels\Components\Stage\Stage;
+use Mireon\SlidePanels\Modules\Stage\Stage;
 
 /**
  * ...

@@ -1,7 +1,7 @@
 <?php
 
-use Mireon\SlidePanels\Components\Layers\Layer;
-use Mireon\SlidePanels\Components\Layers\Layers;
+use Mireon\SlidePanels\Modules\Layers\Layer;
+use Mireon\SlidePanels\Modules\Layers\Layers;
 
 /**
  * ...
@@ -11,7 +11,6 @@ use Mireon\SlidePanels\Components\Layers\Layers;
  * @var Layer $layer
  *   ...
  */
-
 ?>
 
 <div class="slide-panels__layers">

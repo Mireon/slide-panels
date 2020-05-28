@@ -1,7 +1,7 @@
 <?php
 
-use Mireon\SlidePanels\Components\Panels\Panel;
-use Mireon\SlidePanels\Components\Panels\Panels;
+use Mireon\SlidePanels\Modules\Panels\Panel;
+use Mireon\SlidePanels\Modules\Panels\Panels;
 
 /**
  * ...
@@ -11,7 +11,6 @@ use Mireon\SlidePanels\Components\Panels\Panels;
  * @var Panel $panel
  *   ...
  */
-
 ?>
 
 <div class="slide-panels__panels">

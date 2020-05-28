@@ -1,6 +1,6 @@
 <?php
 
-use Mireon\SlidePanels\Components\Layers\Layer;
+use Mireon\SlidePanels\Modules\Layers\Layer;
 
 /**
  * ...

@@ -1,6 +1,6 @@
 <?php
 
-use Mireon\SlidePanels\Components\Sides\Side;
+use Mireon\SlidePanels\Modules\Sides\Side;
 
 /**
  * ...

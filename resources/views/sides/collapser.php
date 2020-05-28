@@ -1,6 +1,6 @@
 <?php
 
-use Mireon\SlidePanels\Components\Sides\Collapser;
+use Mireon\SlidePanels\Modules\Sides\Collapser;
 
 /**
  * ...
