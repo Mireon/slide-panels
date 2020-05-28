@@ -2,6 +2,7 @@
 
 namespace Mireon\SlidePanels;
 
+use Exception;
 use Mireon\SlidePanels\Modules\Layers\Layer;
 use Mireon\SlidePanels\Modules\Layers\Layers;
 use Mireon\SlidePanels\Modules\Panels\Panel;
@@ -44,10 +45,13 @@ class SlidePanels
     {
         return '<link rel="stylesheet" href="' . $this->getBaseUrl() . '/styles/slide-panels.min.css" type="text/css" />';
     }
+
     /**
      * ...
      *
      * @return string
+     *
+     * @throws Exception
      */
     public function getHtml(): string
     {
