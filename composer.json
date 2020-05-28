@@ -16,9 +16,17 @@
     "require": {
         "php": "^7.4"
     },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "*"
+    },
     "autoload": {
         "psr-4": {
             "Mireon\\SlidePanels\\": "src/backend"
         }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "@test --coverage-html coverage",
+        "cs": "vendor/bin/phpcs ./src/backend --standard=."
     }
 }
