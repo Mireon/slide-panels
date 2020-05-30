@@ -17,5 +17,9 @@
       "scripthost",
       "es2015.collection"
     ]
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "vendor"
+  ]
 }

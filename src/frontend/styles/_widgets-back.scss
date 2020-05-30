@@ -1,4 +1,4 @@
-.back {
+&__back {
   width: 100%;
   padding: 10px;
   box-sizing: border-box;
@@ -17,11 +17,11 @@
 
   &:hover {
 
-    .back__icon {
+    &__back__icon {
       color: #676767;
     }
 
-    .back__text {
+    &__back__text {
       color: #212121;
     }
 

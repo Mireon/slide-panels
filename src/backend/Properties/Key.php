@@ -5,7 +5,7 @@ namespace Mireon\SlidePanels\Properties;
 /**
  * ...
  *
- * @package Mireon\SlidePanels\Attributes
+ * @package Mireon\SlidePanels\Properties
  */
 trait Key
 {

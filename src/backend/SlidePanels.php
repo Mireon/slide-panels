@@ -3,6 +3,7 @@
 namespace Mireon\SlidePanels;
 
 use Exception;
+use Mireon\SlidePanels\Helpers\Config;
 use Mireon\SlidePanels\Modules\Layers\Layer;
 use Mireon\SlidePanels\Modules\Layers\Layers;
 use Mireon\SlidePanels\Modules\Panels\Panel;
@@ -13,15 +14,18 @@ use Mireon\SlidePanels\Modules\Sides\SideRight;
 use Mireon\SlidePanels\Modules\Sides\Sides;
 use Mireon\SlidePanels\Modules\Stage\Stage;
 use Mireon\SlidePanels\Modules\Widgets\Header\Header;
-use Mireon\SlidePanels\Resources\Resources;
+use Mireon\SlidePanels\Render\Renderable;
+use Mireon\SlidePanels\Render\RenderString;
 
 /**
  * ...
  *
  * @package Mireon\SlidePanels
  */
-class SlidePanels
+class SlidePanels implements Renderable
 {
+    use RenderString;
+
     /**
      * ...
      *
@@ -32,22 +36,22 @@ class SlidePanels
     /**
      * ...
      */
-    private array $config = [];
+    private ?Config $config = null;
 
     /**
      * The constructor.
      *
-     * @param array|null $config
+     * @param Config|null $config
      *   ...
      */
-    protected function __construct(?array $config = null) {
-        $this->config = $config ?? $this->getConfig();
+    protected function __construct(?Config $config = null) {
+        $this->config = $config ?? new Config();
     }
 
     /**
      * ...
      */
-    protected function __clone() { }
+    protected function __clone() {}
 
     /**
      * ...
@@ -75,61 +79,24 @@ class SlidePanels
     /**
      * ...
      *
+     * @param Config|null $config
+     *   ...
+     *
      * @return self
      */
-    public static function getInstance(): self
+    public static function getInstance(?Config $config = null): self
     {
         if (is_null(self::$instance)) {
-            self::$instance = new static();
+            self::$instance = new static($config);
         }
 
         return self::$instance;
     }
 
     /**
-     * ...
-     *
-     * @return array
+     * @inheritDoc
      */
-    public function getConfig(): array
-    {
-        return require Resources::config();
-    }
-
-    /**
-     * ...
-     *
-     * @return string
-     */
-    public function getStyles(): string
-    {
-        return sprintf('<link rel="stylesheet" href="%s/styles/slide-panels.min.css?%s" type="text/css" />',
-            $this->config['assets'] ?? '',
-            hash_file('md5', Resources::styles()),
-        );
-    }
-
-    /**
-     * ...
-     *
-     * @return string
-     */
-    public function getScripts(): string
-    {
-        return sprintf('<script src="%s/scripts/slide-panels.js?v%s"></script>',
-            $this->config['assets'] ?? '',
-            hash_file('md5', Resources::script()),
-        );
-    }
-
-    /**
-     * ...
-     *
-     * @return string
-     *
-     * @throws Exception
-     */
-    public function getHtml(): string
+    public function render(): string
     {
         $data = [
             'sides' => [

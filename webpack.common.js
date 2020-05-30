@@ -89,7 +89,6 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.ts', '.scss'],
         alias: {
-            '@entities': path.resolve(sourcePath, 'scripts/Entities'),
             '@modules': path.resolve(sourcePath, 'scripts/Modules'),
             '@tools': path.resolve(sourcePath, 'scripts/Tools'),
             '@styles': path.resolve(sourcePath, 'styles'),

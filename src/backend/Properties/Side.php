@@ -7,7 +7,7 @@ use Mireon\SlidePanels\Modules\Sides\Sides;
 /**
  * ...
  *
- * @package Mireon\SlidePanels\Attributes
+ * @package Mireon\SlidePanels\Properties
  */
 trait Side
 {
