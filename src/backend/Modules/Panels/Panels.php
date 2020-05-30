@@ -5,7 +5,7 @@ namespace Mireon\SlidePanels\Modules\Panels;
 use ArrayIterator;
 use Exception;
 use IteratorAggregate;
-use Mireon\SlidePanels\Properties\Side;
+use Mireon\SlidePanels\Properties\SideProperty;
 use Mireon\SlidePanels\Render\Renderable;
 use Mireon\SlidePanels\Render\RenderString;
 use Mireon\SlidePanels\Render\Render;
@@ -19,7 +19,7 @@ use Traversable;
 class Panels implements Renderable, IteratorAggregate
 {
     use RenderString;
-    use Side;
+    use SideProperty;
 
     /**
      * ...
@@ -39,7 +39,7 @@ class Panels implements Renderable, IteratorAggregate
     public function addPanel(Panel $panel): void
     {
         if ($panel->isValid()) {
-            $this->panels[] = $panel;
+            $this->panels[$panel->getKey()] = $panel;
         }
     }
 
@@ -51,6 +51,36 @@ class Panels implements Renderable, IteratorAggregate
     public function hasPanels(): bool
     {
         return !empty($this->panels);
+    }
+
+    /**
+     * ...
+     *
+     * @param string $key
+     *   ...
+     *
+     * @return bool
+     */
+    public function hasPanel(string $key): bool
+    {
+        return isset($this->panels[$key]);
+    }
+
+    /**
+     * ...
+     *
+     * @param string $key
+     *   ...
+     *
+     * @return Panel|null
+     */
+    public function getPanel(string $key): ?Panel
+    {
+        if (!$this->hasPanel($key)) {
+            return null;
+        }
+
+        return $this->panels[$key];
     }
 
     /**

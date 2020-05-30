@@ -3,7 +3,7 @@
 namespace Mireon\SlidePanels\Modules\Layers;
 
 use Exception;
-use Mireon\SlidePanels\Properties\Text;
+use Mireon\SlidePanels\Properties\TextProperty;
 use Mireon\SlidePanels\Render\Renderable;
 use Mireon\SlidePanels\Render\RenderString;
 use Mireon\SlidePanels\Render\Render;
@@ -16,7 +16,7 @@ use Mireon\SlidePanels\Render\Render;
 class Back implements Renderable
 {
     use RenderString;
-    use Text;
+    use TextProperty;
 
     /**
      * ...

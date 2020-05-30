@@ -56,10 +56,14 @@ class Sides implements Renderable
     /**
      * ...
      *
-     * @return SideLeft|null
+     * @return SideLeft
      */
-    public function getLeft(): ?SideLeft
+    public function getLeft(): SideLeft
     {
+        if (is_null($this->left)) {
+            $this->setLeft(new SideLeft());
+        }
+
         return $this->left;
     }
 
@@ -89,10 +93,14 @@ class Sides implements Renderable
     /**
      * ...
      *
-     * @return SideRight|null
+     * @return SideRight
      */
-    public function getRight(): ?SideRight
+    public function getRight(): SideRight
     {
+        if (is_null($this->right)) {
+            $this->setRight(new SideRight());
+        }
+
         return $this->right;
     }
 
@@ -104,6 +112,46 @@ class Sides implements Renderable
     public function hasRight(): bool
     {
         return !is_null($this->right);
+    }
+
+    /**
+     * ...
+     *
+     * @param string $side
+     *   ...
+     *
+     * @return Side|null
+     */
+    public function getSide(string $side): ?Side
+    {
+        switch ($side) {
+            case Sides::LEFT:
+                return $this->getLeft();
+            case Sides::RIGHT:
+                return $this->getRight();
+            default:
+                return null;
+        }
+    }
+
+    /**
+     * ...
+     *
+     * @param string $side
+     *   ...
+     *
+     * @return bool
+     */
+    public function hasSide(string $side): bool
+    {
+        switch ($side) {
+            case Sides::LEFT:
+                return $this->hasLeft();
+            case Sides::RIGHT:
+                return $this->hasRight();
+            default:
+                return false;
+        }
     }
 
     /**

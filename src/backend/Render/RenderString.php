@@ -5,7 +5,7 @@ namespace Mireon\SlidePanels\Render;
 /**
  * ...
  *
- * @package Mireon\SlidePanels\Traits
+ * @package Mireon\SlidePanels\Methods
  */
 trait RenderString
 {

@@ -3,6 +3,7 @@
 namespace Mireon\SlidePanels\Modules\Stage;
 
 use Exception;
+use Mireon\SlidePanels\Modules\Sides\Side;
 use Mireon\SlidePanels\Modules\Sides\Sides;
 use Mireon\SlidePanels\Render\Renderable;
 use Mireon\SlidePanels\Render\RenderString;
@@ -40,7 +41,7 @@ class Stage implements Renderable
     /**
      * ...
      *
-     * @return Sides
+     * @return Sides|null
      */
     public function getSides(): ?Sides
     {
@@ -54,7 +55,7 @@ class Stage implements Renderable
      */
     public function hasSides(): bool
     {
-        return !is_null($this->sides) && ($this->sides->hasLeft() || $this->sides->hasRight());
+        return !is_null($this->sides);
     }
 
     /**

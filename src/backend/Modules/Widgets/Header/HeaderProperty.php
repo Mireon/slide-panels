@@ -20,6 +20,24 @@ trait HeaderProperty
      * ...
      *
      * @param Header $header
+     *   ...
+     *
+     * @return self
+     */
+    public function header(Header $header): self
+    {
+        $this->setHeader($header);
+
+        return $this;
+    }
+
+    /**
+     * ...
+     *
+     * @param Header $header
+     *   ...
+     *
+     * @return void
      */
     public function setHeader(Header $header): void
     {

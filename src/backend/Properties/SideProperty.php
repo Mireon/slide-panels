@@ -9,7 +9,7 @@ use Mireon\SlidePanels\Modules\Sides\Sides;
  *
  * @package Mireon\SlidePanels\Properties
  */
-trait Side
+trait SideProperty
 {
     /**
      * ...
@@ -17,6 +17,21 @@ trait Side
      * @var string|null $side
      */
     private ?string $side = null;
+
+    /**
+     * ...
+     *
+     * @param string $side
+     *   ...
+     *
+     * @return self
+     */
+    public function side(string $side): self
+    {
+        $this->setSide($side);
+
+        return $this;
+    }
 
     /**
      * ...

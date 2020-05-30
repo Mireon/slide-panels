@@ -3,9 +3,13 @@
 namespace Mireon\SlidePanels\Modules\Widgets\Header;
 
 use Exception;
+use Mireon\SlidePanels\Properties\IconProperty;
+use Mireon\SlidePanels\Properties\SizeProperty;
+use Mireon\SlidePanels\Properties\TextProperty;
 use Mireon\SlidePanels\Render\Renderable;
 use Mireon\SlidePanels\Render\RenderString;
 use Mireon\SlidePanels\Render\Render;
+use Mireon\SlidePanels\Methods\CreateMethod;
 
 /**
  * ...
@@ -14,7 +18,11 @@ use Mireon\SlidePanels\Render\Render;
  */
 class Header implements Renderable
 {
+    use TextProperty;
+    use IconProperty;
+    use SizeProperty;
     use RenderString;
+    use CreateMethod;
 
     /**
      * ...
@@ -27,18 +35,12 @@ class Header implements Renderable
     public const SIZE_BIG = 'big';
 
     /**
-     * ...
-     *
-     * @var string $size
+     * The constructor.
      */
-    private string $size = self::SIZE_BIG;
-
-    /**
-     * ...
-     *
-     * @var string|null $text
-     */
-    private ?string $text = null;
+    public function __construct()
+    {
+        $this->size = self::SIZE_BIG;
+    }
 
     /**
      * ...
@@ -55,39 +57,6 @@ class Header implements Renderable
             case self::SIZE_SMALL:
                 $this->size = $side;
         }
-    }
-
-    /**
-     * ...
-     *
-     * @return string
-     */
-    public function getSize(): string
-    {
-        return $this->size;
-    }
-
-    /**
-     * ...
-     *
-     * @param string $text
-     *   ...
-     *
-     * @return void
-     */
-    public function setText(string $text): void
-    {
-        $this->text = $text ?: null;
-    }
-
-    /**
-     * ...
-     *
-     * @return string|null
-     */
-    public function getText(): ?string
-    {
-        return $this->text;
     }
 
     /**

@@ -7,7 +7,7 @@ namespace Mireon\SlidePanels\Properties;
  *
  * @package Mireon\SlidePanels\Properties
  */
-trait Key
+trait KeyProperty
 {
     /**
      * ...
@@ -15,6 +15,21 @@ trait Key
      * @var string|null $key
      */
     private ?string $key = null;
+
+    /**
+     * ...
+     *
+     * @param string $key
+     *   ...
+     *
+     * @return self
+     */
+    public function key(string $key): self
+    {
+        $this->setKey($key);
+
+        return $this;
+    }
 
     /**
      * ...

@@ -7,7 +7,7 @@ namespace Mireon\SlidePanels\Properties;
  *
  * @package Mireon\SlidePanels\Properties
  */
-trait Text
+trait TextProperty
 {
     /**
      * ...
@@ -15,6 +15,21 @@ trait Text
      * @var string|null $text
      */
     private ?string $text = null;
+
+    /**
+     * ...
+     *
+     * @param string $text
+     *   ...
+     *
+     * @return self
+     */
+    public function text(string $text): self
+    {
+        $this->setText($text);
+
+        return $this;
+    }
 
     /**
      * ...

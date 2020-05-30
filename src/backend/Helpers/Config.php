@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Mireon\SlidePanels\Helpers;
 
 /**
@@ -81,6 +80,4 @@ class Config
     {
         return !empty($key) && isset($this->config[$key]);
     }
-
-
 }

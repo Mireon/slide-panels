@@ -3,11 +3,13 @@
 namespace Mireon\SlidePanels\Modules\Layers;
 
 use Exception;
-use Mireon\SlidePanels\Properties\Key;
+use Mireon\SlidePanels\Methods\CreateMethod;
+use Mireon\SlidePanels\Properties\KeyProperty;
 use Mireon\SlidePanels\Modules\Widgets\Header\HeaderProperty;
 use Mireon\SlidePanels\Render\Renderable;
 use Mireon\SlidePanels\Render\RenderString;
 use Mireon\SlidePanels\Render\Render;
+use Mireon\SlidePanels\Target\TargetProperty;
 
 /**
  * ...
@@ -16,9 +18,11 @@ use Mireon\SlidePanels\Render\Render;
  */
 class Layer implements Renderable
 {
-    use RenderString;
-    use Key;
+    use KeyProperty;
     use HeaderProperty;
+    use TargetProperty;
+    use CreateMethod;
+    use RenderString;
 
     /**
      * ...
