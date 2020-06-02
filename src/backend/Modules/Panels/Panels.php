@@ -3,12 +3,12 @@
 namespace Mireon\SlidePanels\Modules\Panels;
 
 use ArrayIterator;
-use Exception;
 use IteratorAggregate;
-use Mireon\SlidePanels\Properties\SideProperty;
-use Mireon\SlidePanels\Render\Renderable;
-use Mireon\SlidePanels\Render\RenderString;
-use Mireon\SlidePanels\Render\Render;
+use Mireon\SlidePanels\Exceptions\FileNotFound;
+use Mireon\SlidePanels\Modules\Panels\Exceptions\PanelIsInvalid;
+use Mireon\SlidePanels\Renderer\Renderable;
+use Mireon\SlidePanels\Renderer\RenderToString;
+use Mireon\SlidePanels\Renderer\Renderer;
 use Traversable;
 
 /**
@@ -18,8 +18,7 @@ use Traversable;
  */
 class Panels implements Renderable, IteratorAggregate
 {
-    use RenderString;
-    use SideProperty;
+    use RenderToString;
 
     /**
      * ...
@@ -38,9 +37,11 @@ class Panels implements Renderable, IteratorAggregate
      */
     public function addPanel(Panel $panel): void
     {
-        if ($panel->isValid()) {
-            $this->panels[$panel->getKey()] = $panel;
+        if (!$panel->isValid()) {
+            throw new PanelIsInvalid($panel);
         }
+
+        $this->panels[$panel->getKey()] = $panel;
     }
 
     /**
@@ -86,11 +87,11 @@ class Panels implements Renderable, IteratorAggregate
     /**
      * @inheritDoc
      *
-     * @throws Exception
+     * @throws FileNotFound
      */
     public function render(): string
     {
-        return Render::view('panels/panels', ['panels' => $this]);
+        return Renderer::view('panels/panels', ['panels' => $this]);
     }
 
     /**

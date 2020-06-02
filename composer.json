@@ -18,7 +18,8 @@
         "ext-json": "*"
     },
     "require-dev": {
-        "squizlabs/php_codesniffer": "*"
+        "squizlabs/php_codesniffer": "*",
+        "symfony/var-dumper": "^5.1"
     },
     "autoload": {
         "psr-4": {

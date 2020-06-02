@@ -1,13 +1,13 @@
 <?php
 
-namespace Mireon\SlidePanels\Render;
+namespace Mireon\SlidePanels\Renderer;
 
 /**
  * ...
  *
- * @package Mireon\SlidePanels\Methods
+ * @package Mireon\SlidePanels\Renderer
  */
-trait RenderString
+trait RenderToString
 {
     /**
      * ...

@@ -2,10 +2,11 @@
 
 namespace Mireon\SlidePanels\Modules\Sides;
 
-use Exception;
-use Mireon\SlidePanels\Render\Renderable;
-use Mireon\SlidePanels\Render\RenderString;
-use Mireon\SlidePanels\Render\Render;
+use Mireon\SlidePanels\Exceptions\FileNotFound;
+use Mireon\SlidePanels\Modules\Sides\Exceptions\SideIsInvalid;
+use Mireon\SlidePanels\Renderer\Renderable;
+use Mireon\SlidePanels\Renderer\RenderToString;
+use Mireon\SlidePanels\Renderer\Renderer;
 
 /**
  * ...
@@ -14,7 +15,7 @@ use Mireon\SlidePanels\Render\Render;
  */
 class Sides implements Renderable
 {
-    use RenderString;
+    use RenderToString;
 
     /**
      * ...
@@ -120,9 +121,9 @@ class Sides implements Renderable
      * @param string $side
      *   ...
      *
-     * @return Side|null
+     * @return Side
      */
-    public function getSide(string $side): ?Side
+    public function getSide(string $side): Side
     {
         switch ($side) {
             case Sides::LEFT:
@@ -130,7 +131,7 @@ class Sides implements Renderable
             case Sides::RIGHT:
                 return $this->getRight();
             default:
-                return null;
+                throw new SideIsInvalid;
         }
     }
 
@@ -150,17 +151,17 @@ class Sides implements Renderable
             case Sides::RIGHT:
                 return $this->hasRight();
             default:
-                return false;
+                throw new SideIsInvalid;
         }
     }
 
     /**
      * @inheritDoc
      *
-     * @throws Exception
+     * @throws FileNotFound
      */
     public function render(): string
     {
-        return Render::view('sides/sides', ['sides' => $this]);
+        return Renderer::view('sides/sides', ['sides' => $this]);
     }
 }

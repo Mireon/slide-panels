@@ -2,13 +2,13 @@
 
 namespace Mireon\SlidePanels\Modules\Widgets\Header;
 
-use Exception;
+use Mireon\SlidePanels\Exceptions\FileNotFound;
 use Mireon\SlidePanels\Properties\IconProperty;
 use Mireon\SlidePanels\Properties\SizeProperty;
 use Mireon\SlidePanels\Properties\TextProperty;
-use Mireon\SlidePanels\Render\Renderable;
-use Mireon\SlidePanels\Render\RenderString;
-use Mireon\SlidePanels\Render\Render;
+use Mireon\SlidePanels\Renderer\Renderable;
+use Mireon\SlidePanels\Renderer\RenderToString;
+use Mireon\SlidePanels\Renderer\Renderer;
 use Mireon\SlidePanels\Methods\CreateMethod;
 
 /**
@@ -21,7 +21,7 @@ class Header implements Renderable
     use TextProperty;
     use IconProperty;
     use SizeProperty;
-    use RenderString;
+    use RenderToString;
     use CreateMethod;
 
     /**
@@ -62,10 +62,10 @@ class Header implements Renderable
     /**
      * @inheritDoc
      *
-     * @throws Exception
+     * @throws FileNotFound
      */
     public function render(): string
     {
-        return Render::view('widgets/header', ['header' => $this]);
+        return Renderer::view('widgets/header', ['header' => $this]);
     }
 }

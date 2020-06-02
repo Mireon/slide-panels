@@ -2,16 +2,15 @@
 
 namespace Mireon\SlidePanels\Modules\Panels;
 
-use Exception;
-use Mireon\SlidePanels\Modules\Layers\Layer;
+use Mireon\SlidePanels\Exceptions\FileNotFound;
 use Mireon\SlidePanels\Properties\KeyProperty;
 use Mireon\SlidePanels\Modules\Layers\Layers;
 use Mireon\SlidePanels\Modules\Widgets\Header\HeaderProperty;
-use Mireon\SlidePanels\Render\Renderable;
-use Mireon\SlidePanels\Render\RenderString;
-use Mireon\SlidePanels\Render\Render;
+use Mireon\SlidePanels\Renderer\Renderable;
+use Mireon\SlidePanels\Renderer\RenderToString;
+use Mireon\SlidePanels\Renderer\Renderer;
 use Mireon\SlidePanels\Methods\CreateMethod;
-use Mireon\SlidePanels\Target\TargetProperty;
+use Mireon\SlidePanels\Location\LocationProperty;
 
 /**
  * ...
@@ -22,9 +21,9 @@ class Panel implements Renderable
 {
     use KeyProperty;
     use HeaderProperty;
-    use TargetProperty;
+    use LocationProperty;
     use CreateMethod;
-    use RenderString;
+    use RenderToString;
 
     /**
      * ...
@@ -88,16 +87,16 @@ class Panel implements Renderable
      */
     public function isValid(): bool
     {
-        return $this->hasKey() && $this->hasTarget() && $this->getTarget()->hasSide();
+        return $this->hasKey() && $this->hasLocation() && $this->getLocation()->hasSide();
     }
 
     /**
      * @inheritDoc
      *
-     * @throws Exception
+     * @throws FileNotFound
      */
     public function render(): string
     {
-        return Render::view('panels/panel', ['panel' => $this]);
+        return Renderer::view('panels/panel', ['panel' => $this]);
     }
 }

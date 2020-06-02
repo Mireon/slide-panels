@@ -2,12 +2,11 @@
 
 namespace Mireon\SlidePanels\Modules\Stage;
 
-use Exception;
-use Mireon\SlidePanels\Modules\Sides\Side;
+use Mireon\SlidePanels\Exceptions\FileNotFound;
 use Mireon\SlidePanels\Modules\Sides\Sides;
-use Mireon\SlidePanels\Render\Renderable;
-use Mireon\SlidePanels\Render\RenderString;
-use Mireon\SlidePanels\Render\Render;
+use Mireon\SlidePanels\Renderer\Renderable;
+use Mireon\SlidePanels\Renderer\RenderToString;
+use Mireon\SlidePanels\Renderer\Renderer;
 
 /**
  * ...
@@ -16,7 +15,7 @@ use Mireon\SlidePanels\Render\Render;
  */
 class Stage implements Renderable
 {
-    use RenderString;
+    use RenderToString;
 
     /**
      * ...
@@ -61,10 +60,10 @@ class Stage implements Renderable
     /**
      * @inheritDoc
      *
-     * @throws Exception
+     * @throws FileNotFound
      */
     public function render(): string
     {
-        return Render::view('stage/stage', ['stage' => $this]);
+        return Renderer::view('stage/stage', ['stage' => $this]);
     }
 }

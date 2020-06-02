@@ -1,11 +1,11 @@
 <?php
 
-namespace Mireon\SlidePanels\Render;
+namespace Mireon\SlidePanels\Renderer;
 
 /**
  * ...
  *
- * @package Mireon\SlidePanels\Interfaces
+ * @package Mireon\SlidePanels\Renderer
  */
 interface Renderable
 {

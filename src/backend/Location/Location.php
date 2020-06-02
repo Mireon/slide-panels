@@ -1,16 +1,17 @@
 <?php
 
-namespace Mireon\SlidePanels\Target;
+namespace Mireon\SlidePanels\Location;
 
 use Mireon\SlidePanels\Methods\CreateMethod;
+use Mireon\SlidePanels\Modules\Sides\Exceptions\SideIsInvalid;
 use Mireon\SlidePanels\Modules\Sides\Sides;
 
 /**
  * ...
  *
- * @package Mireon\SlidePanels\Target
+ * @package Mireon\SlidePanels\Location
  */
-class Target
+class Location
 {
     use CreateMethod;
 
@@ -31,9 +32,9 @@ class Target
     /**
      * ...
      *
-     * @var array $layers
+     * @var string|null $layer
      */
-    private array $layers = [];
+    private ?string $layer = null;
 
     /**
      * ...
@@ -64,6 +65,9 @@ class Target
             case Sides::LEFT:
             case Sides::RIGHT:
                 $this->side = $side;
+                break;
+            default:
+                throw new SideIsInvalid;
         }
     }
 
@@ -82,7 +86,8 @@ class Target
      *
      * @return bool
      */
-    public function hasSide(): bool {
+    public function hasSide(): bool
+    {
         return !is_null($this->side);
     }
 
@@ -137,38 +142,6 @@ class Target
     /**
      * ...
      *
-     * @param array $layers
-     *   ...
-     *
-     * @return self
-     */
-    public function layers(array $layers): self
-    {
-        $this->setLayers($layers);
-
-        return $this;
-    }
-
-    /**
-     * ...
-     *
-     * @param array $layers
-     *   ...
-     *
-     * @return void
-     */
-    public function setLayers(array $layers): void
-    {
-        $this->layers = [];
-
-        foreach ($layers as $layer) {
-            $this->addLayer($layer);
-        }
-    }
-
-    /**
-     * ...
-     *
      * @param string $layer
      *   ...
      *
@@ -176,7 +149,7 @@ class Target
      */
     public function layer(string $layer): self
     {
-        $this->addLayer($layer);
+        $this->setLayer($layer);
 
         return $this;
     }
@@ -189,20 +162,52 @@ class Target
      *
      * @return void
      */
-    public function addLayer(string $layer): void
+    public function setLayer(string $layer): void
     {
-        if (!empty($layer)) {
-            $this->layers[] = $layer;
-        }
+        $this->layer = $layer ?: null;
     }
 
     /**
      * ...
      *
-     * @return array
+     * @return string|null
      */
-    public function getLayers(): array
+    public function getLayer(): ?string
     {
-        return $this->layers;
+        return $this->layer;
+    }
+
+    /**
+     * ...
+     *
+     * @return bool
+     */
+    public function hasLayer(): bool
+    {
+        return !is_null($this->layer);
+    }
+
+    /**
+     * ...
+     *
+     * @return Location
+     */
+    public function createForPanel(): Location
+    {
+        $location = new Location();
+        $location->setSide($this->getSide());
+        $location->setPanel($this->getPanel());
+
+        return $location;
+    }
+
+    /**
+     * ...
+     *
+     * @return Location
+     */
+    public function createForLayer(): Location
+    {
+        return clone $this;
     }
 }

@@ -3,11 +3,12 @@
 namespace Mireon\SlidePanels\Modules\Layers;
 
 use ArrayIterator;
-use Exception;
 use IteratorAggregate;
-use Mireon\SlidePanels\Render\Renderable;
-use Mireon\SlidePanels\Render\RenderString;
-use Mireon\SlidePanels\Render\Render;
+use Mireon\SlidePanels\Exceptions\FileNotFound;
+use Mireon\SlidePanels\Modules\Layers\Exceptions\LayerIsInvalid;
+use Mireon\SlidePanels\Renderer\Renderable;
+use Mireon\SlidePanels\Renderer\RenderToString;
+use Mireon\SlidePanels\Renderer\Renderer;
 use Traversable;
 
 /**
@@ -17,7 +18,7 @@ use Traversable;
  */
 class Layers implements Renderable, IteratorAggregate
 {
-    use RenderString;
+    use RenderToString;
 
     /**
      * ...
@@ -29,6 +30,23 @@ class Layers implements Renderable, IteratorAggregate
     /**
      * ...
      *
+     * @param array $layers
+     *   ...
+     *
+     * @return void
+     */
+    public function setLayers(array $layers): void
+    {
+        $this->layers = [];
+
+        foreach ($layers as $layer) {
+            $this->addLayer($layer);
+        }
+    }
+
+    /**
+     * ...
+     *
      * @param Layer $layer
      *   ...
      *
@@ -36,9 +54,38 @@ class Layers implements Renderable, IteratorAggregate
      */
     public function addLayer(Layer $layer): void
     {
-        if ($layer->isValid()) {
-            $this->layers[] = $layer;
+        if (!$layer->isValid()) {
+            throw new LayerIsInvalid($layer);
         }
+
+        $this->layers[$layer->getKey()] = $layer;
+    }
+
+    /**
+     * ...
+     *
+     * @return array
+     */
+    public function getLayers(): array
+    {
+        return $this->layers;
+    }
+
+    /**
+     * ...
+     *
+     * @param string $key
+     *   ...
+     *
+     * @return Layer|null
+     */
+    public function getLayer(string $key): ?Layer
+    {
+        if (!$this->hasLayer($key)) {
+            return null;
+        }
+
+        return $this->layers[$key];
     }
 
     /**
@@ -52,13 +99,26 @@ class Layers implements Renderable, IteratorAggregate
     }
 
     /**
+     * ...
+     *
+     * @param string $key
+     *   ...
+     *
+     * @return bool
+     */
+    public function hasLayer(string $key): bool
+    {
+        return isset($this->layers[$key]);
+    }
+
+    /**
      * @inheritDoc
      *
-     * @throws Exception
+     * @throws FileNotFound
      */
     public function render(): string
     {
-        return Render::view('layers/layers', ['layers' => $this]);
+        return Renderer::view('layers/layers', ['layers' => $this]);
     }
 
     /**

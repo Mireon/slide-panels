@@ -2,11 +2,12 @@
 
 namespace Mireon\SlidePanels\Modules\Sides;
 
-use Exception;
+use Mireon\SlidePanels\Exceptions\FileNotFound;
 use Mireon\SlidePanels\Modules\Panels\Panels;
-use Mireon\SlidePanels\Render\Renderable;
-use Mireon\SlidePanels\Render\RenderString;
-use Mireon\SlidePanels\Render\Render;
+use Mireon\SlidePanels\Modules\Sides\Components\Collapser;
+use Mireon\SlidePanels\Renderer\Renderable;
+use Mireon\SlidePanels\Renderer\RenderToString;
+use Mireon\SlidePanels\Renderer\Renderer;
 
 /**
  * ...
@@ -15,7 +16,7 @@ use Mireon\SlidePanels\Render\Render;
  */
 abstract class Side implements Renderable
 {
-    use RenderString;
+    use RenderToString;
 
     /**
      * ...
@@ -105,10 +106,10 @@ abstract class Side implements Renderable
     /**
      * @inheritDoc
      *
-     * @throws Exception
+     * @throws FileNotFound
      */
     public function render(): string
     {
-        return Render::view('sides/side', ['side' => $this]);
+        return Renderer::view('sides/side', ['side' => $this]);
     }
 }

@@ -1,16 +1,16 @@
 <?php
 
-namespace Mireon\SlidePanels\Render;
+namespace Mireon\SlidePanels\Renderer;
 
-use Exception;
+use Mireon\SlidePanels\Exceptions\FileNotFound;
 use Mireon\SlidePanels\Helpers\Path;
 
 /**
  * ...
  *
- * @package Mireon\SlidePanels\Render
+ * @package Mireon\SlidePanels\Renderer
  */
-class Render
+class Renderer
 {
     /**
      * ...
@@ -22,21 +22,20 @@ class Render
      *
      * @return string
      *
-     * @throws Exception
+     * @throws FileNotFound
      */
     public static function view(string $view, array $params = []): string
     {
         $path = Path::views($view);
 
         if (!file_exists($path)) {
-            throw new Exception(sprintf('File "%s" could not be found.', $path));
+            throw new FileNotFound($path);
         }
 
         ob_start();
         extract($params);
 
         require $path;
-
         return ob_get_clean() ?: '';
     }
 }

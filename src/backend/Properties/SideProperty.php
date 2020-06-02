@@ -2,6 +2,7 @@
 
 namespace Mireon\SlidePanels\Properties;
 
+use Mireon\SlidePanels\Modules\Sides\Exceptions\SideIsInvalid;
 use Mireon\SlidePanels\Modules\Sides\Sides;
 
 /**
@@ -47,6 +48,9 @@ trait SideProperty
             case Sides::LEFT:
             case Sides::RIGHT:
                 $this->side = $side;
+                break;
+            default:
+                throw new SideIsInvalid;
         }
     }
 
