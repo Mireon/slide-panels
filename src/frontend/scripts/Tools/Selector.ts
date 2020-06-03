@@ -50,34 +50,6 @@ export default class Selector {
     }
 
     /**
-     * Returns the side.
-     *
-     * @param side { Props.side }
-     *   A selected side.
-     *
-     * @type Element
-     */
-    public static side(side: Props.side): Element {
-        const attribute = `[data-element="side"][data-side="${side}"]`;
-
-        return document.querySelector(`${root} ${attribute}`);
-    }
-
-    /**
-     * ...
-     *
-     * @param side { Props.side }
-     *   A selected side.
-     *
-     * @type Element
-     */
-    public static sideButtonClose(side: Props.side): Element {
-        const attribute = `[data-element="side"][data-side="${side}"] > [data-element="lever"][data-action="hide"]:first-child`;
-
-        return document.querySelector(`${root} ${attribute}`);
-    }
-
-    /**
      * Returns the list of panels.
      *
      * @type NodeListOf<Element>

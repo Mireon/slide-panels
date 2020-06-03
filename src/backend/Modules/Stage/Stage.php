@@ -3,7 +3,7 @@
 namespace Mireon\SlidePanels\Modules\Stage;
 
 use Mireon\SlidePanels\Exceptions\FileNotFound;
-use Mireon\SlidePanels\Modules\Sides\Sides;
+use Mireon\SlidePanels\Modules\Panels\Panels;
 use Mireon\SlidePanels\Renderer\Renderable;
 use Mireon\SlidePanels\Renderer\RenderToString;
 use Mireon\SlidePanels\Renderer\Renderer;
@@ -20,31 +20,31 @@ class Stage implements Renderable
     /**
      * ...
      *
-     * @var Sides|null $sides
+     * @var Panels|null $panels
      */
-    private ?Sides $sides = null;
+    private ?Panels $panels = null;
 
     /**
      * ...
      *
-     * @param Sides $sides
+     * @param Panels $panels
      *   ...
      *
      * @return void
      */
-    public function setSides(Sides $sides): void
+    public function setPanels(Panels $panels): void
     {
-        $this->sides = $sides;
+        $this->panels = $panels;
     }
 
     /**
      * ...
      *
-     * @return Sides|null
+     * @return Panels|null
      */
-    public function getSides(): ?Sides
+    public function getPanels(): ?Panels
     {
-        return $this->sides;
+        return $this->panels;
     }
 
     /**
@@ -52,9 +52,9 @@ class Stage implements Renderable
      *
      * @return bool
      */
-    public function hasSides(): bool
+    public function hasPanels(): bool
     {
-        return !is_null($this->sides);
+        return !is_null($this->panels);
     }
 
     /**

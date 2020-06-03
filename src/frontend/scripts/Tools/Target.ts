@@ -1,6 +1,4 @@
 import Selector from '@tools/Selector';
-import { Props } from '@tools/Props';
-import Extractor from '@tools/Extractor';
 
 /**
  * The target of opening levers.
@@ -12,13 +10,6 @@ export default class Target {
      * @type string
      */
     private readonly panelKey: string;
-
-    /**
-     * The side.
-     *
-     * @type Props.side
-     */
-    private readonly side: Props.side;
 
     /**
      * The keychain of layers.
@@ -56,8 +47,6 @@ export default class Target {
         if (panel === null) {
             return;
         }
-
-        this.side = Extractor.side(panel);
 
         if (this.layerKeychain.length > 0 && layer === null) {
             return;
@@ -106,15 +95,6 @@ export default class Target {
      */
     public getLayerKey(): string {
         return this.layerKeychain.join('.');
-    }
-
-    /**
-     * Returns the side.
-     *
-     * @type Props.side
-     */
-    public getSide(): Props.side {
-        return this.side;
     }
 
     /**

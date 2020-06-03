@@ -1,4 +1,4 @@
-$distance: 300px;
+$panel-width: 320px;
 
 @mixin common {
   visibility: visible;
@@ -6,26 +6,54 @@ $distance: 300px;
   animation-fill-mode: forwards;
 }
 
-@keyframes slide-panels__panel_slide-inside {
-  0% { top: $distance; opacity: 0; }
-  100% { top: 0; opacity: 1; }
+@keyframes slide-panels__panel-left_slide-inside {
+  from { left: -$panel-width; }
+  to { left: 0; }
 }
 
-@keyframes slide-panels__panel_slide-outside {
-  0% { top: 0; opacity: 1; }
-  100% { top: -$distance; opacity: 0; }
+@keyframes slide-panels__panel-left_slide-outside {
+  from { left: 0; }
+  to { left: -$panel-width; }
+}
+
+@keyframes slide-panels__panel-right_slide-inside {
+  from { right: -$panel-width; }
+  to { right: 0; }
+}
+
+@keyframes slide-panels__panel-right_slide-outside {
+  from { right: 0; }
+  to { right: -$panel-width; }
 }
 
 &__panel {
 
-  &_slide-inside {
-    @include common;
-    animation-name: slide-panels__panel_slide-inside;
+  &-left {
+
+    &_slide-inside {
+      @include common;
+      animation-name: slide-panels__panel-left_slide-inside;
+    }
+
+    &_slide-outside {
+      @include common;
+      animation-name: slide-panels__panel-left_slide-outside;
+    }
+
   }
 
-  &_slide-outside {
-    @include common;
-    animation-name: slide-panels__panel_slide-outside;
+  &-right {
+
+    &_slide-inside {
+      @include common;
+      animation-name: slide-panels__panel-right_slide-inside;
+    }
+
+    &_slide-outside {
+      @include common;
+      animation-name: slide-panels__panel-right_slide-outside;
+    }
+
   }
 
 }

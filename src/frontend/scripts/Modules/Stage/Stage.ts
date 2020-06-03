@@ -1,7 +1,6 @@
 import StageAnimation from '@modules/Stage/StageAnimation';
 import State from '@tools/State';
 import Backstage from '@modules/Backstage/Backstage';
-import Sides from '@modules/Sides/Sides';
 import Panels from '@modules/Panels/Panels';
 import Target from '@tools/Target';
 
@@ -31,13 +30,6 @@ export default class Stage {
     private readonly backstage: Backstage;
 
     /**
-     * The set of sides.
-     *
-     * @type Sides
-     */
-    private readonly sides: Sides;
-
-    /**
      * The set of panels.
      *
      * @type Panels
@@ -51,7 +43,6 @@ export default class Stage {
         this.animation = new StageAnimation();
         this.state = new State();
         this.backstage = new Backstage();
-        this.sides = new Sides();
         this.panels = new Panels();
     }
 
@@ -68,9 +59,9 @@ export default class Stage {
             this.animation.show();
             this.state.show();
             this.backstage.show();
-            this.panels.show(target);
-            this.sides.show(target);
         }
+
+        this.panels.show(target);
     }
 
     /**
@@ -80,7 +71,6 @@ export default class Stage {
      */
     public hide(): void {
         if (this.state.isVisible()) {
-            this.sides.hide();
             this.backstage.hide();
             this.panels.hide();
             this.animation.hide();

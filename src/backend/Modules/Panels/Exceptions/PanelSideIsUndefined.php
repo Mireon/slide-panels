@@ -1,15 +1,15 @@
 <?php
 
-namespace Mireon\SlidePanels\Modules\Sides\Exceptions;
+namespace Mireon\SlidePanels\Modules\Panels\Exceptions;
 
 use Exception;
 
 /**
  * ...
  *
- * @package Mireon\SlidePanels\Modules\Sides\Exceptions
+ * @package Mireon\SlidePanels\Modules\Panels\Exceptions
  */
-class SideIsUndefined extends Exception
+class PanelSideIsUndefined extends Exception
 {
     /**
      * The constructor.

@@ -3,6 +3,7 @@
 namespace Mireon\SlidePanels\Modules\Panels;
 
 use Mireon\SlidePanels\Exceptions\FileNotFound;
+use Mireon\SlidePanels\Modules\Panels\Exceptions\PanelSideIsInvalid;
 use Mireon\SlidePanels\Properties\KeyProperty;
 use Mireon\SlidePanels\Modules\Layers\Layers;
 use Mireon\SlidePanels\Modules\Widgets\Header\HeaderProperty;
@@ -10,7 +11,6 @@ use Mireon\SlidePanels\Renderer\Renderable;
 use Mireon\SlidePanels\Renderer\RenderToString;
 use Mireon\SlidePanels\Renderer\Renderer;
 use Mireon\SlidePanels\Methods\CreateMethod;
-use Mireon\SlidePanels\Location\LocationProperty;
 
 /**
  * ...
@@ -21,9 +21,18 @@ class Panel implements Renderable
 {
     use KeyProperty;
     use HeaderProperty;
-    use LocationProperty;
     use CreateMethod;
     use RenderToString;
+
+    /**
+     * ...
+     */
+    public const SIDE_LEFT = 'left';
+
+    /**
+     * ...
+     */
+    public const SIDE_RIGHT = 'right';
 
     /**
      * ...
@@ -31,6 +40,68 @@ class Panel implements Renderable
      * @var Layers|null $layers
      */
     private ?Layers $layers = null;
+
+    /**
+     * ...
+     *
+     * @var string|null $side
+     */
+    private ?string $side = null;
+
+    /**
+     * ...
+     *
+     * @param string $side
+     *   ...
+     *
+     * @return self
+     */
+    public function side(string $side): self
+    {
+        $this->setSide($side);
+
+        return $this;
+    }
+
+    /**
+     * ...
+     *
+     * @param string $side
+     *   ...
+     *
+     * @return void
+     */
+    public function setSide(string $side): void
+    {
+        switch ($side) {
+            case self::SIDE_LEFT:
+            case self::SIDE_RIGHT:
+                $this->side = $side;
+                break;
+            default:
+                throw new PanelSideIsInvalid;
+        }
+    }
+
+    /**
+     * ...
+     *
+     * @return string|null
+     */
+    public function getSide(): ?string
+    {
+        return $this->side;
+    }
+
+    /**
+     * ...
+     *
+     * @return bool
+     */
+    public function hasSide(): bool
+    {
+        return !is_null($this->side);
+    }
 
     /**
      * ...
@@ -87,7 +158,7 @@ class Panel implements Renderable
      */
     public function isValid(): bool
     {
-        return $this->hasKey() && $this->hasLocation() && $this->getLocation()->hasSide();
+        return $this->hasKey() && $this->hasSide();
     }
 
     /**

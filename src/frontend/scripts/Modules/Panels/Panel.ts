@@ -54,7 +54,7 @@ export default class Panel {
         this.key = Extractor.key(element);
         this.side = Extractor.side(element);
         this.layers = new Layers(this.key);
-        this.animation = new PanelAnimation(element);
+        this.animation = new PanelAnimation(element, this.side);
         this.state = new State();
     }
 
@@ -102,26 +102,11 @@ export default class Panel {
      *
      * @return void
      */
-    public show(target: Target): void {
+    public showLayer(target: Target): void {
         if (this.state.isHidden()) {
             this.layers.show(target);
-            this.animation.show();
-            this.state.show();
         } else {
             this.layers.inside(target);
-        }
-    }
-
-    /**
-     * Hides the panel and its layers.
-     *
-     * @return void
-     */
-    public hide(): void {
-        if (this.state.isVisible()) {
-            this.animation.hide();
-            this.state.hide();
-            this.layers.hide();
         }
     }
 

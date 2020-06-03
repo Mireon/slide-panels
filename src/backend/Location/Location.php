@@ -3,8 +3,6 @@
 namespace Mireon\SlidePanels\Location;
 
 use Mireon\SlidePanels\Methods\CreateMethod;
-use Mireon\SlidePanels\Modules\Sides\Exceptions\SideIsInvalid;
-use Mireon\SlidePanels\Modules\Sides\Sides;
 
 /**
  * ...
@@ -14,13 +12,6 @@ use Mireon\SlidePanels\Modules\Sides\Sides;
 class Location
 {
     use CreateMethod;
-
-    /**
-     * ...
-     *
-     * @var string|null $side
-     */
-    private ?string $side = null;
 
     /**
      * ...
@@ -35,61 +26,6 @@ class Location
      * @var string|null $layer
      */
     private ?string $layer = null;
-
-    /**
-     * ...
-     *
-     * @param string $side
-     *   ...
-     *
-     * @return self
-     */
-    public function side(string $side): self
-    {
-        $this->setSide($side);
-
-        return $this;
-    }
-
-    /**
-     * ...
-     *
-     * @param string $side
-     *   ...
-     *
-     * @return void
-     */
-    public function setSide(string $side): void
-    {
-        switch ($side) {
-            case Sides::LEFT:
-            case Sides::RIGHT:
-                $this->side = $side;
-                break;
-            default:
-                throw new SideIsInvalid;
-        }
-    }
-
-    /**
-     * ...
-     *
-     * @return string|null
-     */
-    public function getSide(): ?string
-    {
-        return $this->side;
-    }
-
-    /**
-     * ...
-     *
-     * @return bool
-     */
-    public function hasSide(): bool
-    {
-        return !is_null($this->side);
-    }
 
     /**
      * ...
@@ -192,21 +128,7 @@ class Location
      *
      * @return Location
      */
-    public function createForPanel(): Location
-    {
-        $location = new Location();
-        $location->setSide($this->getSide());
-        $location->setPanel($this->getPanel());
-
-        return $location;
-    }
-
-    /**
-     * ...
-     *
-     * @return Location
-     */
-    public function createForLayer(): Location
+    public function getClone(): Location
     {
         return clone $this;
     }

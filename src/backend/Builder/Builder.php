@@ -9,12 +9,6 @@ use Mireon\SlidePanels\Modules\Layers\Layers;
 use Mireon\SlidePanels\Modules\Panels\Exceptions\PanelIsUndefined;
 use Mireon\SlidePanels\Modules\Panels\Panel;
 use Mireon\SlidePanels\Modules\Panels\Panels;
-use Mireon\SlidePanels\Modules\Sides\Exceptions\SideIsInvalid;
-use Mireon\SlidePanels\Modules\Sides\Exceptions\SideIsUndefined;
-use Mireon\SlidePanels\Modules\Sides\Side;
-use Mireon\SlidePanels\Modules\Sides\SideLeft;
-use Mireon\SlidePanels\Modules\Sides\SideRight;
-use Mireon\SlidePanels\Modules\Sides\Sides;
 use Mireon\SlidePanels\Modules\Stage\Stage;
 use Mireon\SlidePanels\Location\Location;
 use Mireon\SlidePanels\Renderer\Renderable;
@@ -50,102 +44,45 @@ class Builder implements Renderable
     /**
      * ...
      *
-     * @return Sides
+     * @return Panels
      */
-    public function getSides(): Sides
+    private function getPanels(): Panels
     {
         $stage = $this->getStage();
 
-        if (!$stage->hasSides()) {
-            $stage->setSides(new Sides());
+        if (!$stage->hasPanels()) {
+            $stage->setPanels(new Panels());
         }
 
-        return $stage->getSides();
+        return $stage->getPanels();
     }
 
     /**
      * ...
      *
-     * @param Location $location
-     *   ...
-     *
-     * @return Side
-     *
-     * @throws SideIsUndefined
-     */
-    private function getSide(Location $location): Side
-    {
-        if (!$location->hasSide()) {
-            throw new SideIsUndefined();
-        }
-
-        $sides = $this->getSides();
-
-        if (!$sides->hasSide($location->getSide())) {
-            switch ($location->getSide()) {
-                case Sides::LEFT:
-                    $sides->setLeft(new SideLeft());
-                    break;
-                case Sides::RIGHT:
-                    $sides->setRight(new SideRight());
-                    break;
-                default:
-                    throw new SideIsInvalid;
-            }
-        }
-
-        return $sides->getSide($location->getSide());
-    }
-
-    /**
-     * ...
-     *
-     * @param Location $location
-     *   ...
-     *
-     * @return Panels
-     *
-     * @throws SideIsUndefined
-     */
-    private function getPanels(Location $location): Panels
-    {
-        $side = $this->getSide($location);
-
-        if (!$side->hasPanels()) {
-            $side->setPanels(new Panels());
-        }
-
-        return $side->getPanels();
-    }
-
-    /**
-     * ...
-     *
-     * @param Location $location
+     * @param string $key
      *   ...
      *
      * @return Panel
      *
      * @throws PanelIsUndefined
-     * @throws SideIsUndefined
      */
-    private function getPanel(Location $location): Panel
+    private function getPanel(string $key): Panel
     {
-        if (!$location->hasPanel()) {
+        if (empty($key)) {
             throw new PanelIsUndefined();
         }
 
-        $panels = $this->getPanels($location);
+        $panels = $this->getPanels();
 
-        if (!$panels->hasPanel($location->getPanel())) {
+        if (!$panels->hasPanel($key)) {
             $panel = new Panel();
-            $panel->setKey($location->getPanel());
-            $panel->setLocation($location->createForPanel());
+            $panel->setKey($key);
 
             $panels->addPanel($panel);
         }
 
-        return $panels->getPanel($location->getPanel());
+        return $panels->getPanel($key);
     }
 
     /**
@@ -157,11 +94,10 @@ class Builder implements Renderable
      * @return Layers
      *
      * @throws PanelIsUndefined
-     * @throws SideIsUndefined
      */
     private function getLayers(Location $location): Layers
     {
-        $panel = $this->getPanel($location);
+        $panel = $this->getPanel($location->getPanel());
 
         if (!$panel->hasLayers()) {
             $panel->setLayers(new Layers());
@@ -180,7 +116,6 @@ class Builder implements Renderable
      *
      * @throws LayerIsUndefined
      * @throws PanelIsUndefined
-     * @throws SideIsUndefined
      */
     private function getLayer(Location $location): Layer
     {
@@ -193,7 +128,7 @@ class Builder implements Renderable
         if (!$layers->hasLayer($location->getLayer())) {
             $layer = new Layer();
             $layer->setKey($location->getLayer());
-            $layer->setLocation($location->createForLayer());
+            $layer->setLocation($location->getClone());
 
             $layers->addLayer($layer);
         }
@@ -208,12 +143,10 @@ class Builder implements Renderable
      *   ...
      *
      * @return self
-     *
-     * @throws SideIsUndefined
      */
     public function panel(Panel $panel): self
     {
-        $this->getPanels($panel->getLocation())->addPanel($panel);
+        $this->getPanels()->addPanel($panel);
 
         return $this;
     }
@@ -227,7 +160,6 @@ class Builder implements Renderable
      * @return self
      *
      * @throws PanelIsUndefined
-     * @throws SideIsUndefined
      */
     public function layer(Layer $layer): self
     {

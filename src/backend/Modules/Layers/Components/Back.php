@@ -35,6 +35,6 @@ class Back implements Renderable
      */
     public function render(): string
     {
-        return Renderer::view('sides/collapser', ['collapser' => $this]);
+        return Renderer::view('layers/back', ['back' => $this]);
     }
 }

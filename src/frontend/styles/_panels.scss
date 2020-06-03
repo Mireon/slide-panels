@@ -1,3 +1,5 @@
+$panel-width: 320px;
+
 &__panels {
   height: 100%;
   width: 100%;
@@ -5,10 +7,11 @@
 
 &__panel {
   height: 100%;
-  width: 100%;
+  width: $panel-width;
   position: absolute;
   overflow-x: hidden;
   overflow-y: auto;
+  background: #ffffff;
 
   &_visible {
     visibility: visible;
@@ -16,6 +19,30 @@
 
   &_hidden {
     visibility: hidden;
+  }
+
+  &-left {
+
+    &_inside {
+      left: 0;
+    }
+
+    &_outside {
+      left: -$panel-width;
+    }
+
+  }
+
+  &-right {
+
+    &_inside {
+      right: 0;
+    }
+
+    &_outside {
+      right: -$panel-width;
+    }
+
   }
 
 }
