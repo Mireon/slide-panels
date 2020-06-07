@@ -3,26 +3,24 @@
 namespace Mireon\SlidePanels\Modules\Widgets\Header;
 
 use Mireon\SlidePanels\Exceptions\FileNotFound;
+use Mireon\SlidePanels\Modules\Widgets\WidgetInterface;
 use Mireon\SlidePanels\Properties\IconProperty;
 use Mireon\SlidePanels\Properties\SizeProperty;
 use Mireon\SlidePanels\Properties\TextProperty;
-use Mireon\SlidePanels\Renderer\Renderable;
 use Mireon\SlidePanels\Renderer\RenderToString;
 use Mireon\SlidePanels\Renderer\Renderer;
-use Mireon\SlidePanels\Methods\CreateMethod;
 
 /**
  * ...
  *
  * @package Mireon\SlidePanels\Modules\Widgets\Header
  */
-class Header implements Renderable
+class Header implements WidgetInterface
 {
     use TextProperty;
     use IconProperty;
     use SizeProperty;
     use RenderToString;
-    use CreateMethod;
 
     /**
      * ...
@@ -40,6 +38,16 @@ class Header implements Renderable
     public function __construct()
     {
         $this->size = self::SIZE_BIG;
+    }
+
+    /**
+     * Creates an instance of this class.
+     *
+     * @return static
+     */
+    public static function create(): self
+    {
+        return new static();
     }
 
     /**
@@ -61,11 +69,19 @@ class Header implements Renderable
 
     /**
      * @inheritDoc
+     */
+    public function isValid(): bool
+    {
+        return $this->hasIcon() || $this->hasText();
+    }
+
+    /**
+     * @inheritDoc
      *
      * @throws FileNotFound
      */
     public function render(): string
     {
-        return Renderer::view('widgets/header', ['header' => $this]);
+        return Renderer::view('widgets/header/header', ['header' => $this]);
     }
 }

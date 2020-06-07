@@ -128,7 +128,7 @@ class Builder implements Renderable
         if (!$layers->hasLayer($location->getLayer())) {
             $layer = new Layer();
             $layer->setKey($location->getLayer());
-            $layer->setLocation($location->getClone());
+            $layer->setLocation(clone $location);
 
             $layers->addLayer($layer);
         }

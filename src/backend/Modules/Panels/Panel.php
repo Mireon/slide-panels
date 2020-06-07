@@ -46,7 +46,17 @@ class Panel implements Renderable
      *
      * @var string|null $side
      */
-    private ?string $side = null;
+    private ?string $side = self::SIDE_LEFT;
+
+    /**
+     * Creates an instance of this class.
+     *
+     * @return static
+     */
+    public static function create(): self
+    {
+        return new static();
+    }
 
     /**
      * ...

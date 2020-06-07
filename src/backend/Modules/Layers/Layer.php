@@ -3,8 +3,8 @@
 namespace Mireon\SlidePanels\Modules\Layers;
 
 use Mireon\SlidePanels\Exceptions\FileNotFound;
-use Mireon\SlidePanels\Methods\CreateMethod;
 use Mireon\SlidePanels\Modules\Layers\Components\Back;
+use Mireon\SlidePanels\Modules\Widgets\WidgetsProperty;
 use Mireon\SlidePanels\Properties\KeyProperty;
 use Mireon\SlidePanels\Modules\Widgets\Header\HeaderProperty;
 use Mireon\SlidePanels\Renderer\Renderable;
@@ -22,8 +22,18 @@ class Layer implements Renderable
     use KeyProperty;
     use HeaderProperty;
     use LocationProperty;
-    use CreateMethod;
+    use WidgetsProperty;
     use RenderToString;
+
+    /**
+     * Creates an instance of this class.
+     *
+     * @return static
+     */
+    public static function create(): self
+    {
+        return new static();
+    }
 
     /**
      * ...

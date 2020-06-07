@@ -1,18 +1,9 @@
-import { Props } from '@tools/Props';
-
 /**
  * The selector of root.
  *
  * @type string
  */
 const root = '[id="slide-panels"]';
-
-/**
- * The selector of specifying on this plugin.
- *
- * @type string
- */
-const specify = '[data-plugin="slide-panels"]';
 
 /**
  * The tool to selecting DOM elements of this plugin.
@@ -26,7 +17,7 @@ export default class Selector {
     public static levers(): NodeListOf<Element> {
         const attribute = '[data-element="lever"]';
 
-        return document.querySelectorAll(`${root} ${attribute}, ${specify}${attribute}`);
+        return document.querySelectorAll(attribute);
     }
 
     /**

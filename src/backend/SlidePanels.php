@@ -28,13 +28,6 @@ class SlidePanels implements Renderable
     protected static ?self $instance = null;
 
     /**
-     * The builder.
-     *
-     * @var Builder|null $builder
-     */
-    protected ?Builder $builder = null;
-
-    /**
      * The list of builder events.
      *
      * @var BuilderEvent[] $events
@@ -123,11 +116,11 @@ class SlidePanels implements Renderable
     }
 
     /**
-     * @inheritDoc
+     * ...
      *
-     * @throws FileNotFound
+     * @return Builder
      */
-    public function render(): string
+    public function build(): Builder
     {
         $builder = new Builder();
 
@@ -137,6 +130,16 @@ class SlidePanels implements Renderable
             }
         }
 
-        return $builder->render();
+        return $builder;
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @throws FileNotFound
+     */
+    public function render(): string
+    {
+        return $this->build()->render();
     }
 }

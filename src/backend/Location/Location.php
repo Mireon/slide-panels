@@ -28,6 +28,16 @@ class Location
     private ?string $layer = null;
 
     /**
+     * Creates an instance of this class.
+     *
+     * @return static
+     */
+    public static function create(): self
+    {
+        return new static();
+    }
+
+    /**
      * ...
      *
      * @param string $panel
@@ -126,10 +136,21 @@ class Location
     /**
      * ...
      *
-     * @return Location
+     * @return string
      */
-    public function getClone(): Location
+    public function __toString(): string
     {
-        return clone $this;
+        $result = '';
+
+        if ($this->hasPanel()) {
+            $result .= $this->getPanel();
+        }
+
+        if ($this->hasLayer()) {
+            $result .= '.';
+            $result .= $this->getLayer();
+        }
+
+        return $result;
     }
 }
