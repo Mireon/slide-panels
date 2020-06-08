@@ -24,7 +24,7 @@ trait TextProperty
      *
      * @return self
      */
-    public function text(?string $text): self
+    public function text(string $text): self
     {
         $this->setText($text);
 
@@ -39,7 +39,7 @@ trait TextProperty
      *
      * @return void
      */
-    public function setText(?string $text): void
+    public function setText(string $text): void
     {
         $this->text = $text ?: null;
     }

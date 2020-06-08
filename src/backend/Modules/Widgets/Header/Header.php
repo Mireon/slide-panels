@@ -2,12 +2,11 @@
 
 namespace Mireon\SlidePanels\Modules\Widgets\Header;
 
-use Mireon\SlidePanels\Exceptions\FileNotFound;
+use Exception;
 use Mireon\SlidePanels\Modules\Widgets\Widget;
 use Mireon\SlidePanels\Properties\IconProperty;
 use Mireon\SlidePanels\Properties\SizeProperty;
 use Mireon\SlidePanels\Properties\TextProperty;
-use Mireon\SlidePanels\Renderer\RenderToString;
 use Mireon\SlidePanels\Renderer\Renderer;
 
 /**
@@ -24,29 +23,55 @@ class Header extends Widget
     /**
      * ...
      */
-    public const SIZE_SMALL = 'small';
+    public const SMALL = 'small';
 
     /**
      * ...
      */
-    public const SIZE_BIG = 'big';
+    public const BIG = 'big';
 
     /**
      * The constructor.
+     *
+     * @param string|null $text
+     *   ...
+     * @param string|null $icon
+     *   ...
+     * @param string|null $size
+     *   ...
      */
-    public function __construct()
+    public function __construct(?string $text = null, ?string $icon = null, string $size = null)
     {
-        $this->size = self::SIZE_BIG;
+        if (!empty($text)) {
+            $this->setText($text);
+        }
+
+        if (!empty($icon)) {
+            $this->setIcon($icon);
+        }
+
+        if (!empty($size)) {
+            $this->setSize($size);
+        } else {
+            $this->setSize(self::BIG);
+        }
     }
 
     /**
      * Creates an instance of this class.
      *
-     * @return static
+     * @param string|null $text
+     *   ...
+     * @param string|null $icon
+     *   ...
+     * @param string|null $size
+     *   ...
+     *
+     * @return self
      */
-    public static function create(): self
+    public static function create(?string $text = null, ?string $icon = null, string $size = null): self
     {
-        return new static();
+        return new self($text, $icon, $size);
     }
 
     /**
@@ -60,9 +85,10 @@ class Header extends Widget
     public function setSize(string $side): void
     {
         switch ($side) {
-            case self::SIZE_BIG:
-            case self::SIZE_SMALL:
+            case self::BIG:
+            case self::SMALL:
                 $this->size = $side;
+                break;
         }
     }
 
@@ -71,13 +97,13 @@ class Header extends Widget
      */
     public function isValid(): bool
     {
-        return $this->hasIcon() || $this->hasText();
+        return $this->hasText();
     }
 
     /**
      * @inheritDoc
      *
-     * @throws FileNotFound
+     * @throws Exception
      */
     public function render(): string
     {

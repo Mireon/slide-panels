@@ -2,23 +2,20 @@
 
 namespace Mireon\SlidePanels\Examples\Catalog;
 
-use Mireon\SlidePanels\Builder\Builder;
-use Mireon\SlidePanels\Builder\BuilderEvent;
-use Mireon\SlidePanels\Builder\PanelKeyUndefined;
-use Mireon\SlidePanels\Location\Location;
+use Exception;
+use Mireon\SlidePanels\Designer\Designer;
+use Mireon\SlidePanels\Designer\FactoryInterface;
 use Mireon\SlidePanels\Modules\Panels\Panel;
 use Mireon\SlidePanels\Modules\Widgets\Header\Header;
-use Mireon\SlidePanels\Modules\Widgets\Menu\Item;
-use Mireon\SlidePanels\Modules\Widgets\Menu\ItemInvalid;
+use Mireon\SlidePanels\Modules\Widgets\Menu\Link;
 use Mireon\SlidePanels\Modules\Widgets\Menu\Menu;
-use Mireon\SlidePanels\Modules\Widgets\WidgetInvalid;
 
 /**
  * ...
  *
  * @package Mireon\SlidePanels\Examples\Catalog
  */
-class Catalog implements BuilderEvent
+class Catalog implements FactoryInterface
 {
     /**
      * ...
@@ -28,7 +25,7 @@ class Catalog implements BuilderEvent
     /**
      * @inheritDoc
      */
-    public function doBuild(): bool
+    public function doMake(): bool
     {
         return true;
     }
@@ -36,29 +33,24 @@ class Catalog implements BuilderEvent
     /**
      * @inheritDoc
      *
-     * @throws ItemInvalid
-     * @throws WidgetInvalid
+     * @throws Exception
      */
-    public function build(Builder $builder): void
+    public function make(Designer $designer): void
     {
         $url = 'http://example.com/catalog';
 
-        $panel = Panel::create()
-            ->side(Panel::SIDE_LEFT)
-            ->key(self::KEY)
+        $designer->panel(self::KEY)
+            ->side(Panel::LEFT)
             ->header(Header::create()
-                ->size(Header::SIZE_BIG)
-                ->icon('fa fa-catalog')
+                ->size(Header::BIG)
+                ->icon('fa fa-th')
                 ->text('Catalog')
             )
             ->widget(Menu::create()
-                ->location(Location::create(self::KEY))
-                ->item(Item::create()->text('Electronics')->url("$url/electronics"))
-                ->item(Item::create()->text('Construction & Repair')->url("$url/construction-&-tools"))
-                ->item(Item::create()->text('Home & Garden')->url("$url/construction-&-tools"))
-                ->item(Item::create()->text('Health & Beauty')->url("$url/health-&-beauty"))
+                ->item(Link::create()->text('Electronics')->url("$url/electronics"))
+                ->item(Link::create()->text('Construction & Repair')->url("$url/construction-&-tools"))
+                ->item(Link::create()->text('Home & Garden')->url("$url/construction-&-tools"))
+                ->item(Link::create()->text('Health & Beauty')->url("$url/health-&-beauty"))
             );
-
-        $builder->panel($panel);
     }
 }

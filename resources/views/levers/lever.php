@@ -10,6 +10,6 @@ use Mireon\SlidePanels\Modules\Levers\Lever;
  */
 ?>
 
-<a href="#" class="slide-panels__lever" data-element="lever" data-action="show" data-target="<?= $lever->getTarget(); ?>">
+<a href="#" class="slide-panels__lever" data-element="lever" data-action="show" data-target="<?= $lever->getPanel(); ?>">
     <?= $lever->getText(); ?>
 </a>

@@ -2,7 +2,7 @@
 
 namespace Mireon\SlidePanels\Modules\Widgets\Menu;
 
-use Mireon\SlidePanels\Exceptions\FileNotFound;
+use Exception;
 use Mireon\SlidePanels\Modules\Widgets\Header\HeaderProperty;
 use Mireon\SlidePanels\Modules\Widgets\Widget;
 use Mireon\SlidePanels\Renderer\Renderer;
@@ -24,13 +24,33 @@ class Menu extends Widget
     private array $items = [];
 
     /**
+     * The constructor.
+     *
+     * @param array|null $items
+     *   ...
+     *
+     * @throws Exception
+     */
+    public function __construct(?array $items = null)
+    {
+        if (!empty($items)) {
+            $this->setItems($items);
+        }
+    }
+
+    /**
      * Creates an instance of this class.
      *
-     * @return static
+     * @param array|null $items
+     *   ...
+     *
+     * @return self
+     *
+     * @throws Exception
      */
-    public static function create(): self
+    public static function create(?array $items = null): self
     {
-        return new static();
+        return new self($items);
     }
 
     /**
@@ -41,7 +61,7 @@ class Menu extends Widget
      *
      * @return self
      *
-     * @throws ItemInvalid
+     * @throws Exception
      */
     public function items(array $items): self
     {
@@ -58,7 +78,7 @@ class Menu extends Widget
      *
      * @return void
      *
-     * @throws ItemInvalid
+     * @throws Exception
      */
     public function setItems(array $items): void
     {
@@ -77,7 +97,7 @@ class Menu extends Widget
      *
      * @return self
      *
-     * @throws ItemInvalid
+     * @throws Exception
      */
     public function item(ItemInterface $item): self
     {
@@ -94,14 +114,14 @@ class Menu extends Widget
      *
      * @return void
      *
-     * @throws ItemInvalid
+     * @throws Exception
      */
     public function addItem(ItemInterface $item): void
     {
         if ($item->isValid()) {
             $this->items[] = $item;
         } else {
-            throw new ItemInvalid($item);
+            throw new Exception('The menu item "' . get_class($item) . '" is invalid.');
         }
     }
 
@@ -136,7 +156,7 @@ class Menu extends Widget
     /**
      * @inheritDoc
      *
-     * @throws FileNotFound
+     * @throws Exception
      */
     public function render(): string
     {

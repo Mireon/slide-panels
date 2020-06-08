@@ -2,7 +2,7 @@
 
 namespace Mireon\SlidePanels\Modules\Panels;
 
-use Mireon\SlidePanels\Exceptions\FileNotFound;
+use Exception;
 use Mireon\SlidePanels\Modules\Widgets\WidgetsProperty;
 use Mireon\SlidePanels\Properties\KeyProperty;
 use Mireon\SlidePanels\Modules\Widgets\Header\HeaderProperty;
@@ -25,28 +25,52 @@ class Panel implements Renderable
     /**
      * ...
      */
-    public const SIDE_LEFT = 'left';
+    public const LEFT = 'left';
 
     /**
      * ...
      */
-    public const SIDE_RIGHT = 'right';
+    public const RIGHT = 'right';
 
     /**
      * ...
      *
-     * @var string|null $side
+     * @var string $side
      */
-    private ?string $side = self::SIDE_LEFT;
+    private string $side = self::LEFT;
+
+    /**
+     * The constructor.
+     *
+     * @param string|null $key
+     *   ...
+     * @param string|null $side
+     *   ...
+     */
+    public function __construct(?string $key = null, ?string $side = null)
+    {
+        if (!empty($key)) {
+            $this->setKey($key);
+        }
+
+        if (!empty($side)) {
+            $this->setSide($side);
+        }
+    }
 
     /**
      * Creates an instance of this class.
      *
+     * @param string|null $key
+     *   ...
+     * @param string|null $side
+     *   ...
+     *
      * @return static
      */
-    public static function create(): self
+    public static function create(?string $key = null, ?string $side = null): self
     {
-        return new static();
+        return new static($key, $side);
     }
 
     /**
@@ -75,8 +99,8 @@ class Panel implements Renderable
     public function setSide(string $side): void
     {
         switch ($side) {
-            case self::SIDE_LEFT:
-            case self::SIDE_RIGHT:
+            case self::LEFT:
+            case self::RIGHT:
                 $this->side = $side;
                 break;
         }
@@ -85,9 +109,9 @@ class Panel implements Renderable
     /**
      * ...
      *
-     * @return string|null
+     * @return string
      */
-    public function getSide(): ?string
+    public function getSide(): string
     {
         return $this->side;
     }
@@ -97,25 +121,15 @@ class Panel implements Renderable
      *
      * @return bool
      */
-    public function hasSide(): bool
-    {
-        return !is_null($this->side);
-    }
-
-    /**
-     * ...
-     *
-     * @return bool
-     */
     public function isValid(): bool
     {
-        return $this->hasKey() && $this->hasSide();
+        return $this->hasKey();
     }
 
     /**
      * @inheritDoc
      *
-     * @throws FileNotFound
+     * @throws Exception
      */
     public function render(): string
     {

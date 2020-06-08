@@ -3,8 +3,8 @@
 namespace Mireon\SlidePanels\Modules\Panels;
 
 use ArrayIterator;
+use Exception;
 use IteratorAggregate;
-use Mireon\SlidePanels\Exceptions\FileNotFound;
 use Mireon\SlidePanels\Renderer\Renderable;
 use Mireon\SlidePanels\Renderer\RenderToString;
 use Mireon\SlidePanels\Renderer\Renderer;
@@ -33,13 +33,15 @@ class Panels implements Renderable, IteratorAggregate
      *   ...
      *
      * @return void
+     *
+     * @throws Exception
      */
     public function addPanel(Panel $panel): void
     {
         if ($panel->isValid()) {
             $this->panels[$panel->getKey()] = $panel;
         } else {
-            throw new PanelInvalid($panel);
+            throw new Exception('The panel must have a key.');
         }
     }
 
@@ -76,21 +78,7 @@ class Panels implements Renderable, IteratorAggregate
      */
     public function getPanel(string $key): ?Panel
     {
-        if (!$this->hasPanel($key)) {
-            return null;
-        }
-
-        return $this->panels[$key];
-    }
-
-    /**
-     * @inheritDoc
-     *
-     * @throws FileNotFound
-     */
-    public function render(): string
-    {
-        return Renderer::view('panels/panels', ['panels' => $this]);
+        return $this->hasPanel($key) ? $this->panels[$key] : null;
     }
 
     /**
@@ -99,5 +87,15 @@ class Panels implements Renderable, IteratorAggregate
     public function getIterator(): Traversable
     {
         return new ArrayIterator($this->panels);
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @throws Exception
+     */
+    public function render(): string
+    {
+        return Renderer::view('panels/panels', ['panels' => $this]);
     }
 }

@@ -2,8 +2,9 @@
 
 namespace Mireon\SlidePanels\Examples\Account;
 
-use Mireon\SlidePanels\Builder\Builder;
-use Mireon\SlidePanels\Builder\BuilderEvent;
+use Exception;
+use Mireon\SlidePanels\Designer\Designer;
+use Mireon\SlidePanels\Designer\FactoryInterface;
 use Mireon\SlidePanels\Modules\Panels\Panel;
 use Mireon\SlidePanels\Modules\Widgets\Header\Header;
 
@@ -12,7 +13,7 @@ use Mireon\SlidePanels\Modules\Widgets\Header\Header;
  *
  * @package Mireon\SlidePanels\Examples\Account
  */
-class Account implements BuilderEvent
+class Account implements FactoryInterface
 {
     /**
      * ...
@@ -22,25 +23,24 @@ class Account implements BuilderEvent
     /**
      * @inheritDoc
      */
-    public function doBuild(): bool
+    public function doMake(): bool
     {
         return true;
     }
 
     /**
      * @inheritDoc
+     *
+     * @throws Exception
      */
-    public function build(Builder $builder): void
+    public function make(Designer $designer): void
     {
-        $panel = Panel::create()
-            ->side(Panel::SIDE_RIGHT)
-            ->key(self::KEY)
+        $designer->panel(self::KEY)
+            ->side(Panel::RIGHT)
             ->header(Header::create()
-                ->size(Header::SIZE_BIG)
+                ->size(Header::BIG)
                 ->icon('fa fa-user')
                 ->text('Account')
             );
-
-        $builder->panel($panel);
     }
 }

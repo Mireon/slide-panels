@@ -26,31 +26,33 @@ class Html extends Widget
      */
     public function __construct(?string $html = null)
     {
-        $this->setHtml($html);
+        if (!empty($html)) {
+            $this->setHtml($html);
+        }
     }
 
     /**
      * Creates an instance of this class.
-     *
-     * @param string $html
-     *   ...
-     *
-     * @return static
-     */
-    public static function create(?string $html = null): self
-    {
-        return new static($html);
-    }
-
-    /**
-     * ...
      *
      * @param string|null $html
      *   ...
      *
      * @return self
      */
-    public function html(?string $html): self
+    public static function create(?string $html = null): self
+    {
+        return new self($html);
+    }
+
+    /**
+     * ...
+     *
+     * @param string $html
+     *   ...
+     *
+     * @return self
+     */
+    public function html(string $html): self
     {
         $this->setHtml($html);
 
@@ -60,12 +62,12 @@ class Html extends Widget
     /**
      * ...
      *
-     * @param string|null $html
+     * @param string $html
      *   ...
      *
      * @return void
      */
-    public function setHtml(?string $html): void
+    public function setHtml(string $html): void
     {
         $this->html = $html ?: null;
     }
@@ -103,6 +105,6 @@ class Html extends Widget
      */
     public function render(): string
     {
-        return $this->getHtml() ?? '';
+        return $this->hasHtml() ? $this->getHtml() : '';
     }
 }

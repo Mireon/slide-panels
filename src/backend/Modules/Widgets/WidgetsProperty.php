@@ -2,6 +2,8 @@
 
 namespace Mireon\SlidePanels\Modules\Widgets;
 
+use Exception;
+
 /**
  * ...
  *
@@ -24,7 +26,7 @@ trait WidgetsProperty
      *
      * @return self
      *
-     * @throws WidgetInvalid
+     * @throws Exception
      */
     public function widgets(array $widgets): self
     {
@@ -41,7 +43,7 @@ trait WidgetsProperty
      *
      * @return void
      *
-     * @throws WidgetInvalid
+     * @throws Exception
      */
     public function setWidgets(array $widgets): void
     {
@@ -60,7 +62,7 @@ trait WidgetsProperty
      *
      * @return self
      *
-     * @throws WidgetInvalid
+     * @throws Exception
      */
     public function widget(WidgetInterface $widget): self
     {
@@ -77,24 +79,28 @@ trait WidgetsProperty
      *
      * @return void
      *
-     * @throws WidgetInvalid
+     * @throws Exception
      */
     public function addWidget(WidgetInterface $widget): void
     {
         if ($widget->isValid()) {
             $this->widgets[] = $widget;
         } else {
-            throw new WidgetInvalid($widget);
+            throw new Exception('Widget "' . get_class($widget) . '" is invalid.');
         }
     }
 
     /**
      * ...
      *
-     * @return WidgetInterface[]|null
+     * @return WidgetInterface[]
      */
-    public function getWidgets(): ?array
+    public function getWidgets(): array
     {
+        usort($this->widgets, function (WidgetInterface $a, WidgetInterface $b) {
+            return $a->getWeight() <=> $b->getWeight();
+        });
+
         return $this->widgets;
     }
 

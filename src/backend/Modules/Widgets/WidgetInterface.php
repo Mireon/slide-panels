@@ -2,22 +2,15 @@
 
 namespace Mireon\SlidePanels\Modules\Widgets;
 
-use Mireon\SlidePanels\Location\Location;
+use Mireon\SlidePanels\Renderer\Renderable;
 
 /**
  * ...
  *
  * @package Mireon\SlidePanels\Modules\Widgets
  */
-interface WidgetInterface
+interface WidgetInterface extends Renderable
 {
-    /**
-     * ...
-     *
-     * @return Location
-     */
-    public function getLocation(): Location;
-
     /**
      * ...
      *
@@ -31,11 +24,4 @@ interface WidgetInterface
      * @return bool
      */
     public function isValid(): bool;
-
-    /**
-     * ...
-     *
-     * @return string
-     */
-    public function render(): string;
 }

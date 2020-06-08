@@ -2,12 +2,8 @@
 
 namespace Mireon\SlidePanels;
 
-use Mireon\SlidePanels\Builder\Builder;
-use Mireon\SlidePanels\Builder\BuilderEvent;
-use Mireon\SlidePanels\Builder\EventNotImplementsInterface;
-use Mireon\SlidePanels\Exceptions\CannotUnserialize;
-use Mireon\SlidePanels\Exceptions\ClassNotFound;
-use Mireon\SlidePanels\Exceptions\FileNotFound;
+use Exception;
+use Mireon\SlidePanels\Designer\Designer;
 use Mireon\SlidePanels\Renderer\Renderable;
 use Mireon\SlidePanels\Renderer\RenderToString;
 
@@ -28,16 +24,18 @@ class SlidePanels implements Renderable
     protected static ?self $instance = null;
 
     /**
-     * The list of builder events.
+     * ...
      *
-     * @var BuilderEvent[] $events
+     * @var Designer|null $designer
      */
-    protected array $events = [];
+    protected ?Designer $designer = null;
 
     /**
      * The constructor.
      */
-    protected function __construct() {}
+    protected function __construct() {
+        $this->setDesigner(new Designer());
+    }
 
     /**
      * The magic method clone.
@@ -51,11 +49,11 @@ class SlidePanels implements Renderable
      *
      * @return void
      *
-     * @throws CannotUnserialize
+     * @throws Exception
      */
     public function __wakeup(): void
     {
-        throw new CannotUnserialize(static::class);
+        throw new Exception('Cannot unserialize the \"' . static::class . '\" class.');
     }
 
     /**
@@ -66,11 +64,11 @@ class SlidePanels implements Renderable
      *
      * @return void
      *
-     * @throws CannotUnserialize
+     * @throws Exception
      */
     public function __unserialize(array $data): void
     {
-        throw new CannotUnserialize(static::class);
+        throw new Exception('Cannot unserialize the \"' . static::class . '\" class.');
     }
 
     /**
@@ -90,56 +88,43 @@ class SlidePanels implements Renderable
     /**
      * ...
      *
-     * @param string $class
-     *   ...
-     *
-     * @return self
-     *
-     * @throws EventNotImplementsInterface
-     * @throws ClassNotFound
+     * @return Designer
      */
-    public function add(string $class): self
+    public static function designer(): Designer
     {
-        if (!class_exists($class)) {
-            throw new ClassNotFound($class);
-        }
-
-        $class = new $class();
-
-        if (!($class instanceof BuilderEvent)) {
-            throw new EventNotImplementsInterface($class);
-        }
-
-        $this->events[] = $class;
-
-        return $this;
+        return static::instance()->getDesigner();
     }
 
     /**
      * ...
      *
-     * @return Builder
+     * @param Designer $designer
+     *   ...
+     *
+     * @return void
      */
-    public function build(): Builder
+    public function setDesigner(Designer $designer): void
     {
-        $builder = new Builder();
+        $this->designer = $designer;
+    }
 
-        foreach ($this->events as $event) {
-            if ($event->doBuild()) {
-                $event->build($builder);
-            }
-        }
-
-        return $builder;
+    /**
+     * ...
+     *
+     * @return Designer
+     */
+    public function getDesigner(): Designer
+    {
+        return $this->designer;
     }
 
     /**
      * @inheritDoc
      *
-     * @throws FileNotFound
+     * @throws Exception
      */
     public function render(): string
     {
-        return $this->build()->render();
+        return $this->getDesigner()->render();
     }
 }

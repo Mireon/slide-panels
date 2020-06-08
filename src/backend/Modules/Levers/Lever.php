@@ -2,8 +2,7 @@
 
 namespace Mireon\SlidePanels\Modules\Levers;
 
-use Mireon\SlidePanels\Exceptions\FileNotFound;
-use Mireon\SlidePanels\Location\Location;
+use Exception;
 use Mireon\SlidePanels\Modules\Widgets\Menu\ItemInterface;
 use Mireon\SlidePanels\Properties\TextProperty;
 use Mireon\SlidePanels\Renderer\Renderer;
@@ -22,9 +21,9 @@ class Lever implements ItemInterface
     /**
      * ...
      *
-     * @var Location|null $target
+     * @var string|null $panel
      */
-    private ?Location $target = null;
+    private ?string $panel = null;
 
     /**
      * The constructor.
@@ -36,8 +35,13 @@ class Lever implements ItemInterface
      */
     public function __construct(?string $text = null, ?string $panel = null)
     {
-        $this->setText($text);
-        $this->setTarget($panel);
+        if (!empty($text)) {
+            $this->setText($text);
+        }
+
+        if (!empty($panel)) {
+            $this->setPanel($panel);
+        }
     }
 
     /**
@@ -52,7 +56,7 @@ class Lever implements ItemInterface
      */
     public static function create(?string $text = null, ?string $panel = null): self
     {
-        return new static($text, $panel);
+        return new self($text, $panel);
     }
 
     /**
@@ -63,9 +67,9 @@ class Lever implements ItemInterface
      *
      * @return self
      */
-    public function target(string $panel): self
+    public function panel(string $panel): self
     {
-        $this->setTarget($panel);
+        $this->setPanel($panel);
 
         return $this;
     }
@@ -73,24 +77,24 @@ class Lever implements ItemInterface
     /**
      * ...
      *
-     * @param string|null $panel
+     * @param string $panel
      *   ...
      *
      * @return void
      */
-    public function setTarget(?string $panel): void
+    public function setPanel(string $panel): void
     {
-        $this->target = new Location($panel);
+        $this->panel = $panel ?: null;
     }
 
     /**
      * ...
      *
-     * @return Location|null
+     * @return string|null
      */
-    public function getTarget(): ?Location
+    public function getPanel(): ?string
     {
-        return $this->target;
+        return $this->panel;
     }
 
     /**
@@ -98,9 +102,9 @@ class Lever implements ItemInterface
      *
      * @return bool
      */
-    public function hasTarget(): bool
+    public function hasPanel(): bool
     {
-        return !is_null($this->target);
+        return !is_null($this->panel);
     }
 
     /**
@@ -108,15 +112,13 @@ class Lever implements ItemInterface
      */
     public function isValid(): bool
     {
-        return $this->hasTarget() &&
-               $this->getTarget()->hasPanel() &&
-               $this->hasText();
+        return $this->hasPanel() && $this->hasText();
     }
 
     /**
      * @inheritDoc
      *
-     * @throws FileNotFound
+     * @throws Exception
      */
     public function render(): string
     {

@@ -2,7 +2,7 @@
 
 namespace Mireon\SlidePanels\Modules\Stage;
 
-use Mireon\SlidePanels\Exceptions\FileNotFound;
+use Exception;
 use Mireon\SlidePanels\Modules\Panels\Panels;
 use Mireon\SlidePanels\Renderer\Renderable;
 use Mireon\SlidePanels\Renderer\RenderToString;
@@ -60,7 +60,7 @@ class Stage implements Renderable
     /**
      * @inheritDoc
      *
-     * @throws FileNotFound
+     * @throws Exception
      */
     public function render(): string
     {

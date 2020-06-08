@@ -2,28 +2,25 @@
 
 namespace Mireon\SlidePanels\Examples\Account;
 
-use Mireon\SlidePanels\Builder\Builder;
-use Mireon\SlidePanels\Builder\BuilderEvent;
-use Mireon\SlidePanels\Builder\PanelKeyUndefined;
+use Exception;
+use Mireon\SlidePanels\Designer\Designer;
+use Mireon\SlidePanels\Designer\FactoryInterface;
 use Mireon\SlidePanels\Examples\Catalog\Catalog;
-use Mireon\SlidePanels\Location\Location;
 use Mireon\SlidePanels\Modules\Levers\Lever;
-use Mireon\SlidePanels\Modules\Widgets\Menu\Item;
-use Mireon\SlidePanels\Modules\Widgets\Menu\ItemInvalid;
+use Mireon\SlidePanels\Modules\Widgets\Menu\Link;
 use Mireon\SlidePanels\Modules\Widgets\Menu\Menu;
-use Mireon\SlidePanels\Modules\Widgets\WidgetInvalid;
 
 /**
  * ...
  *
  * @package Mireon\SlidePanels\Examples\Account
  */
-class AccountAuthenticated implements BuilderEvent
+class AccountAuthenticated implements FactoryInterface
 {
     /**
      * @inheritDoc
      */
-    public function doBuild(): bool
+    public function doMake(): bool
     {
         return isset($_REQUEST['user']);
     }
@@ -31,22 +28,19 @@ class AccountAuthenticated implements BuilderEvent
     /**
      * @inheritDoc
      *
-     * @throws ItemInvalid
-     * @throws PanelKeyUndefined
-     * @throws WidgetInvalid
+     * @throws Exception
      */
-    public function build(Builder $builder): void
+    public function make(Designer $designer): void
     {
         $host = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'];
         $query = 'user[name]=User';
 
-        $widget = Menu::create()
-            ->location(Location::create(Account::KEY))
-            ->item(Item::create()->text('Profile')->url("$host/profile?$query"))
-            ->item(Item::create()->text('Settings')->url("$host/settings?$query"))
-            ->item(Lever::create()->text('Catalog')->target(Catalog::KEY))
-            ->item(Item::create()->text('Logout')->url($host));
-
-        $builder->widget($widget);
+        $designer->panel(Account::KEY)
+            ->widget(Menu::create()
+                ->item(Link::create('Profile', "$host/profile?$query"))
+                ->item(Link::create('Settings', "$host/settings?$query"))
+                ->item(Lever::create('Catalog', Catalog::KEY))
+                ->item(Link::create('Logout', $host))
+        );
     }
 }
