@@ -26,6 +26,5 @@ export namespace Props {
     export enum action {
         SHOW = 'show',
         HIDE = 'hide',
-        BACK = 'back',
     }
 }

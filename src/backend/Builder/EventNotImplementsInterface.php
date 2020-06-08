@@ -9,7 +9,7 @@ use Exception;
  *
  * @package Mireon\SlidePanels\Builder
  */
-class BuilderEventException extends Exception
+class EventNotImplementsInterface extends Exception
 {
     /**
      * The constructor.

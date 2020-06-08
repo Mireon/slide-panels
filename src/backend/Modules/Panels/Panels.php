@@ -5,7 +5,6 @@ namespace Mireon\SlidePanels\Modules\Panels;
 use ArrayIterator;
 use IteratorAggregate;
 use Mireon\SlidePanels\Exceptions\FileNotFound;
-use Mireon\SlidePanels\Modules\Panels\Exceptions\PanelIsInvalid;
 use Mireon\SlidePanels\Renderer\Renderable;
 use Mireon\SlidePanels\Renderer\RenderToString;
 use Mireon\SlidePanels\Renderer\Renderer;
@@ -37,11 +36,11 @@ class Panels implements Renderable, IteratorAggregate
      */
     public function addPanel(Panel $panel): void
     {
-        if (!$panel->isValid()) {
-            throw new PanelIsInvalid($panel);
+        if ($panel->isValid()) {
+            $this->panels[$panel->getKey()] = $panel;
+        } else {
+            throw new PanelInvalid($panel);
         }
-
-        $this->panels[$panel->getKey()] = $panel;
     }
 
     /**

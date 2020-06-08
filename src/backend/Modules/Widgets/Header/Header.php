@@ -3,7 +3,7 @@
 namespace Mireon\SlidePanels\Modules\Widgets\Header;
 
 use Mireon\SlidePanels\Exceptions\FileNotFound;
-use Mireon\SlidePanels\Modules\Widgets\WidgetInterface;
+use Mireon\SlidePanels\Modules\Widgets\Widget;
 use Mireon\SlidePanels\Properties\IconProperty;
 use Mireon\SlidePanels\Properties\SizeProperty;
 use Mireon\SlidePanels\Properties\TextProperty;
@@ -15,12 +15,11 @@ use Mireon\SlidePanels\Renderer\Renderer;
  *
  * @package Mireon\SlidePanels\Modules\Widgets\Header
  */
-class Header implements WidgetInterface
+class Header extends Widget
 {
     use TextProperty;
     use IconProperty;
     use SizeProperty;
-    use RenderToString;
 
     /**
      * ...

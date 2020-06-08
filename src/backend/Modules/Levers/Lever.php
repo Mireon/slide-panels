@@ -33,13 +33,11 @@ class Lever implements ItemInterface
      *   ...
      * @param string|null $panel
      *   ...
-     * @param string|null $layer
-     *   ...
      */
-    public function __construct(?string $text = null, ?string $panel = null, ?string $layer = null)
+    public function __construct(?string $text = null, ?string $panel = null)
     {
         $this->setText($text);
-        $this->setTarget($panel, $layer);
+        $this->setTarget($panel);
     }
 
     /**
@@ -49,14 +47,12 @@ class Lever implements ItemInterface
      *   ...
      * @param string|null $panel
      *   ...
-     * @param string|null $layer
-     *   ...
      *
      * @return self
      */
-    public static function create(?string $text = null, ?string $panel = null, ?string $layer = null): self
+    public static function create(?string $text = null, ?string $panel = null): self
     {
-        return new static($text, $panel, $layer);
+        return new static($text, $panel);
     }
 
     /**
@@ -64,14 +60,12 @@ class Lever implements ItemInterface
      *
      * @param string $panel
      *   ...
-     * @param string $layer
-     *   ...
      *
      * @return self
      */
-    public function target(string $panel, ?string $layer = null): self
+    public function target(string $panel): self
     {
-        $this->setTarget($panel, $layer);
+        $this->setTarget($panel);
 
         return $this;
     }
@@ -81,14 +75,12 @@ class Lever implements ItemInterface
      *
      * @param string|null $panel
      *   ...
-     * @param string|null $layer
-     *   ...
      *
      * @return void
      */
-    public function setTarget(?string $panel, ?string $layer = null): void
+    public function setTarget(?string $panel): void
     {
-        $this->target = new Location($panel, $layer);
+        $this->target = new Location($panel);
     }
 
     /**
@@ -98,10 +90,6 @@ class Lever implements ItemInterface
      */
     public function getTarget(): ?Location
     {
-        if (!$this->hasTarget()) {
-            return null;
-        }
-
         return $this->target;
     }
 
@@ -122,7 +110,6 @@ class Lever implements ItemInterface
     {
         return $this->hasTarget() &&
                $this->getTarget()->hasPanel() &&
-               $this->getTarget()->hasLayer() &&
                $this->hasText();
     }
 

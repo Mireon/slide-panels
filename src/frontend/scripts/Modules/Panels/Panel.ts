@@ -1,9 +1,7 @@
 import Extractor from '@tools/Extractor';
 import PanelAnimation from '@modules/Panels/PanelAnimation';
 import State from '@tools/State';
-import Target from '@tools/Target';
 import { Props } from '@tools/Props';
-import Layers from '@modules/Layers/Layers';
 
 /**
  * The panel.
@@ -22,13 +20,6 @@ export default class Panel {
      * @type Props.side
      */
     private readonly side: Props.side;
-
-    /**
-     * The panel layers.
-     *
-     * @type Layers
-     */
-    private readonly layers: Layers;
 
     /**
      * The panel animation.
@@ -53,7 +44,6 @@ export default class Panel {
     public constructor(element: Element) {
         this.key = Extractor.key(element);
         this.side = Extractor.side(element);
-        this.layers = new Layers(this.key);
         this.animation = new PanelAnimation(element, this.side);
         this.state = new State();
     }
@@ -95,32 +85,12 @@ export default class Panel {
     }
 
     /**
-     * Shows the panel and its layers.
-     *
-     * @param target { Target }
-     *   A target.
-     *
-     * @return void
-     */
-    public showLayer(target: Target): void {
-        if (this.state.isHidden()) {
-            this.layers.show(target);
-        } else {
-            this.layers.inside(target);
-        }
-    }
-
-    /**
      * Inserts the panel to inside.
      *
-     * @param target { Target }
-     *   A target.
-     *
      * @return void
      */
-    public inside(target: Target): void {
+    public inside(): void {
         if (this.state.isHidden()) {
-            this.layers.show(target);
             this.animation.inside();
             this.state.show();
         }
@@ -135,7 +105,6 @@ export default class Panel {
         if (this.state.isVisible()) {
             this.animation.outside();
             this.state.hide();
-            this.layers.hide();
         }
     }
 }

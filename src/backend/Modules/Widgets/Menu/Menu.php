@@ -4,8 +4,7 @@ namespace Mireon\SlidePanels\Modules\Widgets\Menu;
 
 use Mireon\SlidePanels\Exceptions\FileNotFound;
 use Mireon\SlidePanels\Modules\Widgets\Header\HeaderProperty;
-use Mireon\SlidePanels\Modules\Widgets\Menu\Exceptions\ItemIsInvalid;
-use Mireon\SlidePanels\Modules\Widgets\WidgetInterface;
+use Mireon\SlidePanels\Modules\Widgets\Widget;
 use Mireon\SlidePanels\Renderer\Renderer;
 
 /**
@@ -13,7 +12,7 @@ use Mireon\SlidePanels\Renderer\Renderer;
  *
  * @package Mireon\SlidePanels\Modules\Widgets\Menu
  */
-class Menu implements WidgetInterface
+class Menu extends Widget
 {
     use HeaderProperty;
 
@@ -42,7 +41,7 @@ class Menu implements WidgetInterface
      *
      * @return self
      *
-     * @throws ItemIsInvalid
+     * @throws ItemInvalid
      */
     public function items(array $items): self
     {
@@ -59,7 +58,7 @@ class Menu implements WidgetInterface
      *
      * @return void
      *
-     * @throws ItemIsInvalid
+     * @throws ItemInvalid
      */
     public function setItems(array $items): void
     {
@@ -78,7 +77,7 @@ class Menu implements WidgetInterface
      *
      * @return self
      *
-     * @throws ItemIsInvalid
+     * @throws ItemInvalid
      */
     public function item(ItemInterface $item): self
     {
@@ -95,14 +94,14 @@ class Menu implements WidgetInterface
      *
      * @return void
      *
-     * @throws ItemIsInvalid
+     * @throws ItemInvalid
      */
     public function addItem(ItemInterface $item): void
     {
         if ($item->isValid()) {
             $this->items[] = $item;
         } else {
-            throw new ItemIsInvalid($item);
+            throw new ItemInvalid($item);
         }
     }
 

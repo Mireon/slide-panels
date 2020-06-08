@@ -1,16 +1,15 @@
 <?php
 
-namespace Mireon\SlidePanels\Modules\Panels\Exceptions;
+namespace Mireon\SlidePanels\Modules\Panels;
 
 use InvalidArgumentException;
-use Mireon\SlidePanels\Modules\Panels\Panel;
 
 /**
  * ...
  *
- * @package Mireon\SlidePanels\Modules\Panels\Exceptions
+ * @package Mireon\SlidePanels\Modules\Panels
  */
-class PanelIsInvalid extends InvalidArgumentException
+class PanelInvalid extends InvalidArgumentException
 {
     /**
      * The constructor.

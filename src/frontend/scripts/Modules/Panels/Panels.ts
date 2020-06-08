@@ -56,15 +56,13 @@ export default class Panels {
         const selected: Panel = this.panels.get(target.getPanelKey());
 
         if (!current) {
-            selected.inside(target);
+            selected.inside();
             return;
         }
 
-        if (selected === current) {
-            current.showLayer(target);
-        } else {
+        if (selected !== current) {
             current.outside();
-            selected.inside(target);
+            selected.inside();
         }
     }
 

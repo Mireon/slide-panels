@@ -64,34 +64,4 @@ export default class Selector {
 
         return document.querySelector(`${root} ${attribute}`);
     }
-
-    /**
-     * Returns the list of layers of selected panel.
-     *
-     * @param panelKey { string }
-     *   A panel key.
-     *
-     * @type NodeListOf<Element>
-     */
-    public static layers(panelKey: string): NodeListOf<Element> {
-        const attribute = `[data-element="panel"][data-key="${panelKey}"] [data-element="layer"]`;
-
-        return document.querySelectorAll(`${root} ${attribute}`);
-    }
-
-    /**
-     * Returns the layer by key of selected panel.
-     *
-     * @param panelKey { string }
-     *   A panel key.
-     * @param layerKey { string }
-     *   A layer key.
-     *
-     * @type Element
-     */
-    public static layer(panelKey: string, layerKey: string): Element {
-        const attribute = `[data-element="panel"][data-key="${panelKey}"] [data-element="layer"][data-key="${layerKey}"]`;
-
-        return document.querySelector(`${root} ${attribute}`);
-    }
 }

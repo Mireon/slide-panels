@@ -36,7 +36,7 @@ export default class Lever {
     public constructor(element: Element) {
         this.element = element;
         this.action = Extractor.action(element, Props.action.SHOW);
-        this.target = Extractor.target(element, this.action);
+        this.target = Extractor.target(element);
     }
 
     /**
@@ -45,7 +45,7 @@ export default class Lever {
      * @type boolean
      */
     public toShow(): boolean {
-        if (this.action !== Props.action.SHOW && this.action !== Props.action.BACK) {
+        if (this.action !== Props.action.SHOW) {
             return false;
         }
 

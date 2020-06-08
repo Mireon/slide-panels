@@ -4,14 +4,14 @@ namespace Mireon\SlidePanels\Examples\Catalog;
 
 use Mireon\SlidePanels\Builder\Builder;
 use Mireon\SlidePanels\Builder\BuilderEvent;
+use Mireon\SlidePanels\Builder\PanelKeyUndefined;
 use Mireon\SlidePanels\Location\Location;
-use Mireon\SlidePanels\Modules\Layers\Layer;
-use Mireon\SlidePanels\Modules\Levers\Lever;
-use Mireon\SlidePanels\Modules\Panels\Exceptions\PanelIsUndefined;
 use Mireon\SlidePanels\Modules\Panels\Panel;
 use Mireon\SlidePanels\Modules\Widgets\Header\Header;
-use Mireon\SlidePanels\Modules\Widgets\Menu\Exceptions\ItemIsInvalid;
+use Mireon\SlidePanels\Modules\Widgets\Menu\Item;
+use Mireon\SlidePanels\Modules\Widgets\Menu\ItemInvalid;
 use Mireon\SlidePanels\Modules\Widgets\Menu\Menu;
+use Mireon\SlidePanels\Modules\Widgets\WidgetInvalid;
 
 /**
  * ...
@@ -36,11 +36,13 @@ class Catalog implements BuilderEvent
     /**
      * @inheritDoc
      *
-     * @throws ItemIsInvalid
-     * @throws PanelIsUndefined
+     * @throws ItemInvalid
+     * @throws WidgetInvalid
      */
     public function build(Builder $builder): void
     {
+        $url = 'http://example.com/catalog';
+
         $panel = Panel::create()
             ->side(Panel::SIDE_LEFT)
             ->key(self::KEY)
@@ -48,19 +50,15 @@ class Catalog implements BuilderEvent
                 ->size(Header::SIZE_BIG)
                 ->icon('fa fa-catalog')
                 ->text('Catalog')
-            );
-
-        $layer = Layer::create()
-            ->key('root')
-            ->location(Location::create()->panel('catalog'))
+            )
             ->widget(Menu::create()
-                ->item(Lever::create()->text('Electronics')->target('catalog', 'electronics'))
-                ->item(Lever::create()->text('Construction & Repair')->target('catalog', 'construction-&-tools'))
-                ->item(Lever::create()->text('Home & Garden')->target('catalog', 'construction-&-tools'))
-                ->item(Lever::create()->text('Health & Beauty')->target('catalog', 'health-&-beauty'))
+                ->location(Location::create(self::KEY))
+                ->item(Item::create()->text('Electronics')->url("$url/electronics"))
+                ->item(Item::create()->text('Construction & Repair')->url("$url/construction-&-tools"))
+                ->item(Item::create()->text('Home & Garden')->url("$url/construction-&-tools"))
+                ->item(Item::create()->text('Health & Beauty')->url("$url/health-&-beauty"))
             );
 
         $builder->panel($panel);
-        $builder->layer($layer);
     }
 }

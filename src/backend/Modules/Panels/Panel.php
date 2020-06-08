@@ -3,14 +3,12 @@
 namespace Mireon\SlidePanels\Modules\Panels;
 
 use Mireon\SlidePanels\Exceptions\FileNotFound;
-use Mireon\SlidePanels\Modules\Panels\Exceptions\PanelSideIsInvalid;
+use Mireon\SlidePanels\Modules\Widgets\WidgetsProperty;
 use Mireon\SlidePanels\Properties\KeyProperty;
-use Mireon\SlidePanels\Modules\Layers\Layers;
 use Mireon\SlidePanels\Modules\Widgets\Header\HeaderProperty;
 use Mireon\SlidePanels\Renderer\Renderable;
 use Mireon\SlidePanels\Renderer\RenderToString;
 use Mireon\SlidePanels\Renderer\Renderer;
-use Mireon\SlidePanels\Methods\CreateMethod;
 
 /**
  * ...
@@ -21,7 +19,7 @@ class Panel implements Renderable
 {
     use KeyProperty;
     use HeaderProperty;
-    use CreateMethod;
+    use WidgetsProperty;
     use RenderToString;
 
     /**
@@ -33,13 +31,6 @@ class Panel implements Renderable
      * ...
      */
     public const SIDE_RIGHT = 'right';
-
-    /**
-     * ...
-     *
-     * @var Layers|null $layers
-     */
-    private ?Layers $layers = null;
 
     /**
      * ...
@@ -88,8 +79,6 @@ class Panel implements Renderable
             case self::SIDE_RIGHT:
                 $this->side = $side;
                 break;
-            default:
-                throw new PanelSideIsInvalid;
         }
     }
 
@@ -111,54 +100,6 @@ class Panel implements Renderable
     public function hasSide(): bool
     {
         return !is_null($this->side);
-    }
-
-    /**
-     * ...
-     *
-     * @param Layers $layers
-     *   ...
-     *
-     * @return self
-     */
-    public function layers(Layers $layers): self
-    {
-        $this->setLayers($layers);
-
-        return $this;
-    }
-
-    /**
-     * ...
-     *
-     * @param Layers $layers
-     *   ...
-     *
-     * @return void
-     */
-    public function setLayers(Layers $layers): void
-    {
-        $this->layers = $layers;
-    }
-
-    /**
-     * ...
-     *
-     * @return Layers|null
-     */
-    public function getLayers(): ?Layers
-    {
-        return $this->layers;
-    }
-
-    /**
-     * ...
-     *
-     * @return bool
-     */
-    public function hasLayers(): bool
-    {
-        return !is_null($this->layers);
     }
 
     /**

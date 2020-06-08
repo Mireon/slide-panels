@@ -4,14 +4,12 @@ namespace Mireon\SlidePanels\Examples\Account;
 
 use Mireon\SlidePanels\Builder\Builder;
 use Mireon\SlidePanels\Builder\BuilderEvent;
+use Mireon\SlidePanels\Builder\PanelKeyUndefined;
 use Mireon\SlidePanels\Location\Location;
-use Mireon\SlidePanels\Modules\Layers\Layer;
-use Mireon\SlidePanels\Modules\Panels\Exceptions\PanelIsUndefined;
-use Mireon\SlidePanels\Modules\Widgets\Header\Header;
-use Mireon\SlidePanels\Modules\Widgets\Html\Html;
-use Mireon\SlidePanels\Modules\Widgets\Menu\Exceptions\ItemIsInvalid;
 use Mireon\SlidePanels\Modules\Widgets\Menu\Item;
+use Mireon\SlidePanels\Modules\Widgets\Menu\ItemInvalid;
 use Mireon\SlidePanels\Modules\Widgets\Menu\Menu;
+use Mireon\SlidePanels\Modules\Widgets\WidgetInvalid;
 
 /**
  * ...
@@ -31,22 +29,20 @@ class AccountAnonymous implements BuilderEvent
     /**
      * @inheritDoc
      *
-     * @throws PanelIsUndefined
-     * @throws ItemIsInvalid
+     * @throws ItemInvalid
+     * @throws PanelKeyUndefined
+     * @throws WidgetInvalid
      */
     public function build(Builder $builder): void
     {
         $host = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'];
         $query = 'user[name]=User';
 
-        $layer = Layer::create()
-            ->key('root')
-            ->location(Location::create()->panel(Account::KEY))
-            ->widget(Menu::create()
-                ->item(Item::create()->text('Login')->url("$host?$query"))
-                ->item(Item::create()->text('Register')->url("$host?$query"))
-            );
+        $widget = Menu::create()
+            ->location(Location::create(Account::KEY))
+            ->item(Item::create()->text('Login')->url("$host?$query"))
+            ->item(Item::create()->text('Register')->url("$host?$query"));
 
-        $builder->layer($layer);
+        $builder->widget($widget);
     }
 }

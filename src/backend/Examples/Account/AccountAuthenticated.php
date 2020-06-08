@@ -4,13 +4,14 @@ namespace Mireon\SlidePanels\Examples\Account;
 
 use Mireon\SlidePanels\Builder\Builder;
 use Mireon\SlidePanels\Builder\BuilderEvent;
+use Mireon\SlidePanels\Builder\PanelKeyUndefined;
+use Mireon\SlidePanels\Examples\Catalog\Catalog;
 use Mireon\SlidePanels\Location\Location;
-use Mireon\SlidePanels\Modules\Layers\Layer;
 use Mireon\SlidePanels\Modules\Levers\Lever;
-use Mireon\SlidePanels\Modules\Panels\Exceptions\PanelIsUndefined;
-use Mireon\SlidePanels\Modules\Widgets\Menu\Exceptions\ItemIsInvalid;
 use Mireon\SlidePanels\Modules\Widgets\Menu\Item;
+use Mireon\SlidePanels\Modules\Widgets\Menu\ItemInvalid;
 use Mireon\SlidePanels\Modules\Widgets\Menu\Menu;
+use Mireon\SlidePanels\Modules\Widgets\WidgetInvalid;
 
 /**
  * ...
@@ -30,24 +31,22 @@ class AccountAuthenticated implements BuilderEvent
     /**
      * @inheritDoc
      *
-     * @throws ItemIsInvalid
-     * @throws PanelIsUndefined
+     * @throws ItemInvalid
+     * @throws PanelKeyUndefined
+     * @throws WidgetInvalid
      */
     public function build(Builder $builder): void
     {
         $host = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'];
         $query = 'user[name]=User';
 
-        $layer = Layer::create()
-            ->key('root')
-            ->location(Location::create()->panel(Account::KEY))
-            ->widget(Menu::create()
-                ->item(Item::create()->text('Profile')->url("$host/profile?$query"))
-                ->item(Lever::create()->text('Favorite')->target('account', 'favorite'))
-                ->item(Item::create()->text('Settings')->url("$host/settings?$query"))
-                ->item(Item::create()->text('Logout')->url($host))
-            );
+        $widget = Menu::create()
+            ->location(Location::create(Account::KEY))
+            ->item(Item::create()->text('Profile')->url("$host/profile?$query"))
+            ->item(Item::create()->text('Settings')->url("$host/settings?$query"))
+            ->item(Lever::create()->text('Catalog')->target(Catalog::KEY))
+            ->item(Item::create()->text('Logout')->url($host));
 
-        $builder->layer($layer);
+        $builder->widget($widget);
     }
 }

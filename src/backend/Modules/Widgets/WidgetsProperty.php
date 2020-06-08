@@ -23,6 +23,8 @@ trait WidgetsProperty
      *   ...
      *
      * @return self
+     *
+     * @throws WidgetInvalid
      */
     public function widgets(array $widgets): self
     {
@@ -38,6 +40,8 @@ trait WidgetsProperty
      *   ...
      *
      * @return void
+     *
+     * @throws WidgetInvalid
      */
     public function setWidgets(array $widgets): void
     {
@@ -55,6 +59,8 @@ trait WidgetsProperty
      *   ...
      *
      * @return self
+     *
+     * @throws WidgetInvalid
      */
     public function widget(WidgetInterface $widget): self
     {
@@ -70,11 +76,15 @@ trait WidgetsProperty
      *   ...
      *
      * @return void
+     *
+     * @throws WidgetInvalid
      */
     public function addWidget(WidgetInterface $widget): void
     {
         if ($widget->isValid()) {
             $this->widgets[] = $widget;
+        } else {
+            throw new WidgetInvalid($widget);
         }
     }
 

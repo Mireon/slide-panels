@@ -4,7 +4,7 @@ namespace Mireon\SlidePanels;
 
 use Mireon\SlidePanels\Builder\Builder;
 use Mireon\SlidePanels\Builder\BuilderEvent;
-use Mireon\SlidePanels\Builder\BuilderEventException;
+use Mireon\SlidePanels\Builder\EventNotImplementsInterface;
 use Mireon\SlidePanels\Exceptions\CannotUnserialize;
 use Mireon\SlidePanels\Exceptions\ClassNotFound;
 use Mireon\SlidePanels\Exceptions\FileNotFound;
@@ -95,7 +95,7 @@ class SlidePanels implements Renderable
      *
      * @return self
      *
-     * @throws BuilderEventException
+     * @throws EventNotImplementsInterface
      * @throws ClassNotFound
      */
     public function add(string $class): self
@@ -107,7 +107,7 @@ class SlidePanels implements Renderable
         $class = new $class();
 
         if (!($class instanceof BuilderEvent)) {
-            throw new BuilderEventException($class);
+            throw new EventNotImplementsInterface($class);
         }
 
         $this->events[] = $class;

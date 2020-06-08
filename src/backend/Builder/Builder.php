@@ -3,14 +3,11 @@
 namespace Mireon\SlidePanels\Builder;
 
 use Mireon\SlidePanels\Exceptions\FileNotFound;
-use Mireon\SlidePanels\Modules\Layers\Exceptions\LayerIsUndefined;
-use Mireon\SlidePanels\Modules\Layers\Layer;
-use Mireon\SlidePanels\Modules\Layers\Layers;
-use Mireon\SlidePanels\Modules\Panels\Exceptions\PanelIsUndefined;
 use Mireon\SlidePanels\Modules\Panels\Panel;
 use Mireon\SlidePanels\Modules\Panels\Panels;
 use Mireon\SlidePanels\Modules\Stage\Stage;
-use Mireon\SlidePanels\Location\Location;
+use Mireon\SlidePanels\Modules\Widgets\WidgetInterface;
+use Mireon\SlidePanels\Modules\Widgets\WidgetInvalid;
 use Mireon\SlidePanels\Renderer\Renderable;
 
 /**
@@ -65,12 +62,12 @@ class Builder implements Renderable
      *
      * @return Panel
      *
-     * @throws PanelIsUndefined
+     * @throws PanelKeyUndefined
      */
     private function getPanel(string $key): Panel
     {
         if (empty($key)) {
-            throw new PanelIsUndefined();
+            throw new PanelKeyUndefined();
         }
 
         $panels = $this->getPanels();
@@ -83,57 +80,6 @@ class Builder implements Renderable
         }
 
         return $panels->getPanel($key);
-    }
-
-    /**
-     * ...
-     *
-     * @param Location $location
-     *   ...
-     *
-     * @return Layers
-     *
-     * @throws PanelIsUndefined
-     */
-    private function getLayers(Location $location): Layers
-    {
-        $panel = $this->getPanel($location->getPanel());
-
-        if (!$panel->hasLayers()) {
-            $panel->setLayers(new Layers());
-        }
-
-        return $panel->getLayers();
-    }
-
-    /**
-     * ...
-     *
-     * @param Location $location
-     *   ...
-     *
-     * @return Layer
-     *
-     * @throws LayerIsUndefined
-     * @throws PanelIsUndefined
-     */
-    private function getLayer(Location $location): Layer
-    {
-        if (!$location->hasLayer()) {
-            throw new LayerIsUndefined();
-        }
-
-        $layers = $this->getLayers($location);
-
-        if (!$layers->hasLayer($location->getLayer())) {
-            $layer = new Layer();
-            $layer->setKey($location->getLayer());
-            $layer->setLocation(clone $location);
-
-            $layers->addLayer($layer);
-        }
-
-        return $layers->getLayer($location->getLayer());
     }
 
     /**
@@ -154,16 +100,17 @@ class Builder implements Renderable
     /**
      * ...
      *
-     * @param Layer $layer
+     * @param WidgetInterface $widget
      *   ...
      *
      * @return self
      *
-     * @throws PanelIsUndefined
+     * @throws PanelKeyUndefined
+     * @throws WidgetInvalid
      */
-    public function layer(Layer $layer): self
+    public function widget(WidgetInterface $widget): self
     {
-        $this->getLayers($layer->getLocation())->addLayer($layer);
+        $this->getPanel($widget->getLocation()->getPanel())->addWidget($widget);
 
         return $this;
     }

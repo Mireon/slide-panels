@@ -75,7 +75,6 @@ export default class Extractor {
         switch (action) {
             case Props.action.SHOW:
             case Props.action.HIDE:
-            case Props.action.BACK:
                 return action;
             default:
                 return null;
@@ -87,38 +86,10 @@ export default class Extractor {
      *
      * @param element { Element }
      *   The DOM element.
-     * @param action { Props.action }
-     *   The action.
      *
      * @return Target
      */
-    public static target(element: Element, action: Props.action): Target {
-        if (action === Props.action.SHOW) {
-            return Extractor.targetFromAttribute(element);
-        }
-
-        if (action === Props.action.BACK) {
-            const target = Extractor.targetFromParents(element);
-
-            if (target !== null && target.hasLayers()) {
-                return target;
-            } else {
-                element.remove();
-            }
-        }
-
-        return null;
-    }
-
-    /**
-     * Extracts target from attribute of selected element.
-     *
-     * @param element { Element }
-     *   The DOM element.
-     *
-     * @return Target
-     */
-    public static targetFromAttribute(element: Element): Target {
+    public static target(element: Element): Target {
         const attribute = 'data-target';
 
         if (!element.hasAttribute(attribute)) {
@@ -132,31 +103,5 @@ export default class Extractor {
         }
 
         return new Target(target);
-    }
-
-    /**
-     * Extracts target from attribute of parent elements.
-     *
-     * @param element { Element }
-     *   The DOM element.
-     *
-     * @return Target
-     */
-    public static targetFromParents(element: Element): Target {
-        const panel = element.closest('[data-element="panel"]');
-        const layer = element.closest('[data-element="layer"]');
-        const target = [];
-
-        if (!panel) {
-            return null;
-        }
-
-        target.push(Extractor.key(panel));
-
-        if (layer) {
-            target.push(...Extractor.key(layer).split('.').slice(0, -1));
-        }
-
-        return new Target(target.join('.'));
     }
 }

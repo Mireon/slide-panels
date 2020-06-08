@@ -2,8 +2,6 @@
 
 namespace Mireon\SlidePanels\Location;
 
-use Mireon\SlidePanels\Methods\CreateMethod;
-
 /**
  * ...
  *
@@ -11,8 +9,6 @@ use Mireon\SlidePanels\Methods\CreateMethod;
  */
 class Location
 {
-    use CreateMethod;
-
     /**
      * ...
      *
@@ -21,24 +17,14 @@ class Location
     private ?string $panel = null;
 
     /**
-     * ...
-     *
-     * @var string|null $layer
-     */
-    private ?string $layer = null;
-
-    /**
      * The constructor.
      *
      * @param string|null $panel
      *   ...
-     * @param string|null $layer
-     *   ...
      */
-    public function __construct(?string $panel = null, ?string $layer = null)
+    public function __construct(?string $panel = null)
     {
         $this->setPanel($panel);
-        $this->setLayer($layer);
     }
 
     /**
@@ -46,14 +32,12 @@ class Location
      *
      * @param string|null $panel
      *   ...
-     * @param string|null $layer
-     *   ...
      *
      * @return static
      */
-    public static function create(?string $panel = null, ?string $layer = null): self
+    public static function create(?string $panel = null): self
     {
-        return new static($panel, $layer);
+        return new static($panel);
     }
 
     /**
@@ -107,69 +91,10 @@ class Location
     /**
      * ...
      *
-     * @param string|null $layer
-     *   ...
-     *
-     * @return self
-     */
-    public function layer(?string $layer): self
-    {
-        $this->setLayer($layer);
-
-        return $this;
-    }
-
-    /**
-     * ...
-     *
-     * @param string|null $layer
-     *   ...
-     *
-     * @return void
-     */
-    public function setLayer(?string $layer): void
-    {
-        $this->layer = $layer ?: null;
-    }
-
-    /**
-     * ...
-     *
-     * @return string|null
-     */
-    public function getLayer(): ?string
-    {
-        return $this->layer;
-    }
-
-    /**
-     * ...
-     *
-     * @return bool
-     */
-    public function hasLayer(): bool
-    {
-        return !is_null($this->layer);
-    }
-
-    /**
-     * ...
-     *
      * @return string
      */
     public function __toString(): string
     {
-        $result = '';
-
-        if ($this->hasPanel()) {
-            $result .= $this->getPanel();
-        }
-
-        if ($this->hasLayer()) {
-            $result .= '.';
-            $result .= $this->getLayer();
-        }
-
-        return $result;
+        return $this->getPanel() ?: '';
     }
 }

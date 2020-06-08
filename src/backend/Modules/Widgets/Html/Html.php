@@ -2,18 +2,15 @@
 
 namespace Mireon\SlidePanels\Modules\Widgets\Html;
 
-use Mireon\SlidePanels\Modules\Widgets\WidgetInterface;
-use Mireon\SlidePanels\Renderer\RenderToString;
+use Mireon\SlidePanels\Modules\Widgets\Widget;
 
 /**
  * ...
  *
  * @package Mireon\SlidePanels\Modules\Widgets\Html
  */
-class Html implements WidgetInterface
+class Html extends Widget
 {
-    use RenderToString;
-
     /**
      * ...
      *
