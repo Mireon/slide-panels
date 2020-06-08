@@ -19,12 +19,12 @@ trait TextProperty
     /**
      * ...
      *
-     * @param string $text
+     * @param string|null $text
      *   ...
      *
      * @return self
      */
-    public function text(string $text): self
+    public function text(?string $text): self
     {
         $this->setText($text);
 
@@ -34,12 +34,12 @@ trait TextProperty
     /**
      * ...
      *
-     * @param string $text
+     * @param string|null $text
      *   ...
      *
      * @return void
      */
-    public function setText(string $text): void
+    public function setText(?string $text): void
     {
         $this->text = $text ?: null;
     }

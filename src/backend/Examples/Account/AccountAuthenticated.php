@@ -43,7 +43,7 @@ class AccountAuthenticated implements BuilderEvent
             ->location(Location::create()->panel(Account::KEY))
             ->widget(Menu::create()
                 ->item(Item::create()->text('Profile')->url("$host/profile?$query"))
-                ->item(Lever::create()->target(Location::create()->panel('account')->layer('root'))->text('Favorite'))
+                ->item(Lever::create()->text('Favorite')->target('account', 'favorite'))
                 ->item(Item::create()->text('Settings')->url("$host/settings?$query"))
                 ->item(Item::create()->text('Logout')->url($host))
             );

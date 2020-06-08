@@ -15,7 +15,6 @@
     &:first-child {
       border-top: 1px solid #f1f1f1;
     }
-
   }
 
   &__icon {
@@ -28,6 +27,7 @@
     font-size: 15px;
   }
 
+  .slide-panels__lever,
   &__link {
     display: block;
     margin: -7px -10px -8px -30px;

@@ -28,24 +28,43 @@ class Location
     private ?string $layer = null;
 
     /**
+     * The constructor.
+     *
+     * @param string|null $panel
+     *   ...
+     * @param string|null $layer
+     *   ...
+     */
+    public function __construct(?string $panel = null, ?string $layer = null)
+    {
+        $this->setPanel($panel);
+        $this->setLayer($layer);
+    }
+
+    /**
      * Creates an instance of this class.
+     *
+     * @param string|null $panel
+     *   ...
+     * @param string|null $layer
+     *   ...
      *
      * @return static
      */
-    public static function create(): self
+    public static function create(?string $panel = null, ?string $layer = null): self
     {
-        return new static();
+        return new static($panel, $layer);
     }
 
     /**
      * ...
      *
-     * @param string $panel
+     * @param string|null $panel
      *   ...
      *
      * @return self
      */
-    public function panel(string $panel): self
+    public function panel(?string $panel): self
     {
         $this->setPanel($panel);
 
@@ -55,12 +74,12 @@ class Location
     /**
      * ...
      *
-     * @param string $panel
+     * @param string|null $panel
      *   ...
      *
      * @return void
      */
-    public function setPanel(string $panel): void
+    public function setPanel(?string $panel): void
     {
         $this->panel = $panel ?: null;
     }
@@ -88,12 +107,12 @@ class Location
     /**
      * ...
      *
-     * @param string $layer
+     * @param string|null $layer
      *   ...
      *
      * @return self
      */
-    public function layer(string $layer): self
+    public function layer(?string $layer): self
     {
         $this->setLayer($layer);
 
@@ -103,12 +122,12 @@ class Location
     /**
      * ...
      *
-     * @param string $layer
+     * @param string|null $layer
      *   ...
      *
      * @return void
      */
-    public function setLayer(string $layer): void
+    public function setLayer(?string $layer): void
     {
         $this->layer = $layer ?: null;
     }

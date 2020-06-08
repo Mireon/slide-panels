@@ -27,26 +27,51 @@ class Lever implements ItemInterface
     private ?Location $target = null;
 
     /**
+     * The constructor.
+     *
+     * @param string|null $text
+     *   ...
+     * @param string|null $panel
+     *   ...
+     * @param string|null $layer
+     *   ...
+     */
+    public function __construct(?string $text = null, ?string $panel = null, ?string $layer = null)
+    {
+        $this->setText($text);
+        $this->setTarget($panel, $layer);
+    }
+
+    /**
      * Creates an instance of this class.
      *
-     * @return static
+     * @param string|null $text
+     *   ...
+     * @param string|null $panel
+     *   ...
+     * @param string|null $layer
+     *   ...
+     *
+     * @return self
      */
-    public static function create(): self
+    public static function create(?string $text = null, ?string $panel = null, ?string $layer = null): self
     {
-        return new static();
+        return new static($text, $panel, $layer);
     }
 
     /**
      * ...
      *
-     * @param Location $target
+     * @param string $panel
+     *   ...
+     * @param string $layer
      *   ...
      *
      * @return self
      */
-    public function target(Location $target): self
+    public function target(string $panel, ?string $layer = null): self
     {
-        $this->setTarget($target);
+        $this->setTarget($panel, $layer);
 
         return $this;
     }
@@ -54,14 +79,16 @@ class Lever implements ItemInterface
     /**
      * ...
      *
-     * @param Location $target
+     * @param string|null $panel
+     *   ...
+     * @param string|null $layer
      *   ...
      *
      * @return void
      */
-    public function setTarget(Location $target): void
+    public function setTarget(?string $panel, ?string $layer = null): void
     {
-        $this->target = $target ?: null;
+        $this->target = new Location($panel, $layer);
     }
 
     /**
