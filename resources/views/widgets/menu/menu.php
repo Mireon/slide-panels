@@ -19,7 +19,7 @@ use Mireon\SlidePanels\Widgets\Menu\Menu;
         <ul class="slide-panels__menu__list">
             <?php foreach ($menu->getItems() as $item): ?>
                 <li class="slide-panels__menu__item">
-                    <?= $item; ?>
+                    <?= $item->render(); ?>
                 </li>
             <?php endforeach; ?>
         </ul>

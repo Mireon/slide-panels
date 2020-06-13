@@ -2,7 +2,6 @@
 
 namespace Mireon\SlidePanels\Levers;
 
-use Mireon\SlidePanels\Renderer\Renderable;
 use Mireon\SlidePanels\Renderer\RendererInterface;
 use Mireon\SlidePanels\Renderer\RendererProperty;
 use Mireon\SlidePanels\Renderer\RenderToString;
@@ -13,7 +12,7 @@ use Mireon\SlidePanels\Widgets\Menu\ItemInterface;
  * 
  * @package Mireon\SlidePanels\Levers
  */
-class Lever implements Renderable, ItemInterface
+class Lever implements ItemInterface
 {
     use RenderToString;
     use RendererProperty;
