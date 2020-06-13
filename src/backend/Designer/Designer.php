@@ -3,10 +3,9 @@
 namespace Mireon\SlidePanels\Designer;
 
 use Exception;
-use InvalidArgumentException;
-use Mireon\SlidePanels\Modules\Panels\Panel;
-use Mireon\SlidePanels\Modules\Panels\Panels;
-use Mireon\SlidePanels\Modules\Stage\Stage;
+use Mireon\SlidePanels\Panels\Panel;
+use Mireon\SlidePanels\Panels\Panels;
+use Mireon\SlidePanels\Stage\Stage;
 use Mireon\SlidePanels\Renderer\Renderable;
 
 /**
@@ -113,7 +112,7 @@ class Designer implements Renderable
                 ');
             }
         } else {
-            throw new InvalidArgumentException('The factory entity is invalid.');
+            throw new Exception('The factory entity is invalid.');
         }
 
         $this->factories[get_class($factory)] = $factory;

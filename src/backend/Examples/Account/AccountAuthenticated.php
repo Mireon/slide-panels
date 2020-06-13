@@ -6,9 +6,9 @@ use Exception;
 use Mireon\SlidePanels\Designer\Designer;
 use Mireon\SlidePanels\Designer\FactoryInterface;
 use Mireon\SlidePanels\Examples\Catalog\Catalog;
-use Mireon\SlidePanels\Modules\Levers\Lever;
-use Mireon\SlidePanels\Modules\Widgets\Menu\Link;
-use Mireon\SlidePanels\Modules\Widgets\Menu\Menu;
+use Mireon\SlidePanels\Levers\Lever;
+use Mireon\SlidePanels\Widgets\Menu\Link;
+use Mireon\SlidePanels\Widgets\Menu\Menu;
 
 /**
  * ...
@@ -35,7 +35,8 @@ class AccountAuthenticated implements FactoryInterface
         $host = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'];
         $query = 'user[name]=User';
 
-        $designer->panel(Account::KEY)
+        $designer
+            ->panel(Account::KEY)
             ->widget(Menu::create()
                 ->item(Link::create('Profile', "$host/profile?$query"))
                 ->item(Link::create('Settings', "$host/settings?$query"))

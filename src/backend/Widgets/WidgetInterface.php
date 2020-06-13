@@ -1,13 +1,13 @@
 <?php
 
-namespace Mireon\SlidePanels\Modules\Widgets;
+namespace Mireon\SlidePanels\Widgets;
 
 use Mireon\SlidePanels\Renderer\Renderable;
 
 /**
  * ...
  *
- * @package Mireon\SlidePanels\Modules\Widgets
+ * @package Mireon\SlidePanels\Widgets
  */
 interface WidgetInterface extends Renderable
 {

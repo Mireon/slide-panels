@@ -1,11 +1,11 @@
 <?php
 
-namespace Mireon\SlidePanels\Modules\Widgets\Menu;
+namespace Mireon\SlidePanels\Widgets\Menu;
 
 /**
  * ...
  *
- * @package Mireon\SlidePanels\Modules\Widgets\Menu
+ * @package Mireon\SlidePanels\Widgets\Menu
  */
 interface ItemInterface
 {

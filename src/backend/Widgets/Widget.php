@@ -1,13 +1,13 @@
 <?php
 
-namespace Mireon\SlidePanels\Modules\Widgets;
+namespace Mireon\SlidePanels\Widgets;
 
 use Mireon\SlidePanels\Renderer\RenderToString;
 
 /**
  * ...
  *
- * @package Mireon\SlidePanels\Modules\Widgets
+ * @package Mireon\SlidePanels\Widgets
  */
 abstract class Widget implements WidgetInterface
 {

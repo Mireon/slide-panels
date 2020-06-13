@@ -1,16 +1,16 @@
 <?php
 
-namespace Mireon\SlidePanels\Modules\Widgets\Menu;
+namespace Mireon\SlidePanels\Widgets\Menu;
 
 use Exception;
-use Mireon\SlidePanels\Modules\Widgets\Header\HeaderProperty;
-use Mireon\SlidePanels\Modules\Widgets\Widget;
+use Mireon\SlidePanels\Widgets\Header\HeaderProperty;
+use Mireon\SlidePanels\Widgets\Widget;
 use Mireon\SlidePanels\Renderer\Renderer;
 
 /**
  * ...
  *
- * @package Mireon\SlidePanels\Modules\Widgets\Menu
+ * @package Mireon\SlidePanels\Widgets\Menu
  */
 class Menu extends Widget
 {

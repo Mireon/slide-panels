@@ -5,10 +5,10 @@ namespace Mireon\SlidePanels\Examples\Catalog;
 use Exception;
 use Mireon\SlidePanels\Designer\Designer;
 use Mireon\SlidePanels\Designer\FactoryInterface;
-use Mireon\SlidePanels\Modules\Panels\Panel;
-use Mireon\SlidePanels\Modules\Widgets\Header\Header;
-use Mireon\SlidePanels\Modules\Widgets\Menu\Link;
-use Mireon\SlidePanels\Modules\Widgets\Menu\Menu;
+use Mireon\SlidePanels\Panels\Panel;
+use Mireon\SlidePanels\Widgets\Header\Header;
+use Mireon\SlidePanels\Widgets\Menu\Link;
+use Mireon\SlidePanels\Widgets\Menu\Menu;
 
 /**
  * ...
@@ -39,7 +39,8 @@ class Catalog implements FactoryInterface
     {
         $url = 'http://example.com/catalog';
 
-        $designer->panel(self::KEY)
+        $designer
+            ->panel(self::KEY)
             ->side(Panel::LEFT)
             ->header(Header::create()
                 ->size(Header::BIG)
@@ -47,10 +48,10 @@ class Catalog implements FactoryInterface
                 ->text('Catalog')
             )
             ->widget(Menu::create()
-                ->item(Link::create()->text('Electronics')->url("$url/electronics"))
-                ->item(Link::create()->text('Construction & Repair')->url("$url/construction-&-tools"))
-                ->item(Link::create()->text('Home & Garden')->url("$url/construction-&-tools"))
-                ->item(Link::create()->text('Health & Beauty')->url("$url/health-&-beauty"))
+                ->item(Link::create('Electronics', "$url/electronics"))
+                ->item(Link::create('Construction & Repair', "$url/construction-&-tools"))
+                ->item(Link::create('Home & Garden', "$url/construction-&-tools"))
+                ->item(Link::create('Health & Beauty', "$url/health-&-beauty"))
             );
     }
 }

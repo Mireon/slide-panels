@@ -1,22 +1,55 @@
 <?php
 
-namespace Mireon\SlidePanels\Modules\Widgets;
+namespace Mireon\SlidePanels\Widgets;
 
 use Exception;
+use Mireon\SlidePanels\Renderer\Renderable;
+use Mireon\SlidePanels\Renderer\Renderer;
+use Mireon\SlidePanels\Renderer\RenderToString;
 
 /**
  * ...
  *
- * @package Mireon\SlidePanels\Modules\Widgets
+ * @package Mireon\SlidePanels\Widgets
  */
-trait WidgetsProperty
+class Widgets implements Renderable
 {
+    use RenderToString;
+
     /**
      * ...
      *
      * @var WidgetInterface[] $widgets
      */
     private array $widgets = [];
+
+    /**
+     * The constructor.
+     *
+     * @param WidgetInterface[] $widgets
+     *   ...
+     *
+     * @throws Exception
+     */
+    public function __construct(array $widgets = [])
+    {
+        $this->setWidgets($widgets);
+    }
+
+    /**
+     * ...
+     *
+     * @param array $widgets
+     *   ...
+     *
+     * @return self
+     *
+     * @throws Exception
+     */
+    public static function create(array $widgets = []): self
+    {
+        return new self($widgets);
+    }
 
     /**
      * ...
@@ -112,5 +145,15 @@ trait WidgetsProperty
     public function hasWidgets(): bool
     {
         return !empty($this->widgets);
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @throws Exception
+     */
+    public function render(): string
+    {
+        return Renderer::view('widgets/widgets', ['widgets' => $this]);
     }
 }

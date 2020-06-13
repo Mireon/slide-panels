@@ -5,8 +5,9 @@ namespace Mireon\SlidePanels\Examples\Catalog;
 use Exception;
 use Mireon\SlidePanels\Designer\Designer;
 use Mireon\SlidePanels\Designer\FactoryInterface;
-use Mireon\SlidePanels\Modules\Widgets\Menu\Link;
-use Mireon\SlidePanels\Modules\Widgets\Menu\Menu;
+use Mireon\SlidePanels\Levers\Lever;
+use Mireon\SlidePanels\Widgets\Menu\Link;
+use Mireon\SlidePanels\Widgets\Menu\Menu;
 
 /**
  * ...
@@ -33,9 +34,10 @@ class CatalogExtra implements FactoryInterface
         $url = 'http://example.com/catalog';
 
         $menu = Menu::create()
-        ->item(Link::create()->text('Sport & Tourism')->url("$url/sport&-tourism"))
-        ->item(Link::create()->text('Other')->url("$url/other"));
+            ->item(Link::create('Sport & Tourism', "$url/sport&-tourism"))
+            ->item(Link::create('Other', "$url/other"))
+            ->item(Lever::hide('Close'));
 
-        $designer->panel(Catalog::KEY)->addWidget($menu);
+        $designer->panel(Catalog::KEY)->widget($menu);
     }
 }

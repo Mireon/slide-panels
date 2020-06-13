@@ -1,13 +1,13 @@
 <?php
 
-namespace Mireon\SlidePanels\Modules\Widgets\Html;
+namespace Mireon\SlidePanels\Widgets\Html;
 
-use Mireon\SlidePanels\Modules\Widgets\Widget;
+use Mireon\SlidePanels\Widgets\Widget;
 
 /**
  * ...
  *
- * @package Mireon\SlidePanels\Modules\Widgets\Html
+ * @package Mireon\SlidePanels\Widgets\Html
  */
 class Html extends Widget
 {

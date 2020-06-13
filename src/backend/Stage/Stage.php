@@ -1,9 +1,9 @@
 <?php
 
-namespace Mireon\SlidePanels\Modules\Stage;
+namespace Mireon\SlidePanels\Stage;
 
 use Exception;
-use Mireon\SlidePanels\Modules\Panels\Panels;
+use Mireon\SlidePanels\Panels\Panels;
 use Mireon\SlidePanels\Renderer\Renderable;
 use Mireon\SlidePanels\Renderer\RenderToString;
 use Mireon\SlidePanels\Renderer\Renderer;
@@ -11,7 +11,7 @@ use Mireon\SlidePanels\Renderer\Renderer;
 /**
  * ...
  *
- * @package Mireon\SlidePanels\Modules\Stage
+ * @package Mireon\SlidePanels\Stage
  */
 class Stage implements Renderable
 {

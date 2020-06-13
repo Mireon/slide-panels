@@ -5,8 +5,8 @@ namespace Mireon\SlidePanels\Examples\Account;
 use Exception;
 use Mireon\SlidePanels\Designer\Designer;
 use Mireon\SlidePanels\Designer\FactoryInterface;
-use Mireon\SlidePanels\Modules\Panels\Panel;
-use Mireon\SlidePanels\Modules\Widgets\Header\Header;
+use Mireon\SlidePanels\Panels\Panel;
+use Mireon\SlidePanels\Widgets\Header\Header;
 
 /**
  * ...
