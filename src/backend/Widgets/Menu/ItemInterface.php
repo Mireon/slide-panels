@@ -2,24 +2,12 @@
 
 namespace Mireon\SlidePanels\Widgets\Menu;
 
+use Mireon\SlidePanels\Interfaces\Validated;
+use Mireon\SlidePanels\Renderer\Renderable;
+
 /**
  * ...
  *
  * @package Mireon\SlidePanels\Widgets\Menu
  */
-interface ItemInterface
-{
-    /**
-     * ...
-     *
-     * @return bool
-     */
-    public function isValid(): bool;
-
-    /**
-     * ...
-     *
-     * @return string
-     */
-    public function render(): string;
-}
+interface ItemInterface extends Renderable, Validated {}

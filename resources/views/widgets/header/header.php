@@ -1,6 +1,6 @@
 <?php
 
-use Mireon\SlidePanels\Modules\Widgets\Header\Header;
+use Mireon\SlidePanels\Widgets\Header\Header;
 
 /**
  * ...

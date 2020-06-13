@@ -6,8 +6,8 @@ use ArrayIterator;
 use Exception;
 use IteratorAggregate;
 use Mireon\SlidePanels\Renderer\Renderable;
-use Mireon\SlidePanels\Renderer\RenderToString;
 use Mireon\SlidePanels\Renderer\Renderer;
+use Mireon\SlidePanels\Renderer\RenderToString;
 use Traversable;
 
 /**
@@ -25,6 +25,70 @@ class Panels implements Renderable, IteratorAggregate
      * @var Panel[] $panels
      */
     private array $panels = [];
+
+    /**
+     * The constructor.
+     *
+     * @param Panel[] $panels
+     *   ...
+     *
+     * @throws Exception
+     */
+    public function __construct(array $panels = [])
+    {
+        $this->setPanels($panels);
+    }
+
+    /**
+     * ...
+     *
+     * @param array $panels
+     *   ...
+     *
+     * @return self
+     *
+     * @throws Exception
+     */
+    public static function create(array $panels = []): self
+    {
+        return new self($panels);
+    }
+
+    /**
+     * ...
+     *
+     * @param Panel[] $panels
+     *   ...
+     *
+     * @return self
+     *
+     * @throws Exception
+     */
+    public function panels(array $panels): self
+    {
+        $this->setPanels($panels);
+
+        return $this;
+    }
+
+    /**
+     * ...
+     *
+     * @param Panel[] $panels
+     *   ...
+     *
+     * @return void
+     *
+     * @throws Exception
+     */
+    public function setPanels(array $panels): void
+    {
+        $this->reset();
+
+        foreach ($panels as $panel) {
+            $this->addPanel($panel);
+        }
+    }
 
     /**
      * ...
@@ -87,6 +151,14 @@ class Panels implements Renderable, IteratorAggregate
     public function getIterator(): Traversable
     {
         return new ArrayIterator($this->panels);
+    }
+
+    /**
+     *
+     */
+    public function reset(): void
+    {
+        $this->panels = [];
     }
 
     /**

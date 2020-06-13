@@ -5,7 +5,7 @@ namespace Mireon\SlidePanels\Examples\Account;
 use Exception;
 use Mireon\SlidePanels\Designer\Designer;
 use Mireon\SlidePanels\Designer\FactoryInterface;
-use Mireon\SlidePanels\Widgets\Menu\Link;
+use Mireon\SlidePanels\Widgets\Menu\Item;
 use Mireon\SlidePanels\Widgets\Menu\Menu;
 
 /**
@@ -33,10 +33,10 @@ class AccountAnonymous implements FactoryInterface
         $host = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'];
         $query = 'user[name]=User';
 
-        $widget = Menu::create()
-            ->item(Link::create()->text('Login')->url("$host?$query"))
-            ->item(Link::create()->text('Register')->url("$host?$query"));
-
-        $designer->panel(Account::KEY)->widget($widget);
+        $designer
+            ->panel(Account::KEY)
+            ->widget(Menu::create()
+                ->item(Item::create('Login', "$host/login?$query"))
+                ->item(Item::create('Register', "$host/register?$query")));
     }
 }

@@ -80,7 +80,7 @@ class Widgets implements Renderable
      */
     public function setWidgets(array $widgets): void
     {
-        $this->widgets = [];
+        $this->reset();
 
         foreach ($widgets as $widget) {
             $this->addWidget($widget);
@@ -145,6 +145,16 @@ class Widgets implements Renderable
     public function hasWidgets(): bool
     {
         return !empty($this->widgets);
+    }
+
+    /**
+     * ...
+     *
+     * @return void
+     */
+    public function reset(): void
+    {
+        $this->widgets = [];
     }
 
     /**

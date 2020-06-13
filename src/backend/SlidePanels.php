@@ -21,19 +21,19 @@ class SlidePanels implements Renderable
      *
      * @var self|null $instance
      */
-    protected static ?self $instance = null;
+    private static ?self $instance = null;
 
     /**
      * ...
      *
      * @var Designer|null $designer
      */
-    protected ?Designer $designer = null;
+    private ?Designer $designer = null;
 
     /**
      * The constructor.
      */
-    protected function __construct() {
+    private function __construct() {
         $this->setDesigner(new Designer());
     }
 
@@ -42,7 +42,7 @@ class SlidePanels implements Renderable
      *
      * @return void
      */
-    protected function __clone() {}
+    private function __clone() {}
 
     /**
      * The magic method wakeup.
@@ -88,10 +88,17 @@ class SlidePanels implements Renderable
     /**
      * ...
      *
+     * @param Designer|null $designer
+     *   ...
+     *
      * @return Designer
      */
-    public static function designer(): Designer
+    public static function designer(?Designer $designer = null): Designer
     {
+        if (!is_null($designer)) {
+            static::instance()->setDesigner($designer);
+        }
+
         return static::instance()->getDesigner();
     }
 
@@ -111,9 +118,9 @@ class SlidePanels implements Renderable
     /**
      * ...
      *
-     * @return Designer
+     * @return Designer|null
      */
-    public function getDesigner(): Designer
+    public function getDesigner(): ?Designer
     {
         return $this->designer;
     }

@@ -11,7 +11,7 @@ use Mireon\SlidePanels\Renderer\RenderToString;
  *
  * @package Mireon\SlidePanels\Widgets\Menu
  */
-class Link implements ItemInterface
+class Item implements ItemInterface
 {
     use RenderToString;
 
@@ -48,17 +48,9 @@ class Link implements ItemInterface
      */
     public function __construct(?string $text = null, ?string $url = null, ?string $icon = null)
     {
-        if (!empty($text)) {
-            $this->setText($text);
-        }
-
-        if (!empty($url)) {
-            $this->setUrl($url);
-        }
-
-        if (!empty($icon)) {
-            $this->setIcon($icon);
-        }
+        $this->setText($text);
+        $this->setUrl($url);
+        $this->setIcon($icon);
     }
 
     /**
@@ -239,6 +231,6 @@ class Link implements ItemInterface
      */
     public function render(): string
     {
-        return Renderer::view('widgets/menu/link', ['link' => $this]);
+        return Renderer::view('widgets/menu/item', ['item' => $this]);
     }
 }

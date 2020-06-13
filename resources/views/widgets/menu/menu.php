@@ -1,14 +1,14 @@
 <?php
 
-use Mireon\SlidePanels\Modules\Widgets\Menu\Link;
-use Mireon\SlidePanels\Modules\Widgets\Menu\Menu;
+use Mireon\SlidePanels\Widgets\Menu\ItemInterface;
+use Mireon\SlidePanels\Widgets\Menu\Menu;
 
 /**
  * ...
  *
  * @var Menu $menu
  *   ...
- * @var Link $item
+ * @var ItemInterface $item
  *   ...
  */
 ?>

@@ -6,14 +6,13 @@ use Exception;
 use Mireon\SlidePanels\Panels\Panel;
 use Mireon\SlidePanels\Panels\Panels;
 use Mireon\SlidePanels\Stage\Stage;
-use Mireon\SlidePanels\Renderer\Renderable;
 
 /**
  * ...
  *
  * @package Mireon\SlidePanels\Designer
  */
-class Designer implements Renderable
+class Designer
 {
     /**
      * The list of builder events.
@@ -47,6 +46,8 @@ class Designer implements Renderable
      * ...
      *
      * @return Panels
+     *
+     * @throws Exception
      */
     private function getOrCreatePanels(): Panels
     {
@@ -87,7 +88,7 @@ class Designer implements Renderable
     /**
      * ...
      *
-     * @param string $factory
+     * @param string|FactoryInterface $factory
      *   ...
      *
      * @return self
@@ -107,7 +108,7 @@ class Designer implements Renderable
         if (is_object($factory)) {
             if (!($factory instanceof FactoryInterface)) {
                 throw new Exception('
-                    The class "' . get_class($factory) . '" doesn\'t implement 
+                    The class "' . get_class($factory) . '" does not implement
                     the "' . FactoryInterface::class . '" interface.
                 ');
             }

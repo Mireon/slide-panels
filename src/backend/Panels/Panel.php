@@ -3,21 +3,18 @@
 namespace Mireon\SlidePanels\Panels;
 
 use Exception;
-use Mireon\SlidePanels\Widgets\Header\HeaderProperty;
+use Mireon\SlidePanels\Renderer\Renderer;
+use Mireon\SlidePanels\Renderer\RenderToString;
 use Mireon\SlidePanels\Widgets\WidgetInterface;
 use Mireon\SlidePanels\Widgets\Widgets;
-use Mireon\SlidePanels\Renderer\Renderable;
-use Mireon\SlidePanels\Renderer\RenderToString;
-use Mireon\SlidePanels\Renderer\Renderer;
 
 /**
  * ...
  *
  * @package Mireon\SlidePanels\Panels
  */
-class Panel implements Renderable
+class Panel
 {
-    use HeaderProperty;
     use RenderToString;
 
     /**
@@ -107,6 +104,7 @@ class Panel implements Renderable
     {
         $key = trim($key);
         $key = htmlspecialchars($key, ENT_QUOTES, 'UTF-8');
+        $key = str_replace(' ', '-', $key);
 
         $this->key = $key ?: null;
     }

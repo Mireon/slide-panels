@@ -7,7 +7,7 @@ use Mireon\SlidePanels\Designer\Designer;
 use Mireon\SlidePanels\Designer\FactoryInterface;
 use Mireon\SlidePanels\Examples\Catalog\Catalog;
 use Mireon\SlidePanels\Levers\Lever;
-use Mireon\SlidePanels\Widgets\Menu\Link;
+use Mireon\SlidePanels\Widgets\Menu\Item;
 use Mireon\SlidePanels\Widgets\Menu\Menu;
 
 /**
@@ -38,10 +38,10 @@ class AccountAuthenticated implements FactoryInterface
         $designer
             ->panel(Account::KEY)
             ->widget(Menu::create()
-                ->item(Link::create('Profile', "$host/profile?$query"))
-                ->item(Link::create('Settings', "$host/settings?$query"))
+                ->item(Item::create('Profile', "$host/profile?$query"))
+                ->item(Item::create('Settings', "$host/settings?$query"))
                 ->item(Lever::create('Catalog', Catalog::KEY))
-                ->item(Link::create('Logout', $host))
+                ->item(Item::create('Logout', $host))
         );
     }
 }

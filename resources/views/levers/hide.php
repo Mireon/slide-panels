@@ -1,6 +1,6 @@
 <?php
 
-use Mireon\SlidePanels\Modules\Levers\Lever;
+use Mireon\SlidePanels\Levers\Lever;
 
 /**
  * ...
@@ -10,6 +10,6 @@ use Mireon\SlidePanels\Modules\Levers\Lever;
  */
 ?>
 
-<a href="#" class="slide-panels__lever" data-element="lever" data-action="hide">
-    <?= $lever->getText(); ?>
+<a href="#" class="slide-panels__lever slide-panels__lever-hide" data-element="lever" data-action="hide">
+    <?= $lever->hasText() ? $lever->getText() : ''; ?>
 </a>

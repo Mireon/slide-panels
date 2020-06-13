@@ -2,6 +2,7 @@
 
 namespace Mireon\SlidePanels\Widgets;
 
+use Mireon\SlidePanels\Interfaces\Validated;
 use Mireon\SlidePanels\Renderer\Renderable;
 
 /**
@@ -9,7 +10,7 @@ use Mireon\SlidePanels\Renderer\Renderable;
  *
  * @package Mireon\SlidePanels\Widgets
  */
-interface WidgetInterface extends Renderable
+interface WidgetInterface extends Renderable, Validated
 {
     /**
      * ...
@@ -17,11 +18,4 @@ interface WidgetInterface extends Renderable
      * @return int
      */
     public function getWeight(): int;
-
-    /**
-     * ...
-     *
-     * @return bool
-     */
-    public function isValid(): bool;
 }

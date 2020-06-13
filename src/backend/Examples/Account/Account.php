@@ -35,9 +35,10 @@ class Account implements FactoryInterface
      */
     public function make(Designer $designer): void
     {
-        $designer->panel(self::KEY)
+        $designer
+            ->panel(self::KEY)
             ->side(Panel::RIGHT)
-            ->header(Header::create()
+            ->widget(Header::create()
                 ->size(Header::BIG)
                 ->icon('fa fa-user')
                 ->text('Account')

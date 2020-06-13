@@ -3,9 +3,9 @@
 namespace Mireon\SlidePanels\Levers;
 
 use Exception;
-use Mireon\SlidePanels\Widgets\Menu\ItemInterface;
 use Mireon\SlidePanels\Renderer\Renderer;
 use Mireon\SlidePanels\Renderer\RenderToString;
+use Mireon\SlidePanels\Widgets\Menu\ItemInterface;
 
 /**
  * ... 

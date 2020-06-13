@@ -3,8 +3,8 @@
 namespace Mireon\SlidePanels\Widgets\Header;
 
 use Exception;
-use Mireon\SlidePanels\Widgets\Widget;
 use Mireon\SlidePanels\Renderer\Renderer;
+use Mireon\SlidePanels\Widgets\Widget;
 
 /**
  * ...

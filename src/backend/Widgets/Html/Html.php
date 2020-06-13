@@ -26,9 +26,7 @@ class Html extends Widget
      */
     public function __construct(?string $html = null)
     {
-        if (!empty($html)) {
-            $this->setHtml($html);
-        }
+        $this->setHtml($html);
     }
 
     /**
@@ -47,12 +45,12 @@ class Html extends Widget
     /**
      * ...
      *
-     * @param string $html
+     * @param string|null $html
      *   ...
      *
      * @return self
      */
-    public function html(string $html): self
+    public function html(?string $html): self
     {
         $this->setHtml($html);
 
@@ -62,12 +60,12 @@ class Html extends Widget
     /**
      * ...
      *
-     * @param string $html
+     * @param string|null $html
      *   ...
      *
      * @return void
      */
-    public function setHtml(string $html): void
+    public function setHtml(?string $html): void
     {
         $this->html = $html ?: null;
     }
@@ -105,6 +103,6 @@ class Html extends Widget
      */
     public function render(): string
     {
-        return $this->hasHtml() ? $this->getHtml() : '';
+        return $this->getHtml() ?: '';
     }
 }

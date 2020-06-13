@@ -18,7 +18,7 @@ abstract class Widget implements WidgetInterface
      *
      * @var int $weight
      */
-    protected int $weight = 0;
+    private int $weight = 0;
 
     /**
      * ...

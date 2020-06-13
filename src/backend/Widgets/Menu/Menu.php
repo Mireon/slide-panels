@@ -3,9 +3,9 @@
 namespace Mireon\SlidePanels\Widgets\Menu;
 
 use Exception;
+use Mireon\SlidePanels\Renderer\Renderer;
 use Mireon\SlidePanels\Widgets\Header\HeaderProperty;
 use Mireon\SlidePanels\Widgets\Widget;
-use Mireon\SlidePanels\Renderer\Renderer;
 
 /**
  * ...
@@ -31,11 +31,9 @@ class Menu extends Widget
      *
      * @throws Exception
      */
-    public function __construct(?array $items = null)
+    public function __construct(?array $items = [])
     {
-        if (!empty($items)) {
-            $this->setItems($items);
-        }
+        $this->setItems($items);
     }
 
     /**
@@ -48,7 +46,7 @@ class Menu extends Widget
      *
      * @throws Exception
      */
-    public static function create(?array $items = null): self
+    public static function create(?array $items = []): self
     {
         return new self($items);
     }
@@ -82,7 +80,7 @@ class Menu extends Widget
      */
     public function setItems(array $items): void
     {
-        $this->items = [];
+        $this->reset();
 
         foreach ($items as $item) {
             $this->addItem($item);
@@ -151,6 +149,16 @@ class Menu extends Widget
     public function isValid(): bool
     {
         return $this->hasItems();
+    }
+
+    /**
+     * ...
+     *
+     * @return void
+     */
+    public function reset(): void
+    {
+        $this->items = [];
     }
 
     /**

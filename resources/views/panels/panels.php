@@ -1,7 +1,7 @@
 <?php
 
-use Mireon\SlidePanels\Modules\Panels\Panel;
-use Mireon\SlidePanels\Modules\Panels\Panels;
+use Mireon\SlidePanels\Panels\Panel;
+use Mireon\SlidePanels\Panels\Panels;
 
 /**
  * ...
