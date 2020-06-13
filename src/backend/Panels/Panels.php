@@ -6,7 +6,7 @@ use ArrayIterator;
 use Exception;
 use IteratorAggregate;
 use Mireon\SlidePanels\Renderer\Renderable;
-use Mireon\SlidePanels\Renderer\Renderer;
+use Mireon\SlidePanels\Renderer\RendererDefault;
 use Mireon\SlidePanels\Renderer\RenderToString;
 use Traversable;
 
@@ -168,6 +168,6 @@ class Panels implements Renderable, IteratorAggregate
      */
     public function render(): string
     {
-        return Renderer::view('panels/panels', ['panels' => $this]);
+        return RendererDefault::view('panels/panels', ['panels' => $this]);
     }
 }

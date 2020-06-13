@@ -3,7 +3,7 @@
 namespace Mireon\SlidePanels\Panels;
 
 use Exception;
-use Mireon\SlidePanels\Renderer\Renderer;
+use Mireon\SlidePanels\Renderer\RendererDefault;
 use Mireon\SlidePanels\Renderer\RenderToString;
 use Mireon\SlidePanels\Widgets\WidgetInterface;
 use Mireon\SlidePanels\Widgets\Widgets;
@@ -271,6 +271,6 @@ class Panel
      */
     public function render(): string
     {
-        return Renderer::view('panels/panel', ['panel' => $this]);
+        return RendererDefault::view('panels/panel', ['panel' => $this]);
     }
 }

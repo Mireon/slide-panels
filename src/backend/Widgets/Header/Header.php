@@ -3,7 +3,7 @@
 namespace Mireon\SlidePanels\Widgets\Header;
 
 use Exception;
-use Mireon\SlidePanels\Renderer\Renderer;
+use Mireon\SlidePanels\Renderer\RendererDefault;
 use Mireon\SlidePanels\Widgets\Widget;
 
 /**
@@ -232,6 +232,6 @@ class Header extends Widget
      */
     public function render(): string
     {
-        return Renderer::view('widgets/header/header', ['header' => $this]);
+        return RendererDefault::view('widgets/header/header', ['header' => $this]);
     }
 }

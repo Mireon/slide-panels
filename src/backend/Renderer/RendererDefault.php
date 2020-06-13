@@ -10,7 +10,7 @@ use Mireon\SlidePanels\Helpers\Path;
  *
  * @package Mireon\SlidePanels\Renderer
  */
-class Renderer
+class RendererDefault
 {
     /**
      * ...

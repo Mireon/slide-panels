@@ -3,7 +3,7 @@
 namespace Mireon\SlidePanels\Widgets\Menu;
 
 use Exception;
-use Mireon\SlidePanels\Renderer\Renderer;
+use Mireon\SlidePanels\Renderer\RendererDefault;
 use Mireon\SlidePanels\Widgets\Header\HeaderProperty;
 use Mireon\SlidePanels\Widgets\Widget;
 
@@ -168,6 +168,6 @@ class Menu extends Widget
      */
     public function render(): string
     {
-        return Renderer::view('widgets/menu/menu', ['menu' => $this]);
+        return RendererDefault::view('widgets/menu/menu', ['menu' => $this]);
     }
 }

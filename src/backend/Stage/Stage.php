@@ -5,7 +5,7 @@ namespace Mireon\SlidePanels\Stage;
 use Exception;
 use Mireon\SlidePanels\Panels\Panels;
 use Mireon\SlidePanels\Renderer\Renderable;
-use Mireon\SlidePanels\Renderer\Renderer;
+use Mireon\SlidePanels\Renderer\RendererDefault;
 use Mireon\SlidePanels\Renderer\RenderToString;
 
 /**
@@ -64,6 +64,6 @@ class Stage implements Renderable
      */
     public function render(): string
     {
-        return Renderer::view('stage/stage', ['stage' => $this]);
+        return RendererDefault::view('stage/stage', ['stage' => $this]);
     }
 }

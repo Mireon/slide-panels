@@ -2,8 +2,9 @@
 
 namespace Mireon\SlidePanels\Levers;
 
-use Exception;
-use Mireon\SlidePanels\Renderer\Renderer;
+use Mireon\SlidePanels\Renderer\Renderable;
+use Mireon\SlidePanels\Renderer\RendererInterface;
+use Mireon\SlidePanels\Renderer\RendererProperty;
 use Mireon\SlidePanels\Renderer\RenderToString;
 use Mireon\SlidePanels\Widgets\Menu\ItemInterface;
 
@@ -12,9 +13,10 @@ use Mireon\SlidePanels\Widgets\Menu\ItemInterface;
  * 
  * @package Mireon\SlidePanels\Levers
  */
-class Lever implements ItemInterface
+class Lever implements Renderable, ItemInterface
 {
     use RenderToString;
+    use RendererProperty;
 
     /**
      * ...
@@ -25,6 +27,13 @@ class Lever implements ItemInterface
      * ...
      */
     public const HIDE = 'hide';
+
+    /**
+     * ...
+     *
+     * @var RendererInterface|null
+     */
+    private ?RendererInterface $renderer = null;
 
     /**
      * ...
@@ -59,6 +68,7 @@ class Lever implements ItemInterface
      */
     public function __construct(?string $text = null, ?string $panel = null, ?string $type = self::SHOW)
     {
+        $this->setRenderer(new LeverRenderer());
         $this->setText($text);
         $this->setPanel($panel);
         $this->setType($type);
@@ -74,11 +84,11 @@ class Lever implements ItemInterface
      * @param string|null $type
      *   ...
      *
-     * @return self
+     * @return static
      */
     public static function create(?string $text = null, ?string $panel = null, ?string $type = self::SHOW): self
     {
-        return new self($text, $panel, $type);
+        return new static($text, $panel, $type);
     }
 
     /**
@@ -89,11 +99,11 @@ class Lever implements ItemInterface
      * @param string|null $panel
      *   ...
      *
-     * @return self
+     * @return static
      */
     public static function show(?string $text = null, ?string $panel = null): self
     {
-        return new self($text, $panel);
+        return new static($text, $panel);
     }
 
     /**
@@ -102,11 +112,11 @@ class Lever implements ItemInterface
      * @param string|null $text
      *   ...
      *
-     * @return self
+     * @return static
      */
     public static function hide(?string $text = null): self
     {
-        return new self($text, null, self::HIDE);
+        return new static($text, null, self::HIDE);
     }
 
     /**
@@ -261,15 +271,5 @@ class Lever implements ItemInterface
             default:
                 return false;
         }
-    }
-
-    /**
-     * @inheritDoc
-     *
-     * @throws Exception
-     */
-    public function render(): string
-    {
-        return Renderer::view("levers/{$this->getType()}", ['lever' => $this]);
     }
 }
