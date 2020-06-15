@@ -6,19 +6,19 @@ use Exception;
 use Mireon\SlidePanels\Helpers\Path;
 
 /**
- * ...
+ * The default renderer.
  *
  * @package Mireon\SlidePanels\Renderer
  */
-class RendererDefault
+class Renderer
 {
     /**
-     * ...
+     * Renders a view.
      *
      * @param string $view
-     *   ...
+     *   A view name.
      * @param array $params
-     *   ...
+     *   An array of params.
      *
      * @return string
      *

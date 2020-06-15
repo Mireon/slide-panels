@@ -13,8 +13,10 @@ use Mireon\SlidePanels\Panels\Panels;
  */
 ?>
 
-<div class="slide-panels__panels">
-    <?php foreach ($panels as $panel): ?>
-        <?= $panel; ?>
-    <?php endforeach; ?>
-</div>
+<?php if ($panels->hasPanels()): ?>
+    <div class="slide-panels__panels">
+        <?php foreach ($panels as $panel): ?>
+            <?= $panel; ?>
+        <?php endforeach; ?>
+    </div>
+<?php endif; ?>

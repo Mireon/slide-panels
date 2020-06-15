@@ -5,11 +5,11 @@ namespace Mireon\SlidePanels\Stage;
 use Exception;
 use Mireon\SlidePanels\Panels\Panels;
 use Mireon\SlidePanels\Renderer\Renderable;
-use Mireon\SlidePanels\Renderer\RendererDefault;
+use Mireon\SlidePanels\Renderer\Renderer;
 use Mireon\SlidePanels\Renderer\RenderToString;
 
 /**
- * ...
+ * The stage.
  *
  * @package Mireon\SlidePanels\Stage
  */
@@ -18,17 +18,27 @@ class Stage implements Renderable
     use RenderToString;
 
     /**
-     * ...
+     * The panels container.
      *
-     * @var Panels|null $panels
+     * @var Panels|null
      */
     private ?Panels $panels = null;
 
     /**
-     * ...
+     * Creates the stage.
+     *
+     * @return static
+     */
+    public static function create(): self
+    {
+        return new static();
+    }
+
+    /**
+     * The panels container.
      *
      * @param Panels $panels
-     *   ...
+     *   A panels container.
      *
      * @return void
      */
@@ -38,7 +48,7 @@ class Stage implements Renderable
     }
 
     /**
-     * ...
+     * Returns the panels container.
      *
      * @return Panels|null
      */
@@ -48,7 +58,7 @@ class Stage implements Renderable
     }
 
     /**
-     * ...
+     * Checks if panels exists.
      *
      * @return bool
      */
@@ -64,6 +74,6 @@ class Stage implements Renderable
      */
     public function render(): string
     {
-        return RendererDefault::view('stage/stage', ['stage' => $this]);
+        return Renderer::view('stage/stage', ['stage' => $this]);
     }
 }

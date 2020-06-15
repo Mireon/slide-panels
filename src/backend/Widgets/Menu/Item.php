@@ -3,7 +3,7 @@
 namespace Mireon\SlidePanels\Widgets\Menu;
 
 use Exception;
-use Mireon\SlidePanels\Renderer\RendererDefault;
+use Mireon\SlidePanels\Renderer\Renderer;
 use Mireon\SlidePanels\Renderer\RenderToString;
 
 /**
@@ -63,11 +63,11 @@ class Item implements ItemInterface
      * @param string|null $icon
      *   ...
      *
-     * @return self
+     * @return static
      */
     public static function create(?string $text = null, ?string $url = null, ?string $icon = null): self
     {
-        return new self($text, $url, $icon);
+        return new static($text, $url, $icon);
     }
 
     /**
@@ -231,6 +231,6 @@ class Item implements ItemInterface
      */
     public function render(): string
     {
-        return RendererDefault::view('widgets/menu/item', ['item' => $this]);
+        return Renderer::view('widgets/menu/item', ['item' => $this]);
     }
 }

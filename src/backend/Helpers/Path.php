@@ -3,17 +3,17 @@
 namespace Mireon\SlidePanels\Helpers;
 
 /**
- * ...
+ * The utility for getting paths.
  *
  * @package Mireon\SlidePanels\Helpers
  */
 class Path
 {
     /**
-     * ...
+     * Returns path to resources.
      *
      * @param string $path
-     *  ...
+     *   An additional path in resource directory.
      *
      * @return string
      */
@@ -23,10 +23,10 @@ class Path
     }
 
     /**
-     * ...
+     * Returns path to views.
      *
      * @param string $view
-     *   ...
+     *   A file name of view.
      *
      * @return string
      */

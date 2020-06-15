@@ -6,12 +6,12 @@ use ArrayIterator;
 use Exception;
 use IteratorAggregate;
 use Mireon\SlidePanels\Renderer\Renderable;
-use Mireon\SlidePanels\Renderer\RendererDefault;
+use Mireon\SlidePanels\Renderer\Renderer;
 use Mireon\SlidePanels\Renderer\RenderToString;
 use Traversable;
 
 /**
- * ...
+ * The panels container.
  *
  * @package Mireon\SlidePanels\Panels
  */
@@ -20,9 +20,9 @@ class Panels implements Renderable, IteratorAggregate
     use RenderToString;
 
     /**
-     * ...
+     * The list of panels.
      *
-     * @var Panel[] $panels
+     * @var Panel[]
      */
     private array $panels = [];
 
@@ -30,7 +30,7 @@ class Panels implements Renderable, IteratorAggregate
      * The constructor.
      *
      * @param Panel[] $panels
-     *   ...
+     *   A list of panels.
      *
      * @throws Exception
      */
@@ -40,25 +40,25 @@ class Panels implements Renderable, IteratorAggregate
     }
 
     /**
-     * ...
+     * Creates panels container.
      *
      * @param array $panels
-     *   ...
+     *   A list of panels.
      *
-     * @return self
+     * @return static
      *
      * @throws Exception
      */
     public static function create(array $panels = []): self
     {
-        return new self($panels);
+        return new static($panels);
     }
 
     /**
-     * ...
+     * Sets a list of panels.
      *
      * @param Panel[] $panels
-     *   ...
+     *   A list of panels.
      *
      * @return self
      *
@@ -72,10 +72,10 @@ class Panels implements Renderable, IteratorAggregate
     }
 
     /**
-     * ...
+     * Sets a list of panels.
      *
      * @param Panel[] $panels
-     *   ...
+     *   A list of panels.
      *
      * @return void
      *
@@ -91,10 +91,10 @@ class Panels implements Renderable, IteratorAggregate
     }
 
     /**
-     * ...
+     * Adds a new panel to the list.
      *
      * @param Panel $panel
-     *   ...
+     *   A new panel.
      *
      * @return void
      *
@@ -105,12 +105,12 @@ class Panels implements Renderable, IteratorAggregate
         if ($panel->isValid()) {
             $this->panels[$panel->getKey()] = $panel;
         } else {
-            throw new Exception('The panel must have a key.');
+            throw new Exception('Panel is invalid.');
         }
     }
 
     /**
-     * ...
+     * Checks if panels exists.
      *
      * @return bool
      */
@@ -120,10 +120,10 @@ class Panels implements Renderable, IteratorAggregate
     }
 
     /**
-     * ...
+     * Checks if panel exists.
      *
      * @param string $key
-     *   ...
+     *   A panel key.
      *
      * @return bool
      */
@@ -133,10 +133,10 @@ class Panels implements Renderable, IteratorAggregate
     }
 
     /**
-     * ...
+     * Returns a panel by key.
      *
      * @param string $key
-     *   ...
+     *   A panel key.
      *
      * @return Panel|null
      */
@@ -154,7 +154,7 @@ class Panels implements Renderable, IteratorAggregate
     }
 
     /**
-     *
+     * Resets the list a panels.
      */
     public function reset(): void
     {
@@ -168,6 +168,6 @@ class Panels implements Renderable, IteratorAggregate
      */
     public function render(): string
     {
-        return RendererDefault::view('panels/panels', ['panels' => $this]);
+        return Renderer::view('panels/panels', ['panels' => $this]);
     }
 }

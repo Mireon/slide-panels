@@ -8,63 +8,44 @@ use Mireon\SlidePanels\Panels\Panels;
 use Mireon\SlidePanels\Stage\Stage;
 
 /**
- * ...
+ * The panels designer.
  *
  * @package Mireon\SlidePanels\Designer
  */
 class Designer
 {
     /**
-     * The list of builder events.
+     * The list of factories.
      *
-     * @var FactoryInterface[] $factories
+     * @var FactoryInterface[]
      */
     private array $factories = [];
 
     /**
-     * ...
+     * The stage.
      *
      * @var Stage|null
      */
     private ?Stage $stage = null;
 
     /**
-     * ...
-     *
-     * @return Stage
-     */
-    private function getOrCreateStage(): Stage
-    {
-        if (is_null($this->stage)) {
-            $this->stage = new Stage();
-        }
-
-        return $this->stage;
-    }
-
-    /**
-     * ...
-     *
-     * @return Panels
+     * The constructor.
      *
      * @throws Exception
      */
-    private function getOrCreatePanels(): Panels
+    public function __construct()
     {
-        $stage = $this->getOrCreateStage();
-
-        if (!$stage->hasPanels()) {
-            $stage->setPanels(new Panels());
-        }
-
-        return $stage->getPanels();
+        $this->stage = new Stage();
+        $this->stage->setPanels(new Panels());
     }
 
     /**
-     * ...
+     * Returns a panel by key.
+     *
+     * If a panel with the entered key doesn't created it will be created.
      *
      * @param string $key
-     *   ...
+     *   A panel key.
      *
      * @return Panel
      *
@@ -73,10 +54,10 @@ class Designer
     public function panel(string $key): Panel
     {
         if (empty($key)) {
-            throw new Exception('The panel key is undefined.');
+            throw new Exception('Panel key is undefined.');
         }
 
-        $panels = $this->getOrCreatePanels();
+        $panels = $this->stage->getPanels();
 
         if (!$panels->hasPanel($key)) {
             $panels->addPanel(new Panel($key));
@@ -86,10 +67,10 @@ class Designer
     }
 
     /**
-     * ...
+     * Adds a new factory object to the list.
      *
-     * @param string|FactoryInterface $factory
-     *   ...
+     * @param FactoryInterface|string $factory
+     *   A factory object or factory class name.
      *
      * @return self
      *
@@ -97,26 +78,26 @@ class Designer
      */
     public function factory($factory): self
     {
-        if (is_string($factory)) {
-            if (!class_exists($factory)) {
-                throw new Exception("The class \"$factory\" not found.");
-            }
+        if (!is_string($factory) && !is_object($factory)) {
+            throw new Exception('Factory is invalid. A factory must be a class name or factory object.');
+        }
 
+        if (is_string($factory) && !class_exists($factory)) {
+            throw new Exception("Class \"$factory\" not found.");
+        }
+
+        if (is_string($factory)) {
             $factory = new $factory();
         }
 
-        if (is_object($factory)) {
-            if (!($factory instanceof FactoryInterface)) {
-                throw new Exception('
-                    The class "' . get_class($factory) . '" does not implement
-                    the "' . FactoryInterface::class . '" interface.
-                ');
-            }
-        } else {
-            throw new Exception('The factory entity is invalid.');
+        $class = get_class($factory);
+
+        if (!($factory instanceof FactoryInterface)) {
+            $interface = FactoryInterface::class;
+            throw new Exception("The class \"$class\" does not implement the \"$interface\" interface.");
         }
 
-        $this->factories[get_class($factory)] = $factory;
+        $this->factories[$class] = $factory;
 
         return $this;
     }
@@ -134,6 +115,6 @@ class Designer
             }
         }
 
-        return $this->getOrCreateStage()->render();
+        return $this->stage->render();
     }
 }

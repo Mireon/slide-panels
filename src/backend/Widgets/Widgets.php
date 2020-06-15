@@ -4,7 +4,7 @@ namespace Mireon\SlidePanels\Widgets;
 
 use Exception;
 use Mireon\SlidePanels\Renderer\Renderable;
-use Mireon\SlidePanels\Renderer\RendererDefault;
+use Mireon\SlidePanels\Renderer\Renderer;
 use Mireon\SlidePanels\Renderer\RenderToString;
 
 /**
@@ -42,13 +42,13 @@ class Widgets implements Renderable
      * @param array $widgets
      *   ...
      *
-     * @return self
+     * @return static
      *
      * @throws Exception
      */
     public static function create(array $widgets = []): self
     {
-        return new self($widgets);
+        return new static($widgets);
     }
 
     /**
@@ -164,6 +164,6 @@ class Widgets implements Renderable
      */
     public function render(): string
     {
-        return RendererDefault::view('widgets/widgets', ['widgets' => $this]);
+        return Renderer::view('widgets/widgets', ['widgets' => $this]);
     }
 }

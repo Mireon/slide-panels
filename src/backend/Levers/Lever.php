@@ -2,54 +2,46 @@
 
 namespace Mireon\SlidePanels\Levers;
 
-use Mireon\SlidePanels\Renderer\RendererInterface;
-use Mireon\SlidePanels\Renderer\RendererProperty;
+use Exception;
+use Mireon\SlidePanels\Renderer\Renderer;
 use Mireon\SlidePanels\Renderer\RenderToString;
 use Mireon\SlidePanels\Widgets\Menu\ItemInterface;
 
 /**
- * ... 
+ * The lever to show of hide a panel.
  * 
  * @package Mireon\SlidePanels\Levers
  */
 class Lever implements ItemInterface
 {
     use RenderToString;
-    use RendererProperty;
 
     /**
-     * ...
+     * The lever type to show the panel.
      */
     public const SHOW = 'show';
 
     /**
-     * ...
+     * The lever type to hide the panel.
      */
     public const HIDE = 'hide';
 
     /**
-     * ...
-     *
-     * @var RendererInterface|null
-     */
-    private ?RendererInterface $renderer = null;
-
-    /**
-     * ...
+     * The lever text.
      *
      * @var string|null
      */
     private ?string $text = null;
 
     /**
-     * ...
+     * The panel key.
      *
      * @var string|null
      */
     private ?string $panel = null;
 
     /**
-     * ...
+     * The lever type.
      *
      * @var string
      */
@@ -59,29 +51,28 @@ class Lever implements ItemInterface
      * The constructor.
      *
      * @param string|null $text
-     *   ...
+     *   A lever text.
      * @param string|null $panel
-     *   ...
+     *   A panel key.
      * @param string|null $type
-     *   ...
+     *   A lever type.
      */
     public function __construct(?string $text = null, ?string $panel = null, ?string $type = self::SHOW)
     {
-        $this->setRenderer(new LeverRenderer());
         $this->setText($text);
         $this->setPanel($panel);
         $this->setType($type);
     }
 
     /**
-     * Creates an instance of this class.
+     * Creates a lever.
      *
      * @param string|null $text
-     *   ...
+     *   A lever text.
      * @param string|null $panel
-     *   ...
+     *   A panel key.
      * @param string|null $type
-     *   ...
+     *   A lever type.
      *
      * @return static
      */
@@ -91,12 +82,12 @@ class Lever implements ItemInterface
     }
 
     /**
-     * ...
+     * Creates a lever to show a panel.
      *
      * @param string|null $text
-     *   ...
+     *   A lever text.
      * @param string|null $panel
-     *   ...
+     *   A panel key.
      *
      * @return static
      */
@@ -106,10 +97,10 @@ class Lever implements ItemInterface
     }
 
     /**
-     * ...
+     * Creates a lever to hide a panel.
      *
      * @param string|null $text
-     *   ...
+     *   A lever text.
      *
      * @return static
      */
@@ -119,10 +110,10 @@ class Lever implements ItemInterface
     }
 
     /**
-     * ...
+     * Sets lever text.
      *
      * @param string|null $text
-     *   ...
+     *   A lever text.
      *
      * @return self
      */
@@ -134,10 +125,10 @@ class Lever implements ItemInterface
     }
 
     /**
-     * ...
+     * Sets lever text.
      *
      * @param string|null $text
-     *   ...
+     *   A lever text.
      *
      * @return void
      */
@@ -147,7 +138,7 @@ class Lever implements ItemInterface
     }
 
     /**
-     * ...
+     * Returns the lever text.
      *
      * @return string|null
      */
@@ -157,7 +148,7 @@ class Lever implements ItemInterface
     }
 
     /**
-     * ...
+     * Checks if a text is defined.
      *
      * @return bool
      */
@@ -167,10 +158,10 @@ class Lever implements ItemInterface
     }
 
     /**
-     * ...
+     * Sets a panel key.
      *
      * @param string|null $panel
-     *   ...
+     *   A panel key.
      *
      * @return self
      */
@@ -182,10 +173,10 @@ class Lever implements ItemInterface
     }
 
     /**
-     * ...
+     * Sets a panel key.
      *
      * @param string|null $panel
-     *   ...
+     *   A panel key.
      *
      * @return void
      */
@@ -195,7 +186,7 @@ class Lever implements ItemInterface
     }
 
     /**
-     * ...
+     * Returns the panel key.
      *
      * @return string|null
      */
@@ -205,7 +196,7 @@ class Lever implements ItemInterface
     }
 
     /**
-     * ...
+     * Checks if a panel key is defined.
      *
      * @return bool
      */
@@ -215,10 +206,10 @@ class Lever implements ItemInterface
     }
 
     /**
-     * ...
+     * Sets a lever type.
      *
      * @param string $type
-     *   ...
+     *   A lever type.
      *
      * @return self
      */
@@ -230,10 +221,10 @@ class Lever implements ItemInterface
     }
 
     /**
-     * ...
+     * Sets a lever type.
      *
      * @param string $type
-     *   ...
+     *   A lever type.
      *
      * @return void
      */
@@ -248,7 +239,7 @@ class Lever implements ItemInterface
     }
 
     /**
-     * ...
+     * Returns the lever type.
      *
      * @return string
      */
@@ -262,13 +253,20 @@ class Lever implements ItemInterface
      */
     public function isValid(): bool
     {
-        switch ($this->getType()) {
-            case self::SHOW:
-                return $this->hasPanel() && $this->hasText();
-            case self::HIDE:
-                return $this->hasText();
-            default:
-                return false;
+        if ($this->getType() === self::SHOW) {
+            return $this->hasPanel();
         }
+
+        return true;
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @throws Exception
+     */
+    public function render(): string
+    {
+        return Renderer::view("levers/{$this->getType()}", ['lever' => $this]);
     }
 }

@@ -3,46 +3,47 @@
 namespace Mireon\SlidePanels\Panels;
 
 use Exception;
-use Mireon\SlidePanels\Renderer\RendererDefault;
+use Mireon\SlidePanels\Renderer\Renderable;
+use Mireon\SlidePanels\Renderer\Renderer;
 use Mireon\SlidePanels\Renderer\RenderToString;
 use Mireon\SlidePanels\Widgets\WidgetInterface;
 use Mireon\SlidePanels\Widgets\Widgets;
 
 /**
- * ...
+ * The panel.
  *
  * @package Mireon\SlidePanels\Panels
  */
-class Panel
+class Panel implements Renderable
 {
     use RenderToString;
 
     /**
-     * ...
+     * The left side position for a panel.
      */
     public const LEFT = 'left';
 
     /**
-     * ...
+     * The right side position for a panel.
      */
     public const RIGHT = 'right';
 
     /**
-     * ...
+     * The panel key.
      *
      * @var string|null
      */
     private ?string $key = null;
 
     /**
-     * ...
+     * The panel side.
      *
      * @var string
      */
     private string $side = self::LEFT;
 
     /**
-     * ...
+     * The widgets container.
      *
      * @var Widgets|null
      */
@@ -52,12 +53,15 @@ class Panel
      * The constructor.
      *
      * @param string|null $key
-     *   ...
+     *   A panel key.
      * @param string|null $side
-     *   ...
+     *   A panel side.
+     *
+     * @throws Exception
      */
     public function __construct(?string $key = null, ?string $side = null)
     {
+        $this->setWidgets(new Widgets());
         $this->setKey($key);
         $this->setSide($side);
     }
@@ -66,11 +70,13 @@ class Panel
      * Creates an instance of this class.
      *
      * @param string|null $key
-     *   ...
+     *   A panel key.
      * @param string|null $side
-     *   ...
+     *   A panel side.
      *
      * @return static
+     *
+     * @throws Exception
      */
     public static function create(?string $key = null, ?string $side = null): self
     {
@@ -78,10 +84,10 @@ class Panel
     }
 
     /**
-     * ...
+     * Sets the panel key.
      *
      * @param string|null $key
-     *   ...
+     *   A panel key.
      *
      * @return self
      */
@@ -93,10 +99,10 @@ class Panel
     }
 
     /**
-     * ...
+     * Sets the panel key.
      *
      * @param string|null $key
-     *   ...
+     *   A panel key.
      *
      * @return void
      */
@@ -110,7 +116,7 @@ class Panel
     }
 
     /**
-     * ...
+     * Returns a panel key.
      *
      * @return string|null
      */
@@ -120,6 +126,8 @@ class Panel
     }
 
     /**
+     * Checks if a panel key is defined.
+     *
      * @return bool
      */
     public function hasKey(): bool
@@ -128,10 +136,10 @@ class Panel
     }
 
     /**
-     * ...
+     * Sets the panel side.
      *
      * @param string|null $side
-     *   ...
+     *   A panel side.
      *
      * @return self
      */
@@ -143,10 +151,10 @@ class Panel
     }
 
     /**
-     * ...
+     * Sets the panel side.
      *
      * @param string|null $side
-     *   ...
+     *   A panel side.
      *
      * @return void
      */
@@ -161,7 +169,7 @@ class Panel
     }
 
     /**
-     * ...
+     * Returns the panel side.
      *
      * @return string
      */
@@ -171,14 +179,14 @@ class Panel
     }
 
     /**
-     * ...
+     * Sets widgets.
      *
-     * @param Widgets|null $widgets
-     *   ...
+     * @param Widgets $widgets
+     *   A widget container.
      *
      * @return self
      */
-    public function widgets(?Widgets $widgets): self
+    public function widgets(Widgets $widgets): self
     {
         $this->setWidgets($widgets);
 
@@ -186,23 +194,23 @@ class Panel
     }
 
     /**
-     * ...
+     * Sets widgets.
      *
-     * @param Widgets|null $widgets
-     *   ...
+     * @param Widgets $widgets
+     *   A widget container.
      *
      * @return void
      */
-    public function setWidgets(?Widgets $widgets): void
+    public function setWidgets(Widgets $widgets): void
     {
         $this->widgets = $widgets;
     }
 
     /**
-     * ...
+     * Adds a new widget to the container.
      *
      * @param WidgetInterface $widget
-     *   ...
+     *   A widget.
      *
      * @return self
      *
@@ -216,10 +224,10 @@ class Panel
     }
 
     /**
-     * ...
+     * Adds a new widget to the container.
      *
      * @param WidgetInterface $widget
-     *   ...
+     *   A widget.
      *
      * @return void
      *
@@ -227,15 +235,11 @@ class Panel
      */
     public function addWidget(WidgetInterface $widget): void
     {
-        if (!$this->hasWidgets()) {
-            $this->setWidgets(new Widgets());
-        }
-
         $this->getWidgets()->addWidget($widget);
     }
 
     /**
-     * ...
+     * Returns the widgets container.
      *
      * @return Widgets|null
      */
@@ -245,7 +249,7 @@ class Panel
     }
 
     /**
-     * ...
+     * Checks if widgets exists.
      *
      * @return bool
      */
@@ -255,7 +259,7 @@ class Panel
     }
 
     /**
-     * ...
+     * Checks if a panel is valid.
      *
      * @return bool
      */
@@ -271,6 +275,6 @@ class Panel
      */
     public function render(): string
     {
-        return RendererDefault::view('panels/panel', ['panel' => $this]);
+        return Renderer::view('panels/panel', ['panel' => $this]);
     }
 }

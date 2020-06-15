@@ -8,7 +8,7 @@ use Mireon\SlidePanels\Renderer\Renderable;
 use Mireon\SlidePanels\Renderer\RenderToString;
 
 /**
- * ...
+ * The main class.
  *
  * @package Mireon\SlidePanels
  */
@@ -19,12 +19,12 @@ class SlidePanels implements Renderable
     /**
      * The instance this class.
      *
-     * @var self|null $instance
+     * @var static|null $instance
      */
     private static ?self $instance = null;
 
     /**
-     * ...
+     * The panels designer.
      *
      * @var Designer|null $designer
      */
@@ -34,7 +34,7 @@ class SlidePanels implements Renderable
      * The constructor.
      */
     private function __construct() {
-        $this->setDesigner(new Designer());
+        $this->designer = new Designer();
     }
 
     /**
@@ -86,43 +86,13 @@ class SlidePanels implements Renderable
     }
 
     /**
-     * ...
-     *
-     * @param Designer|null $designer
-     *   ...
+     * Returns the designer panels.
      *
      * @return Designer
      */
-    public static function designer(?Designer $designer = null): Designer
+    public static function designer(): Designer
     {
-        if (!is_null($designer)) {
-            static::instance()->setDesigner($designer);
-        }
-
-        return static::instance()->getDesigner();
-    }
-
-    /**
-     * ...
-     *
-     * @param Designer $designer
-     *   ...
-     *
-     * @return void
-     */
-    public function setDesigner(Designer $designer): void
-    {
-        $this->designer = $designer;
-    }
-
-    /**
-     * ...
-     *
-     * @return Designer|null
-     */
-    public function getDesigner(): ?Designer
-    {
-        return $this->designer;
+        return self::instance()->designer;
     }
 
     /**
@@ -132,6 +102,6 @@ class SlidePanels implements Renderable
      */
     public function render(): string
     {
-        return $this->getDesigner()->render();
+        return $this->designer->render();
     }
 }

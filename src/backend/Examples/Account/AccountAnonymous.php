@@ -9,7 +9,7 @@ use Mireon\SlidePanels\Widgets\Menu\Item;
 use Mireon\SlidePanels\Widgets\Menu\Menu;
 
 /**
- * ...
+ * The account panel for the anonymous user.
  *
  * @package Mireon\SlidePanels\Examples\Account
  */

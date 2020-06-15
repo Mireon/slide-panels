@@ -9,11 +9,11 @@ use Mireon\SlidePanels\Widgets\Menu\Item;
 use Mireon\SlidePanels\Widgets\Menu\Menu;
 
 /**
- * ...
+ * The widget after the catalog.
  *
  * @package Mireon\SlidePanels\Examples\Catalog
  */
-class CatalogExtra implements FactoryInterface
+class CatalogAfter implements FactoryInterface
 {
     /**
      * @inheritDoc
@@ -35,7 +35,7 @@ class CatalogExtra implements FactoryInterface
         $designer
             ->panel(Catalog::KEY)
             ->widget(Menu::create()
-                ->item(Item::create('Sport & Tourism', "$url/sport-&-tourism"))
+                ->weight(15)
                 ->item(Item::create('Other', "$url/other"))
             );
     }

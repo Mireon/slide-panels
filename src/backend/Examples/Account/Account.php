@@ -9,14 +9,14 @@ use Mireon\SlidePanels\Panels\Panel;
 use Mireon\SlidePanels\Widgets\Header\Header;
 
 /**
- * ...
+ * The account panel.
  *
  * @package Mireon\SlidePanels\Examples\Account
  */
 class Account implements FactoryInterface
 {
     /**
-     * ...
+     * The panel key.
      */
     public const KEY = 'account';
 
