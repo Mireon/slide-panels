@@ -13,6 +13,6 @@ use Mireon\SlidePanels\Widgets\Widgets;
  */
 ?>
 
-<?php foreach ($widgets->getWidgets() as $widget): ?>
+<?php foreach ($widgets as $widget): ?>
     <?= $widget->render(); ?>
 <?php endforeach; ?>

@@ -5,14 +5,14 @@ namespace Mireon\SlidePanels\Widgets\Html;
 use Mireon\SlidePanels\Widgets\Widget;
 
 /**
- * ...
+ * The HTML widget.
  *
  * @package Mireon\SlidePanels\Widgets\Html
  */
 class Html extends Widget
 {
     /**
-     * ...
+     * The HTML string.
      *
      * @var string
      */
@@ -22,7 +22,7 @@ class Html extends Widget
      * The constructor.
      *
      * @param string|null $html
-     *   ...
+     *   A HTML string.
      */
     public function __construct(?string $html = null)
     {
@@ -30,10 +30,10 @@ class Html extends Widget
     }
 
     /**
-     * Creates an instance of this class.
+     * Creates the HTML widget.
      *
      * @param string|null $html
-     *   ...
+     *   A HTML string.
      *
      * @return static
      */
@@ -43,10 +43,10 @@ class Html extends Widget
     }
 
     /**
-     * ...
+     * Sets the HTML string.
      *
      * @param string|null $html
-     *   ...
+     *   A HTML string.
      *
      * @return self
      */
@@ -58,10 +58,10 @@ class Html extends Widget
     }
 
     /**
-     * ...
+     * Sets the HTML string.
      *
      * @param string|null $html
-     *   ...
+     *   A HTML string.
      *
      * @return void
      */
@@ -71,7 +71,7 @@ class Html extends Widget
     }
 
     /**
-     * ...
+     * Returns the HTML string.
      *
      * @return string|null
      */
@@ -81,7 +81,7 @@ class Html extends Widget
     }
 
     /**
-     * ...
+     * Checks if the HTML string is defined.
      *
      * @return bool
      */

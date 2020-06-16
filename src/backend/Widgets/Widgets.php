@@ -2,22 +2,25 @@
 
 namespace Mireon\SlidePanels\Widgets;
 
+use ArrayIterator;
 use Exception;
+use IteratorAggregate;
 use Mireon\SlidePanels\Renderer\Renderable;
 use Mireon\SlidePanels\Renderer\Renderer;
 use Mireon\SlidePanels\Renderer\RenderToString;
+use Traversable;
 
 /**
- * ...
+ * The widgets container.
  *
  * @package Mireon\SlidePanels\Widgets
  */
-class Widgets implements Renderable
+class Widgets implements Renderable, IteratorAggregate
 {
     use RenderToString;
 
     /**
-     * ...
+     * The list of widgets.
      *
      * @var WidgetInterface[] $widgets
      */
@@ -27,7 +30,7 @@ class Widgets implements Renderable
      * The constructor.
      *
      * @param WidgetInterface[] $widgets
-     *   ...
+     *   A list of widgets.
      *
      * @throws Exception
      */
@@ -37,10 +40,10 @@ class Widgets implements Renderable
     }
 
     /**
-     * ...
+     * Creates the widgets container.
      *
-     * @param array $widgets
-     *   ...
+     * @param WidgetInterface[] $widgets
+     *   A list of widgets.
      *
      * @return static
      *
@@ -52,10 +55,10 @@ class Widgets implements Renderable
     }
 
     /**
-     * ...
+     * Sets the list of widgets.
      *
      * @param WidgetInterface[] $widgets
-     *   ...
+     *   A list of widgets.
      *
      * @return self
      *
@@ -69,10 +72,10 @@ class Widgets implements Renderable
     }
 
     /**
-     * ...
+     * Sets the list of widgets.
      *
      * @param WidgetInterface[] $widgets
-     *   ...
+     *   A list of widgets.
      *
      * @return void
      *
@@ -88,10 +91,10 @@ class Widgets implements Renderable
     }
 
     /**
-     * ...
+     * Adds a new widget to the list.
      *
      * @param WidgetInterface $widget
-     *   ...
+     *   A new widget.
      *
      * @return self
      *
@@ -105,10 +108,10 @@ class Widgets implements Renderable
     }
 
     /**
-     * ...
+     * Adds a new widget to the list.
      *
      * @param WidgetInterface $widget
-     *   ...
+     *   A new widget.
      *
      * @return void
      *
@@ -124,7 +127,7 @@ class Widgets implements Renderable
     }
 
     /**
-     * ...
+     * Returns the list of widgets.
      *
      * @return WidgetInterface[]
      */
@@ -138,7 +141,7 @@ class Widgets implements Renderable
     }
 
     /**
-     * ...
+     * Checks if widgets exists.
      *
      * @return bool
      */
@@ -148,7 +151,15 @@ class Widgets implements Renderable
     }
 
     /**
-     * ...
+     * @inheritDoc
+     */
+    public function getIterator(): Traversable
+    {
+        return new ArrayIterator($this->getWidgets());
+    }
+
+    /**
+     * Clears the list of widgets.
      *
      * @return void
      */

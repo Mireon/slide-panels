@@ -2,22 +2,22 @@
 
 namespace Mireon\SlidePanels\Widgets\Menu;
 
+use ArrayIterator;
 use Exception;
+use IteratorAggregate;
 use Mireon\SlidePanels\Renderer\Renderer;
-use Mireon\SlidePanels\Widgets\Header\HeaderProperty;
 use Mireon\SlidePanels\Widgets\Widget;
+use Traversable;
 
 /**
- * ...
+ * The menu widget.
  *
  * @package Mireon\SlidePanels\Widgets\Menu
  */
-class Menu extends Widget
+class Menu extends Widget implements IteratorAggregate
 {
-    use HeaderProperty;
-
     /**
-     * ...
+     * The list of items.
      *
      * @var ItemInterface[] $items
      */
@@ -26,36 +26,36 @@ class Menu extends Widget
     /**
      * The constructor.
      *
-     * @param array|null $items
-     *   ...
+     * @param ItemInterface[] $items
+     *   A list of items.
      *
      * @throws Exception
      */
-    public function __construct(?array $items = [])
+    public function __construct(array $items = [])
     {
         $this->setItems($items);
     }
 
     /**
-     * Creates an instance of this class.
+     * Creates the menu widget.
      *
-     * @param array|null $items
-     *   ...
+     * @param ItemInterface[] $items
+     *   A list of items.
      *
      * @return static
      *
      * @throws Exception
      */
-    public static function create(?array $items = []): self
+    public static function create(array $items = []): self
     {
         return new static($items);
     }
 
     /**
-     * ...
+     * Sets the list of items.
      *
      * @param ItemInterface[] $items
-     *   ...
+     *   A list of items.
      *
      * @return self
      *
@@ -69,10 +69,10 @@ class Menu extends Widget
     }
 
     /**
-     * ...
+     * Sets the list of items.
      *
      * @param ItemInterface[] $items
-     *   ...
+     *   A list of items.
      *
      * @return void
      *
@@ -88,10 +88,10 @@ class Menu extends Widget
     }
 
     /**
-     * ...
+     * Adds a new item to the list.
      *
      * @param ItemInterface $item
-     *   ...
+     *   A new item.
      *
      * @return self
      *
@@ -105,10 +105,10 @@ class Menu extends Widget
     }
 
     /**
-     * ...
+     * Adds a new item to the list.
      *
      * @param ItemInterface $item
-     *   ...
+     *   A new item.
      *
      * @return void
      *
@@ -119,12 +119,12 @@ class Menu extends Widget
         if ($item->isValid()) {
             $this->items[] = $item;
         } else {
-            throw new Exception('The menu item "' . get_class($item) . '" is invalid.');
+            throw new Exception('Menu item "' . get_class($item) . '" is invalid.');
         }
     }
 
     /**
-     * ...
+     * Returns the list of items.
      *
      * @return ItemInterface[]
      */
@@ -134,7 +134,7 @@ class Menu extends Widget
     }
 
     /**
-     * ...
+     * Checks if items exists.
      *
      * @return bool
      */
@@ -152,13 +152,21 @@ class Menu extends Widget
     }
 
     /**
-     * ...
+     * Clears the list of items.
      *
      * @return void
      */
     public function reset(): void
     {
         $this->items = [];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getIterator(): Traversable
+    {
+        return new ArrayIterator($this->getItems());
     }
 
     /**

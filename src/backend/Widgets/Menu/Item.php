@@ -7,7 +7,7 @@ use Mireon\SlidePanels\Renderer\Renderer;
 use Mireon\SlidePanels\Renderer\RenderToString;
 
 /**
- * ...
+ * The menu item.
  *
  * @package Mireon\SlidePanels\Widgets\Menu
  */
@@ -16,21 +16,21 @@ class Item implements ItemInterface
     use RenderToString;
 
     /**
-     * ...
+     * The item text.
      *
      * @var string|null
      */
     private ?string $text = null;
 
     /**
-     * ...
+     * The item URL.
      *
      * @var string|null
      */
     private ?string $url = null;
 
     /**
-     * ...
+     * The item icon.
      *
      * @var string|null
      */
@@ -40,11 +40,11 @@ class Item implements ItemInterface
      * The constructor.
      *
      * @param string|null $text
-     *   ...
+     *   An item text.
      * @param string|null $url
-     *   ...
+     *   An item URL.
      * @param string|null $icon
-     *   ...
+     *   An item icon.
      */
     public function __construct(?string $text = null, ?string $url = null, ?string $icon = null)
     {
@@ -57,11 +57,11 @@ class Item implements ItemInterface
      * Creates an instance of this class.
      *
      * @param string|null $text
-     *   ...
+     *   An item text.
      * @param string|null $url
-     *   ...
+     *   An item URL.
      * @param string|null $icon
-     *   ...
+     *   An item icon.
      *
      * @return static
      */
@@ -71,10 +71,10 @@ class Item implements ItemInterface
     }
 
     /**
-     * ...
+     * Sets the item text.
      *
      * @param string|null $text
-     *   ...
+     *   An item text.
      *
      * @return self
      */
@@ -86,10 +86,10 @@ class Item implements ItemInterface
     }
 
     /**
-     * ...
+     * Sets the item text.
      *
      * @param string|null $text
-     *   ...
+     *   An item text.
      *
      * @return void
      */
@@ -99,7 +99,7 @@ class Item implements ItemInterface
     }
 
     /**
-     * ...
+     * Returns the item text.
      *
      * @return string|null
      */
@@ -109,7 +109,7 @@ class Item implements ItemInterface
     }
 
     /**
-     * ...
+     * Checks if the item text is defined.
      *
      * @return bool
      */
@@ -119,10 +119,10 @@ class Item implements ItemInterface
     }
 
     /**
-     * ...
+     * Sets the item URL.
      *
      * @param string|null $url
-     *   ...
+     *   An item URL.
      *
      * @return self
      */
@@ -134,10 +134,10 @@ class Item implements ItemInterface
     }
 
     /**
-     * ...
+     * Sets the item URL.
      *
      * @param string|null $url
-     *   ...
+     *   An item URL.
      *
      * @return void
      */
@@ -147,7 +147,7 @@ class Item implements ItemInterface
     }
 
     /**
-     * ...
+     * Returns the item URL.
      *
      * @return string|null
      */
@@ -157,7 +157,7 @@ class Item implements ItemInterface
     }
 
     /**
-     * ...
+     * Checks if the item URL is defined.
      *
      * @return bool
      */
@@ -167,10 +167,10 @@ class Item implements ItemInterface
     }
 
     /**
-     * ...
+     * Sets the item icon.
      *
      * @param string|null $icon
-     *   ...
+     *   An item icon.
      *
      * @return self
      */
@@ -182,10 +182,10 @@ class Item implements ItemInterface
     }
 
     /**
-     * ...
+     * Sets the item icon.
      *
      * @param string|null $icon
-     *   ...
+     *   An item icon.
      *
      * @return void
      */
@@ -195,7 +195,7 @@ class Item implements ItemInterface
     }
 
     /**
-     * ...
+     * Returns the item icon.
      *
      * @return string|null
      */
@@ -205,7 +205,7 @@ class Item implements ItemInterface
     }
 
     /**
-     * ...
+     * Checks if the item icon is defined.
      *
      * @return bool
      */
@@ -215,9 +215,7 @@ class Item implements ItemInterface
     }
 
     /**
-     * ...
-     *
-     * @return bool
+     * @inheritDoc
      */
     public function isValid(): bool
     {

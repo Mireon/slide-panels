@@ -5,7 +5,7 @@ namespace Mireon\SlidePanels\Widgets;
 use Mireon\SlidePanels\Renderer\RenderToString;
 
 /**
- * ...
+ * The base widget.
  *
  * @package Mireon\SlidePanels\Widgets
  */
@@ -14,17 +14,17 @@ abstract class Widget implements WidgetInterface
     use RenderToString;
 
     /**
-     * ...
+     * The widget weight.
      *
      * @var int $weight
      */
     private int $weight = 0;
 
     /**
-     * ...
+     * Sets the widget weight.
      *
      * @param int $weight
-     *   ...
+     *   A widget weight.
      *
      * @return self
      */
@@ -36,10 +36,10 @@ abstract class Widget implements WidgetInterface
     }
 
     /**
-     * ...
+     * Sets the widget weight.
      *
      * @param int $weight
-     *   ...
+     *   A widget weight.
      *
      * @return void
      */
@@ -49,7 +49,7 @@ abstract class Widget implements WidgetInterface
     }
 
     /**
-     * ...
+     * Returns the widget weight.
      *
      * @return int
      */

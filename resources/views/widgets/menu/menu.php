@@ -14,10 +14,9 @@ use Mireon\SlidePanels\Widgets\Menu\Menu;
 ?>
 
 <div class="slide-panels__menu">
-    <?= $menu->hasHeader() ? $menu->getHeader() : ''; ?>
     <?php if ($menu->hasItems()): ?>
         <ul class="slide-panels__menu__list">
-            <?php foreach ($menu->getItems() as $item): ?>
+            <?php foreach ($menu as $item): ?>
                 <li class="slide-panels__menu__item">
                     <?= $item->render(); ?>
                 </li>

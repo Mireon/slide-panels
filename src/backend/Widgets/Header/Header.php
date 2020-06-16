@@ -7,38 +7,38 @@ use Mireon\SlidePanels\Renderer\Renderer;
 use Mireon\SlidePanels\Widgets\Widget;
 
 /**
- * ...
+ * The header widget.
  *
  * @package Mireon\SlidePanels\Widgets\Header
  */
 class Header extends Widget
 {
     /**
-     * ...
+     * The small size of header.
      */
     public const SMALL = 'small';
 
     /**
-     * ...
+     * The big size of header.
      */
     public const BIG = 'big';
 
     /**
-     * ...
+     * The header size.
      *
      * @var string
      */
     private string $size = self::BIG;
 
     /**
-     * ...
+     * The header text.
      *
      * @var string|null
      */
     private ?string $text = null;
 
     /**
-     * ...
+     * The header icon.
      *
      * @var string|null
      */
@@ -48,11 +48,11 @@ class Header extends Widget
      * The constructor.
      *
      * @param string|null $text
-     *   ...
+     *   A header text.
      * @param string|null $icon
-     *   ...
+     *   A header icon.
      * @param string|null $size
-     *   ...
+     *   A header size.
      */
     public function __construct(?string $text = null, ?string $icon = null, ?string $size = null)
     {
@@ -65,11 +65,11 @@ class Header extends Widget
      * Creates an instance of this class.
      *
      * @param string|null $text
-     *   ...
+     *   A header text.
      * @param string|null $icon
-     *   ...
+     *   A header icon.
      * @param string|null $size
-     *   ...
+     *   A header size.
      *
      * @return static
      */
@@ -79,10 +79,10 @@ class Header extends Widget
     }
 
     /**
-     * ...
+     * Sets the header text.
      *
      * @param string|null $text
-     *   ...
+     *   A header text.
      *
      * @return self
      */
@@ -94,10 +94,10 @@ class Header extends Widget
     }
 
     /**
-     * ...
+     * Sets the header text.
      *
      * @param string|null $text
-     *   ...
+     *   A header text.
      *
      * @return void
      */
@@ -107,7 +107,7 @@ class Header extends Widget
     }
 
     /**
-     * ...
+     * Returns the header text.
      *
      * @return string|null
      */
@@ -117,7 +117,7 @@ class Header extends Widget
     }
 
     /**
-     * ...
+     * Checks if the header text is defined.
      *
      * @return bool
      */
@@ -127,10 +127,10 @@ class Header extends Widget
     }
 
     /**
-     * ...
+     * Sets the header size.
      *
      * @param string|null $size
-     *   ...
+     *   A header size.
      *
      * @return self
      */
@@ -142,25 +142,25 @@ class Header extends Widget
     }
 
     /**
-     * ...
+     * Sets the header size.
      *
-     * @param string|null $side
-     *   ...
+     * @param string|null $size
+     *   A header size.
      *
      * @return void
      */
-    public function setSize(?string $side): void
+    public function setSize(?string $size): void
     {
-        switch ($side) {
+        switch ($size) {
             case self::BIG:
             case self::SMALL:
-                $this->size = $side;
+                $this->size = $size;
                 break;
         }
     }
 
     /**
-     * ...
+     * Returns the header size.
      *
      * @return string
      */
@@ -170,10 +170,10 @@ class Header extends Widget
     }
 
     /**
-     * ...
+     * Sets the header icon.
      *
      * @param string|null $icon
-     *   ...
+     *   A header icon.
      *
      * @return self
      */
@@ -185,10 +185,10 @@ class Header extends Widget
     }
 
     /**
-     * ...
+     * Sets the header icon.
      *
      * @param string|null $icon
-     *   ...
+     *   A header icon.
      *
      * @return void
      */
@@ -198,7 +198,7 @@ class Header extends Widget
     }
 
     /**
-     * ...
+     * Returns the header icon.
      *
      * @return string|null
      */
@@ -208,7 +208,7 @@ class Header extends Widget
     }
 
     /**
-     * ...
+     * Checks if the header icon is defined.
      *
      * @return bool
      */

@@ -6,7 +6,7 @@ use Mireon\SlidePanels\Interfaces\Validated;
 use Mireon\SlidePanels\Renderer\Renderable;
 
 /**
- * ...
+ * The menu item interface.
  *
  * @package Mireon\SlidePanels\Widgets\Menu
  */
