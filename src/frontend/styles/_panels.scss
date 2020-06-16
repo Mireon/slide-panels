@@ -13,6 +13,10 @@ $panel-width: 320px;
   overflow-y: auto;
   background: #ffffff;
 
+  @media screen and (max-width: $panel-width) {
+    width: 100%;
+  }
+
   &_visible {
     visibility: visible;
   }
@@ -29,6 +33,11 @@ $panel-width: 320px;
 
     &_outside {
       left: -$panel-width;
+
+      @media screen and (max-width: $panel-width) {
+        left: -100vw;
+      }
+
     }
 
   }
@@ -41,6 +50,11 @@ $panel-width: 320px;
 
     &_outside {
       right: -$panel-width;
+
+      @media screen and (max-width: $panel-width) {
+        right: -100vw;
+      }
+
     }
 
   }

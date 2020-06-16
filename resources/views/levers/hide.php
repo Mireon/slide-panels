@@ -3,10 +3,10 @@
 use Mireon\SlidePanels\Levers\Lever;
 
 /**
- * ...
+ * Prints a lever to hide a panel.
  *
  * @var Lever $lever
- *   ...
+ *   A lever.
  */
 ?>
 

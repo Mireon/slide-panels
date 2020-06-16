@@ -4,12 +4,12 @@ use Mireon\SlidePanels\Widgets\Menu\ItemInterface;
 use Mireon\SlidePanels\Widgets\Menu\Menu;
 
 /**
- * ...
+ * Prints the menu widget.
  *
  * @var Menu $menu
- *   ...
+ *   A menu widget.
  * @var ItemInterface $item
- *   ...
+ *   A menu item.
  */
 ?>
 

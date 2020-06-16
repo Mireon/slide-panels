@@ -43,6 +43,13 @@ class Panel implements Renderable
     private string $side = self::LEFT;
 
     /**
+     * The panel styles.
+     *
+     * @var PanelStyles|null
+     */
+    private ?PanelStyles $styles = null;
+
+    /**
      * The widgets container.
      *
      * @var Widgets|null
@@ -61,6 +68,7 @@ class Panel implements Renderable
      */
     public function __construct(?string $key = null, ?string $side = null)
     {
+        $this->setStyles(new PanelStyles($this));
         $this->setWidgets(new Widgets());
         $this->setKey($key);
         $this->setSide($side);
@@ -176,6 +184,69 @@ class Panel implements Renderable
     public function getSide(): string
     {
         return $this->side;
+    }
+
+    /**
+     * Sets the panel width.
+     *
+     * @param int $width
+     *   A panel width.
+     *
+     * @return self
+     *
+     * @throws Exception
+     */
+    public function width(int $width): self
+    {
+        $this->setWidth($width);
+
+        return $this;
+    }
+
+    /**
+     * Sets the panel width.
+     *
+     * @param int $width
+     *   A panel width.
+     *
+     * @return void
+     *
+     * @throws Exception
+     */
+    public function setWidth(int $width): void
+    {
+        $this->styles->setWidth($width);
+    }
+
+    /**
+     * Sets the panel styles.
+     *
+     * @param PanelStyles|null $styles
+     *   A panel styles.
+     *
+     * @return void
+     */
+    private function setStyles(?PanelStyles $styles): void
+    {
+        $this->styles = $styles;
+    }
+
+    /**
+     * @return PanelStyles|null
+     */
+    public function getStyles(): ?PanelStyles
+    {
+        return $this->styles;
+    }
+
+    /**
+     * Checks if the panel style is defined.
+     *
+     * @return bool
+     */
+    public function hasStyles(): bool
+    {
+        return !is_null($this->styles) && $this->styles->isValid();
     }
 
     /**

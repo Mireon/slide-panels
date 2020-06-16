@@ -4,12 +4,12 @@ use Mireon\SlidePanels\Panels\Panel;
 use Mireon\SlidePanels\Panels\Panels;
 
 /**
- * ...
+ * Prints a panel container.
  *
  * @var Panels $panels
- *   ...
+ *   A panel container.
  * @var Panel $panel
- *   ...
+ *   A panel.
  */
 ?>
 

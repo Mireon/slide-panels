@@ -5,7 +5,9 @@ namespace Mireon\SlidePanels\Examples\Catalog;
 use Exception;
 use Mireon\SlidePanels\Designer\Designer;
 use Mireon\SlidePanels\Designer\FactoryInterface;
+use Mireon\SlidePanels\Levers\Lever;
 use Mireon\SlidePanels\Panels\Panel;
+use Mireon\SlidePanels\Panels\PanelStyles;
 use Mireon\SlidePanels\Widgets\Header\Header;
 use Mireon\SlidePanels\Widgets\Menu\Item;
 use Mireon\SlidePanels\Widgets\Menu\Menu;
@@ -41,7 +43,12 @@ class Catalog implements FactoryInterface
 
         $designer
             ->panel(self::KEY)
+            ->width(960)
             ->side(Panel::LEFT)
+            ->widget(Menu::create()
+                ->weight(-1)
+                ->item(Lever::hide('CLOSE'))
+            )
             ->widget(Header::create()
                 ->weight(0)
                 ->size(Header::BIG)

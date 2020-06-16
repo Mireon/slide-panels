@@ -26,6 +26,30 @@ $panel-width: 320px;
   to { right: -$panel-width; }
 }
 
+@media screen and (max-width: $panel-width) {
+
+  @keyframes slide-panels__panel-left_slide-inside {
+    from { left: -100vw; }
+    to { left: 0; }
+  }
+
+  @keyframes slide-panels__panel-left_slide-outside {
+    from { left: 0; }
+    to { left: -100vw; }
+  }
+
+  @keyframes slide-panels__panel-right_slide-inside {
+    from { right: -100vw; }
+    to { right: 0; }
+  }
+
+  @keyframes slide-panels__panel-right_slide-outside {
+    from { right: 0; }
+    to { right: -100vw; }
+  }
+
+}
+
 &__panel {
 
   &-left {

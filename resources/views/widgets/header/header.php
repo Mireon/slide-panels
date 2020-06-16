@@ -3,10 +3,10 @@
 use Mireon\SlidePanels\Widgets\Header\Header;
 
 /**
- * ...
+ * Prints the header widget.
  *
  * @var Header $header
- *   ...
+ *   A header widget.
  */
 ?>
 

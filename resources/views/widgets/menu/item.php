@@ -3,10 +3,10 @@
 use Mireon\SlidePanels\Widgets\Menu\Item;
 
 /**
- * ...
+ * Prints a menu item.
  *
  * @var Item $item
- *   ...
+ *   A menu item.
  */
 ?>
 

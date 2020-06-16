@@ -3,10 +3,10 @@
 use Mireon\SlidePanels\Stage\Stage;
 
 /**
- * ...
+ * Prints stage.
  *
  * @var Stage $stage
- *   ...
+ *   A stage.
  */
 ?>
 
