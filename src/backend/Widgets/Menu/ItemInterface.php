@@ -10,4 +10,6 @@ use Mireon\SlidePanels\Renderer\Renderable;
  *
  * @package Mireon\SlidePanels\Widgets\Menu
  */
-interface ItemInterface extends Renderable, Validated {}
+interface ItemInterface extends Renderable, Validated
+{
+}

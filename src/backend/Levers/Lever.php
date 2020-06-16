@@ -9,7 +9,7 @@ use Mireon\SlidePanels\Widgets\Menu\ItemInterface;
 
 /**
  * The lever to show of hide a panel.
- * 
+ *
  * @package Mireon\SlidePanels\Levers
  */
 class Lever implements ItemInterface

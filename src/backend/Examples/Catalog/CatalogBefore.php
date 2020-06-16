@@ -33,7 +33,6 @@ class CatalogBefore implements FactoryInterface
             ->panel(Catalog::KEY)
             ->widget(Html::create()
                 ->weight(5)
-                ->html('<span style="display: block; padding: 10px; color: #ababab;">The main catalog!</span>')
-            );
+                ->html('<span style="display: block; padding: 10px; color: #ababab;">The main catalog!</span>'));
     }
 }

@@ -36,7 +36,6 @@ class CatalogAfter implements FactoryInterface
             ->panel(Catalog::KEY)
             ->widget(Menu::create()
                 ->weight(15)
-                ->item(Item::create('Other', "$url/other"))
-            );
+                ->item(Item::create('Other', "$url/other")));
     }
 }

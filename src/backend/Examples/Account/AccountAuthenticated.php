@@ -41,7 +41,6 @@ class AccountAuthenticated implements FactoryInterface
                 ->item(Item::create('Profile', "$host/profile?$query"))
                 ->item(Item::create('Settings', "$host/settings?$query"))
                 ->item(Lever::create('Catalog', Catalog::KEY))
-                ->item(Item::create('Logout', $host))
-        );
+                ->item(Item::create('Logout', $host)));
     }
 }

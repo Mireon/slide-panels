@@ -33,7 +33,8 @@ class SlidePanels implements Renderable
     /**
      * The constructor.
      */
-    private function __construct() {
+    private function __construct()
+    {
         $this->designer = new Designer();
     }
 
@@ -42,7 +43,10 @@ class SlidePanels implements Renderable
      *
      * @return void
      */
-    private function __clone() {}
+    private function __clone()
+    {
+        //
+    }
 
     /**
      * The magic method wakeup.

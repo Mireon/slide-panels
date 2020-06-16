@@ -41,7 +41,6 @@ class Account implements FactoryInterface
             ->widget(Header::create()
                 ->size(Header::BIG)
                 ->icon('fa fa-user')
-                ->text('Account')
-            );
+                ->text('Account'));
     }
 }

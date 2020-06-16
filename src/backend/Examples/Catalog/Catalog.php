@@ -45,23 +45,17 @@ class Catalog implements FactoryInterface
             ->panel(self::KEY)
             ->width(960)
             ->side(Panel::LEFT)
-            ->widget(Menu::create()
-                ->weight(-1)
-                ->item(Lever::hide('CLOSE'))
-            )
             ->widget(Header::create()
                 ->weight(0)
                 ->size(Header::BIG)
                 ->icon('fa fa-th')
-                ->text('Catalog')
-            )
+                ->text('Catalog'))
             ->widget(Menu::create()
                 ->weight(10)
                 ->item(Item::create('Electronics', "$url/electronics"))
                 ->item(Item::create('Construction & Repair', "$url/construction-&-tools"))
                 ->item(Item::create('Home & Garden', "$url/construction-&-tools"))
                 ->item(Item::create('Health & Beauty', "$url/health-&-beauty"))
-                ->item(Item::create('Sport & Tourism', "$url/sport-&-tourism"))
-            );
+                ->item(Item::create('Sport & Tourism', "$url/sport-&-tourism")));
     }
 }
