@@ -8,6 +8,7 @@ use Mireon\SlidePanels\Designer\FactoryInterface;
 use Mireon\SlidePanels\Levers\Lever;
 use Mireon\SlidePanels\Panels\Panel;
 use Mireon\SlidePanels\Panels\PanelStyles;
+use Mireon\SlidePanels\Widgets\Close\Close;
 use Mireon\SlidePanels\Widgets\Header\Header;
 use Mireon\SlidePanels\Widgets\Menu\Item;
 use Mireon\SlidePanels\Widgets\Menu\Menu;
@@ -45,6 +46,9 @@ class Catalog implements FactoryInterface
             ->panel(self::KEY)
             ->width(960)
             ->side(Panel::LEFT)
+            ->widget(Close::create()
+                ->icon('fa fa-close')
+                ->text('Close'))
             ->widget(Header::create()
                 ->weight(0)
                 ->size(Header::BIG)

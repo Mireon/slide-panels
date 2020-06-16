@@ -12,61 +12,53 @@ use Mireon\SlidePanels\Panels\PanelStyles;
  *   A panel styles.
  */
 
-$width = "{$styles->getWidth()}px";
-$classMain = ".slide-panels__panel-{$panel->getKey()}";
-$classOutside = "$classMain.slide-panels__panel-{$panel->getSide()}_outside";
-$classSlideInside = "$classMain.slide-panels__panel-{$panel->getSide()}_slide-inside";
-$classSlideOutside = "$classMain.slide-panels__panel-{$panel->getSide()}_slide-outside";
-$keyframesSlideInside = "slide-panels__panel-{$panel->getKey()}_slide-inside";
-$keyframesSlideOutside = "slide-panels__panel-{$panel->getKey()}_slide-outside";
+$panelWidth = "{$styles->getWidth()}px";
+$screenWidth = $styles->getWidth() + 30 . 'px';
+$currentPanel = ".slide-panels__panel-{$panel->getKey()}";
+$outside = "$currentPanel.slide-panels__panel-{$panel->getSide()}_outside";
+$slideInside = "$currentPanel.slide-panels__panel-{$panel->getSide()}_slide-inside";
+$slideOutside = "$currentPanel.slide-panels__panel-{$panel->getSide()}_slide-outside";
+$animationSlideInside = "slide-panels__panel-{$panel->getKey()}_slide-inside";
+$animationSlideOutside = "slide-panels__panel-{$panel->getKey()}_slide-outside";
 ?>
 
 <style type="text/css">
-    @keyframes <?= $keyframesSlideInside; ?> {
-        from { <?= $panel->getSide(); ?>: -<?= $width; ?>; }
+    @keyframes <?= $animationSlideInside; ?> {
+        from { <?= $panel->getSide(); ?>: -<?= $panelWidth; ?>; }
         to { <?= $panel->getSide(); ?>: 0; }
     }
 
-    @keyframes <?= $keyframesSlideOutside; ?> {
+    @keyframes <?= $animationSlideOutside; ?> {
         from { <?= $panel->getSide(); ?>: 0; }
-        to { <?= $panel->getSide(); ?>: -<?= $width; ?>; }
+        to { <?= $panel->getSide(); ?>: -<?= $panelWidth; ?>; }
     }
 
-    <?= $classMain; ?> {
-        width: <?= $width; ?>;
-    }
+    <?= $currentPanel; ?> { width: <?= $panelWidth; ?>; }
 
-    <?= $classOutside; ?> {
-        <?= $panel->getSide(); ?>: -<?= $width; ?>;
-    }
+    <?= $outside; ?> { <?= $panel->getSide(); ?>: -<?= $panelWidth; ?>; }
 
-    <?= $classSlideInside; ?> {
+    <?= $slideInside; ?> {
         animation-name: slide-panels__panel-<?= $panel->getKey(); ?>_slide-inside;
         -webkit-animation-name: slide-panels__panel-<?= $panel->getKey(); ?>_slide-inside;
     }
-
-    <?= $classSlideOutside; ?> {
+    <?= $slideOutside; ?> {
         animation-name: slide-panels__panel-<?= $panel->getKey(); ?>_slide-outside;
         -webkit-animation-name: slide-panels__panel-<?= $panel->getKey(); ?>_slide-outside;
     }
 
-    @media screen and (max-width: <?= $width; ?>) {
-        <?= $classMain; ?> {
-            width: 100%;
-        }
-
-        <?= $classOutside; ?> {
-            <?= $panel->getSide(); ?>: -100vw;
-        }
-
-        @keyframes <?= $keyframesSlideInside; ?> {
+    @media screen and (max-width: <?= $screenWidth; ?>) {
+        @keyframes <?= $animationSlideInside; ?> {
             from { <?= $panel->getSide(); ?>: -100vw; }
             to { <?= $panel->getSide(); ?>: 0; }
         }
 
-        @keyframes <?= $keyframesSlideOutside; ?> {
+        @keyframes <?= $animationSlideOutside; ?> {
             from { <?= $panel->getSide(); ?>: 0; }
             to { <?= $panel->getSide(); ?>: -100vw; }
         }
+
+        <?= $currentPanel; ?> { width: calc(100% - 30px); }
+
+        <?= $outside; ?> { <?= $panel->getSide(); ?>: -100vw; }
     }
 </style>
