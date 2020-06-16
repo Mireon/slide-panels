@@ -21,7 +21,7 @@ $keyframesSlideInside = "slide-panels__panel-{$panel->getKey()}_slide-inside";
 $keyframesSlideOutside = "slide-panels__panel-{$panel->getKey()}_slide-outside";
 ?>
 
-<style>
+<style type="text/css">
     @keyframes <?= $keyframesSlideInside; ?> {
         from { <?= $panel->getSide(); ?>: -<?= $width; ?>; }
         to { <?= $panel->getSide(); ?>: 0; }
