@@ -19,16 +19,22 @@
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "*",
-        "symfony/var-dumper": "^5.1"
+        "symfony/var-dumper": "^5.1",
+        "phpunit/phpunit": "^9.2"
     },
     "autoload": {
         "psr-4": {
             "Mireon\\SlidePanels\\": "src/backend"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Mireon\\SlidePanels\\Tests\\": "tests/backend"
+        }
+    },
     "scripts": {
         "test": "vendor/bin/phpunit",
-        "test-coverage": "@test --coverage-html coverage",
+        "test-cover": "@test --coverage-html coverage",
         "cs": "vendor/bin/phpcs ./src/backend --standard=."
     }
 }
