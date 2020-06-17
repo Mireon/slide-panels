@@ -6,6 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const stage = new Stage();
     const levers = new Levers();
 
-    levers.setToShowClickListener(lever => stage.show(lever.getTarget()));
-    levers.setToHideClickListener(() => stage.hide());
+    levers.setShowClickListener(lever => stage.show(lever.getTarget()));
+    levers.setHideClickListener(() => stage.hide());
 });

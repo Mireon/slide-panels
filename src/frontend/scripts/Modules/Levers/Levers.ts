@@ -43,7 +43,7 @@ export default class Levers {
      *
      * @return void
      */
-    public setToShowClickListener(listener: LeverClickListener): void {
+    public setShowClickListener(listener: LeverClickListener): void {
         this.toShowLevers.forEach((lever: Lever) => lever.setClickListener(listener));
     }
 
@@ -55,7 +55,7 @@ export default class Levers {
      *
      * @return void
      */
-    public setToHideClickListener(listener: LeverClickListener): void {
+    public setHideClickListener(listener: LeverClickListener): void {
         this.toHideLevers.forEach((lever: Lever) => lever.setClickListener(listener));
     }
 }
