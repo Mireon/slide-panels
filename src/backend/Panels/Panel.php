@@ -341,11 +341,9 @@ class Panel implements Renderable
 
     /**
      * @inheritDoc
-     *
-     * @throws Exception
      */
     public function render(): string
     {
-        return Renderer::view('panels/panel', ['panel' => $this]);
+        return Renderer::render('panels/panel', ['panel' => $this]);
     }
 }

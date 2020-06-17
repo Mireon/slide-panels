@@ -2,7 +2,6 @@
 
 namespace Mireon\SlidePanels\Stage;
 
-use Exception;
 use Mireon\SlidePanels\Panels\Panels;
 use Mireon\SlidePanels\Renderer\Renderable;
 use Mireon\SlidePanels\Renderer\Renderer;
@@ -69,11 +68,9 @@ class Stage implements Renderable
 
     /**
      * @inheritDoc
-     *
-     * @throws Exception
      */
     public function render(): string
     {
-        return Renderer::view('stage/stage', ['stage' => $this]);
+        return Renderer::render('stage/stage', ['stage' => $this]);
     }
 }

@@ -19,7 +19,9 @@ class Path
      */
     public static function resources($path = ''): string
     {
-        return __DIR__ . "/../../../resources/$path";
+        $resources = __DIR__ . "/../../../resources";
+
+        return empty($path) ? $resources : "$resources/$path";
     }
 
     /**

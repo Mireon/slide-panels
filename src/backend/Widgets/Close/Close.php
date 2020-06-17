@@ -2,7 +2,6 @@
 
 namespace Mireon\SlidePanels\Widgets\Close;
 
-use Exception;
 use Mireon\SlidePanels\Renderer\Renderer;
 use Mireon\SlidePanels\Renderer\RenderToString;
 use Mireon\SlidePanels\Widgets\Widget;
@@ -165,11 +164,9 @@ class Close extends Widget
 
     /**
      * @inheritDoc
-     *
-     * @throws Exception
      */
     public function render(): string
     {
-        return Renderer::view('widgets/close/close', ['close' => $this]);
+        return Renderer::render('widgets/close/close', ['close' => $this]);
     }
 }

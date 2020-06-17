@@ -90,12 +90,10 @@ class PanelStyles implements Renderable, Validated
 
     /**
      * @inheritDoc
-     *
-     * @throws Exception
      */
     public function render(): string
     {
-        return Renderer::view('panels/panel-styles', [
+        return Renderer::render('panels/panel-styles', [
             'panel' => $this->panel,
             'styles' => $this,
         ]);

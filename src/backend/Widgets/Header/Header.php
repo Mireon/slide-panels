@@ -2,7 +2,6 @@
 
 namespace Mireon\SlidePanels\Widgets\Header;
 
-use Exception;
 use Mireon\SlidePanels\Renderer\Renderer;
 use Mireon\SlidePanels\Widgets\Widget;
 
@@ -257,11 +256,9 @@ class Header extends Widget
 
     /**
      * @inheritDoc
-     *
-     * @throws Exception
      */
     public function render(): string
     {
-        return Renderer::view('widgets/header/header', ['header' => $this]);
+        return Renderer::render('widgets/header/header', ['header' => $this]);
     }
 }

@@ -17,7 +17,6 @@
     <filter>
         <whitelist addUncoveredFilesFromWhitelist="false">
             <directory suffix=".php">src/backend</directory>
-            <directory suffix=".php">resources/views</directory>
         </whitelist>
     </filter>
 </phpunit>

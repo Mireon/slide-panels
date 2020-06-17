@@ -163,11 +163,9 @@ class Panels implements Renderable, IteratorAggregate
 
     /**
      * @inheritDoc
-     *
-     * @throws Exception
      */
     public function render(): string
     {
-        return Renderer::view('panels/panels', ['panels' => $this]);
+        return Renderer::render('panels/panels', ['panels' => $this]);
     }
 }

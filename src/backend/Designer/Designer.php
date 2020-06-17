@@ -104,8 +104,6 @@ class Designer
 
     /**
      * @inheritDoc
-     *
-     * @throws Exception
      */
     public function render(): string
     {

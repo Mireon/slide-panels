@@ -170,11 +170,9 @@ class Widgets implements Renderable, IteratorAggregate
 
     /**
      * @inheritDoc
-     *
-     * @throws Exception
      */
     public function render(): string
     {
-        return Renderer::view('widgets/widgets', ['widgets' => $this]);
+        return Renderer::render('widgets/widgets', ['widgets' => $this]);
     }
 }

@@ -2,7 +2,6 @@
 
 namespace Mireon\SlidePanels\Levers;
 
-use Exception;
 use Mireon\SlidePanels\Renderer\Renderer;
 use Mireon\SlidePanels\Renderer\RenderToString;
 use Mireon\SlidePanels\Widgets\Menu\ItemInterface;
@@ -262,11 +261,9 @@ class Lever implements ItemInterface
 
     /**
      * @inheritDoc
-     *
-     * @throws Exception
      */
     public function render(): string
     {
-        return Renderer::view("levers/{$this->getType()}", ['lever' => $this]);
+        return Renderer::render("levers/{$this->getType()}", ['lever' => $this]);
     }
 }

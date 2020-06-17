@@ -2,7 +2,6 @@
 
 namespace Mireon\SlidePanels\Widgets\Menu;
 
-use Exception;
 use Mireon\SlidePanels\Renderer\Renderer;
 use Mireon\SlidePanels\Renderer\RenderToString;
 
@@ -224,11 +223,9 @@ class Item implements ItemInterface
 
     /**
      * @inheritDoc
-     *
-     * @throws Exception
      */
     public function render(): string
     {
-        return Renderer::view('widgets/menu/item', ['item' => $this]);
+        return Renderer::render('widgets/menu/item', ['item' => $this]);
     }
 }

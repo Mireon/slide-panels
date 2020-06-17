@@ -82,11 +82,11 @@ class SlidePanels implements Renderable
      */
     public static function instance(): self
     {
-        if (is_null(static::$instance)) {
-            static::$instance = new static();
+        if (is_null(self::$instance)) {
+            self::$instance = new self();
         }
 
-        return static::$instance;
+        return self::$instance;
     }
 
     /**
@@ -101,8 +101,6 @@ class SlidePanels implements Renderable
 
     /**
      * @inheritDoc
-     *
-     * @throws Exception
      */
     public function render(): string
     {

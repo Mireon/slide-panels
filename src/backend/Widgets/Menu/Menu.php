@@ -171,11 +171,9 @@ class Menu extends Widget implements IteratorAggregate
 
     /**
      * @inheritDoc
-     *
-     * @throws Exception
      */
     public function render(): string
     {
-        return Renderer::view('widgets/menu/menu', ['menu' => $this]);
+        return Renderer::render('widgets/menu/menu', ['menu' => $this]);
     }
 }
