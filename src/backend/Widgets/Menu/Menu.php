@@ -116,11 +116,11 @@ class Menu extends Widget implements IteratorAggregate
      */
     public function addItem(ItemInterface $item): void
     {
-        if ($item->isValid()) {
-            $this->items[] = $item;
-        } else {
+        if (!$item->isValid()) {
             throw new Exception('Menu item "' . get_class($item) . '" is invalid.');
         }
+
+        $this->items[] = $item;
     }
 
     /**

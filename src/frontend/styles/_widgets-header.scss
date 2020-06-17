@@ -23,12 +23,14 @@
 
 &__header__icon {
 
-  &_big {
+  &_big,
+  &_big.fa {
     margin-right: 10px;
-    font-size: 30px;
+    font-size: 22px;
   }
 
-  &_small {
+  &_small,
+  &_small.fa {
     margin-right: 8px;
     font-size: 18px;
   }

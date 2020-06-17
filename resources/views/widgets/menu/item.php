@@ -10,7 +10,9 @@ use Mireon\SlidePanels\Widgets\Menu\Item;
  */
 ?>
 
-<?php if ($item->hasIcon()): ?>
-    <i class="slide-panels__menu__icon <?= $item->getIcon(); ?>"></i>
-<?php endif; ?>
-<a href="<?= $item->getUrl(); ?>" class="slide-panels__menu__link"><?= $item->getText(); ?></a>
+<a href="<?= $item->getUrl(); ?>" class="slide-panels__menu__link">
+    <?php if ($item->hasIcon()): ?>
+        <i class="slide-panels__menu__icon <?= $item->getIcon(); ?>"></i>
+    <?php endif; ?>
+    <span class="slide-panels__menu__text"><?= $item->getText(); ?></span>
+</a>

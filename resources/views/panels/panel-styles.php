@@ -4,7 +4,7 @@ use Mireon\SlidePanels\Panels\Panel;
 use Mireon\SlidePanels\Panels\PanelStyles;
 
 /**
- * Prints styles.
+ * Prints styles for a panel.
  *
  * @var Panel $panel
  *   A panel.
@@ -14,12 +14,12 @@ use Mireon\SlidePanels\Panels\PanelStyles;
 
 $panelWidth = "{$styles->getWidth()}px";
 $screenWidth = $styles->getWidth() + 30 . 'px';
-$currentPanel = ".slide-panels__panel-{$panel->getKey()}";
-$outside = "$currentPanel.slide-panels__panel-{$panel->getSide()}_outside";
-$slideInside = "$currentPanel.slide-panels__panel-{$panel->getSide()}_slide-inside";
-$slideOutside = "$currentPanel.slide-panels__panel-{$panel->getSide()}_slide-outside";
-$animationSlideInside = "slide-panels__panel-{$panel->getKey()}_slide-inside";
-$animationSlideOutside = "slide-panels__panel-{$panel->getKey()}_slide-outside";
+$currentPanel = "slide-panels__panel-{$panel->getKey()}";
+$outside = ".$currentPanel.slide-panels__panel_{$panel->getSide()}_outside";
+$slideInside = ".$currentPanel.slide-panels__panel_{$panel->getSide()}_slide-inside";
+$slideOutside = ".$currentPanel.slide-panels__panel_{$panel->getSide()}_slide-outside";
+$animationSlideInside = "{$currentPanel}_slide-inside";
+$animationSlideOutside = "{$currentPanel}_slide-outside";
 ?>
 
 <style type="text/css">
@@ -33,14 +33,19 @@ $animationSlideOutside = "slide-panels__panel-{$panel->getKey()}_slide-outside";
         to { <?= $panel->getSide(); ?>: -<?= $panelWidth; ?>; }
     }
 
-    <?= $currentPanel; ?> { width: <?= $panelWidth; ?>; }
+    .<?= $currentPanel; ?> {
+        width: <?= $panelWidth; ?>;
+    }
 
-    <?= $outside; ?> { <?= $panel->getSide(); ?>: -<?= $panelWidth; ?>; }
+    <?= $outside; ?> {
+        <?= $panel->getSide(); ?>: -<?= $panelWidth; ?>;
+    }
 
     <?= $slideInside; ?> {
         animation-name: slide-panels__panel-<?= $panel->getKey(); ?>_slide-inside;
         -webkit-animation-name: slide-panels__panel-<?= $panel->getKey(); ?>_slide-inside;
     }
+
     <?= $slideOutside; ?> {
         animation-name: slide-panels__panel-<?= $panel->getKey(); ?>_slide-outside;
         -webkit-animation-name: slide-panels__panel-<?= $panel->getKey(); ?>_slide-outside;
@@ -57,8 +62,12 @@ $animationSlideOutside = "slide-panels__panel-{$panel->getKey()}_slide-outside";
             to { <?= $panel->getSide(); ?>: -100vw; }
         }
 
-        <?= $currentPanel; ?> { width: calc(100% - 30px); }
+        .<?= $currentPanel; ?> {
+            width: calc(100% - 30px);
+        }
 
-        <?= $outside; ?> { <?= $panel->getSide(); ?>: -100vw; }
+        <?= $outside; ?> {
+            <?= $panel->getSide(); ?>: -100vw;
+        }
     }
 </style>

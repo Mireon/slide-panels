@@ -45,6 +45,6 @@ export default class StageAnimation {
         setTimeout(() => {
             this.element.classList.add('slide-panels__stage_hidden');
             this.element.classList.remove('slide-panels__stage_hiding');
-        }, 300);
+        }, 400);
     }
 }

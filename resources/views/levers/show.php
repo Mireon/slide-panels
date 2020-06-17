@@ -11,5 +11,5 @@ use Mireon\SlidePanels\Levers\Lever;
 ?>
 
 <a href="#" class="slide-panels__lever slide-panels__lever-show" data-element="lever" data-action="show" data-target="<?= $lever->getPanel(); ?>">
-    <?= $lever->getText(); ?>
+    <?= $lever->hasText() ? $lever->getText() : ''; ?>
 </a>

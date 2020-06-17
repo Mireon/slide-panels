@@ -119,11 +119,11 @@ class Widgets implements Renderable, IteratorAggregate
      */
     public function addWidget(WidgetInterface $widget): void
     {
-        if ($widget->isValid()) {
-            $this->widgets[] = $widget;
-        } else {
+        if (!$widget->isValid()) {
             throw new Exception('Widget "' . get_class($widget) . '" is invalid.');
         }
+
+        $this->widgets[] = $widget;
     }
 
     /**

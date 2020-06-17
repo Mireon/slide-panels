@@ -102,11 +102,11 @@ class Panels implements Renderable, IteratorAggregate
      */
     public function addPanel(Panel $panel): void
     {
-        if ($panel->isValid()) {
-            $this->panels[$panel->getKey()] = $panel;
-        } else {
+        if (!$panel->isValid()) {
             throw new Exception('Panel is invalid.');
         }
+
+        $this->panels[$panel->getKey()] = $panel;
     }
 
     /**

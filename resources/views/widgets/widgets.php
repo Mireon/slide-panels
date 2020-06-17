@@ -4,15 +4,17 @@ use Mireon\SlidePanels\Widgets\WidgetInterface;
 use Mireon\SlidePanels\Widgets\Widgets;
 
 /**
- * Prints a widget container.
+ * Prints the widgets container.
  *
  * @var Widgets $widgets
- *   A widget container.
+ *   A widgets container.
  * @var WidgetInterface $widget
  *   A widget.
  */
 ?>
 
-<?php foreach ($widgets as $widget): ?>
-    <?= $widget->render(); ?>
-<?php endforeach; ?>
+<div class="slide-panels__widgets">
+    <?php foreach ($widgets as $widget): ?>
+        <?= $widget->render(); ?>
+    <?php endforeach; ?>
+</div>

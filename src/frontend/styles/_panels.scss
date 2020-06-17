@@ -26,7 +26,7 @@ $screen-width: 350px;
     visibility: hidden;
   }
 
-  &-left {
+  &_left {
 
     &_inside {
       left: 0;
@@ -43,7 +43,7 @@ $screen-width: 350px;
 
   }
 
-  &-right {
+  &_right {
 
     &_inside {
       right: 0;

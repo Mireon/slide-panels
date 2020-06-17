@@ -56,10 +56,10 @@ class Catalog implements FactoryInterface
                 ->text('Catalog'))
             ->widget(Menu::create()
                 ->weight(10)
-                ->item(Item::create('Electronics', "$url/electronics"))
-                ->item(Item::create('Construction & Repair', "$url/construction-&-tools"))
-                ->item(Item::create('Home & Garden', "$url/construction-&-tools"))
-                ->item(Item::create('Health & Beauty', "$url/health-&-beauty"))
-                ->item(Item::create('Sport & Tourism', "$url/sport-&-tourism")));
+                ->item(Item::create('Electronics', "$url/electronics", 'fa fa-headphones'))
+                ->item(Item::create('Construction & Repair', "$url/construction-&-tools", 'fa fa-wrench'))
+                ->item(Item::create('Home & Garden', "$url/construction-&-tools", 'fa fa-home'))
+                ->item(Item::create('Health & Beauty', "$url/health-&-beauty", 'fa fa-magic'))
+                ->item(Item::create('Sport & Tourism', "$url/sport-&-tourism", 'fa fa-plane')));
     }
 }

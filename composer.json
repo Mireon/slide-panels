@@ -24,10 +24,7 @@
     "autoload": {
         "psr-4": {
             "Mireon\\SlidePanels\\": "src/backend"
-        },
-        "files": [
-            "helpers.php"
-        ]
+        }
     },
     "scripts": {
         "test": "vendor/bin/phpunit",

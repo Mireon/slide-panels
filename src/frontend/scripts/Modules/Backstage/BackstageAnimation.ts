@@ -39,12 +39,14 @@ export default class BackstageAnimation {
      * @return void
      */
     public hide() {
-        this.element.classList.add('slide-panels__backstage_hiding');
-        this.element.classList.remove('slide-panels__backstage_visible');
+        setTimeout(() => {
+            this.element.classList.add('slide-panels__backstage_hiding');
+            this.element.classList.remove('slide-panels__backstage_visible');
+        }, 100);
 
         setTimeout(() => {
             this.element.classList.add('slide-panels__backstage_hidden');
             this.element.classList.remove('slide-panels__backstage_hiding');
-        }, 300);
+        }, 400);
     }
 }

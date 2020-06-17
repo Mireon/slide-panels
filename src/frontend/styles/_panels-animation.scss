@@ -6,44 +6,44 @@ $panel-width: 320px;
   animation-fill-mode: forwards;
 }
 
-@keyframes slide-panels__panel-left_slide-inside {
+@keyframes slide-panels__panel_left_slide-inside {
   from { left: -$panel-width; }
   to { left: 0; }
 }
 
-@keyframes slide-panels__panel-left_slide-outside {
+@keyframes slide-panels__panel_left_slide-outside {
   from { left: 0; }
   to { left: -$panel-width; }
 }
 
-@keyframes slide-panels__panel-right_slide-inside {
+@keyframes slide-panels__panel_right_slide-inside {
   from { right: -$panel-width; }
   to { right: 0; }
 }
 
-@keyframes slide-panels__panel-right_slide-outside {
+@keyframes slide-panels__panel_right_slide-outside {
   from { right: 0; }
   to { right: -$panel-width; }
 }
 
 @media screen and (max-width: $panel-width) {
 
-  @keyframes slide-panels__panel-left_slide-inside {
+  @keyframes slide-panels__panel_left_slide-inside {
     from { left: -100vw; }
     to { left: 0; }
   }
 
-  @keyframes slide-panels__panel-left_slide-outside {
+  @keyframes slide-panels__panel_left_slide-outside {
     from { left: 0; }
     to { left: -100vw; }
   }
 
-  @keyframes slide-panels__panel-right_slide-inside {
+  @keyframes slide-panels__panel_right_slide-inside {
     from { right: -100vw; }
     to { right: 0; }
   }
 
-  @keyframes slide-panels__panel-right_slide-outside {
+  @keyframes slide-panels__panel_right_slide-outside {
     from { right: 0; }
     to { right: -100vw; }
   }
@@ -52,30 +52,30 @@ $panel-width: 320px;
 
 &__panel {
 
-  &-left {
+  &_left {
 
     &_slide-inside {
       @include common;
-      animation-name: slide-panels__panel-left_slide-inside;
+      animation-name: slide-panels__panel_left_slide-inside;
     }
 
     &_slide-outside {
       @include common;
-      animation-name: slide-panels__panel-left_slide-outside;
+      animation-name: slide-panels__panel_left_slide-outside;
     }
 
   }
 
-  &-right {
+  &_right {
 
     &_slide-inside {
       @include common;
-      animation-name: slide-panels__panel-right_slide-inside;
+      animation-name: slide-panels__panel_right_slide-inside;
     }
 
     &_slide-outside {
       @include common;
-      animation-name: slide-panels__panel-right_slide-outside;
+      animation-name: slide-panels__panel_right_slide-outside;
     }
 
   }

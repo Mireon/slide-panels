@@ -6,7 +6,10 @@
   @import "panels";
   @import "panels-animation";
   @import "stage";
-  @import "widgets-header";
-  @import "widgets-menu";
-  @import "widgets-close";
+  @import "widgets";
+
+  @media print {
+    display: none;
+  }
+
 }

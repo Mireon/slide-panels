@@ -3,7 +3,7 @@
 use Mireon\SlidePanels\Widgets\Close\Close;
 
 /**
- * Prints a lever to hide a panel.
+ * Prints the close widget.
  *
  * @var Close $close
  *   A close widget.

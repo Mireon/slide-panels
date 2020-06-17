@@ -62,7 +62,7 @@ class Header extends Widget
     }
 
     /**
-     * Creates an instance of this class.
+     * Creates the header.
      *
      * @param string|null $text
      *   A header text.
@@ -76,6 +76,36 @@ class Header extends Widget
     public static function create(?string $text = null, ?string $icon = null, ?string $size = null): self
     {
         return new static($text, $icon, $size);
+    }
+
+    /**
+     * Creates the small header.
+     *
+     * @param string|null $text
+     *   A header text.
+     * @param string|null $icon
+     *   A header icon.
+     *
+     * @return static
+     */
+    public static function small(?string $text = null, ?string $icon = null): self
+    {
+        return new static($text, $icon, self::SMALL);
+    }
+
+    /**
+     * Creates the big header.
+     *
+     * @param string|null $text
+     *   A header text.
+     * @param string|null $icon
+     *   A header icon.
+     *
+     * @return static
+     */
+    public static function big(?string $text = null, ?string $icon = null): self
+    {
+        return new static($text, $icon, self::BIG);
     }
 
     /**

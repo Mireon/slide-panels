@@ -38,15 +38,15 @@ export default class PanelAnimation {
      */
     public inside(): void {
         this.element.classList.add('slide-panels__panel_showing');
-        this.element.classList.add(`slide-panels__panel-${this.side}_slide-inside`);
-        this.element.classList.remove(`slide-panels__panel-${this.side}_outside`);
+        this.element.classList.add(`slide-panels__panel_${this.side}_slide-inside`);
+        this.element.classList.remove(`slide-panels__panel_${this.side}_outside`);
         this.element.classList.remove('slide-panels__panel_hidden');
 
         setTimeout(() => {
             this.element.classList.add('slide-panels__panel_visible');
-            this.element.classList.add(`slide-panels__panel-${this.side}_inside`);
+            this.element.classList.add(`slide-panels__panel_${this.side}_inside`);
             this.element.classList.remove('slide-panels__panel_showing');
-            this.element.classList.remove(`slide-panels__panel-${this.side}_slide-inside`);
+            this.element.classList.remove(`slide-panels__panel_${this.side}_slide-inside`);
         }, 300);
     }
 
@@ -57,15 +57,15 @@ export default class PanelAnimation {
      */
     public outside(): void {
         this.element.classList.add('slide-panels__panel_hiding');
-        this.element.classList.add(`slide-panels__panel-${this.side}_slide-outside`);
+        this.element.classList.add(`slide-panels__panel_${this.side}_slide-outside`);
         this.element.classList.remove('slide-panels__panel_visible');
-        this.element.classList.remove(`slide-panels__panel-${this.side}_inside`);
+        this.element.classList.remove(`slide-panels__panel_${this.side}_inside`);
 
         setTimeout(() => {
             this.element.classList.add('slide-panels__panel_hidden');
-            this.element.classList.add(`slide-panels__panel-${this.side}_outside`);
+            this.element.classList.add(`slide-panels__panel_${this.side}_outside`);
             this.element.classList.remove('slide-panels__panel_hiding');
-            this.element.classList.remove(`slide-panels__panel-${this.side}_slide-outside`);
+            this.element.classList.remove(`slide-panels__panel_${this.side}_slide-outside`);
         }, 300);
     }
 }
