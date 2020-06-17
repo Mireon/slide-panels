@@ -7,18 +7,18 @@ import Selector from '@tools/Selector';
  */
 export default class Levers {
     /**
-     * The list of levers these for show.
+     * The list of levers to show.
      *
      * @type Array<Lever>
      */
-    private readonly toShowLevers = new Array<Lever>();
+    private readonly showLevers = new Array<Lever>();
 
     /**
-     * The list of levers these for hide.
+     * The list of levers to hide.
      *
      * @type Array<Lever>
      */
-    private readonly toHideLevers = new Array<Lever>();
+    private readonly hideLevers = new Array<Lever>();
 
     /**
      * The constructor.
@@ -28,9 +28,9 @@ export default class Levers {
             const lever = new Lever(element);
 
             if (lever.toShow()) {
-                this.toShowLevers.push(lever);
+                this.showLevers.push(lever);
             } else if (lever.toHide()) {
-                this.toHideLevers.push(lever);
+                this.hideLevers.push(lever);
             }
         });
     }
@@ -44,7 +44,7 @@ export default class Levers {
      * @return void
      */
     public setShowClickListener(listener: LeverClickListener): void {
-        this.toShowLevers.forEach((lever: Lever) => lever.setClickListener(listener));
+        this.showLevers.forEach((lever: Lever) => lever.setClickListener(listener));
     }
 
     /**
@@ -56,6 +56,6 @@ export default class Levers {
      * @return void
      */
     public setHideClickListener(listener: LeverClickListener): void {
-        this.toHideLevers.forEach((lever: Lever) => lever.setClickListener(listener));
+        this.hideLevers.forEach((lever: Lever) => lever.setClickListener(listener));
     }
 }
