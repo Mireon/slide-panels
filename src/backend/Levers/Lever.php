@@ -222,12 +222,12 @@ class Lever implements ItemInterface
     /**
      * Sets a lever type.
      *
-     * @param string $type
+     * @param string|null $type
      *   A lever type.
      *
      * @return void
      */
-    public function setType(string $type): void
+    public function setType(?string $type): void
     {
         switch ($type) {
             case self::SHOW:

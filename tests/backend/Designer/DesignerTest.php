@@ -8,14 +8,25 @@ use Mireon\SlidePanels\Designer\FactoryInterface;
 use Mireon\SlidePanels\Panels\Panel;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
+use ReflectionException;
 
 /**
+ * Test for the panel designer.
+ *
  * @covers \Mireon\SlidePanels\Designer\Designer
  */
 class DesignerTest extends TestCase
 {
     /**
+     * Test for the panel method.
+     *
+     * Catch an exception when entered an empty panel key.
+     *
      * @covers \Mireon\SlidePanels\Designer\Designer::panel
+     *
+     * @return void
+     *
+     * @throws Exception
      */
     public function testPanel_1(): void
     {
@@ -25,7 +36,13 @@ class DesignerTest extends TestCase
     }
 
     /**
+     * Test for the panel method.
+     *
      * @covers \Mireon\SlidePanels\Designer\Designer::panel
+     *
+     * @return void
+     *
+     * @throws Exception
      */
     public function testPanel_2(): void
     {
@@ -33,7 +50,15 @@ class DesignerTest extends TestCase
     }
 
     /**
+     * Test for the factory method.
+     *
+     * Catch an exception when entered an invalid factory entity.
+     *
      * @covers \Mireon\SlidePanels\Designer\Designer::factory
+     *
+     * @return void
+     *
+     * @throws Exception
      */
     public function testFactory_1(): void
     {
@@ -45,7 +70,14 @@ class DesignerTest extends TestCase
     }
 
     /**
+     * Test for the factory method.
+     * Catch an exception when entered a nonexistent factory class.
+     *
      * @covers \Mireon\SlidePanels\Designer\Designer::factory
+     *
+     * @return void
+     *
+     * @throws Exception
      */
     public function testFactory_2(): void
     {
@@ -55,7 +87,15 @@ class DesignerTest extends TestCase
     }
 
     /**
+     * Test for the factory method.
+     *
+     * Catch an exception when entered a factory class with a non-implemented factory interface.
+     *
      * @covers \Mireon\SlidePanels\Designer\Designer::factory
+     *
+     * @return void
+     *
+     * @throws Exception
      */
     public function testFactory_3(): void
     {
@@ -65,18 +105,27 @@ class DesignerTest extends TestCase
     }
 
     /**
+     * Test for the factory method.
+     *
      * @covers \Mireon\SlidePanels\Designer\Designer::factory
+     *
+     * @return void
+     *
+     * @throws ReflectionException
      */
     public function testFactory_4(): void
     {
+        // Private factories property
         $property = (new ReflectionClass(Designer::class))->getProperty('factories');
         $property->setAccessible(true);
 
+        // Initialize
         $designer = new Designer();
 
         $this->assertIsArray($property->getValue($designer));
         $this->assertEmpty($property->getValue($designer));
 
+        // Designer::factory()
         $designer = new Designer();
         $designer->factory($this->getFactory());
 
@@ -84,9 +133,15 @@ class DesignerTest extends TestCase
     }
 
     /**
+     * Test for the render method.
+     *
      * @covers \Mireon\SlidePanels\Designer\Designer::render
+     *
+     * @return void
+     *
+     * @throws Exception
      */
-    public function testRender_1(): void
+    public function testRender(): void
     {
         $designer = new Designer();
         $designer->factory($this->getFactory());
@@ -95,6 +150,8 @@ class DesignerTest extends TestCase
     }
 
     /**
+     * Returns the test factory.
+     *
      * @return FactoryInterface
      */
     private function getFactory(): FactoryInterface

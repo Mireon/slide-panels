@@ -119,6 +119,7 @@ class Panel implements Renderable
         $key = trim($key);
         $key = htmlspecialchars($key, ENT_QUOTES, 'UTF-8');
         $key = str_replace(' ', '-', $key);
+        $key = mb_strtolower($key);
 
         $this->key = $key ?: null;
     }
