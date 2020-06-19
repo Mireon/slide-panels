@@ -36,6 +36,6 @@ export default class BodyAnimation {
      */
     public unfreeze(): void
     {
-        this.element.classList.remove('slide-panels__body_freeze');
+        setTimeout(() => this.element.classList.remove('slide-panels__body_freeze'), 300);
     }
 }

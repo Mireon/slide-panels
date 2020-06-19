@@ -12,6 +12,13 @@ import Body from '@modules/Body/Body';
  */
 export default class Stage {
     /**
+     * The DOM element.
+     *
+     * @type Element
+     */
+    private readonly element: Element;
+
+    /**
      * The stage events.
      *
      * @type StageEvents
@@ -57,8 +64,9 @@ export default class Stage {
      * The constructor.
      */
     public constructor() {
-        this.events = new StageEvents(Selector.root());
-        this.animation = new StageAnimation();
+        this.element = Selector.root();
+        this.events = new StageEvents(this.element);
+        this.animation = new StageAnimation(this.element);
         this.body = new Body();
         this.state = new State();
         this.backstage = new Backstage();
@@ -75,6 +83,7 @@ export default class Stage {
      */
     public show(target: Target): void {
         if (this.state.isHidden()) {
+            this.events.show();
             this.animation.show();
             this.body.freeze();
             this.state.show();
@@ -91,11 +100,12 @@ export default class Stage {
      */
     public hide(): void {
         if (this.state.isVisible()) {
+            this.animation.hide();
+            this.events.hide();
+            this.body.unfreeze();
+            this.state.hide();
             this.backstage.hide();
             this.panels.hide();
-            this.animation.hide();
-            this.state.hide();
-            this.body.unfreeze();
         }
     }
 }

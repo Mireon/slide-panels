@@ -105,8 +105,8 @@ export default class Lever {
     public setClickListener(listener: LeverClickListener): void {
         this.element.addEventListener('click', e => {
             e.preventDefault();
-            listener(this);
             this.getAction() === Props.action.SHOW ? this.events.onShow() : this.events.onHide();
+            listener(this);
         });
     }
 }

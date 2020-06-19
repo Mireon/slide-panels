@@ -13,9 +13,12 @@ export default class StageAnimation {
 
     /**
      * The constructor.
+     *
+     * @param element { Element }
+     *   A DOM element of stage.
      */
-    public constructor() {
-        this.element = Selector.root();
+    public constructor(element: Element) {
+        this.element = element;
     }
 
     /**
