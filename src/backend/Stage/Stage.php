@@ -24,13 +24,42 @@ class Stage implements Renderable
     private ?Panels $panels = null;
 
     /**
+     * The constructor.
+     *
+     * @param Panels|null $panels
+     *   The panels container.
+     */
+    public function __construct(?Panels $panels = null)
+    {
+        $this->panels = $panels;
+    }
+
+    /**
      * Creates the stage.
      *
-     * @return static
+     * @param Panels|null $panels
+     *   The panels container.
+     *
+     * @return self
      */
-    public static function create(): self
+    public static function create(?Panels $panels = null): self
     {
-        return new static();
+        return new self($panels);
+    }
+
+    /**
+     * The panels container.
+     *
+     * @param Panels $panels
+     *   A panels container.
+     *
+     * @return self
+     */
+    public function panels(Panels $panels): self
+    {
+        $this->setPanels($panels);
+
+        return $this;
     }
 
     /**
