@@ -23,7 +23,6 @@ class PathTest extends TestCase
     {
         $resources = Path::resources();
         $extra = 'extra';
-
         $this->assertIsString($resources);
         $this->assertSame("$resources/$extra", Path::resources($extra));
     }
@@ -39,7 +38,6 @@ class PathTest extends TestCase
     {
         $resources = Path::resources();
         $views = Path::views('view');
-
         $this->assertIsString($views);
         $this->assertSame("$resources/views/view.php" , $views);
     }

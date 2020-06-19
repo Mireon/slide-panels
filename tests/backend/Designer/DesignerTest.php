@@ -28,10 +28,9 @@ class DesignerTest extends TestCase
      *
      * @throws Exception
      */
-    public function testPanel_1(): void
+    public function testPanelException_1(): void
     {
         $this->expectException(Exception::class);
-
         (new Designer())->panel('');
     }
 
@@ -44,7 +43,7 @@ class DesignerTest extends TestCase
      *
      * @throws Exception
      */
-    public function testPanel_2(): void
+    public function testPanelException_2(): void
     {
         $this->assertInstanceOf(Panel::class, (new Designer())->panel('key'));
     }
@@ -60,10 +59,9 @@ class DesignerTest extends TestCase
      *
      * @throws Exception
      */
-    public function testFactory_1(): void
+    public function testFactoryException_1(): void
     {
         $this->expectException(Exception::class);
-
         (new Designer())->factory(false);
         (new Designer())->factory(0);
         (new Designer())->factory(1.0);
@@ -80,10 +78,9 @@ class DesignerTest extends TestCase
      *
      * @throws Exception
      */
-    public function testFactory_2(): void
+    public function testFactoryException_2(): void
     {
         $this->expectException(Exception::class);
-
         (new Designer())->factory('class');
     }
 
@@ -98,10 +95,9 @@ class DesignerTest extends TestCase
      *
      * @throws Exception
      */
-    public function testFactory_3(): void
+    public function testFactoryException_3(): void
     {
         $this->expectException(Exception::class);
-
         (new Designer())->factory(Designer::class);
     }
 
@@ -114,7 +110,7 @@ class DesignerTest extends TestCase
      *
      * @throws ReflectionException
      */
-    public function testFactory_4(): void
+    public function testFactory(): void
     {
         // Private factories property
         $property = (new ReflectionClass(Designer::class))->getProperty('factories');
@@ -122,14 +118,12 @@ class DesignerTest extends TestCase
 
         // Initialize
         $designer = new Designer();
-
         $this->assertIsArray($property->getValue($designer));
         $this->assertEmpty($property->getValue($designer));
 
         // Designer::factory()
         $designer = new Designer();
         $designer->factory($this->getFactory());
-
         $this->assertNotEmpty($property->getValue($designer));
     }
 

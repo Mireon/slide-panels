@@ -33,7 +33,6 @@ class PanelStylesTest extends TestCase
         // Instances
         $panel = new Panel();
         $styles = new PanelStyles($panel);
-
         $this->assertTrue($panel === $property->getValue($styles));
     }
 
@@ -48,28 +47,25 @@ class PanelStylesTest extends TestCase
      *
      * @throws Exception
      */
-    public function testWidth_1(): void
+    public function testWidthProperty(): void
     {
         // Initialize
         $panel = new Panel('key');
         $styles = new PanelStyles($panel);
-
         $this->assertSame(320, $styles->getWidth());
 
         // PanelStyles::width()
         $styles = (new PanelStyles($panel))->width(500);
-
         $this->assertSame(500, $styles->getWidth());
 
         // PanelStyles::setWidth()
         $styles = new PanelStyles($panel);
         $styles->setWidth(400);
-
         $this->assertSame(400, $styles->getWidth());
     }
 
     /**
-     * Test for the width property and its methods.
+     * Test for the width method.
      *
      * Catch an exception when entered a value less then 0.
      *
@@ -79,7 +75,7 @@ class PanelStylesTest extends TestCase
      *
      * @return void
      */
-    public function testWidth_2(): void
+    public function testWidthException(): void
     {
         $this->expectException(Exception::class);
 
@@ -87,7 +83,7 @@ class PanelStylesTest extends TestCase
     }
 
     /**
-     * Test for the width property and its methods.
+     * Test for the setWidth method.
      *
      * Catch an exception when entered a value less then 0.
      *
@@ -97,10 +93,9 @@ class PanelStylesTest extends TestCase
      *
      * @throws Exception
      */
-    public function testWidth_3(): void
+    public function testSetWidthException(): void
     {
         $this->expectException(Exception::class);
-
         (new PanelStyles(new Panel('key')))->setWidth(-10);
     }
 
@@ -117,12 +112,10 @@ class PanelStylesTest extends TestCase
     {
         // Valid
         $styles = new PanelStyles(new Panel('key'));
-
         $this->assertTrue($styles->isValid());
 
         // Invalid
         $styles = new PanelStyles(new Panel());
-
         $this->assertFalse($styles->isValid());
     }
 
@@ -154,13 +147,11 @@ class PanelStylesTest extends TestCase
         // False
         $styles = new PanelStyles(new Panel('key'));
         $styles->setWidth(320);
-
         $this->assertFalse($styles->doUse());
 
         // True
         $styles = new PanelStyles(new Panel('key'));
         $styles->setWidth(400);
-
         $this->assertTrue($styles->doUse());
     }
 }

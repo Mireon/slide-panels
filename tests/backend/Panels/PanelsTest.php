@@ -5,6 +5,7 @@ namespace Mireon\SlidePanels\Tests\Panels;
 use Exception;
 use Mireon\SlidePanels\Panels\Panel;
 use Mireon\SlidePanels\Panels\Panels;
+use Mireon\SlidePanels\Widgets\Widgets;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -27,13 +28,11 @@ class PanelsTest extends TestCase
     {
         // Initialize
         $panels = new Panels();
-
         $this->assertIsArray($panels->getPanels());
         $this->assertEmpty($panels->getPanels());
 
         // Not empty
         $panels = new Panels([new Panel('red'), new Panel('black')]);
-
         $this->assertNotEmpty($panels->getPanels());
         $this->assertCount(2, $panels->getPanels());
     }
@@ -51,21 +50,21 @@ class PanelsTest extends TestCase
     {
         // Initialize
         $panels = Panels::create();
-
+        $this->assertInstanceOf(Panels::class, $panels);
         $this->assertIsArray($panels->getPanels());
         $this->assertEmpty($panels->getPanels());
         $this->assertFalse($panels->hasPanels());
 
         // Not empty
         $panels = Panels::create([new Panel('red'), new Panel('black')]);
-
+        $this->assertInstanceOf(Panels::class, $panels);
         $this->assertNotEmpty($panels->getPanels());
         $this->assertCount(2, $panels->getPanels());
         $this->assertTrue($panels->hasPanels());
     }
 
     /**
-     * Test for the panels property and its method.
+     * Test for the panels property and its methods.
      *
      * @covers \Mireon\SlidePanels\Panels\Panels::panels
      * @covers \Mireon\SlidePanels\Panels\Panels::setPanels
@@ -76,11 +75,10 @@ class PanelsTest extends TestCase
      *
      * @throws Exception
      */
-    public function testPanels_1(): void
+    public function testPanelsProperty(): void
     {
         // Panels::panels()
         $panels = (new Panels())->panels([new Panel('red'), new Panel('black')]);
-
         $this->assertNotEmpty($panels->getPanels());
         $this->assertCount(2, $panels->getPanels());
         $this->assertTrue($panels->hasPanels());
@@ -88,21 +86,19 @@ class PanelsTest extends TestCase
         // Panels::setPanels()
         $panels = new Panels();
         $panels->setPanels([new Panel('red'), new Panel('black')]);
-
         $this->assertNotEmpty($panels->getPanels());
         $this->assertCount(2, $panels->getPanels());
         $this->assertTrue($panels->hasPanels());
 
         // Clear
         $panels->setPanels([]);
-
         $this->assertEmpty($panels->getPanels());
         $this->assertCount(0, $panels->getPanels());
         $this->assertFalse($panels->hasPanels());
     }
 
     /**
-     * Test for the panels property and its method.
+     * Test for the panels method.
      *
      * Catch an exception when entered a invalid panel.
      *
@@ -112,15 +108,14 @@ class PanelsTest extends TestCase
      *
      * @throws Exception
      */
-    public function testPanels_2(): void
+    public function testPanelsException(): void
     {
         $this->expectException(Exception::class);
-
         (new Panels())->panels([new Panel()]);
     }
 
     /**
-     * Test for the panels property and its method.
+     * Test for the setPanel method.
      *
      * Catch an exception when entered a invalid panel.
      *
@@ -130,10 +125,9 @@ class PanelsTest extends TestCase
      *
      * @throws Exception
      */
-    public function testPanels_3(): void
+    public function testSetPanelsException(): void
     {
         $this->expectException(Exception::class);
-
         (new Panels())->setPanels([new Panel()]);
     }
 
@@ -148,18 +142,16 @@ class PanelsTest extends TestCase
      *
      * @throws Exception
      */
-    public function testPanel(): void
+    public function testPanelProperty(): void
     {
         // Initialize
         $panels = new Panels();
-
         $this->assertEmpty($panels->getPanels());
         $this->assertCount(0, $panels->getPanels());
         $this->assertFalse($panels->hasPanels());
 
         // Panels::panel()
         $panels = (new Panels())->panel(new Panel('red'));
-
         $this->assertNotEmpty($panels->getPanels());
         $this->assertCount(1, $panels->getPanels());
         $this->assertTrue($panels->hasPanel('red'));
@@ -168,7 +160,6 @@ class PanelsTest extends TestCase
         // Panels::setPanel()
         $panels = new Panels();
         $panels->addPanel(new Panel('black'));
-
         $this->assertNotEmpty($panels->getPanels());
         $this->assertCount(1, $panels->getPanels());
         $this->assertTrue($panels->hasPanel('black'));
@@ -187,6 +178,26 @@ class PanelsTest extends TestCase
     public function testRender(): void
     {
         $this->assertIsString((new Panels())->render());
+    }
+
+    /**
+     * Test for the reset method.
+     *
+     * @covers  \Mireon\SlidePanels\Panels\Panels::reset
+     *
+     * @return void
+     *
+     * @throws Exception
+     */
+    public function testReset(): void
+    {
+        // Initialize
+        $panels = new Panels([new Panel('red'), new Panel('black')]);
+        $this->assertCount(2, $panels->getPanels());
+
+        // Reset
+        $panels->reset();
+        $this->assertCount(0, $panels->getPanels());
     }
 
     /**

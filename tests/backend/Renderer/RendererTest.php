@@ -8,6 +8,8 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Test for the default renderer.
+ *
+ * @covers \Mireon\SlidePanels\Renderer\Renderer
  */
 class RendererTest extends TestCase
 {

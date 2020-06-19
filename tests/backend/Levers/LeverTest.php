@@ -23,28 +23,24 @@ class LeverTest extends TestCase
     {
         // Without params
         $lever = new Lever();
-
         $this->assertNull($lever->getText());
         $this->assertNull($lever->getPanel());
         $this->assertSame(Lever::SHOW, $lever->getType());
 
         // Nullable
         $lever = new Lever(null, null, null);
-
         $this->assertNull($lever->getText());
         $this->assertNull($lever->getPanel());
         $this->assertSame(Lever::SHOW, $lever->getType());
 
         // Empty
         $lever = new Lever('', '', '');
-
         $this->assertNull($lever->getText());
         $this->assertNull($lever->getPanel());
         $this->assertSame(Lever::SHOW, $lever->getType());
 
         // Valid
         $lever = new Lever('text', 'panel', Lever::HIDE);
-
         $this->assertSame('text', $lever->getText());
         $this->assertSame('panel', $lever->getPanel());
         $this->assertSame(Lever::HIDE, $lever->getType());
@@ -61,28 +57,28 @@ class LeverTest extends TestCase
     {
         // Without params
         $lever = Lever::create();
-
+        $this->assertInstanceOf(Lever::class, $lever);
         $this->assertNull($lever->getText());
         $this->assertNull($lever->getPanel());
         $this->assertSame(Lever::SHOW, $lever->getType());
 
         // Nullable
         $lever = Lever::create(null, null);
-
+        $this->assertInstanceOf(Lever::class, $lever);
         $this->assertNull($lever->getText());
         $this->assertNull($lever->getPanel());
         $this->assertSame(Lever::SHOW, $lever->getType());
 
         // Empty
         $lever = Lever::create('', '');
-
+        $this->assertInstanceOf(Lever::class, $lever);
         $this->assertNull($lever->getText());
         $this->assertNull($lever->getPanel());
         $this->assertSame(Lever::SHOW, $lever->getType());
 
         // Valid
         $lever = Lever::create('text', 'panel', Lever::HIDE);
-
+        $this->assertInstanceOf(Lever::class, $lever);
         $this->assertSame('text', $lever->getText());
         $this->assertSame('panel', $lever->getPanel());
         $this->assertSame(Lever::HIDE, $lever->getType());
@@ -99,28 +95,28 @@ class LeverTest extends TestCase
     {
         // Without params
         $lever = Lever::show();
-
+        $this->assertInstanceOf(Lever::class, $lever);
         $this->assertNull($lever->getText());
         $this->assertNull($lever->getPanel());
         $this->assertSame(Lever::SHOW, $lever->getType());
 
         // Nullable
         $lever = Lever::show(null, null);
-
+        $this->assertInstanceOf(Lever::class, $lever);
         $this->assertNull($lever->getText());
         $this->assertNull($lever->getPanel());
         $this->assertSame(Lever::SHOW, $lever->getType());
 
         // Empty
         $lever = Lever::show('', '');
-
+        $this->assertInstanceOf(Lever::class, $lever);
         $this->assertNull($lever->getText());
         $this->assertNull($lever->getPanel());
         $this->assertSame(Lever::SHOW, $lever->getType());
 
         // Valid
         $lever = Lever::show('text', 'panel');
-
+        $this->assertInstanceOf(Lever::class, $lever);
         $this->assertSame('text', $lever->getText());
         $this->assertSame('panel', $lever->getPanel());
         $this->assertSame(Lever::SHOW, $lever->getType());
@@ -137,25 +133,25 @@ class LeverTest extends TestCase
     {
         // Without param
         $lever = Lever::hide();
-
+        $this->assertInstanceOf(Lever::class, $lever);
         $this->assertNull($lever->getText());
         $this->assertSame(Lever::HIDE, $lever->getType());
 
         // Nullable
         $lever = Lever::hide(null);
-
+        $this->assertInstanceOf(Lever::class, $lever);
         $this->assertNull($lever->getText());
         $this->assertSame(Lever::HIDE, $lever->getType());
 
         // Empty
         $lever = Lever::hide('');
-
+        $this->assertInstanceOf(Lever::class, $lever);
         $this->assertNull($lever->getText());
         $this->assertSame(Lever::HIDE, $lever->getType());
 
         // Valid
         $lever = Lever::hide('text');
-
+        $this->assertInstanceOf(Lever::class, $lever);
         $this->assertSame('text', $lever->getText());
         $this->assertSame(Lever::HIDE, $lever->getType());
     }
@@ -190,18 +186,17 @@ class LeverTest extends TestCase
      *
      * @return void
      */
-    public function testText(?string $passed, ?string $expected, bool $has): void
+    public function testTextProperty(?string $passed, ?string $expected, bool $has): void
     {
         // Lever::text()
         $lever = Lever::create()->text($passed);
-
+        $this->assertInstanceOf(Lever::class, $lever);
         $this->assertSame($expected, $lever->getText());
         $this->assertSame($has, $lever->hasText());
 
         // Lever::setText()
         $lever = new Lever();
         $lever->setText($passed);
-
         $this->assertSame($expected, $lever->getText());
         $this->assertSame($has, $lever->hasText());
     }
@@ -238,18 +233,17 @@ class LeverTest extends TestCase
      *
      * @return void
      */
-    public function testPanel(?string $passed, ?string $expected, bool $has): void
+    public function testPanelProperty(?string $passed, ?string $expected, bool $has): void
     {
         // Lever::panel()
         $lever = Lever::create()->panel($passed);
-
+        $this->assertInstanceOf(Lever::class, $lever);
         $this->assertSame($expected, $lever->getPanel());
         $this->assertSame($has, $lever->hasPanel());
 
         // Lever::setPanel()
         $lever = new Lever();
         $lever->setPanel($passed);
-
         $this->assertSame($expected, $lever->getPanel());
         $this->assertSame($has, $lever->hasPanel());
     }
@@ -285,17 +279,16 @@ class LeverTest extends TestCase
      *
      * @return void
      */
-    public function testType(?string $passed, ?string $expected): void
+    public function testTypeProperty(?string $passed, ?string $expected): void
     {
         // Lever::type()
         $lever = Lever::create()->type($passed);
-
+        $this->assertInstanceOf(Lever::class, $lever);
         $this->assertSame($expected, $lever->getType());
 
         // Lever::setType()
         $lever = new Lever();
         $lever->setType($passed);
-
         $this->assertSame($expected, $lever->getType());
     }
 
@@ -311,14 +304,12 @@ class LeverTest extends TestCase
         // Invalid
         $lever = new Lever();
         $lever->setType(Lever::SHOW);
-
         $this->assertFalse($lever->isValid());
 
         // Valid
         $lever = new Lever();
         $lever->setType(Lever::SHOW);
         $lever->setPanel('panel');
-
         $this->assertTrue($lever->isValid());
     }
 
@@ -333,7 +324,6 @@ class LeverTest extends TestCase
     {
         $lever = new Lever();
         $lever->setType(Lever::HIDE);
-
         $this->assertTrue($lever->isValid());
     }
 

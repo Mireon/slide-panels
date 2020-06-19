@@ -29,31 +29,26 @@ class PanelTest extends TestCase
     {
         // Initialize
         $panel = new Panel();
-
         $this->assertInstanceOf(PanelStyles::class, $panel->getStyles());
         $this->assertInstanceOf(Widgets::class, $panel->getWidgets());
 
         // Without params
         $panel = new Panel();
-
         $this->assertNull($panel->getKey());
         $this->assertSame(Panel::LEFT, $panel->getSide());
 
         // Nullable params
         $panel = new Panel(null, null);
-
         $this->assertNull($panel->getKey());
         $this->assertSame(Panel::LEFT, $panel->getSide());
 
         // Empty params
         $panel = new Panel('', '');
-
         $this->assertNull($panel->getKey());
         $this->assertSame(Panel::LEFT, $panel->getSide());
 
         // Valid params
         $panel = new Panel('key', Panel::RIGHT);
-
         $this->assertSame('key', $panel->getKey());
         $this->assertSame(Panel::RIGHT, $panel->getSide());
     }
@@ -71,31 +66,31 @@ class PanelTest extends TestCase
     {
         // Initialize
         $panel = Panel::create();
-
+        $this->assertInstanceOf(Panel::class, $panel);
         $this->assertInstanceOf(PanelStyles::class, $panel->getStyles());
         $this->assertInstanceOf(Widgets::class, $panel->getWidgets());
 
         // Without params
         $panel = Panel::create();
-
+        $this->assertInstanceOf(Panel::class, $panel);
         $this->assertNull($panel->getKey());
         $this->assertSame(Panel::LEFT, $panel->getSide());
 
         // Nullable params
         $panel = Panel::create(null, null);
-
+        $this->assertInstanceOf(Panel::class, $panel);
         $this->assertNull($panel->getKey());
         $this->assertSame(Panel::LEFT, $panel->getSide());
 
         // Empty params
         $panel = Panel::create('', '');
-
+        $this->assertInstanceOf(Panel::class, $panel);
         $this->assertNull($panel->getKey());
         $this->assertSame(Panel::LEFT, $panel->getSide());
 
         // Valid params
         $panel = Panel::create('key', Panel::RIGHT);
-
+        $this->assertInstanceOf(Panel::class, $panel);
         $this->assertSame('key', $panel->getKey());
         $this->assertSame(Panel::RIGHT, $panel->getSide());
     }
@@ -139,18 +134,17 @@ class PanelTest extends TestCase
      *
      * @throws Exception
      */
-    public function testKey(?string $passed, ?string $expected, bool $has): void
+    public function testKeyProperty(?string $passed, ?string $expected, bool $has): void
     {
         // Panel::key()
         $panel = Panel::create()->key($passed);
-
+        $this->assertInstanceOf(Panel::class, $panel);
         $this->assertSame($expected, $panel->getKey());
         $this->assertSame($has, $panel->hasKey());
 
         // Panel::setKey()
         $panel = new Panel();
         $panel->setKey($passed);
-
         $this->assertSame($expected, $panel->getKey());
         $this->assertSame($has, $panel->hasKey());
     }
@@ -189,17 +183,16 @@ class PanelTest extends TestCase
      *
      * @throws Exception
      */
-    public function testSide(?string $passed, ?string $expected): void
+    public function testSideProperty(?string $passed, ?string $expected): void
     {
         // Panel::side()
         $panel = Panel::create()->side($passed);
-
+        $this->assertInstanceOf(Panel::class, $panel);
         $this->assertSame($expected, $panel->getSide());
 
         // Panel::setSide()
         $panel = new Panel();
         $panel->setSide($passed);
-
         $this->assertSame($expected, $panel->getSide());
     }
 
@@ -213,17 +206,16 @@ class PanelTest extends TestCase
      *
      * @throws Exception
      */
-    public function testWidth(): void
+    public function testWidthProperty(): void
     {
         // Panel::width()
         $panel = Panel::create()->width(10);
-
+        $this->assertInstanceOf(Panel::class, $panel);
         $this->assertSame(10, $panel->getStyles()->getWidth());
 
         // Panel::setWidth()
         $panel = new Panel();
         $panel->setWidth(15);
-
         $this->assertSame(15, $panel->getStyles()->getWidth());
     }
 
@@ -237,18 +229,16 @@ class PanelTest extends TestCase
      *
      * @throws Exception
      */
-    public function testStyles(): void
+    public function testStylesProperty(): void
     {
-        // Initialize
+        // Without key
         $panel = new Panel();
-
         $this->assertFalse($panel->hasStyles());
         $this->assertInstanceOf(PanelStyles::class, $panel->getStyles());
 
-        // Initialize with panel key
+        // With panel key
         $panel = new Panel();
         $panel->setKey('key');
-
         $this->assertTrue($panel->hasStyles());
     }
 
@@ -266,38 +256,33 @@ class PanelTest extends TestCase
      *
      * @throws Exception
      */
-    public function testWidgets(): void
+    public function testWidgetsProperty(): void
     {
         // Initialize
         $panel = new Panel();
-
         $this->assertTrue($panel->hasWidgets());
         $this->assertInstanceOf(Widgets::class, $panel->getWidgets());
         $this->assertEmpty($panel->getWidgets()->getWidgets());
 
         // Panel::widget()
         $panel = (new Panel())->widget($this->getWidget());
-
         $this->assertNotEmpty($panel->getWidgets()->getWidgets());
         $this->assertCount(1, $panel->getWidgets()->getWidgets());
 
         // Panel::addWidget()
         $panel = new Panel();
         $panel->addWidget($this->getWidget());
-
         $this->assertCount(1, $panel->getWidgets()->getWidgets());
 
         // Panel::widgets()
         $widgets = new Widgets();
         $panel = (new Panel())->widgets($widgets);
-
         $this->assertTrue($widgets === $panel->getWidgets());
 
         // Panel::setWidgets()
         $widgets = new Widgets();
         $panel = new Panel();
         $panel->setWidgets($widgets);
-
         $this->assertTrue($widgets === $panel->getWidgets());
     }
 
@@ -314,13 +299,11 @@ class PanelTest extends TestCase
     {
         // Invalid
         $panel = new Panel();
-
         $this->assertFalse($panel->isValid());
 
         // Valid
         $panel = new Panel();
         $panel->setKey('key');
-
         $this->assertTrue($panel->isValid());
     }
 
