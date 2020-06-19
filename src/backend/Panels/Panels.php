@@ -91,6 +91,23 @@ class Panels implements Renderable, IteratorAggregate
     }
 
     /**
+     * Sets a list of panels.
+     *
+     * @param Panel $panel
+     *   A panel.
+     *
+     * @return self
+     *
+     * @throws Exception
+     */
+    public function panel(Panel $panel): self
+    {
+        $this->addPanel($panel);
+
+        return $this;
+    }
+
+    /**
      * Adds a new panel to the list.
      *
      * @param Panel $panel
@@ -107,6 +124,29 @@ class Panels implements Renderable, IteratorAggregate
         }
 
         $this->panels[$panel->getKey()] = $panel;
+    }
+
+    /**
+     * Returns the list panels.
+     *
+     * @return Panel[]
+     */
+    public function getPanels(): array
+    {
+        return $this->panels;
+    }
+
+    /**
+     * Returns a panel by key.
+     *
+     * @param string $key
+     *   A panel key.
+     *
+     * @return Panel|null
+     */
+    public function getPanel(string $key): ?Panel
+    {
+        return $this->hasPanel($key) ? $this->panels[$key] : null;
     }
 
     /**
@@ -132,25 +172,13 @@ class Panels implements Renderable, IteratorAggregate
         return isset($this->panels[$key]);
     }
 
-    /**
-     * Returns a panel by key.
-     *
-     * @param string $key
-     *   A panel key.
-     *
-     * @return Panel|null
-     */
-    public function getPanel(string $key): ?Panel
-    {
-        return $this->hasPanel($key) ? $this->panels[$key] : null;
-    }
 
     /**
      * @inheritDoc
      */
     public function getIterator(): Traversable
     {
-        return new ArrayIterator($this->panels);
+        return new ArrayIterator($this->getPanels());
     }
 
     /**

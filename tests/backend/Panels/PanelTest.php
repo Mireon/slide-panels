@@ -3,7 +3,6 @@
 namespace Mireon\SlidePanels\Tests\Panels;
 
 use Exception;
-use Mireon\SlidePanels\Levers\Lever;
 use Mireon\SlidePanels\Panels\Panel;
 use Mireon\SlidePanels\Panels\PanelStyles;
 use Mireon\SlidePanels\Widgets\WidgetInterface;
@@ -18,7 +17,7 @@ use PHPUnit\Framework\TestCase;
 class PanelTest extends TestCase
 {
     /**
-     * Test for the construct method.
+     * Test for the __construct method.
      *
      * @covers \Mireon\SlidePanels\Panels\Panel::__construct
      *
@@ -280,13 +279,13 @@ class PanelTest extends TestCase
         $panel = (new Panel())->widget($this->getWidget());
 
         $this->assertNotEmpty($panel->getWidgets()->getWidgets());
-        $this->assertSame(1, count($panel->getWidgets()->getWidgets()));
+        $this->assertCount(1, $panel->getWidgets()->getWidgets());
 
         // Panel::addWidget()
         $panel = new Panel();
         $panel->addWidget($this->getWidget());
 
-        $this->assertSame(1, count($panel->getWidgets()->getWidgets()));
+        $this->assertCount(1, $panel->getWidgets()->getWidgets());
 
         // Panel::widgets()
         $widgets = new Widgets();

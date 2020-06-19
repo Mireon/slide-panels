@@ -71,6 +71,7 @@ class DesignerTest extends TestCase
 
     /**
      * Test for the factory method.
+     *
      * Catch an exception when entered a nonexistent factory class.
      *
      * @covers \Mireon\SlidePanels\Designer\Designer::factory

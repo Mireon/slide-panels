@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
 class LeverTest extends TestCase
 {
     /**
-     * Test for the construct method.
+     * Test for the __construct method.
      *
      * @covers \Mireon\SlidePanels\Levers\Lever::__construct
      *
