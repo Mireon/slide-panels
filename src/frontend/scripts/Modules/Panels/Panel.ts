@@ -2,6 +2,7 @@ import Extractor from '@tools/Extractor';
 import PanelAnimation from '@modules/Panels/PanelAnimation';
 import State from '@tools/State';
 import { Props } from '@tools/Props';
+import PanelEvents from '@modules/Panels/PanelEvents';
 
 /**
  * The panel.
@@ -36,6 +37,13 @@ export default class Panel {
     private readonly state: State;
 
     /**
+     * The panel events.
+     *
+     * @type PanelEvents
+     */
+    private readonly events: PanelEvents;
+
+    /**
      * The constructor.
      *
      * @param element { Element }
@@ -44,8 +52,9 @@ export default class Panel {
     public constructor(element: Element) {
         this.key = Extractor.key(element);
         this.side = Extractor.side(element);
-        this.animation = new PanelAnimation(element, this.side);
+        this.animation = new PanelAnimation(element, this);
         this.state = new State();
+        this.events = new PanelEvents(element, this);
     }
 
     /**
@@ -91,6 +100,7 @@ export default class Panel {
      */
     public inside(): void {
         if (this.state.isHidden()) {
+            this.events.show();
             this.animation.inside();
             this.state.show();
         }
@@ -103,6 +113,7 @@ export default class Panel {
      */
     public outside(): void {
         if (this.state.isVisible()) {
+            this.events.hide();
             this.animation.outside();
             this.state.hide();
         }

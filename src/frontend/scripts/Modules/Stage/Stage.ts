@@ -3,17 +3,34 @@ import State from '@tools/State';
 import Backstage from '@modules/Backstage/Backstage';
 import Panels from '@modules/Panels/Panels';
 import Target from '@tools/Target';
+import Selector from '@tools/Selector';
+import StageEvents from '@modules/Stage/StageEvents';
+import Body from '@modules/Body/Body';
 
 /**
  * The stage.
  */
 export default class Stage {
     /**
+     * The stage events.
+     *
+     * @type StageEvents
+     */
+    private readonly events: StageEvents;
+
+    /**
      * The stage animation.
      *
      * @type StageAnimation
      */
     private readonly animation: StageAnimation;
+
+    /**
+     * The body.
+     *
+     * @type State
+     */
+    private readonly body: Body;
 
     /**
      * The stage state.
@@ -40,7 +57,9 @@ export default class Stage {
      * The constructor.
      */
     public constructor() {
+        this.events = new StageEvents(Selector.root());
         this.animation = new StageAnimation();
+        this.body = new Body();
         this.state = new State();
         this.backstage = new Backstage();
         this.panels = new Panels();
@@ -57,6 +76,7 @@ export default class Stage {
     public show(target: Target): void {
         if (this.state.isHidden()) {
             this.animation.show();
+            this.body.freeze();
             this.state.show();
             this.backstage.show();
         }
@@ -75,6 +95,7 @@ export default class Stage {
             this.panels.hide();
             this.animation.hide();
             this.state.hide();
+            this.body.unfreeze();
         }
     }
 }

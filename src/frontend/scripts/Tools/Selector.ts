@@ -10,6 +10,15 @@ const root = '[id="slide-panels"]';
  */
 export default class Selector {
     /**
+     * Returns the root.
+     *
+     * @type Element
+     */
+    public static body(): Element {
+        return document.querySelector('body');
+    }
+
+    /**
      * Returns the list of levers.
      *
      * @type NodeListOf<Element>

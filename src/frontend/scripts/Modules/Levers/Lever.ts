@@ -2,6 +2,7 @@ import LeverClickListener from '@modules/Levers/LeverClickListener';
 import Target from '@tools/Target';
 import { Props } from '@tools/Props';
 import Extractor from '@tools/Extractor';
+import LeverEvents from '@modules/Levers/LeverEvents';
 
 /**
  * The lever.
@@ -29,6 +30,13 @@ export default class Lever {
     private readonly target: Target;
 
     /**
+     * The lever events.
+     *
+     * @type LeverEvents
+     */
+    private readonly events: LeverEvents;
+
+    /**
      * The constructor.
      *
      * @param element { Element }
@@ -37,6 +45,7 @@ export default class Lever {
         this.element = element;
         this.action = Extractor.action(element, Props.action.SHOW);
         this.target = Extractor.target(element);
+        this.events = new LeverEvents(element, this);
     }
 
     /**
@@ -71,6 +80,24 @@ export default class Lever {
     }
 
     /**
+     * Returns the element.
+     *
+     * @type Element
+     */
+    public getElement(): Element {
+        return this.element;
+    }
+
+    /**
+     * The action.
+     *
+     * @type Props.action
+     */
+    public getAction(): Props.action {
+        return this.action;
+    }
+
+    /**
      * Sets a listener on click to lever.
      *
      * @type boolean
@@ -79,6 +106,7 @@ export default class Lever {
         this.element.addEventListener('click', e => {
             e.preventDefault();
             listener(this);
+            this.getAction() === Props.action.SHOW ? this.events.onShow() : this.events.onHide();
         });
     }
 }

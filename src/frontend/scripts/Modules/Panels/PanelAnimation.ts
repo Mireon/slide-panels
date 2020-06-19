@@ -1,4 +1,4 @@
-import { Props } from '@tools/Props';
+import Panel from '@modules/Panels/Panel';
 
 /**
  * The panel animation.
@@ -12,23 +12,23 @@ export default class PanelAnimation {
     private readonly element: Element;
 
     /**
-     * The panel side.
+     * The panel object.
      *
-     * @type Props.side
+     * @type Panel
      */
-    private readonly side: Props.side;
+    private readonly panel: Panel;
 
     /**
      * The constructor.
      *
      * @param element { Element }
      *   The DOM element.
-     * @param side { Props.side }
-     *   A side.
+     * @param panel { Panel }
+     *   The panel object.
      */
-    public constructor(element: Element, side: Props.side) {
+    public constructor(element: Element, panel: Panel) {
         this.element = element;
-        this.side = side;
+        this.panel = panel;
     }
 
     /**
@@ -38,15 +38,15 @@ export default class PanelAnimation {
      */
     public inside(): void {
         this.element.classList.add('slide-panels__panel_showing');
-        this.element.classList.add(`slide-panels__panel_${this.side}_slide-inside`);
-        this.element.classList.remove(`slide-panels__panel_${this.side}_outside`);
+        this.element.classList.add(`slide-panels__panel_${this.panel.getSide()}_slide-inside`);
+        this.element.classList.remove(`slide-panels__panel_${this.panel.getSide()}_outside`);
         this.element.classList.remove('slide-panels__panel_hidden');
 
         setTimeout(() => {
             this.element.classList.add('slide-panels__panel_visible');
-            this.element.classList.add(`slide-panels__panel_${this.side}_inside`);
+            this.element.classList.add(`slide-panels__panel_${this.panel.getSide()}_inside`);
             this.element.classList.remove('slide-panels__panel_showing');
-            this.element.classList.remove(`slide-panels__panel_${this.side}_slide-inside`);
+            this.element.classList.remove(`slide-panels__panel_${this.panel.getSide()}_slide-inside`);
         }, 300);
     }
 
@@ -57,15 +57,15 @@ export default class PanelAnimation {
      */
     public outside(): void {
         this.element.classList.add('slide-panels__panel_hiding');
-        this.element.classList.add(`slide-panels__panel_${this.side}_slide-outside`);
+        this.element.classList.add(`slide-panels__panel_${this.panel.getSide()}_slide-outside`);
         this.element.classList.remove('slide-panels__panel_visible');
-        this.element.classList.remove(`slide-panels__panel_${this.side}_inside`);
+        this.element.classList.remove(`slide-panels__panel_${this.panel.getSide()}_inside`);
 
         setTimeout(() => {
             this.element.classList.add('slide-panels__panel_hidden');
-            this.element.classList.add(`slide-panels__panel_${this.side}_outside`);
+            this.element.classList.add(`slide-panels__panel_${this.panel.getSide()}_outside`);
             this.element.classList.remove('slide-panels__panel_hiding');
-            this.element.classList.remove(`slide-panels__panel_${this.side}_slide-outside`);
+            this.element.classList.remove(`slide-panels__panel_${this.panel.getSide()}_slide-outside`);
         }, 300);
     }
 }

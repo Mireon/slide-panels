@@ -20,12 +20,9 @@ export default class State {
 
     /**
      * The constructor.
-     *
-     * @param state { Props.visibility }
-     *   A state.
      */
-    public constructor(state: Props.visibility = Props.visibility.HIDDEN) {
-        this.state = state;
+    public constructor() {
+        this.state = Props.visibility.HIDDEN;
     }
 
     /**
