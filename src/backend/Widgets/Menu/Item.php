@@ -62,11 +62,11 @@ class Item implements ItemInterface
      * @param string|null $icon
      *   An item icon.
      *
-     * @return static
+     * @return self
      */
     public static function create(?string $text = null, ?string $url = null, ?string $icon = null): self
     {
-        return new static($text, $url, $icon);
+        return new self($text, $url, $icon);
     }
 
     /**

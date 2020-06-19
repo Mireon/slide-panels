@@ -73,11 +73,11 @@ class Lever implements ItemInterface
      * @param string|null $type
      *   A lever type.
      *
-     * @return static
+     * @return self
      */
     public static function create(?string $text = null, ?string $panel = null, ?string $type = self::SHOW): self
     {
-        return new static($text, $panel, $type);
+        return new self($text, $panel, $type);
     }
 
     /**
@@ -88,11 +88,11 @@ class Lever implements ItemInterface
      * @param string|null $panel
      *   A panel key.
      *
-     * @return static
+     * @return self
      */
     public static function show(?string $text = null, ?string $panel = null): self
     {
-        return new static($text, $panel);
+        return new self($text, $panel);
     }
 
     /**
@@ -101,11 +101,11 @@ class Lever implements ItemInterface
      * @param string|null $text
      *   A lever text.
      *
-     * @return static
+     * @return self
      */
     public static function hide(?string $text = null): self
     {
-        return new static($text, null, self::HIDE);
+        return new self($text, null, self::HIDE);
     }
 
     /**

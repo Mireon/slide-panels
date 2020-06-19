@@ -78,7 +78,7 @@ class SlidePanels implements Renderable
     /**
      * Returns an instance this class.
      *
-     * @return static
+     * @return self
      */
     public static function instance(): self
     {

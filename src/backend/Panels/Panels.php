@@ -45,13 +45,13 @@ class Panels implements Renderable, IteratorAggregate
      * @param array $panels
      *   A list of panels.
      *
-     * @return static
+     * @return self
      *
      * @throws Exception
      */
     public static function create(array $panels = []): self
     {
-        return new static($panels);
+        return new self($panels);
     }
 
     /**

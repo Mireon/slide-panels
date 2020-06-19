@@ -35,11 +35,11 @@ class Html extends Widget
      * @param string|null $html
      *   A HTML string.
      *
-     * @return static
+     * @return self
      */
     public static function create(?string $html = null): self
     {
-        return new static($html);
+        return new self($html);
     }
 
     /**

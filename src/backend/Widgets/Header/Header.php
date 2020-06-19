@@ -70,11 +70,11 @@ class Header extends Widget
      * @param string|null $size
      *   A header size.
      *
-     * @return static
+     * @return self
      */
     public static function create(?string $text = null, ?string $icon = null, ?string $size = null): self
     {
-        return new static($text, $icon, $size);
+        return new self($text, $icon, $size);
     }
 
     /**
@@ -85,11 +85,11 @@ class Header extends Widget
      * @param string|null $icon
      *   A header icon.
      *
-     * @return static
+     * @return self
      */
     public static function small(?string $text = null, ?string $icon = null): self
     {
-        return new static($text, $icon, self::SMALL);
+        return new self($text, $icon, self::SMALL);
     }
 
     /**
@@ -100,11 +100,11 @@ class Header extends Widget
      * @param string|null $icon
      *   A header icon.
      *
-     * @return static
+     * @return self
      */
     public static function big(?string $text = null, ?string $icon = null): self
     {
-        return new static($text, $icon, self::BIG);
+        return new self($text, $icon, self::BIG);
     }
 
     /**

@@ -45,13 +45,13 @@ class Widgets implements Renderable, IteratorAggregate
      * @param WidgetInterface[] $widgets
      *   A list of widgets.
      *
-     * @return static
+     * @return self
      *
      * @throws Exception
      */
     public static function create(array $widgets = []): self
     {
-        return new static($widgets);
+        return new self($widgets);
     }
 
     /**

@@ -82,13 +82,13 @@ class Panel implements Renderable
      * @param string|null $side
      *   A panel side.
      *
-     * @return static
+     * @return self
      *
      * @throws Exception
      */
     public static function create(?string $key = null, ?string $side = null): self
     {
-        return new static($key, $side);
+        return new self($key, $side);
     }
 
     /**
