@@ -39,7 +39,7 @@ export default class LeverEvents extends Events {
     }
 
     /**
-     * Runs show event.
+     * Dispatch show event.
      *
      * @type void
      */
@@ -48,7 +48,7 @@ export default class LeverEvents extends Events {
     }
 
     /**
-     * Runs hide event.
+     * Dispatch hide event.
      *
      * @type void
      */

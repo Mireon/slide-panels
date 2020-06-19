@@ -51,7 +51,7 @@ export default class PanelEvents extends Events {
     }
 
     /**
-     * Runs show event.
+     * Dispatch show event.
      *
      * @return void
      */
@@ -61,7 +61,7 @@ export default class PanelEvents extends Events {
     }
 
     /**
-     * Runs hide event.
+     * Dispatch hide event.
      *
      * @return void
      */
