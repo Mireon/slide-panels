@@ -1,0 +1,63 @@
+$panel-width: 320px;
+$screen-width: 350px;
+
+&__panels {
+  height: 100%;
+  width: 100%;
+}
+
+&__panel {
+  height: 100%;
+  width: $panel-width;
+  position: absolute;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: #ffffff;
+
+  @media screen and (max-width: $screen-width) {
+    width: calc(100vw - 30px);
+  }
+
+  &_visible {
+    visibility: visible;
+  }
+
+  &_hidden {
+    visibility: hidden;
+  }
+
+  &_left {
+
+    &_inside {
+      left: 0;
+    }
+
+    &_outside {
+      left: -$panel-width;
+
+      @media screen and (max-width: $screen-width) {
+        left: -100vw;
+      }
+
+    }
+
+  }
+
+  &_right {
+
+    &_inside {
+      right: 0;
+    }
+
+    &_outside {
+      right: -$panel-width;
+
+      @media screen and (max-width: $panel-width) {
+        right: -100vw;
+      }
+
+    }
+
+  }
+
+}

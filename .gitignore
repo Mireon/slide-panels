@@ -1,0 +1,6 @@
+/.idea
+/docker
+/vendor
+/coverage
+/public
+/node_modules

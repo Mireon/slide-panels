@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "module": "es6",
+    "target": "es5",
+    "allowJs": true,
+    "sourceMap": true,
+    "removeComments": true,
+    "baseUrl": "./src/frontend/scripts",
+    "paths": {
+      "@modules/*": ["Modules/*"],
+      "@tools/*": ["Tools/*"]
+    },
+    "lib": [
+      "dom",
+      "es5",
+      "scripthost",
+      "es2015.collection"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "vendor"
+  ]
+}

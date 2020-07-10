@@ -1,0 +1,15 @@
+.slide-panels {
+  @import "body";
+  @import "backstage";
+  @import "backstage-animation";
+  @import "close";
+  @import "fonts";
+  @import "panels";
+  @import "panels-animation";
+  @import "stage";
+  @import "widgets";
+
+  @media print {
+    display: none;
+  }
+}

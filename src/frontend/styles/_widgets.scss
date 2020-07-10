@@ -1,0 +1,9 @@
+@import "widgets-header";
+@import "widgets-menu";
+@import "widgets-close";
+
+&__widgets {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}

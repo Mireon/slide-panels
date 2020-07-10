@@ -1,0 +1,50 @@
+&__header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100%;
+  align-items: center;
+  box-sizing: border-box;
+  background: #f1f1f1;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  &_big {
+    padding-top: 13px;
+    padding-bottom: 13px;
+  }
+
+  &_small {
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+
+}
+
+&__header__icon {
+
+  &_big,
+  &_big.fa {
+    margin-right: 10px;
+    font-size: 22px;
+  }
+
+  &_small,
+  &_small.fa {
+    margin-right: 8px;
+    font-size: 18px;
+  }
+
+}
+
+&__header__text {
+
+  &_big {
+    font-size: 22px;
+  }
+
+  &_small {
+    font-size: 16px;
+  }
+
+}
