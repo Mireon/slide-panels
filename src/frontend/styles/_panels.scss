@@ -15,7 +15,7 @@ $screen-width: 350px;
   background: #ffffff;
 
   @media screen and (max-width: $screen-width) {
-    width: calc(100% - 30px);
+    width: calc(100vw - 30px);
   }
 
   &_visible {

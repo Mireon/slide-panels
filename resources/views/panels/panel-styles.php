@@ -63,7 +63,7 @@ $animationSlideOutside = "{$currentPanel}_slide-outside";
         }
 
         .<?= $currentPanel; ?> {
-            width: calc(100% - 30px);
+            width: calc(100vw - 30px);
         }
 
         <?= $outside; ?> {
