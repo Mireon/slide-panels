@@ -1,0 +1,40 @@
+{
+    "name": "mireon/slide-panels",
+    "description": "Dynamic slide panels.",
+    "version": "0.0.0",
+    "keywords": ["slide", "slider", "panel", "slide panel", "slide menu"],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Igor Kozhevnikov",
+            "email": "igor.kozhevnikov@mireon.ru",
+            "homepage": "https://www.linkedin.com/in/igor-kozhevnikov/",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "*",
+        "symfony/var-dumper": "^5.1",
+        "phpunit/phpunit": "^9.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mireon\\SlidePanels\\": "src/backend"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Mireon\\SlidePanels\\Tests\\": "tests/backend"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-cover": "@test --coverage-html coverage",
+        "cs": "vendor/bin/phpcs ./src/backend --standard=."
+    }
+}

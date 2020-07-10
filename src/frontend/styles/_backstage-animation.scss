@@ -1,0 +1,30 @@
+@mixin common {
+  animation-duration: 300ms;
+  animation-fill-mode: forwards;
+}
+
+@keyframes slide-panels__backstage_showing {
+  0% { visibility: hidden; opacity: 0; }
+  1% { visibility: visible; }
+  100% { opacity: 0.6; }
+}
+
+@keyframes slide-panels__backstage_hiding {
+  0% { visibility: visible; opacity: 0.6; }
+  99% { opacity: 0; }
+  100% { visibility: hidden; }
+}
+
+&__backstage {
+
+  &_showing {
+    @include common;
+    animation-name: slide-panels__backstage_showing;
+  }
+
+  &_hiding {
+    @include common;
+    animation-name: slide-panels__backstage_hiding;
+  }
+
+}

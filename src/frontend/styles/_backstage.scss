@@ -1,0 +1,17 @@
+&__backstage {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: #000000;
+
+  &_visible {
+    visibility: visible;
+    opacity: 0.6;
+  }
+
+  &_hidden {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+}
