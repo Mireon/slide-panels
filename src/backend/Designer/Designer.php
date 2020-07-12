@@ -6,6 +6,7 @@ use Exception;
 use Mireon\SlidePanels\Panels\Panel;
 use Mireon\SlidePanels\Panels\PanelInterface;
 use Mireon\SlidePanels\Panels\Panels;
+use Mireon\SlidePanels\Renderer\RenderToString;
 use Mireon\SlidePanels\Stage\Stage;
 use Mireon\SlidePanels\Stage\StageInterface;
 
@@ -16,6 +17,8 @@ use Mireon\SlidePanels\Stage\StageInterface;
  */
 class Designer implements DesignerInterface
 {
+    use RenderToString;
+
     /**
      * The list of factories.
      *
