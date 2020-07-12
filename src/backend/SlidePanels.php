@@ -144,7 +144,7 @@ class SlidePanels implements SlidePanelsInterface
         $panels = $this->getStage()->getPanels();
 
         if (!$panels->hasPanel($key)) {
-            $panels->addPanel(new Panel($key));
+            $panels->createPanel($key);
         }
 
         return $panels->getPanel($key);

@@ -1,11 +1,11 @@
 <?php
 
-use Mireon\SlidePanels\Stage\Stage;
+use Mireon\SlidePanels\Stage\StageInterface;
 
 /**
  * Prints the stage.
  *
- * @var Stage $stage
+ * @var StageInterface $stage
  *   The stage.
  */
 ?>

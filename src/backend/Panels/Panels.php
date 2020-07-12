@@ -90,6 +90,22 @@ class Panels implements PanelsInterface, IteratorAggregate
     }
 
     /**
+     * @inheritDoc
+     */
+    public function getPanels(): array
+    {
+        return $this->panels;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function hasPanels(): bool
+    {
+        return !empty($this->panels);
+    }
+
+    /**
      * Sets a list of panels.
      *
      * @param PanelInterface $panel
@@ -128,25 +144,27 @@ class Panels implements PanelsInterface, IteratorAggregate
     /**
      * @inheritDoc
      */
-    public function getPanels(): array
-    {
-        return $this->panels;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function hasPanels(): bool
-    {
-        return !empty($this->panels);
-    }
-
-    /**
-     * @inheritDoc
-     */
     public function getPanel(string $key): ?PanelInterface
     {
         return $this->hasPanel($key) ? $this->panels[$key] : null;
+    }
+
+    /**
+     * Creates a newly panel.
+     *
+     * @param string $key
+     *   A key panel
+     *
+     * @return PanelInterface
+     *
+     * @throws Exception
+     */
+    public function createPanel(string $key): PanelInterface
+    {
+        $panel = new Panel($key);
+        $this->addPanel($panel);
+
+        return $panel;
     }
 
     /**
