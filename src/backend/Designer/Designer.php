@@ -37,8 +37,40 @@ class Designer implements DesignerInterface
      */
     public function __construct()
     {
-        $this->stage = new Stage();
-        $this->stage->setPanels(new Panels());
+        $this->setStage(new Stage(new Panels()));
+    }
+
+    /**
+     * Sets the stage.
+     *
+     * @param StageInterface $stage
+     *   A stage.
+     *
+     * @return void
+     */
+    public function setStage(StageInterface $stage): void
+    {
+        $this->stage = $stage;
+    }
+
+    /**
+     * Returns the stage.
+     *
+     * @return StageInterface|null
+     */
+    public function getStage(): ?StageInterface
+    {
+        return $this->stage;
+    }
+
+    /**
+     * Checks if the stage is defined.
+     *
+     * @return bool
+     */
+    public function hasStage(): bool
+    {
+        return is_null($this->hasStage());
     }
 
     /**
@@ -52,7 +84,7 @@ class Designer implements DesignerInterface
             throw new Exception('Panel key is undefined.');
         }
 
-        $panels = $this->stage->getPanels();
+        $panels = $this->getStage()->getPanels();
 
         if (!$panels->hasPanel($key)) {
             $panels->addPanel(new Panel($key));
@@ -62,14 +94,89 @@ class Designer implements DesignerInterface
     }
 
     /**
-     * @inheritDoc
+     * Adds a list factories to the list factories.
+     *
+     * @param FactoryInterface[]|string[] $factories
+     *   A list of factory objects or factory class names.
+     * @param bool $isReplace
+     *   If true, the current list will be clear.
+     *
+     * @return self
+     *
+     * @throws Exception
+     */
+    public function factories(array $factories, bool $isReplace = false): self
+    {
+        if ($isReplace) {
+            $this->setFactories($factories);
+        } else {
+            $this->addFactories($factories);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Sets a list factories.
+     *
+     * @param FactoryInterface[]|string[] $factories
+     *   A list of factory objects or factory class names.
+     *
+     * @return void
+     *
+     * @throws Exception
+     */
+    public function setFactories(array $factories): void
+    {
+        $this->factories = [];
+        $this->addFactories($factories);
+    }
+
+    /**
+     * Adds a list factories to the list factories.
+     *
+     * @param FactoryInterface[]|string[] $factories
+     *   A list of factory objects or factory class names.
+     *
+     * @return void
+     *
+     * @throws Exception
+     */
+    public function addFactories(array $factories): void
+    {
+        foreach($factories as $factory) {
+            $this->factory($factory);
+        }
+    }
+
+    /**
+     * Adds a factory to the list.
      *
      * @param FactoryInterface|string $factory
      *   A factory object or factory class name.
      *
+     * @return Designer
+     *
      * @throws Exception
      */
     public function factory($factory): self
+    {
+        $this->addFactory($factory);
+
+        return $this;
+    }
+
+    /**
+     * Adds a factory to the list.
+     *
+     * @param FactoryInterface|string $factory
+     *   A factory object or factory class name.
+     *
+     * @return void
+     *
+     * @throws Exception
+     */
+    public function addFactory($factory): void
     {
         if (!is_string($factory) && !is_object($factory)) {
             throw new Exception('Factory is invalid. A factory must be a class name or factory object.');
@@ -91,25 +198,6 @@ class Designer implements DesignerInterface
         }
 
         $this->factories[$class] = $factory;
-
-        return $this;
-    }
-
-    /**
-     * @inheritDoc
-     *
-     * @param FactoryInterface[]|string[] $factories
-     *   A list of factory objects or factory class names.
-     *
-     * @throws Exception
-     */
-    public function factories(array $factories): self
-    {
-        foreach($factories as $factory) {
-            $this->factory($factory);
-        }
-
-        return $this;
     }
 
     /**
