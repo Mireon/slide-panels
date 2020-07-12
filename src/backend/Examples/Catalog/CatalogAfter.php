@@ -33,7 +33,7 @@ class CatalogAfter implements FactoryInterface
         $url = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/catalog';
 
         $designer
-            ->panel(Catalog::KEY)
+            ->getPanel(Catalog::KEY)
             ->widget(Menu::create()
                 ->weight(15)
                 ->item(Item::create('Other', "$url/other")));

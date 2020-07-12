@@ -36,7 +36,7 @@ class AccountAuthenticated implements FactoryInterface
         $query = 'user[name]=User';
 
         $designer
-            ->panel(Account::KEY)
+            ->getPanel(Account::KEY)
             ->widget(Menu::create()
                 ->item(Item::create('Profile', "$host/profile?$query"))
                 ->item(Item::create('Settings', "$host/settings?$query"))

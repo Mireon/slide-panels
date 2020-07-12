@@ -36,7 +36,7 @@ class Account implements FactoryInterface
     public function make(DesignerInterface $designer): void
     {
         $designer
-            ->panel(self::KEY)
+            ->getPanel(self::KEY)
             ->side(Panel::RIGHT)
             ->widget(Header::create()
                 ->size(Header::BIG)

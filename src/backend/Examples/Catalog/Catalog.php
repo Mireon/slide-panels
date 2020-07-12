@@ -41,7 +41,7 @@ class Catalog implements FactoryInterface
         $url = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/catalog';
 
         $designer
-            ->panel(self::KEY)
+            ->getPanel(self::KEY)
             ->width(960)
             ->side(Panel::LEFT)
             ->widget(Close::create()

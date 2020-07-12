@@ -34,7 +34,7 @@ class AccountAnonymous implements FactoryInterface
         $query = 'user[name]=User';
 
         $designer
-            ->panel(Account::KEY)
+            ->getPanel(Account::KEY)
             ->widget(Menu::create()
                 ->item(Item::create('Login', "$host/login?$query"))
                 ->item(Item::create('Register', "$host/register?$query")));

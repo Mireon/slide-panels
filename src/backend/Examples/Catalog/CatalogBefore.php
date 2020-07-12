@@ -30,7 +30,7 @@ class CatalogBefore implements FactoryInterface
     public function make(DesignerInterface $designer): void
     {
         $designer
-            ->panel(Catalog::KEY)
+            ->getPanel(Catalog::KEY)
             ->widget(Html::create()
                 ->weight(5)
                 ->html('<span style="display: block; padding: 10px; color: #ababab;">The main catalog!</span>'));

@@ -46,7 +46,7 @@ class Designer implements DesignerInterface
      *
      * @throws Exception
      */
-    public function panel(string $key): PanelInterface
+    public function getPanel(string $key): PanelInterface
     {
         if (empty($key)) {
             throw new Exception('Panel key is undefined.');

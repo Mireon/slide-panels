@@ -34,13 +34,13 @@ class SlidePanels implements Renderable
     /**
      * The constructor.
      */
-    private function __construct()
+    protected function __construct()
     {
-        $this->designer = new Designer();
+        //
     }
 
     /**
-     * The magic method clone.
+     * The "clone" magic method.
      *
      * @return void
      */
@@ -50,9 +50,7 @@ class SlidePanels implements Renderable
     }
 
     /**
-     * The magic method wakeup.
-     *
-     * @return void
+     * The "wakeup" magic method.
      *
      * @throws Exception
      */
@@ -62,12 +60,10 @@ class SlidePanels implements Renderable
     }
 
     /**
-     * The magic method unserialize.
+     * The "unserialize" magic method.
      *
      * @param array $data
-     *   An array of data.
-     *
-     * @return void
+     *   A list of data.
      *
      * @throws Exception
      */
@@ -81,7 +77,7 @@ class SlidePanels implements Renderable
      *
      * @return static
      */
-    public static function instance(): self
+    public static function getInstance(): self
     {
         if (is_null(self::$instance)) {
             self::$instance = new static();
@@ -91,13 +87,32 @@ class SlidePanels implements Renderable
     }
 
     /**
-     * Returns the designer panels.
+     * ...
+     *
+     * @param DesignerInterface $designer
+     *   ...
+     *
+     * @return void
+     */
+    public static function setDesigner(DesignerInterface $designer): void
+    {
+        self::getInstance()->designer = $designer;
+    }
+
+    /**
+     * Returns the designer of panels.
      *
      * @return DesignerInterface
+     *
+     * @throws Exception
      */
-    public static function designer(): DesignerInterface
+    public static function getDesigner(): DesignerInterface
     {
-        return self::instance()->designer;
+        if (is_null(self::getInstance()->designer)) {
+            self::getInstance()->designer = new Designer();
+        }
+
+        return self::getInstance()->designer;
     }
 
     /**

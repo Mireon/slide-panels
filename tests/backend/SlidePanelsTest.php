@@ -14,12 +14,12 @@ use PHPUnit\Framework\TestCase;
 class SlidePanelsTest extends TestCase
 {
     /**
-     * @covers \Mireon\SlidePanels\SlidePanels::instance
+     * @covers \Mireon\SlidePanels\SlidePanels::getInstance
      */
     public function testInstance(): void
     {
-        $a = SlidePanels::instance();
-        $b = SlidePanels::instance();
+        $a = SlidePanels::getInstance();
+        $b = SlidePanels::getInstance();
 
         $this->assertTrue($a === $b);
     }
@@ -41,7 +41,7 @@ class SlidePanelsTest extends TestCase
     {
         $this->expectException(Error::class);
 
-        clone SlidePanels::instance();
+        clone SlidePanels::getInstance();
     }
 
     /**
@@ -51,7 +51,7 @@ class SlidePanelsTest extends TestCase
     {
         $this->expectException(Exception::class);
 
-        unserialize(serialize(SlidePanels::instance()));
+        unserialize(serialize(SlidePanels::getInstance()));
     }
 
     /**
@@ -61,16 +61,16 @@ class SlidePanelsTest extends TestCase
     {
         $this->expectException(Exception::class);
 
-        unserialize(serialize(SlidePanels::instance()));
+        unserialize(serialize(SlidePanels::getInstance()));
     }
 
     /**
-     * @covers \Mireon\SlidePanels\SlidePanels::designer
+     * @covers \Mireon\SlidePanels\SlidePanels::getDesigner
      */
     public function testDesigner(): void
     {
-        $a = SlidePanels::designer();
-        $b = SlidePanels::designer();
+        $a = SlidePanels::getDesigner();
+        $b = SlidePanels::getDesigner();
 
         $this->assertTrue($a === $b);
         $this->assertInstanceOf(Designer::class, $a);
@@ -81,6 +81,6 @@ class SlidePanelsTest extends TestCase
      */
     public function testRender(): void
     {
-        $this->assertIsString(SlidePanels::instance()->render());
+        $this->assertIsString(SlidePanels::getInstance()->render());
     }
 }

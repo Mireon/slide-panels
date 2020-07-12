@@ -23,7 +23,7 @@ class DesignerTest extends TestCase
      *
      * Catch an exception when entered an empty panel key.
      *
-     * @covers \Mireon\SlidePanels\Designer\Designer::panel
+     * @covers \Mireon\SlidePanels\Designer\Designer::getPanel
      *
      * @return void
      *
@@ -32,13 +32,13 @@ class DesignerTest extends TestCase
     public function testPanelException_1(): void
     {
         $this->expectException(Exception::class);
-        (new Designer())->panel('');
+        (new Designer())->getPanel('');
     }
 
     /**
      * Test for the panel method.
      *
-     * @covers \Mireon\SlidePanels\Designer\Designer::panel
+     * @covers \Mireon\SlidePanels\Designer\Designer::getPanel
      *
      * @return void
      *
@@ -46,7 +46,7 @@ class DesignerTest extends TestCase
      */
     public function testPanelException_2(): void
     {
-        $this->assertInstanceOf(Panel::class, (new Designer())->panel('key'));
+        $this->assertInstanceOf(Panel::class, (new Designer())->getPanel('key'));
     }
 
     /**
