@@ -46,7 +46,7 @@ class SlidePanels implements SlidePanelsInterface
      */
     protected function __construct()
     {
-        $this->setStage(new Stage(new Panels()));
+        $this->setStage(new Stage());
     }
 
     /**

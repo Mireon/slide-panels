@@ -2,6 +2,8 @@
 
 namespace Mireon\SlidePanels\Stage;
 
+use Exception;
+use Mireon\SlidePanels\Panels\Panels;
 use Mireon\SlidePanels\Panels\PanelsInterface;
 use Mireon\SlidePanels\Renderer\Renderer;
 use Mireon\SlidePanels\Renderer\RenderToString;
@@ -27,10 +29,12 @@ class Stage implements StageInterface
      *
      * @param PanelsInterface|null $panels
      *   The panels container.
+     *
+     * @throws Exception
      */
     public function __construct(?PanelsInterface $panels = null)
     {
-        $this->panels = $panels;
+        $this->panels = $panels ?? new Panels();
     }
 
     /**
@@ -40,6 +44,8 @@ class Stage implements StageInterface
      *   The panels container.
      *
      * @return static
+     *
+     * @throws Exception
      */
     public static function create(?PanelsInterface $panels = null): self
     {
