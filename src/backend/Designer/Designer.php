@@ -103,6 +103,23 @@ class Designer
     }
 
     /**
+     * Adds a list factories object to the list.
+     *
+     * @param FactoryInterface[]|string[] $factory
+     *   A list of factory objects or factory class names.
+     *
+     * @return self
+     */
+    public function factories(array $factories): self
+    {
+        foreach($factories as $factory) {
+            $this->factory($factory);
+        }
+
+        return $this;
+    }
+
+    /**
      * @inheritDoc
      */
     public function render(): string

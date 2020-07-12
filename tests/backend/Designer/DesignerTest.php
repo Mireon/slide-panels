@@ -128,6 +128,33 @@ class DesignerTest extends TestCase
     }
 
     /**
+     * Test for the factories method.
+     *
+     * @covers \Mireon\SlidePanels\Designer\Designer::factories
+     *
+     * @return void
+     *
+     * @throws ReflectionException
+     */
+    public function testFactories(): void
+    {
+        // Private factories property
+        $property = (new ReflectionClass(Designer::class))->getProperty('factories');
+        $property->setAccessible(true);
+
+        // Initialize
+        $designer = new Designer();
+        $this->assertIsArray($property->getValue($designer));
+        $this->assertEmpty($property->getValue($designer));
+
+        // Designer::factory()
+        $designer = new Designer();
+        $designer->factories([$this->getFactory(), $this->getFactory2()]);
+        $this->assertNotEmpty($property->getValue($designer));
+        $this->assertSame(2, count($property->getValue($designer)));
+    }
+
+    /**
      * Test for the render method.
      *
      * @covers \Mireon\SlidePanels\Designer\Designer::render
@@ -150,6 +177,19 @@ class DesignerTest extends TestCase
      * @return FactoryInterface
      */
     private function getFactory(): FactoryInterface
+    {
+        return new class implements FactoryInterface {
+            public function doMake(): bool { return true; }
+            public function make(Designer $designer): void {}
+        };
+    }
+
+    /**
+     * Returns the 2 test factory.
+     *
+     * @return FactoryInterface
+     */
+    private function getFactory2(): FactoryInterface
     {
         return new class implements FactoryInterface {
             public function doMake(): bool { return true; }
