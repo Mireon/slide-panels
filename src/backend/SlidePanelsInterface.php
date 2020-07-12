@@ -1,16 +1,16 @@
 <?php
 
-namespace Mireon\SlidePanels\Designer;
+namespace Mireon\SlidePanels;
 
 use Mireon\SlidePanels\Panels\PanelInterface;
 use Mireon\SlidePanels\Renderer\Renderable;
 
 /**
- * The interface for designer.
+ * The interface for general class.
  *
- * @package Mireon\SlidePanels\Designer
+ * @package Mireon\SlidePanels
  */
-interface DesignerInterface extends Renderable
+interface SlidePanelsInterface extends Renderable
 {
     /**
      * Returns a panel by key.

@@ -3,10 +3,10 @@
 namespace Mireon\SlidePanels\Examples\Account;
 
 use Exception;
-use Mireon\SlidePanels\Designer\DesignerInterface;
-use Mireon\SlidePanels\Designer\FactoryInterface;
 use Mireon\SlidePanels\Examples\Catalog\Catalog;
 use Mireon\SlidePanels\Levers\Lever;
+use Mireon\SlidePanels\Panels\PanelFactoryInterface;
+use Mireon\SlidePanels\SlidePanelsInterface;
 use Mireon\SlidePanels\Widgets\Menu\Item;
 use Mireon\SlidePanels\Widgets\Menu\Menu;
 
@@ -15,7 +15,7 @@ use Mireon\SlidePanels\Widgets\Menu\Menu;
  *
  * @package Mireon\SlidePanels\Examples\Account
  */
-class AccountAuthenticated implements FactoryInterface
+class AccountAuthenticated implements PanelFactoryInterface
 {
     /**
      * @inheritDoc
@@ -30,12 +30,12 @@ class AccountAuthenticated implements FactoryInterface
      *
      * @throws Exception
      */
-    public function make(DesignerInterface $designer): void
+    public function make(SlidePanelsInterface $slidePanels): void
     {
         $host = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'];
         $query = 'user[name]=User';
 
-        $designer
+        $slidePanels
             ->getPanel(Account::KEY)
             ->widget(Menu::create()
                 ->item(Item::create('Profile', "$host/profile?$query"))

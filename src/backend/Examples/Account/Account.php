@@ -3,9 +3,9 @@
 namespace Mireon\SlidePanels\Examples\Account;
 
 use Exception;
-use Mireon\SlidePanels\Designer\DesignerInterface;
-use Mireon\SlidePanels\Designer\FactoryInterface;
 use Mireon\SlidePanels\Panels\Panel;
+use Mireon\SlidePanels\Panels\PanelFactoryInterface;
+use Mireon\SlidePanels\SlidePanelsInterface;
 use Mireon\SlidePanels\Widgets\Header\Header;
 
 /**
@@ -13,7 +13,7 @@ use Mireon\SlidePanels\Widgets\Header\Header;
  *
  * @package Mireon\SlidePanels\Examples\Account
  */
-class Account implements FactoryInterface
+class Account implements PanelFactoryInterface
 {
     /**
      * The panel key.
@@ -33,9 +33,9 @@ class Account implements FactoryInterface
      *
      * @throws Exception
      */
-    public function make(DesignerInterface $designer): void
+    public function make(SlidePanelsInterface $slidePanels): void
     {
-        $designer
+        $slidePanels
             ->getPanel(self::KEY)
             ->side(Panel::RIGHT)
             ->widget(Header::create()
