@@ -44,13 +44,13 @@ class Widgets implements WidgetsInterface, IteratorAggregate
      * @param WidgetInterface[] $widgets
      *   A list of widgets.
      *
-     * @return self
+     * @return static
      *
      * @throws Exception
      */
     public static function create(array $widgets = []): self
     {
-        return new self($widgets);
+        return new static($widgets);
     }
 
     /**

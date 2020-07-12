@@ -42,13 +42,13 @@ class Menu extends Widget implements IteratorAggregate
      * @param ItemInterface[] $items
      *   A list of items.
      *
-     * @return self
+     * @return static
      *
      * @throws Exception
      */
     public static function create(array $items = []): self
     {
-        return new self($items);
+        return new static($items);
     }
 
     /**

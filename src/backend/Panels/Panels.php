@@ -44,13 +44,13 @@ class Panels implements PanelsInterface, IteratorAggregate
      * @param PanelInterface[] $panels
      *   A list of panels.
      *
-     * @return self
+     * @return static
      *
      * @throws Exception
      */
     public static function create(array $panels = []): self
     {
-        return new self($panels);
+        return new static($panels);
     }
 
     /**

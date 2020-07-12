@@ -39,11 +39,11 @@ class Stage implements StageInterface
      * @param PanelsInterface|null $panels
      *   The panels container.
      *
-     * @return self
+     * @return static
      */
     public static function create(?PanelsInterface $panels = null): self
     {
-        return new self($panels);
+        return new static($panels);
     }
 
     /**

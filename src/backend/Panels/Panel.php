@@ -82,13 +82,13 @@ class Panel implements PanelInterface
      * @param string|null $side
      *   A panel side.
      *
-     * @return self
+     * @return static
      *
      * @throws Exception
      */
     public static function create(?string $key = null, ?string $side = null): self
     {
-        return new self($key, $side);
+        return new static($key, $side);
     }
 
     /**

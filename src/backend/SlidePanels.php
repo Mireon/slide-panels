@@ -79,12 +79,12 @@ class SlidePanels implements Renderable
     /**
      * Returns an instance this class.
      *
-     * @return self
+     * @return static
      */
     public static function instance(): self
     {
         if (is_null(self::$instance)) {
-            self::$instance = new self();
+            self::$instance = new static();
         }
 
         return self::$instance;
