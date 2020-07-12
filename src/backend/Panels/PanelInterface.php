@@ -4,7 +4,6 @@ namespace Mireon\SlidePanels\Panels;
 
 use Mireon\SlidePanels\Interfaces\Validated;
 use Mireon\SlidePanels\Renderer\Renderable;
-use Mireon\SlidePanels\Widgets\Widgets;
 use Mireon\SlidePanels\Widgets\WidgetsInterface;
 
 /**

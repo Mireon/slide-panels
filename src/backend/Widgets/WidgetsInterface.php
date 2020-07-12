@@ -11,5 +11,5 @@ use Mireon\SlidePanels\Renderer\Renderable;
  */
 interface WidgetsInterface extends Renderable
 {
-
+    //
 }
