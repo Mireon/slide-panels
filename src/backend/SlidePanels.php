@@ -4,6 +4,7 @@ namespace Mireon\SlidePanels;
 
 use Exception;
 use Mireon\SlidePanels\Designer\Designer;
+use Mireon\SlidePanels\Designer\DesignerInterface;
 use Mireon\SlidePanels\Renderer\Renderable;
 use Mireon\SlidePanels\Renderer\RenderToString;
 
@@ -26,9 +27,9 @@ class SlidePanels implements Renderable
     /**
      * The panels designer.
      *
-     * @var Designer|null $designer
+     * @var DesignerInterface|null $designer
      */
-    private ?Designer $designer = null;
+    private ?DesignerInterface $designer = null;
 
     /**
      * The constructor.
@@ -92,9 +93,9 @@ class SlidePanels implements Renderable
     /**
      * Returns the designer panels.
      *
-     * @return Designer
+     * @return DesignerInterface
      */
-    public static function designer(): Designer
+    public static function designer(): DesignerInterface
     {
         return self::instance()->designer;
     }

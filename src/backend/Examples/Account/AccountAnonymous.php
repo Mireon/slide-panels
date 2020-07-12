@@ -3,7 +3,7 @@
 namespace Mireon\SlidePanels\Examples\Account;
 
 use Exception;
-use Mireon\SlidePanels\Designer\Designer;
+use Mireon\SlidePanels\Designer\DesignerInterface;
 use Mireon\SlidePanels\Designer\FactoryInterface;
 use Mireon\SlidePanels\Widgets\Menu\Item;
 use Mireon\SlidePanels\Widgets\Menu\Menu;
@@ -28,7 +28,7 @@ class AccountAnonymous implements FactoryInterface
      *
      * @throws Exception
      */
-    public function make(Designer $designer): void
+    public function make(DesignerInterface $designer): void
     {
         $host = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'];
         $query = 'user[name]=User';

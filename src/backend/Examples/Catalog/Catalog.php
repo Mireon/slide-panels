@@ -3,7 +3,7 @@
 namespace Mireon\SlidePanels\Examples\Catalog;
 
 use Exception;
-use Mireon\SlidePanels\Designer\Designer;
+use Mireon\SlidePanels\Designer\DesignerInterface;
 use Mireon\SlidePanels\Designer\FactoryInterface;
 use Mireon\SlidePanels\Panels\Panel;
 use Mireon\SlidePanels\Widgets\Close\Close;
@@ -36,7 +36,7 @@ class Catalog implements FactoryInterface
      *
      * @throws Exception
      */
-    public function make(Designer $designer): void
+    public function make(DesignerInterface $designer): void
     {
         $url = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/catalog';
 

@@ -4,7 +4,7 @@ namespace Mireon\SlidePanels\Tests\Panels;
 
 use Exception;
 use Mireon\SlidePanels\Panels\Panel;
-use Mireon\SlidePanels\Panels\PanelStyles;
+use Mireon\SlidePanels\Panels\PanelParams;
 use Mireon\SlidePanels\Widgets\WidgetInterface;
 use Mireon\SlidePanels\Widgets\Widgets;
 use PHPUnit\Framework\TestCase;
@@ -29,7 +29,7 @@ class PanelTest extends TestCase
     {
         // Initialize
         $panel = new Panel();
-        $this->assertInstanceOf(PanelStyles::class, $panel->getStyles());
+        $this->assertInstanceOf(PanelParams::class, $panel->getStyles());
         $this->assertInstanceOf(Widgets::class, $panel->getWidgets());
 
         // Without params
@@ -67,7 +67,7 @@ class PanelTest extends TestCase
         // Initialize
         $panel = Panel::create();
         $this->assertInstanceOf(Panel::class, $panel);
-        $this->assertInstanceOf(PanelStyles::class, $panel->getStyles());
+        $this->assertInstanceOf(PanelParams::class, $panel->getStyles());
         $this->assertInstanceOf(Widgets::class, $panel->getWidgets());
 
         // Without params
@@ -234,7 +234,7 @@ class PanelTest extends TestCase
         // Without key
         $panel = new Panel();
         $this->assertFalse($panel->hasStyles());
-        $this->assertInstanceOf(PanelStyles::class, $panel->getStyles());
+        $this->assertInstanceOf(PanelParams::class, $panel->getStyles());
 
         // With panel key
         $panel = new Panel();

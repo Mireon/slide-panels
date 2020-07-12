@@ -5,7 +5,6 @@ namespace Mireon\SlidePanels\Widgets;
 use ArrayIterator;
 use Exception;
 use IteratorAggregate;
-use Mireon\SlidePanels\Renderer\Renderable;
 use Mireon\SlidePanels\Renderer\Renderer;
 use Mireon\SlidePanels\Renderer\RenderToString;
 use Traversable;
@@ -15,7 +14,7 @@ use Traversable;
  *
  * @package Mireon\SlidePanels\Widgets
  */
-class Widgets implements Renderable, IteratorAggregate
+class Widgets implements WidgetsInterface, IteratorAggregate
 {
     use RenderToString;
 

@@ -1,11 +1,11 @@
 <?php
 
-use Mireon\SlidePanels\Panels\Panel;
+use Mireon\SlidePanels\Panels\PanelInterface;
 
 /**
  * Prints a panel.
  *
- * @var Panel $panel
+ * @var PanelInterface $panel
  *   A panel.
  */
 ?>

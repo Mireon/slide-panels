@@ -3,7 +3,7 @@
 namespace Mireon\SlidePanels\Examples\Catalog;
 
 use Exception;
-use Mireon\SlidePanels\Designer\Designer;
+use Mireon\SlidePanels\Designer\DesignerInterface;
 use Mireon\SlidePanels\Designer\FactoryInterface;
 use Mireon\SlidePanels\Widgets\Html\Html;
 
@@ -27,7 +27,7 @@ class CatalogBefore implements FactoryInterface
      *
      * @throws Exception
      */
-    public function make(Designer $designer): void
+    public function make(DesignerInterface $designer): void
     {
         $designer
             ->panel(Catalog::KEY)

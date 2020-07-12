@@ -19,10 +19,10 @@ interface FactoryInterface
     /**
      * Makes panels or widgets using the panel designer.
      *
-     * @param Designer $designer
+     * @param DesignerInterface $designer
      *   The panels designer.
      *
      * @return void
      */
-    public function make(Designer $designer): void;
+    public function make(DesignerInterface $designer): void;
 }

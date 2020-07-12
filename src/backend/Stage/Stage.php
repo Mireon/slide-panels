@@ -2,8 +2,7 @@
 
 namespace Mireon\SlidePanels\Stage;
 
-use Mireon\SlidePanels\Panels\Panels;
-use Mireon\SlidePanels\Renderer\Renderable;
+use Mireon\SlidePanels\Panels\PanelsInterface;
 use Mireon\SlidePanels\Renderer\Renderer;
 use Mireon\SlidePanels\Renderer\RenderToString;
 
@@ -12,24 +11,24 @@ use Mireon\SlidePanels\Renderer\RenderToString;
  *
  * @package Mireon\SlidePanels\Stage
  */
-class Stage implements Renderable
+class Stage implements StageInterface
 {
     use RenderToString;
 
     /**
      * The panels container.
      *
-     * @var Panels|null
+     * @var PanelsInterface|null
      */
-    private ?Panels $panels = null;
+    private ?PanelsInterface $panels = null;
 
     /**
      * The constructor.
      *
-     * @param Panels|null $panels
+     * @param PanelsInterface|null $panels
      *   The panels container.
      */
-    public function __construct(?Panels $panels = null)
+    public function __construct(?PanelsInterface $panels = null)
     {
         $this->panels = $panels;
     }
@@ -37,12 +36,12 @@ class Stage implements Renderable
     /**
      * Creates the stage.
      *
-     * @param Panels|null $panels
+     * @param PanelsInterface|null $panels
      *   The panels container.
      *
      * @return self
      */
-    public static function create(?Panels $panels = null): self
+    public static function create(?PanelsInterface $panels = null): self
     {
         return new self($panels);
     }
@@ -50,12 +49,12 @@ class Stage implements Renderable
     /**
      * The panels container.
      *
-     * @param Panels $panels
+     * @param PanelsInterface $panels
      *   A panels container.
      *
      * @return self
      */
-    public function panels(Panels $panels): self
+    public function panels(PanelsInterface $panels): self
     {
         $this->setPanels($panels);
 
@@ -65,30 +64,26 @@ class Stage implements Renderable
     /**
      * The panels container.
      *
-     * @param Panels $panels
+     * @param PanelsInterface $panels
      *   A panels container.
      *
      * @return void
      */
-    public function setPanels(Panels $panels): void
+    public function setPanels(PanelsInterface $panels): void
     {
         $this->panels = $panels;
     }
 
     /**
-     * Returns the panels container.
-     *
-     * @return Panels|null
+     * @inheritDoc
      */
-    public function getPanels(): ?Panels
+    public function getPanels(): ?PanelsInterface
     {
         return $this->panels;
     }
 
     /**
-     * Checks if panels exists.
-     *
-     * @return bool
+     * @inheritDoc
      */
     public function hasPanels(): bool
     {

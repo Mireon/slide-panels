@@ -4,15 +4,17 @@ namespace Mireon\SlidePanels\Designer;
 
 use Exception;
 use Mireon\SlidePanels\Panels\Panel;
+use Mireon\SlidePanels\Panels\PanelInterface;
 use Mireon\SlidePanels\Panels\Panels;
 use Mireon\SlidePanels\Stage\Stage;
+use Mireon\SlidePanels\Stage\StageInterface;
 
 /**
  * The panels designer.
  *
  * @package Mireon\SlidePanels\Designer
  */
-class Designer
+class Designer implements DesignerInterface
 {
     /**
      * The list of factories.
@@ -24,9 +26,9 @@ class Designer
     /**
      * The stage.
      *
-     * @var Stage|null
+     * @var StageInterface|null
      */
-    private ?Stage $stage = null;
+    private ?StageInterface $stage = null;
 
     /**
      * The constructor.
@@ -40,18 +42,11 @@ class Designer
     }
 
     /**
-     * Returns a panel by key.
-     *
-     * If a panel with the entered key doesn't created it will be created.
-     *
-     * @param string $key
-     *   A panel key.
-     *
-     * @return Panel
+     * @inheritDoc
      *
      * @throws Exception
      */
-    public function panel(string $key): Panel
+    public function panel(string $key): PanelInterface
     {
         if (empty($key)) {
             throw new Exception('Panel key is undefined.');
@@ -67,12 +62,10 @@ class Designer
     }
 
     /**
-     * Adds a new factory object to the list.
+     * @inheritDoc
      *
      * @param FactoryInterface|string $factory
      *   A factory object or factory class name.
-     *
-     * @return self
      *
      * @throws Exception
      */
@@ -103,12 +96,12 @@ class Designer
     }
 
     /**
-     * Adds a list factories object to the list.
+     * @inheritDoc
      *
-     * @param FactoryInterface[]|string[] $factory
+     * @param FactoryInterface[]|string[] $factories
      *   A list of factory objects or factory class names.
      *
-     * @return self
+     * @throws Exception
      */
     public function factories(array $factories): self
     {

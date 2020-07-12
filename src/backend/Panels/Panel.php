@@ -3,18 +3,18 @@
 namespace Mireon\SlidePanels\Panels;
 
 use Exception;
-use Mireon\SlidePanels\Renderer\Renderable;
 use Mireon\SlidePanels\Renderer\Renderer;
 use Mireon\SlidePanels\Renderer\RenderToString;
 use Mireon\SlidePanels\Widgets\WidgetInterface;
 use Mireon\SlidePanels\Widgets\Widgets;
+use Mireon\SlidePanels\Widgets\WidgetsInterface;
 
 /**
  * The panel.
  *
  * @package Mireon\SlidePanels\Panels
  */
-class Panel implements Renderable
+class Panel implements PanelInterface
 {
     use RenderToString;
 
@@ -45,16 +45,16 @@ class Panel implements Renderable
     /**
      * The panel styles.
      *
-     * @var PanelStyles|null
+     * @var PanelParamsInterface|null
      */
-    private ?PanelStyles $styles = null;
+    private ?PanelParamsInterface $styles = null;
 
     /**
      * The widgets container.
      *
-     * @var Widgets|null
+     * @var WidgetsInterface|null
      */
-    private ?Widgets $widgets = null;
+    private ?WidgetsInterface $widgets = null;
 
     /**
      * The constructor.
@@ -68,7 +68,7 @@ class Panel implements Renderable
      */
     public function __construct(?string $key = null, ?string $side = null)
     {
-        $this->setStyles(new PanelStyles($this));
+        $this->setStyles(new PanelParams($this));
         $this->setWidgets(new Widgets());
         $this->setKey($key);
         $this->setSide($side);
@@ -125,9 +125,7 @@ class Panel implements Renderable
     }
 
     /**
-     * Returns a panel key.
-     *
-     * @return string|null
+     * @inheritDoc
      */
     public function getKey(): ?string
     {
@@ -135,9 +133,7 @@ class Panel implements Renderable
     }
 
     /**
-     * Checks if a panel key is defined.
-     *
-     * @return bool
+     * @inheritDoc
      */
     public function hasKey(): bool
     {
@@ -178,13 +174,19 @@ class Panel implements Renderable
     }
 
     /**
-     * Returns the panel side.
-     *
-     * @return string
+     * @inheritDoc
      */
-    public function getSide(): string
+    public function getSide(): ?string
     {
         return $this->side;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function hasSide(): bool
+    {
+        return !is_null($this->side);
     }
 
     /**
@@ -222,28 +224,26 @@ class Panel implements Renderable
     /**
      * Sets the panel styles.
      *
-     * @param PanelStyles|null $styles
+     * @param PanelParamsInterface|null $styles
      *   A panel styles.
      *
      * @return void
      */
-    private function setStyles(?PanelStyles $styles): void
+    private function setStyles(?PanelParamsInterface $styles): void
     {
         $this->styles = $styles;
     }
 
     /**
-     * @return PanelStyles|null
+     * @inheritDoc
      */
-    public function getStyles(): ?PanelStyles
+    public function getStyles(): ?PanelParamsInterface
     {
         return $this->styles;
     }
 
     /**
-     * Checks if the panel style is defined.
-     *
-     * @return bool
+     * @inheritDoc
      */
     public function hasStyles(): bool
     {
@@ -253,12 +253,12 @@ class Panel implements Renderable
     /**
      * Sets widgets.
      *
-     * @param Widgets $widgets
+     * @param WidgetsInterface $widgets
      *   A widget container.
      *
      * @return self
      */
-    public function widgets(Widgets $widgets): self
+    public function widgets(WidgetsInterface $widgets): self
     {
         $this->setWidgets($widgets);
 
@@ -268,12 +268,12 @@ class Panel implements Renderable
     /**
      * Sets widgets.
      *
-     * @param Widgets $widgets
+     * @param WidgetsInterface $widgets
      *   A widget container.
      *
      * @return void
      */
-    public function setWidgets(Widgets $widgets): void
+    public function setWidgets(WidgetsInterface $widgets): void
     {
         $this->widgets = $widgets;
     }
@@ -311,19 +311,15 @@ class Panel implements Renderable
     }
 
     /**
-     * Returns the widgets container.
-     *
-     * @return Widgets|null
+     * @inheritDoc
      */
-    public function getWidgets(): ?Widgets
+    public function getWidgets(): ?WidgetsInterface
     {
         return $this->widgets;
     }
 
     /**
-     * Checks if widgets exists.
-     *
-     * @return bool
+     * @inheritDoc
      */
     public function hasWidgets(): bool
     {

@@ -4,21 +4,21 @@ namespace Mireon\SlidePanels\Tests\Panels;
 
 use Exception;
 use Mireon\SlidePanels\Panels\Panel;
-use Mireon\SlidePanels\Panels\PanelStyles;
+use Mireon\SlidePanels\Panels\PanelParams;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 
 /**
  * Test for the panel styles.
  *
- * @covers \Mireon\SlidePanels\Panels\PanelStyles
+ * @covers \Mireon\SlidePanels\Panels\PanelParams
  */
 class PanelStylesTest extends TestCase
 {
     /**
      * Test for the __construct method.
      *
-     * @covers \Mireon\SlidePanels\Panels\PanelStyles::__construct
+     * @covers \Mireon\SlidePanels\Panels\PanelParams::__construct
      *
      * @return void
      *
@@ -27,21 +27,21 @@ class PanelStylesTest extends TestCase
     public function testConstruct(): void
     {
         // Private panel property
-        $property = (new ReflectionClass(PanelStyles::class))->getProperty('panel');
+        $property = (new ReflectionClass(PanelParams::class))->getProperty('panel');
         $property->setAccessible(true);
 
         // Instances
         $panel = new Panel();
-        $styles = new PanelStyles($panel);
+        $styles = new PanelParams($panel);
         $this->assertTrue($panel === $property->getValue($styles));
     }
 
     /**
      * Test for the width property and its methods.
      *
-     * @covers \Mireon\SlidePanels\Panels\PanelStyles::width
-     * @covers \Mireon\SlidePanels\Panels\PanelStyles::setWidth
-     * @covers \Mireon\SlidePanels\Panels\PanelStyles::getWidth
+     * @covers \Mireon\SlidePanels\Panels\PanelParams::width
+     * @covers \Mireon\SlidePanels\Panels\PanelParams::setWidth
+     * @covers \Mireon\SlidePanels\Panels\PanelParams::getWidth
      *
      * @return void
      *
@@ -51,15 +51,15 @@ class PanelStylesTest extends TestCase
     {
         // Initialize
         $panel = new Panel('key');
-        $styles = new PanelStyles($panel);
+        $styles = new PanelParams($panel);
         $this->assertSame(320, $styles->getWidth());
 
         // PanelStyles::width()
-        $styles = (new PanelStyles($panel))->width(500);
+        $styles = (new PanelParams($panel))->width(500);
         $this->assertSame(500, $styles->getWidth());
 
         // PanelStyles::setWidth()
-        $styles = new PanelStyles($panel);
+        $styles = new PanelParams($panel);
         $styles->setWidth(400);
         $this->assertSame(400, $styles->getWidth());
     }
@@ -69,17 +69,17 @@ class PanelStylesTest extends TestCase
      *
      * Catch an exception when entered a value less then 0.
      *
-     * @covers \Mireon\SlidePanels\Panels\PanelStyles::width
-     *
-     * @throws Exception
+     * @covers \Mireon\SlidePanels\Panels\PanelParams::width
      *
      * @return void
+     *@throws Exception
+     *
      */
     public function testWidthException(): void
     {
         $this->expectException(Exception::class);
 
-        (new PanelStyles(new Panel('key')))->width(-10);
+        (new PanelParams(new Panel('key')))->width(-10);
     }
 
     /**
@@ -87,7 +87,7 @@ class PanelStylesTest extends TestCase
      *
      * Catch an exception when entered a value less then 0.
      *
-     * @covers \Mireon\SlidePanels\Panels\PanelStyles::setWidth
+     * @covers \Mireon\SlidePanels\Panels\PanelParams::setWidth
      *
      * @return void
      *
@@ -96,13 +96,13 @@ class PanelStylesTest extends TestCase
     public function testSetWidthException(): void
     {
         $this->expectException(Exception::class);
-        (new PanelStyles(new Panel('key')))->setWidth(-10);
+        (new PanelParams(new Panel('key')))->setWidth(-10);
     }
 
     /**
      * Test for the isValid method.
      *
-     * @covers \Mireon\SlidePanels\Panels\PanelStyles::isValid
+     * @covers \Mireon\SlidePanels\Panels\PanelParams::isValid
      *
      * @return void
      *
@@ -111,18 +111,18 @@ class PanelStylesTest extends TestCase
     public function testIsValid(): void
     {
         // Valid
-        $styles = new PanelStyles(new Panel('key'));
+        $styles = new PanelParams(new Panel('key'));
         $this->assertTrue($styles->isValid());
 
         // Invalid
-        $styles = new PanelStyles(new Panel());
+        $styles = new PanelParams(new Panel());
         $this->assertFalse($styles->isValid());
     }
 
     /**
      * Test for the render method.
      *
-     * @covers \Mireon\SlidePanels\Panels\PanelStyles::render
+     * @covers \Mireon\SlidePanels\Panels\PanelParams::render
      *
      * @return void
      *
@@ -130,13 +130,13 @@ class PanelStylesTest extends TestCase
      */
     public function testRender(): void
     {
-        $this->assertIsString((new PanelStyles(new Panel('key')))->render());
+        $this->assertIsString((new PanelParams(new Panel('key')))->render());
     }
 
     /**
      * Test for the doUse method.
      *
-     * @covers \Mireon\SlidePanels\Panels\PanelStyles::doUse
+     * @covers \Mireon\SlidePanels\Panels\PanelParams::doUse
      *
      * @return void
      *
@@ -145,12 +145,12 @@ class PanelStylesTest extends TestCase
     public function testDoUse(): void
     {
         // False
-        $styles = new PanelStyles(new Panel('key'));
+        $styles = new PanelParams(new Panel('key'));
         $styles->setWidth(320);
         $this->assertFalse($styles->doUse());
 
         // True
-        $styles = new PanelStyles(new Panel('key'));
+        $styles = new PanelParams(new Panel('key'));
         $styles->setWidth(400);
         $this->assertTrue($styles->doUse());
     }

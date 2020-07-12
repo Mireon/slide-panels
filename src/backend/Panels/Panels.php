@@ -5,7 +5,6 @@ namespace Mireon\SlidePanels\Panels;
 use ArrayIterator;
 use Exception;
 use IteratorAggregate;
-use Mireon\SlidePanels\Renderer\Renderable;
 use Mireon\SlidePanels\Renderer\Renderer;
 use Mireon\SlidePanels\Renderer\RenderToString;
 use Traversable;
@@ -15,21 +14,21 @@ use Traversable;
  *
  * @package Mireon\SlidePanels\Panels
  */
-class Panels implements Renderable, IteratorAggregate
+class Panels implements PanelsInterface, IteratorAggregate
 {
     use RenderToString;
 
     /**
      * The list of panels.
      *
-     * @var Panel[]
+     * @var PanelInterface[]
      */
     private array $panels = [];
 
     /**
      * The constructor.
      *
-     * @param Panel[] $panels
+     * @param PanelInterface[] $panels
      *   A list of panels.
      *
      * @throws Exception
@@ -42,7 +41,7 @@ class Panels implements Renderable, IteratorAggregate
     /**
      * Creates panels container.
      *
-     * @param array $panels
+     * @param PanelInterface[] $panels
      *   A list of panels.
      *
      * @return self
@@ -57,7 +56,7 @@ class Panels implements Renderable, IteratorAggregate
     /**
      * Sets a list of panels.
      *
-     * @param Panel[] $panels
+     * @param PanelInterface[] $panels
      *   A list of panels.
      *
      * @return self
@@ -74,7 +73,7 @@ class Panels implements Renderable, IteratorAggregate
     /**
      * Sets a list of panels.
      *
-     * @param Panel[] $panels
+     * @param PanelInterface[] $panels
      *   A list of panels.
      *
      * @return void
@@ -93,14 +92,14 @@ class Panels implements Renderable, IteratorAggregate
     /**
      * Sets a list of panels.
      *
-     * @param Panel $panel
+     * @param PanelInterface $panel
      *   A panel.
      *
      * @return self
      *
      * @throws Exception
      */
-    public function panel(Panel $panel): self
+    public function panel(PanelInterface $panel): self
     {
         $this->addPanel($panel);
 
@@ -110,14 +109,14 @@ class Panels implements Renderable, IteratorAggregate
     /**
      * Adds a new panel to the list.
      *
-     * @param Panel $panel
+     * @param PanelInterface $panel
      *   A new panel.
      *
      * @return void
      *
      * @throws Exception
      */
-    public function addPanel(Panel $panel): void
+    public function addPanel(PanelInterface $panel): void
     {
         if (!$panel->isValid()) {
             throw new Exception('Panel is invalid.');
@@ -127,9 +126,7 @@ class Panels implements Renderable, IteratorAggregate
     }
 
     /**
-     * Returns the list panels.
-     *
-     * @return Panel[]
+     * @inheritDoc
      */
     public function getPanels(): array
     {
@@ -137,22 +134,7 @@ class Panels implements Renderable, IteratorAggregate
     }
 
     /**
-     * Returns a panel by key.
-     *
-     * @param string $key
-     *   A panel key.
-     *
-     * @return Panel|null
-     */
-    public function getPanel(string $key): ?Panel
-    {
-        return $this->hasPanel($key) ? $this->panels[$key] : null;
-    }
-
-    /**
-     * Checks if panels exists.
-     *
-     * @return bool
+     * @inheritDoc
      */
     public function hasPanels(): bool
     {
@@ -160,18 +142,20 @@ class Panels implements Renderable, IteratorAggregate
     }
 
     /**
-     * Checks if panel exists.
-     *
-     * @param string $key
-     *   A panel key.
-     *
-     * @return bool
+     * @inheritDoc
+     */
+    public function getPanel(string $key): ?PanelInterface
+    {
+        return $this->hasPanel($key) ? $this->panels[$key] : null;
+    }
+
+    /**
+     * @inheritDoc
      */
     public function hasPanel(string $key): bool
     {
         return isset($this->panels[$key]);
     }
-
 
     /**
      * @inheritDoc

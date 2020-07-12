@@ -4,6 +4,7 @@ namespace Mireon\SlidePanels\Tests\Designer;
 
 use Exception;
 use Mireon\SlidePanels\Designer\Designer;
+use Mireon\SlidePanels\Designer\DesignerInterface;
 use Mireon\SlidePanels\Designer\FactoryInterface;
 use Mireon\SlidePanels\Panels\Panel;
 use PHPUnit\Framework\TestCase;
@@ -180,7 +181,7 @@ class DesignerTest extends TestCase
     {
         return new class implements FactoryInterface {
             public function doMake(): bool { return true; }
-            public function make(Designer $designer): void {}
+            public function make(DesignerInterface $designer): void {}
         };
     }
 
@@ -193,7 +194,7 @@ class DesignerTest extends TestCase
     {
         return new class implements FactoryInterface {
             public function doMake(): bool { return true; }
-            public function make(Designer $designer): void {}
+            public function make(DesignerInterface $designer): void {}
         };
     }
 }
