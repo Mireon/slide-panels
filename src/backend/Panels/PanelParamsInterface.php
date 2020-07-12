@@ -13,6 +13,13 @@ use Mireon\SlidePanels\Renderer\Renderable;
 interface PanelParamsInterface extends Renderable, Validated
 {
     /**
+     * Returns a panel that owns the parameters.
+     *
+     * @return PanelInterface
+     */
+    public function getPanel(): PanelInterface;
+
+    /**
      * Sets the panel width.
      *
      * @param int $width

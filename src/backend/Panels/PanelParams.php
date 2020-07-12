@@ -37,7 +37,28 @@ class PanelParams implements PanelParamsInterface
      */
     public function __construct(PanelInterface $panel)
     {
+        $this->setPanel($panel);
+    }
+
+    /**
+     * Sets the panel.
+     *
+     * @param PanelInterface $panel
+     *   The own panel.
+     *
+     * @return void
+     */
+    public function setPanel(PanelInterface $panel): void
+    {
         $this->panel = $panel;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getPanel(): PanelInterface
+    {
+        return $this->panel;
     }
 
     /**
