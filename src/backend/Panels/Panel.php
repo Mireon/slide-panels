@@ -47,7 +47,7 @@ class Panel implements PanelInterface
      *
      * @var PanelParamsInterface|null
      */
-    private ?PanelParamsInterface $styles = null;
+    private ?PanelParamsInterface $params = null;
 
     /**
      * The widgets container.
@@ -68,7 +68,7 @@ class Panel implements PanelInterface
      */
     public function __construct(?string $key = null, ?string $side = null)
     {
-        $this->setStyles(new PanelParams($this));
+        $this->setParams(new PanelParams($this));
         $this->setWidgets(new Widgets());
         $this->setKey($key);
         $this->setSide($side);
@@ -218,36 +218,36 @@ class Panel implements PanelInterface
      */
     public function setWidth(int $width): void
     {
-        $this->styles->setWidth($width);
+        $this->params->setWidth($width);
     }
 
     /**
      * Sets the panel styles.
      *
-     * @param PanelParamsInterface|null $styles
+     * @param PanelParamsInterface|null $params
      *   A panel styles.
      *
      * @return void
      */
-    private function setStyles(?PanelParamsInterface $styles): void
+    public function setParams(?PanelParamsInterface $params): void
     {
-        $this->styles = $styles;
+        $this->params = $params;
     }
 
     /**
      * @inheritDoc
      */
-    public function getStyles(): ?PanelParamsInterface
+    public function getParams(): ?PanelParamsInterface
     {
-        return $this->styles;
+        return $this->params;
     }
 
     /**
      * @inheritDoc
      */
-    public function hasStyles(): bool
+    public function hasParams(): bool
     {
-        return !is_null($this->styles) && $this->styles->isValid();
+        return !is_null($this->params) && $this->params->isValid();
     }
 
     /**

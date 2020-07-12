@@ -29,7 +29,7 @@ class PanelTest extends TestCase
     {
         // Initialize
         $panel = new Panel();
-        $this->assertInstanceOf(PanelParams::class, $panel->getStyles());
+        $this->assertInstanceOf(PanelParams::class, $panel->getParams());
         $this->assertInstanceOf(Widgets::class, $panel->getWidgets());
 
         // Without params
@@ -67,7 +67,7 @@ class PanelTest extends TestCase
         // Initialize
         $panel = Panel::create();
         $this->assertInstanceOf(Panel::class, $panel);
-        $this->assertInstanceOf(PanelParams::class, $panel->getStyles());
+        $this->assertInstanceOf(PanelParams::class, $panel->getParams());
         $this->assertInstanceOf(Widgets::class, $panel->getWidgets());
 
         // Without params
@@ -211,19 +211,19 @@ class PanelTest extends TestCase
         // Panel::width()
         $panel = Panel::create()->width(10);
         $this->assertInstanceOf(Panel::class, $panel);
-        $this->assertSame(10, $panel->getStyles()->getWidth());
+        $this->assertSame(10, $panel->getParams()->getWidth());
 
         // Panel::setWidth()
         $panel = new Panel();
         $panel->setWidth(15);
-        $this->assertSame(15, $panel->getStyles()->getWidth());
+        $this->assertSame(15, $panel->getParams()->getWidth());
     }
 
     /**
      * Test for the styles methods.
      *
-     * @covers \Mireon\SlidePanels\Panels\Panel::getStyles
-     * @covers \Mireon\SlidePanels\Panels\Panel::hasStyles
+     * @covers \Mireon\SlidePanels\Panels\Panel::getParams
+     * @covers \Mireon\SlidePanels\Panels\Panel::hasParams
      *
      * @return void
      *
@@ -233,13 +233,13 @@ class PanelTest extends TestCase
     {
         // Without key
         $panel = new Panel();
-        $this->assertFalse($panel->hasStyles());
-        $this->assertInstanceOf(PanelParams::class, $panel->getStyles());
+        $this->assertFalse($panel->hasParams());
+        $this->assertInstanceOf(PanelParams::class, $panel->getParams());
 
         // With panel key
         $panel = new Panel();
         $panel->setKey('key');
-        $this->assertTrue($panel->hasStyles());
+        $this->assertTrue($panel->hasParams());
     }
 
     /**

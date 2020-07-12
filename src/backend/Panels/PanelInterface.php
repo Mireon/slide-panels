@@ -47,14 +47,14 @@ interface PanelInterface extends Renderable, Validated
      *
      * @return PanelParamsInterface|null
      */
-    public function getStyles(): ?PanelParamsInterface;
+    public function getParams(): ?PanelParamsInterface;
 
     /**
      * Checks if the panel style is defined.
      *
      * @return bool
      */
-    public function hasStyles(): bool;
+    public function hasParams(): bool;
 
     /**
      * Returns the widgets container.
