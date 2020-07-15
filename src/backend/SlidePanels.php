@@ -188,6 +188,16 @@ class SlidePanels implements SlidePanelsInterface
     }
 
     /**
+     * Returns the list of factories.
+     *
+     * @return PanelFactoryInterface[]
+     */
+    public function getFactories(): array
+    {
+        return $this->factories;
+    }
+
+    /**
      * Adds a list factories to the list factories.
      *
      * @param PanelFactoryInterface[]|string[] $factories
@@ -233,26 +243,68 @@ class SlidePanels implements SlidePanelsInterface
      */
     public function addFactory($factory): void
     {
+        $factory = $this->createFactory($factory);
+        $name = get_class($factory);
+
+        if ($factory->doMake()) {
+            $this->factories[$name] = $factory;
+        }
+    }
+
+    /**
+     * Returns a factory.
+     *
+     * @param string $name
+     *   A factory class name.
+     *
+     * @return PanelFactoryInterface|null
+     */
+    public function getFactory(string $name): ?PanelFactoryInterface
+    {
+        return $this->factories[$name] ?? null;
+    }
+
+    /**
+     * Creates an instance of factory.
+     *
+     * @param PanelFactoryInterface|string $factory
+     *   A factory object or factory class name.
+     *
+     * @return PanelFactoryInterface
+     *
+     * @throws Exception
+     */
+    public function createFactory($factory): PanelFactoryInterface
+    {
         if (!is_string($factory) && !is_object($factory)) {
             throw new Exception('Factory is invalid. A factory must be a class name or factory object.');
         }
 
-        if (is_string($factory) && !class_exists($factory)) {
-            throw new Exception("Class \"$factory\" not found.");
-        }
-
         if (is_string($factory)) {
-            $factory = new $factory();
+            $factory = $this->createFactoryFromString($factory);
         }
-
-        $class = get_class($factory);
 
         if (!($factory instanceof PanelFactoryInterface)) {
             $interface = PanelFactoryInterface::class;
+            $class = get_class($factory);
+
             throw new Exception("The class \"$class\" does not implement the \"$interface\" interface.");
         }
 
-        $this->factories[$class] = $factory;
+        return $factory;
+    }
+
+    /**
+     * Creates an instance of factory from the class name.
+     *
+     * @param string $factory
+     *   A factory class name.
+     *
+     * @return object
+     */
+    public function createFactoryFromString(string $factory): object
+    {
+        return new $factory();
     }
 
     /**
@@ -261,9 +313,7 @@ class SlidePanels implements SlidePanelsInterface
     public function render(): string
     {
         foreach ($this->factories as $factory) {
-            if ($factory->doMake()) {
-                $factory->make($this);
-            }
+            $factory->make($this);
         }
 
         return $this->stage->render();
