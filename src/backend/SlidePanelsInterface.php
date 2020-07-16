@@ -13,6 +13,13 @@ use Mireon\SlidePanels\Renderer\Renderable;
 interface SlidePanelsInterface extends Renderable
 {
     /**
+     * Returns an instance this class.
+     *
+     * @return static
+     */
+    public static function getInstance(): self;
+
+    /**
      * Returns a panel by key.
 
      * @param string $key

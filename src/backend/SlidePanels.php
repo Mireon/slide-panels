@@ -81,9 +81,7 @@ class SlidePanels implements SlidePanelsInterface
     }
 
     /**
-     * Returns an instance this class.
-     *
-     * @return static
+     * @inheritDoc
      */
     public static function getInstance(): self
     {
@@ -93,7 +91,6 @@ class SlidePanels implements SlidePanelsInterface
 
         return self::$instance;
     }
-
 
     /**
      * Sets the stage.
