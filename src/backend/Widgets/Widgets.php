@@ -94,9 +94,7 @@ class Widgets implements WidgetsInterface, IteratorAggregate
      */
     public function getWidgets(): array
     {
-        uasort($this->widgets, function (WidgetInterface $a, WidgetInterface $b) {
-            return $a->getWeight() <=> $b->getWeight();
-        });
+        uasort($this->widgets, fn(WidgetInterface $a, WidgetInterface $b) => $a->getWeight() <=> $b->getWeight());
 
         return $this->widgets;
     }
