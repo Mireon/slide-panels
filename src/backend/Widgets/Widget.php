@@ -15,8 +15,8 @@ abstract class Widget implements WidgetInterface
 
     /**
      * The widget key.
-     * 
-     * @var string|null 
+     *
+     * @var string|null
      */
     private ?string $key = null;
 
