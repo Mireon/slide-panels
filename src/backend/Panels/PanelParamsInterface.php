@@ -15,9 +15,16 @@ interface PanelParamsInterface extends Renderable, Validated
     /**
      * Returns a panel that owns the parameters.
      *
-     * @return PanelInterface
+     * @return PanelInterface|null
      */
-    public function getPanel(): PanelInterface;
+    public function getPanel(): ?PanelInterface;
+
+    /**
+     * Indicate if a panel is defined.
+     *
+     * @return bool
+     */
+    public function hasPanel(): bool;
 
     /**
      * Sets the panel width.

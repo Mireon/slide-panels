@@ -161,10 +161,7 @@ class Panels implements PanelsInterface, IteratorAggregate
      */
     public function createPanel(string $key): PanelInterface
     {
-        $panel = new Panel($key);
-        $this->addPanel($panel);
-
-        return $panel;
+        return new Panel($key);
     }
 
     /**

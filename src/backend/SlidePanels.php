@@ -122,7 +122,7 @@ class SlidePanels implements SlidePanelsInterface
      */
     public function hasStage(): bool
     {
-        return is_null($this->stage);
+        return !is_null($this->stage);
     }
 
     /**
@@ -139,7 +139,7 @@ class SlidePanels implements SlidePanelsInterface
         $panels = $this->getStage()->getPanels();
 
         if (!$panels->hasPanel($key)) {
-            $panels->createPanel($key);
+            $panels->addPanel($panels->createPanel($key));
         }
 
         return $panels->getPanel($key);
@@ -180,7 +180,7 @@ class SlidePanels implements SlidePanelsInterface
      */
     public function setFactories(array $factories): void
     {
-        $this->factories = [];
+        $this->removeFactories();
         $this->addFactories($factories);
     }
 
@@ -209,6 +209,26 @@ class SlidePanels implements SlidePanelsInterface
         foreach ($factories as $factory) {
             $this->factory($factory);
         }
+    }
+
+    /**
+     * Indicates if the list of factories isn't empty.
+     *
+     * @return bool
+     */
+    public function hasFactories(): bool
+    {
+        return !empty($this->factories);
+    }
+
+    /**
+     * Removes all factories.
+     *
+     * @return void
+     */
+    public function removeFactories(): void
+    {
+        $this->factories = [];
     }
 
     /**

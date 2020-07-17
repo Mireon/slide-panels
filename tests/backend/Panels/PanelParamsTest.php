@@ -4,6 +4,7 @@ namespace Mireon\SlidePanels\Tests\Panels;
 
 use Exception;
 use Mireon\SlidePanels\Panels\Panel;
+use Mireon\SlidePanels\Panels\PanelInterface;
 use Mireon\SlidePanels\Panels\PanelParams;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
@@ -13,7 +14,7 @@ use ReflectionClass;
  *
  * @covers \Mireon\SlidePanels\Panels\PanelParams
  */
-class PanelStylesTest extends TestCase
+class PanelParamsTest extends TestCase
 {
     /**
      * Test for the __construct method.
@@ -32,8 +33,39 @@ class PanelStylesTest extends TestCase
 
         // Instances
         $panel = new Panel();
-        $styles = new PanelParams($panel);
-        $this->assertTrue($panel === $property->getValue($styles));
+        $params = new PanelParams($panel);
+        $this->assertTrue($panel === $property->getValue($params));
+    }
+
+    /**
+     * Test for the panel property and its methods.
+     *
+     * @covers \Mireon\SlidePanels\Panels\PanelParams::panel
+     * @covers \Mireon\SlidePanels\Panels\PanelParams::setPanel
+     * @covers \Mireon\SlidePanels\Panels\PanelParams::getPanel
+     * @covers \Mireon\SlidePanels\Panels\PanelParams::hasPanel
+     *
+     * @return void
+     *
+     * @throws Exception
+     */
+    public function testPanelProperty(): void
+    {
+        // Initialize
+        $params = new PanelParams();
+        $this->assertNull($params->getPanel());
+        $this->assertFalse($params->hasPanel());
+
+        // PanelParams::panel()
+        $params = (new PanelParams())->panel(new Panel('key'));
+        $this->assertInstanceOf(PanelInterface::class, $params->getPanel());
+        $this->assertTrue($params->hasPanel());
+
+        // PanelParams::setPanel()
+        $params = new PanelParams();
+        $params->setPanel(new Panel('key'));
+        $this->assertInstanceOf(PanelInterface::class, $params->getPanel());
+        $this->assertTrue($params->hasPanel());
     }
 
     /**
@@ -51,17 +83,17 @@ class PanelStylesTest extends TestCase
     {
         // Initialize
         $panel = new Panel('key');
-        $styles = new PanelParams($panel);
-        $this->assertSame(320, $styles->getWidth());
+        $params = new PanelParams($panel);
+        $this->assertSame(320, $params->getWidth());
 
-        // PanelStyles::width()
-        $styles = (new PanelParams($panel))->width(500);
-        $this->assertSame(500, $styles->getWidth());
+        // PanelParams::width()
+        $params = (new PanelParams($panel))->width(500);
+        $this->assertSame(500, $params->getWidth());
 
-        // PanelStyles::setWidth()
-        $styles = new PanelParams($panel);
-        $styles->setWidth(400);
-        $this->assertSame(400, $styles->getWidth());
+        // PanelParams::setWidth()
+        $params = new PanelParams($panel);
+        $params->setWidth(400);
+        $this->assertSame(400, $params->getWidth());
     }
 
     /**
@@ -111,12 +143,12 @@ class PanelStylesTest extends TestCase
     public function testIsValid(): void
     {
         // Valid
-        $styles = new PanelParams(new Panel('key'));
-        $this->assertTrue($styles->isValid());
+        $params = new PanelParams(new Panel('key'));
+        $this->assertTrue($params->isValid());
 
         // Invalid
-        $styles = new PanelParams(new Panel());
-        $this->assertFalse($styles->isValid());
+        $params = new PanelParams(new Panel());
+        $this->assertFalse($params->isValid());
     }
 
     /**
@@ -145,13 +177,13 @@ class PanelStylesTest extends TestCase
     public function testDoUse(): void
     {
         // False
-        $styles = new PanelParams(new Panel('key'));
-        $styles->setWidth(320);
-        $this->assertFalse($styles->doUse());
+        $params = new PanelParams(new Panel('key'));
+        $params->setWidth(320);
+        $this->assertFalse($params->doUse());
 
         // True
-        $styles = new PanelParams(new Panel('key'));
-        $styles->setWidth(400);
-        $this->assertTrue($styles->doUse());
+        $params = new PanelParams(new Panel('key'));
+        $params->setWidth(400);
+        $this->assertTrue($params->doUse());
     }
 }
