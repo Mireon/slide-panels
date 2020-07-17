@@ -6,6 +6,7 @@ use Exception;
 use Mireon\SlidePanels\Widgets\Widget;
 use Mireon\SlidePanels\Widgets\WidgetInterface;
 use Mireon\SlidePanels\Widgets\Widgets;
+use Mireon\SlidePanels\Widgets\WidgetsInterface;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -47,13 +48,13 @@ class WidgetsTest extends TestCase
     {
         // Without param
         $widgets = Widgets::create();
-        $this->assertInstanceOf(Widgets::class, $widgets);
+        $this->assertInstanceOf(WidgetsInterface::class, $widgets);
         $this->assertEmpty($widgets->getWidgets());
         $this->assertFalse($widgets->hasWidgets());
 
         // With param
         $widgets = Widgets::create([$this->createValidWidget()]);
-        $this->assertInstanceOf(Widgets::class, $widgets);
+        $this->assertInstanceOf(WidgetsInterface::class, $widgets);
         $this->assertNotEmpty($widgets->getWidgets());
         $this->assertCount(1, $widgets->getWidgets());
         $this->assertTrue($widgets->hasWidgets());
@@ -76,7 +77,7 @@ class WidgetsTest extends TestCase
         // Widgets::widgets()
         $widgets = new Widgets();
         $widgets = $widgets->widgets([$this->createValidWidget(), $this->createValidWidget()]);
-        $this->assertInstanceOf(Widgets::class, $widgets);
+        $this->assertInstanceOf(WidgetsInterface::class, $widgets);
         $this->assertIsArray($widgets->getWidgets());
         $this->assertTrue($widgets->hasWidgets());
         $this->assertCount(2, $widgets->getWidgets());
@@ -140,7 +141,7 @@ class WidgetsTest extends TestCase
         // Widgets::widget()
         $widgets = new Widgets();
         $widgets = $widgets->widget($this->createValidWidgetWithKey());
-        $this->assertInstanceOf(Widgets::class, $widgets);
+        $this->assertInstanceOf(WidgetsInterface::class, $widgets);
         $this->assertInstanceOf(WidgetInterface::class, $widgets->getWidget('key'));
         $this->assertTrue($widgets->hasWidget('key'));
 

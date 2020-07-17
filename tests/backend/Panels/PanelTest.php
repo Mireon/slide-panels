@@ -4,10 +4,12 @@ namespace Mireon\SlidePanels\Tests\Panels;
 
 use Exception;
 use Mireon\SlidePanels\Panels\Panel;
+use Mireon\SlidePanels\Panels\PanelInterface;
 use Mireon\SlidePanels\Panels\PanelParams;
 use Mireon\SlidePanels\Widgets\Widget;
 use Mireon\SlidePanels\Widgets\WidgetInterface;
 use Mireon\SlidePanels\Widgets\Widgets;
+use Mireon\SlidePanels\Widgets\WidgetsInterface;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -31,7 +33,7 @@ class PanelTest extends TestCase
         // Initialize
         $panel = new Panel();
         $this->assertInstanceOf(PanelParams::class, $panel->getParams());
-        $this->assertInstanceOf(Widgets::class, $panel->getWidgets());
+        $this->assertInstanceOf(WidgetsInterface::class, $panel->getWidgets());
 
         // Without params
         $panel = new Panel();
@@ -67,31 +69,31 @@ class PanelTest extends TestCase
     {
         // Initialize
         $panel = Panel::create();
-        $this->assertInstanceOf(Panel::class, $panel);
+        $this->assertInstanceOf(PanelInterface::class, $panel);
         $this->assertInstanceOf(PanelParams::class, $panel->getParams());
-        $this->assertInstanceOf(Widgets::class, $panel->getWidgets());
+        $this->assertInstanceOf(WidgetsInterface::class, $panel->getWidgets());
 
         // Without params
         $panel = Panel::create();
-        $this->assertInstanceOf(Panel::class, $panel);
+        $this->assertInstanceOf(PanelInterface::class, $panel);
         $this->assertNull($panel->getKey());
         $this->assertSame(Panel::LEFT, $panel->getSide());
 
         // Nullable params
         $panel = Panel::create(null, null);
-        $this->assertInstanceOf(Panel::class, $panel);
+        $this->assertInstanceOf(PanelInterface::class, $panel);
         $this->assertNull($panel->getKey());
         $this->assertSame(Panel::LEFT, $panel->getSide());
 
         // Empty params
         $panel = Panel::create('', '');
-        $this->assertInstanceOf(Panel::class, $panel);
+        $this->assertInstanceOf(PanelInterface::class, $panel);
         $this->assertNull($panel->getKey());
         $this->assertSame(Panel::LEFT, $panel->getSide());
 
         // Valid params
         $panel = Panel::create('key', Panel::RIGHT);
-        $this->assertInstanceOf(Panel::class, $panel);
+        $this->assertInstanceOf(PanelInterface::class, $panel);
         $this->assertSame('key', $panel->getKey());
         $this->assertSame(Panel::RIGHT, $panel->getSide());
     }
@@ -139,7 +141,7 @@ class PanelTest extends TestCase
     {
         // Panel::key()
         $panel = Panel::create()->key($passed);
-        $this->assertInstanceOf(Panel::class, $panel);
+        $this->assertInstanceOf(PanelInterface::class, $panel);
         $this->assertSame($expected, $panel->getKey());
         $this->assertSame($has, $panel->hasKey());
 
@@ -174,6 +176,7 @@ class PanelTest extends TestCase
      * @covers \Mireon\SlidePanels\Panels\Panel::side
      * @covers \Mireon\SlidePanels\Panels\Panel::setSide
      * @covers \Mireon\SlidePanels\Panels\Panel::getSide
+     * @covers \Mireon\SlidePanels\Panels\Panel::hasSide
      *
      * @dataProvider providerSide
      *
@@ -188,13 +191,15 @@ class PanelTest extends TestCase
     {
         // Panel::side()
         $panel = Panel::create()->side($passed);
-        $this->assertInstanceOf(Panel::class, $panel);
+        $this->assertInstanceOf(PanelInterface::class, $panel);
         $this->assertSame($expected, $panel->getSide());
+        $this->assertTrue($panel->hasSide());
 
         // Panel::setSide()
         $panel = new Panel();
         $panel->setSide($passed);
         $this->assertSame($expected, $panel->getSide());
+        $this->assertTrue($panel->hasSide());
     }
 
     /**
@@ -211,7 +216,7 @@ class PanelTest extends TestCase
     {
         // Panel::width()
         $panel = Panel::create()->width(10);
-        $this->assertInstanceOf(Panel::class, $panel);
+        $this->assertInstanceOf(PanelInterface::class, $panel);
         $this->assertSame(10, $panel->getParams()->getWidth());
 
         // Panel::setWidth()
@@ -252,6 +257,8 @@ class PanelTest extends TestCase
      * @covers \Mireon\SlidePanels\Panels\Panel::hasWidgets
      * @covers \Mireon\SlidePanels\Panels\Panel::widget
      * @covers \Mireon\SlidePanels\Panels\Panel::addWidget
+     * @covers \Mireon\SlidePanels\Panels\Panel::getWidget
+     * @covers \Mireon\SlidePanels\Panels\Panel::hasWidget
      *
      * @return void
      *
@@ -262,18 +269,10 @@ class PanelTest extends TestCase
         // Initialize
         $panel = new Panel();
         $this->assertTrue($panel->hasWidgets());
-        $this->assertInstanceOf(Widgets::class, $panel->getWidgets());
+        $this->assertInstanceOf(WidgetsInterface::class, $panel->getWidgets());
         $this->assertEmpty($panel->getWidgets()->getWidgets());
-
-        // Panel::widget()
-        $panel = (new Panel())->widget($this->getWidget());
-        $this->assertNotEmpty($panel->getWidgets()->getWidgets());
-        $this->assertCount(1, $panel->getWidgets()->getWidgets());
-
-        // Panel::addWidget()
-        $panel = new Panel();
-        $panel->addWidget($this->getWidget());
-        $this->assertCount(1, $panel->getWidgets()->getWidgets());
+        $this->assertNull($panel->getWidgets()->getWidget('undefined'));
+        $this->assertFalse($panel->getWidgets()->hasWidget('undefined'));
 
         // Panel::widgets()
         $widgets = new Widgets();
@@ -285,6 +284,18 @@ class PanelTest extends TestCase
         $panel = new Panel();
         $panel->setWidgets($widgets);
         $this->assertTrue($widgets === $panel->getWidgets());
+
+        // Panel::widget()
+        $panel = (new Panel())->widget($this->createValidWidget());
+        $this->assertInstanceOf(PanelInterface::class, $panel);
+        $this->assertInstanceOf(WidgetInterface::class, $panel->getWidget('blue'));
+        $this->assertTrue($panel->hasWidget('blue'));
+
+        // Panel::addWidget()
+        $panel = new Panel();
+        $panel->addWidget($this->createValidWidget());
+        $this->assertInstanceOf(WidgetInterface::class, $panel->getWidget('blue'));
+        $this->assertTrue($panel->hasWidget('blue'));
     }
 
     /**
@@ -327,11 +338,13 @@ class PanelTest extends TestCase
      *
      * @return WidgetInterface
      */
-    private function getWidget(): WidgetInterface
+    private function createValidWidget(): WidgetInterface
     {
         return new class extends Widget implements WidgetInterface {
             public function render(): string { return ''; }
             public function isValid(): bool { return true; }
+            public function getKey(): ?string { return 'blue'; }
+            public function hasKey(): bool { return true; }
         };
     }
 }

@@ -3,6 +3,7 @@
 namespace Mireon\SlidePanels\Tests\Widgets;
 
 use Mireon\SlidePanels\Widgets\Widget;
+use Mireon\SlidePanels\Widgets\WidgetInterface;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -31,7 +32,7 @@ class WidgetTest extends TestCase
 
         // Widget::key()
         $widget = $widget->key('red');
-        $this->assertInstanceOf(Widget::class, $widget);
+        $this->assertInstanceOf(WidgetInterface::class, $widget);
         $this->assertSame('red', $widget->getKey());
         $this->assertTrue($widget->hasKey());
 
@@ -57,7 +58,7 @@ class WidgetTest extends TestCase
 
         // Widget::weight()
         $widget = $widget->weight(10);
-        $this->assertInstanceOf(Widget::class, $widget);
+        $this->assertInstanceOf(WidgetInterface::class, $widget);
         $this->assertSame(10, $widget->getWeight());
 
         // Widget::setWeight()
