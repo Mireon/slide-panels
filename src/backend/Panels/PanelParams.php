@@ -43,12 +43,12 @@ class PanelParams implements PanelParamsInterface
     /**
      * Sets the panel.
      *
-     * @param PanelInterface $panel
+     * @param PanelInterface|null $panel
      *   The own panel.
      *
      * @return self
      */
-    public function panel(PanelInterface $panel): self
+    public function panel(?PanelInterface $panel): self
     {
         $this->setPanel($panel);
 

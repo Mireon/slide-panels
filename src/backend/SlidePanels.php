@@ -226,7 +226,8 @@ class SlidePanels implements SlidePanelsInterface
      *
      * @return void
      */
-    public function removeFactories(): void {
+    public function removeFactories(): void
+    {
         $this->factories = [];
     }
 
