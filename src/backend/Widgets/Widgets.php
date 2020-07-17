@@ -90,6 +90,26 @@ class Widgets implements WidgetsInterface, IteratorAggregate
     }
 
     /**
+     * @inheritDoc
+     */
+    public function getWidgets(): array
+    {
+        uasort($this->widgets, function (WidgetInterface $a, WidgetInterface $b) {
+            return $a->getWeight() <=> $b->getWeight();
+        });
+
+        return $this->widgets;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function hasWidgets(): bool
+    {
+        return !empty($this->widgets);
+    }
+
+    /**
      * Adds a new widget to the list.
      *
      * @param WidgetInterface $widget
@@ -122,31 +142,27 @@ class Widgets implements WidgetsInterface, IteratorAggregate
             throw new Exception('Widget "' . get_class($widget) . '" is invalid.');
         }
 
-        $this->widgets[] = $widget;
+        if ($widget->hasKey()) {
+            $this->widgets[$widget->getKey()] = $widget;
+        } else {
+            $this->widgets[] = $widget;
+        }
     }
 
     /**
-     * Returns the list of widgets.
-     *
-     * @return WidgetInterface[]
+     * @inheritDoc
      */
-    public function getWidgets(): array
+    public function getWidget(string $key): ?WidgetInterface
     {
-        usort($this->widgets, function (WidgetInterface $a, WidgetInterface $b) {
-            return $a->getWeight() <=> $b->getWeight();
-        });
-
-        return $this->widgets;
+        return $this->widgets[$key] ?? null;
     }
 
     /**
-     * Checks if widgets exists.
-     *
-     * @return bool
+     * @inheritDoc
      */
-    public function hasWidgets(): bool
+    public function hasWidget(string $key): bool
     {
-        return !empty($this->widgets);
+        return isset($this->widgets[$key]);
     }
 
     /**

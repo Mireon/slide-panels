@@ -13,7 +13,21 @@ use Mireon\SlidePanels\Renderer\Renderable;
 interface WidgetInterface extends Renderable, Validated
 {
     /**
-     * The widget weight.
+     * Returns the widget key.
+     *
+     * @return string|null
+     */
+    public function getKey(): ?string;
+
+    /**
+     * Indicate if the widget key is defined.
+     *
+     * @return bool
+     */
+    public function hasKey(): bool;
+
+    /**
+     * Returns the widget weight.
      *
      * @return int
      */

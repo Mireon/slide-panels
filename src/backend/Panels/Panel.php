@@ -327,6 +327,22 @@ class Panel implements PanelInterface
     }
 
     /**
+     * @inheritDoc
+     */
+    public function getWidget(string $key): ?WidgetInterface
+    {
+        return $this->getWidgets()->getWidget($key);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function hasWidget(string $key): bool
+    {
+        return $this->getWidgets()->hasWidget($key);
+    }
+
+    /**
      * Checks if a panel is valid.
      *
      * @return bool
