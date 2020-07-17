@@ -8,9 +8,11 @@ use Mireon\SlidePanels\Widgets\Close\Close;
  * @var Close $close
  *   A close widget.
  */
+
+$specialClass = $close->hasKey() ? "slide-panels__close-{$close->getKey()}" : '';
 ?>
 
-<a href="#" class="slide-panels__close" data-element="lever" data-action="hide">
+<a href="#" class="slide-panels__close <?= $specialClass; ?>" data-element="lever" data-action="hide">
     <?php if ($close->hasIcon()): ?>
         <i class="slide-panels__close__icon <?= $close->getIcon(); ?>"></i>
     <?php endif; ?>
