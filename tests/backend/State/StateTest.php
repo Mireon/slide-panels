@@ -27,13 +27,13 @@ class StateTest extends TestCase
     {
         // Without param
         $stage = new Stage();
-        $this->assertNull($stage->getPanels());
-        $this->assertFalse($stage->hasPanels());
+        $this->assertNotNull($stage->getPanels());
+        $this->assertTrue($stage->hasPanels());
 
         // Nullable
         $stage = new Stage(null);
-        $this->assertNull($stage->getPanels());
-        $this->assertFalse($stage->hasPanels());
+        $this->assertNotNull($stage->getPanels());
+        $this->assertTrue($stage->hasPanels());
 
         // With params
         $stage = new Stage(new Panels());
@@ -55,14 +55,14 @@ class StateTest extends TestCase
         // Without param
         $stage = Stage::create();
         $this->assertInstanceOf(Stage::class, $stage);
-        $this->assertNull($stage->getPanels());
-        $this->assertFalse($stage->hasPanels());
+        $this->assertNotNull($stage->getPanels());
+        $this->assertTrue($stage->hasPanels());
 
         // Nullable
         $stage = Stage::create(null);
         $this->assertInstanceOf(Stage::class, $stage);
-        $this->assertNull($stage->getPanels());
-        $this->assertFalse($stage->hasPanels());
+        $this->assertNotNull($stage->getPanels());
+        $this->assertTrue($stage->hasPanels());
 
         // With params
         $stage = Stage::create(new Panels());

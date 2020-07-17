@@ -3,6 +3,7 @@
 namespace Mireon\SlidePanels\Tests\Widgets;
 
 use Exception;
+use Mireon\SlidePanels\Widgets\Widget;
 use Mireon\SlidePanels\Widgets\WidgetInterface;
 use Mireon\SlidePanels\Widgets\Widgets;
 use PHPUnit\Framework\TestCase;
@@ -29,7 +30,7 @@ class WidgetsTest extends TestCase
         $this->assertFalse($widgets->hasWidgets());
 
         // With param
-        $widgets = new Widgets([$this->getWidget()]);
+        $widgets = new Widgets([$this->createValidWidget()]);
         $this->assertNotEmpty($widgets->getWidgets());
         $this->assertCount(1, $widgets->getWidgets());
         $this->assertTrue($widgets->hasWidgets());
@@ -51,7 +52,7 @@ class WidgetsTest extends TestCase
         $this->assertFalse($widgets->hasWidgets());
 
         // With param
-        $widgets = Widgets::create([$this->getWidget()]);
+        $widgets = Widgets::create([$this->createValidWidget()]);
         $this->assertInstanceOf(Widgets::class, $widgets);
         $this->assertNotEmpty($widgets->getWidgets());
         $this->assertCount(1, $widgets->getWidgets());
@@ -74,7 +75,7 @@ class WidgetsTest extends TestCase
     {
         // Widgets::widgets()
         $widgets = new Widgets();
-        $widgets = $widgets->widgets([$this->getWidget(), $this->getWidget()]);
+        $widgets = $widgets->widgets([$this->createValidWidget(), $this->createValidWidget()]);
         $this->assertInstanceOf(Widgets::class, $widgets);
         $this->assertIsArray($widgets->getWidgets());
         $this->assertTrue($widgets->hasWidgets());
@@ -82,7 +83,7 @@ class WidgetsTest extends TestCase
 
         // Widgets::setWidgets()
         $widgets = new Widgets();
-        $widgets->setWidgets([$this->getWidget(), $this->getWidget()]);
+        $widgets->setWidgets([$this->createValidWidget(), $this->createValidWidget()]);
         $this->assertIsArray($widgets->getWidgets());
         $this->assertTrue($widgets->hasWidgets());
         $this->assertCount(2, $widgets->getWidgets());
@@ -102,7 +103,7 @@ class WidgetsTest extends TestCase
     public function testWidgetsException(): void
     {
         $this->expectException(Exception::class);
-        (new Widgets())->widgets([$this->getInvalidWidget()]);
+        (new Widgets())->widgets([$this->createInvalidWidget()]);
     }
 
     /**
@@ -119,7 +120,7 @@ class WidgetsTest extends TestCase
     public function testSetWidgetsException(): void
     {
         $this->expectException(Exception::class);
-        (new Widgets())->setWidgets([$this->getInvalidWidget()]);
+        (new Widgets())->setWidgets([$this->createInvalidWidget()]);
     }
 
     /**
@@ -127,8 +128,8 @@ class WidgetsTest extends TestCase
      *
      * @covers \Mireon\SlidePanels\Widgets\Widgets::widget
      * @covers \Mireon\SlidePanels\Widgets\Widgets::addWidget
-     * @covers \Mireon\SlidePanels\Widgets\Widgets::getWidgets
-     * @covers \Mireon\SlidePanels\Widgets\Widgets::hasWidgets
+     * @covers \Mireon\SlidePanels\Widgets\Widgets::getWidget
+     * @covers \Mireon\SlidePanels\Widgets\Widgets::hasWidget
      *
      * @return void
      *
@@ -138,19 +139,16 @@ class WidgetsTest extends TestCase
     {
         // Widgets::widget()
         $widgets = new Widgets();
-        $widgets = $widgets->widget($this->getWidget())->widget($this->getWidget());
+        $widgets = $widgets->widget($this->createValidWidgetWithKey());
         $this->assertInstanceOf(Widgets::class, $widgets);
-        $this->assertIsArray($widgets->getWidgets());
-        $this->assertTrue($widgets->hasWidgets());
-        $this->assertCount(2, $widgets->getWidgets());
+        $this->assertInstanceOf(WidgetInterface::class, $widgets->getWidget('key'));
+        $this->assertTrue($widgets->hasWidget('key'));
 
         // Widgets::addWidget()
         $widgets = new Widgets();
-        $widgets->addWidget($this->getWidget());
-        $widgets->addWidget($this->getWidget());
-        $this->assertIsArray($widgets->getWidgets());
-        $this->assertTrue($widgets->hasWidgets());
-        $this->assertCount(2, $widgets->getWidgets());
+        $widgets->addWidget($this->createValidWidgetWithKey());
+        $this->assertInstanceOf(WidgetInterface::class, $widgets->getWidget('key'));
+        $this->assertTrue($widgets->hasWidget('key'));
     }
 
     /**
@@ -167,7 +165,7 @@ class WidgetsTest extends TestCase
     public function testWidgetException(): void
     {
         $this->expectException(Exception::class);
-        (new Widgets())->widget($this->getInvalidWidget());
+        (new Widgets())->widget($this->createInvalidWidget());
     }
 
     /**
@@ -184,7 +182,7 @@ class WidgetsTest extends TestCase
     public function testAddWidgetException(): void
     {
         $this->expectException(Exception::class);
-        (new Widgets())->addWidget($this->getInvalidWidget());
+        (new Widgets())->addWidget($this->createInvalidWidget());
     }
 
     /**
@@ -213,7 +211,7 @@ class WidgetsTest extends TestCase
     public function testReset(): void
     {
         // Initialize
-        $widgets = new Widgets([$this->getWidget(), $this->getWidget()]);
+        $widgets = new Widgets([$this->createValidWidget(), $this->createValidWidget()]);
         $this->assertCount(2, $widgets->getWidgets());
 
         // Reset
@@ -234,31 +232,45 @@ class WidgetsTest extends TestCase
     {
         $this->assertIsIterable((new Widgets())->getIterator());
     }
+
     /**
-     * Returns a test widget.
+     * Creates a valid widget.
      *
      * @return WidgetInterface
      */
-    private function getWidget(): WidgetInterface
+    private function createValidWidget(): WidgetInterface
     {
-        return new class implements WidgetInterface {
+        return new class extends Widget implements WidgetInterface {
             public function render(): string { return ''; }
             public function isValid(): bool { return true; }
-            public function getWeight(): int { return 0; }
         };
     }
 
     /**
-     * Returns a test widget.
+     * Creates a valid widget with key.
      *
      * @return WidgetInterface
      */
-    private function getInvalidWidget(): WidgetInterface
+    private function createValidWidgetWithKey(): WidgetInterface
     {
-        return new class implements WidgetInterface {
+        return new class extends Widget implements WidgetInterface {
+            public function render(): string { return ''; }
+            public function isValid(): bool { return true; }
+            public function getKey(): ?string { return 'key'; }
+            public function hasKey(): bool { return true; }
+        };
+    }
+
+    /**
+     * Creates a invalid widget.
+     *
+     * @return WidgetInterface
+     */
+    private function createInvalidWidget(): WidgetInterface
+    {
+        return new class extends Widget implements WidgetInterface {
             public function render(): string { return ''; }
             public function isValid(): bool { return false; }
-            public function getWeight(): int { return 0; }
         };
     }
 }

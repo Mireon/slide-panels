@@ -4,7 +4,6 @@ namespace Mireon\SlidePanels\Tests;
 
 use Error;
 use Exception;
-use Mireon\SlidePanels\Designer\Designer;
 use Mireon\SlidePanels\SlidePanels;
 use PHPUnit\Framework\TestCase;
 
@@ -62,18 +61,6 @@ class SlidePanelsTest extends TestCase
         $this->expectException(Exception::class);
 
         unserialize(serialize(SlidePanels::getInstance()));
-    }
-
-    /**
-     * @covers \Mireon\SlidePanels\SlidePanels::getDesigner
-     */
-    public function testDesigner(): void
-    {
-        $a = SlidePanels::getDesigner();
-        $b = SlidePanels::getDesigner();
-
-        $this->assertTrue($a === $b);
-        $this->assertInstanceOf(Designer::class, $a);
     }
 
     /**

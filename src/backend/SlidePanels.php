@@ -206,7 +206,7 @@ class SlidePanels implements SlidePanelsInterface
      */
     public function addFactories(array $factories): void
     {
-        foreach($factories as $factory) {
+        foreach ($factories as $factory) {
             $this->factory($factory);
         }
     }

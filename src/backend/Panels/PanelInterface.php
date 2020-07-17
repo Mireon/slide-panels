@@ -5,6 +5,7 @@ namespace Mireon\SlidePanels\Panels;
 use Mireon\SlidePanels\Interfaces\Validated;
 use Mireon\SlidePanels\Renderer\Renderable;
 use Mireon\SlidePanels\Widgets\WidgetsInterface;
+use Mireon\SlidePanels\Widgets\WidgetInterface;
 
 /**
  * The panel interface.
@@ -68,4 +69,24 @@ interface PanelInterface extends Renderable, Validated
      * @return bool
      */
     public function hasWidgets(): bool;
+
+    /**
+     * Returns the widget by key.
+     *
+     * @param string $key
+     *   A widget key.
+     *
+     * @return WidgetInterface|null
+     */
+    public function getWidget(string $key): ?WidgetInterface;
+
+    /**
+     * Checks if widget with a key is exists.
+     *
+     * @param string $key
+     *   A widget key.
+     *
+     * @return bool
+     */
+    public function hasWidget(string $key): bool;
 }

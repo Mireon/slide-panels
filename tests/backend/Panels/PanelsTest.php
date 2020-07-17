@@ -5,7 +5,6 @@ namespace Mireon\SlidePanels\Tests\Panels;
 use Exception;
 use Mireon\SlidePanels\Panels\Panel;
 use Mireon\SlidePanels\Panels\Panels;
-use Mireon\SlidePanels\Widgets\Widgets;
 use PHPUnit\Framework\TestCase;
 
 /**

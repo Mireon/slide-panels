@@ -5,6 +5,7 @@ namespace Mireon\SlidePanels\Tests\Panels;
 use Exception;
 use Mireon\SlidePanels\Panels\Panel;
 use Mireon\SlidePanels\Panels\PanelParams;
+use Mireon\SlidePanels\Widgets\Widget;
 use Mireon\SlidePanels\Widgets\WidgetInterface;
 use Mireon\SlidePanels\Widgets\Widgets;
 use PHPUnit\Framework\TestCase;
@@ -328,10 +329,9 @@ class PanelTest extends TestCase
      */
     private function getWidget(): WidgetInterface
     {
-        return new class implements WidgetInterface {
+        return new class extends Widget implements WidgetInterface {
             public function render(): string { return ''; }
             public function isValid(): bool { return true; }
-            public function getWeight(): int { return 0; }
         };
     }
 }
