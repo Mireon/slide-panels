@@ -17,6 +17,6 @@ $specialClass = $close->hasKey() ? "slide-panels__close-{$close->getKey()}" : ''
         <i class="slide-panels__close__icon <?= $close->getIcon(); ?>"></i>
     <?php endif; ?>
     <?php if ($close->hasText()): ?>
-        <span class="slide-panels__close__text"><?= $close->hasText() ? $close->getText() : ''; ?></span>
+        <span class="slide-panels__close__text"><?= $close->getText(); ?></span>
     <?php endif; ?>
 </a>
