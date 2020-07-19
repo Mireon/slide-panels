@@ -34,7 +34,7 @@ Copy these files to the public directory and add them to a page.
 
 #### HTML
 
-To add panels, you must add the "SlidePanels" instance to a page. Add the instance to the end of the body tag.
+To display panels, you must add the "SlidePanels" instance to a page. Add the instance to the end of the body tag.
 
 ```html
 <html>
@@ -117,6 +117,16 @@ class MainMenu implements PanelFactoryInterface
                 ->item(Item::create('Profile', 'https://example.com/profile')));
     }
 }
+```
+
+And add this factory to the "SlidePanels" instance.
+
+```php
+<?php
+
+use Mireon\SlidePanels\SlidePanels;
+
+SlidePanels::getInstance()->factory(MainMenu::class);
 ```
 
 #### Add a lever to open a panel.
