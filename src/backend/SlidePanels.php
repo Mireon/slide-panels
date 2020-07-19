@@ -126,6 +126,21 @@ class SlidePanels implements SlidePanelsInterface
     }
 
     /**
+     * Returns a panel by ID;
+     *
+     * @param string $key
+     *   A panel key.
+     *
+     * @return PanelInterface
+     *
+     * @throws Exception
+     */
+    public function panel(string $key): PanelInterface
+    {
+        return $this->getPanel($key);
+    }
+
+    /**
      * @inheritDoc
      *
      * @throws Exception

@@ -12,17 +12,17 @@ use Mireon\SlidePanels\SlidePanelsInterface;
 interface PanelFactoryInterface
 {
     /**
-     * If a return value is true, the "make" method will be called.
+     * If true is returned, the "make" method will be called.
      *
      * @return bool
      */
     public function doMake(): bool;
 
     /**
-     * Makes panels or widgets using the panel designer.
+     * Make panels and add widgets.
      *
      * @param SlidePanelsInterface $slidePanels
-     *   The slider of panels.
+     *   The "SlidePanel" instance.
      *
      * @return void
      */
