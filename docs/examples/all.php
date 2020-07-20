@@ -12,9 +12,9 @@ use Mireon\SlidePanels\Widgets\Header\Header;
 use Mireon\SlidePanels\Widgets\Menu\Item;
 use Mireon\SlidePanels\Widgets\Menu\Menu;
 
-require_once '../vendor/autoload.php';
+require_once '../vendor/autoload.php'; // Attention!
 
-$slidePanels = SlidePanels::getInstance()
+SlidePanels::getInstance()
     ->factory(Account::class)
     ->factory(AccountAnonymous::class)
     ->factory(AccountAuthenticated::class)
@@ -43,8 +43,9 @@ SlidePanels::getInstance()
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://example.com/css/slide-panels/styles/slide-panels.min.css" type="text/css" />
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!-- Attention, change the path to CSS and JS files! -->
+    <link rel="stylesheet" href="https://example.com/css/slide-panels.min.css" type="text/css" />
     <script src="https://example.com/js/slide-panels.js"></script>
 </head>
 <body>

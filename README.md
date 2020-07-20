@@ -7,7 +7,7 @@
 
 ![The presentation](docs/movies/presentation.gif?raw=true)
 
-Code see in the directory: [vendor/mireon/slide-panels/docs/examples/index.php](https://github.com/Mireon/slide-panels/tree/master/docs/examples/index.php)
+The code see in the file: [vendor/mireon/slide-panels/docs/examples/all.php](https://github.com/Mireon/slide-panels/tree/master/docs/examples/all.php)
 
 ## Install
 
@@ -245,8 +245,8 @@ Html::create()
 
 ## Examples
 
-- Factories: [vendor/mireon/slide-panels/backend/Examples](https://github.com/Mireon/slide-panels/tree/master/src/backend/Examples)
-- Single page: [vendor/mireon/slide-panels/docs/pages/index.php](https://github.com/Mireon/slide-panels/tree/Issue-4/docs/index.php)
+- [vendor/mireon/slide-panels/backend/Examples](https://github.com/Mireon/slide-panels/tree/master/src/backend/Examples)
+- [vendor/mireon/slide-panels/docs/examples/all.php](https://github.com/Mireon/slide-panels/tree/master/docs/examples/all.php)
 
 ## Tests
 
