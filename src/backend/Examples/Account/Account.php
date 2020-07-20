@@ -54,5 +54,4 @@ class Account implements PanelFactoryInterface
                 ->icon('fa fa-user')
                 ->text('Account'));
     }
-
 }

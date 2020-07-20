@@ -14,8 +14,7 @@
         }
     ],
     "require": {
-        "php": "^7.4",
-        "ext-json": "*"
+        "php": "^7.4"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "*",
@@ -36,5 +35,7 @@
         "test": "vendor/bin/phpunit",
         "test-cover": "@test --coverage-html coverage",
         "cs": "vendor/bin/phpcs ./src/backend --standard=."
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
