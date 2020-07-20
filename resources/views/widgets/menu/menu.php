@@ -11,9 +11,11 @@ use Mireon\SlidePanels\Widgets\Menu\Menu;
  * @var ItemInterface $item
  *   A menu item.
  */
+
+$specialClass = $menu->hasKey() ? "slide-panels__menu-{$menu->getKey()}" : '';
 ?>
 
-<div class="slide-panels__menu">
+<div class="slide-panels__menu <?= $specialClass; ?>">
     <?php if ($menu->hasItems()): ?>
         <ul class="slide-panels__menu__list">
             <?php foreach ($menu as $item): ?>

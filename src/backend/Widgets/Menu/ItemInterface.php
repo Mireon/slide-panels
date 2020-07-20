@@ -12,4 +12,5 @@ use Mireon\SlidePanels\Renderer\Renderable;
  */
 interface ItemInterface extends Renderable, Validated
 {
+    //
 }

@@ -4,7 +4,9 @@ namespace Mireon\SlidePanels\Tests\State;
 
 use Exception;
 use Mireon\SlidePanels\Panels\Panels;
+use Mireon\SlidePanels\Panels\PanelsInterface;
 use Mireon\SlidePanels\Stage\Stage;
+use Mireon\SlidePanels\Stage\StageInterface;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -27,17 +29,17 @@ class StateTest extends TestCase
     {
         // Without param
         $stage = new Stage();
-        $this->assertNull($stage->getPanels());
-        $this->assertFalse($stage->hasPanels());
+        $this->assertNotNull($stage->getPanels());
+        $this->assertTrue($stage->hasPanels());
 
         // Nullable
         $stage = new Stage(null);
-        $this->assertNull($stage->getPanels());
-        $this->assertFalse($stage->hasPanels());
+        $this->assertNotNull($stage->getPanels());
+        $this->assertTrue($stage->hasPanels());
 
         // With params
         $stage = new Stage(new Panels());
-        $this->assertInstanceOf(Panels::class, $stage->getPanels());
+        $this->assertInstanceOf(PanelsInterface::class, $stage->getPanels());
         $this->assertTrue($stage->hasPanels());
     }
 
@@ -54,20 +56,20 @@ class StateTest extends TestCase
     {
         // Without param
         $stage = Stage::create();
-        $this->assertInstanceOf(Stage::class, $stage);
-        $this->assertNull($stage->getPanels());
-        $this->assertFalse($stage->hasPanels());
+        $this->assertInstanceOf(StageInterface::class, $stage);
+        $this->assertNotNull($stage->getPanels());
+        $this->assertTrue($stage->hasPanels());
 
         // Nullable
         $stage = Stage::create(null);
-        $this->assertInstanceOf(Stage::class, $stage);
-        $this->assertNull($stage->getPanels());
-        $this->assertFalse($stage->hasPanels());
+        $this->assertInstanceOf(StageInterface::class, $stage);
+        $this->assertNotNull($stage->getPanels());
+        $this->assertTrue($stage->hasPanels());
 
         // With params
         $stage = Stage::create(new Panels());
-        $this->assertInstanceOf(Stage::class, $stage);
-        $this->assertInstanceOf(Panels::class, $stage->getPanels());
+        $this->assertInstanceOf(StageInterface::class, $stage);
+        $this->assertInstanceOf(PanelsInterface::class, $stage->getPanels());
         $this->assertTrue($stage->hasPanels());
     }
 
@@ -87,14 +89,14 @@ class StateTest extends TestCase
     {
         // State::panels()
         $stage = (new Stage())->panels(new Panels());
-        $this->assertInstanceOf(Stage::class, $stage);
-        $this->assertInstanceOf(Panels::class, $stage->getPanels());
+        $this->assertInstanceOf(StageInterface::class, $stage);
+        $this->assertInstanceOf(PanelsInterface::class, $stage->getPanels());
         $this->assertTrue($stage->hasPanels());
 
         // With params
         $stage = new Stage();
         $stage->setPanels(new Panels());
-        $this->assertInstanceOf(Panels::class, $stage->getPanels());
+        $this->assertInstanceOf(PanelsInterface::class, $stage->getPanels());
         $this->assertTrue($stage->hasPanels());
     }
 

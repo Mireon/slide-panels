@@ -1,19 +1,19 @@
 <?php
 
-use Mireon\SlidePanels\Panels\Panel;
-use Mireon\SlidePanels\Panels\PanelStyles;
+use Mireon\SlidePanels\Panels\PanelInterface;
+use Mireon\SlidePanels\Panels\PanelParamsInterface;
 
 /**
  * Prints styles for a panel.
  *
- * @var Panel $panel
+ * @var PanelInterface $panel
  *   A panel.
- * @var PanelStyles $styles
+ * @var PanelParamsInterface $params
  *   A panel styles.
  */
 
-$panelWidth = "{$styles->getWidth()}px";
-$screenWidth = $styles->getWidth() + 30 . 'px';
+$panelWidth = "{$params->getWidth()}px";
+$screenWidth = $params->getWidth() + 30 . 'px';
 $currentPanel = "slide-panels__panel-{$panel->getKey()}";
 $outside = ".$currentPanel.slide-panels__panel_{$panel->getSide()}_outside";
 $slideInside = ".$currentPanel.slide-panels__panel_{$panel->getSide()}_slide-inside";

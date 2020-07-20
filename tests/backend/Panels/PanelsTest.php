@@ -4,8 +4,9 @@ namespace Mireon\SlidePanels\Tests\Panels;
 
 use Exception;
 use Mireon\SlidePanels\Panels\Panel;
+use Mireon\SlidePanels\Panels\PanelInterface;
 use Mireon\SlidePanels\Panels\Panels;
-use Mireon\SlidePanels\Widgets\Widgets;
+use Mireon\SlidePanels\Panels\PanelsInterface;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -50,14 +51,14 @@ class PanelsTest extends TestCase
     {
         // Initialize
         $panels = Panels::create();
-        $this->assertInstanceOf(Panels::class, $panels);
+        $this->assertInstanceOf(PanelsInterface::class, $panels);
         $this->assertIsArray($panels->getPanels());
         $this->assertEmpty($panels->getPanels());
         $this->assertFalse($panels->hasPanels());
 
         // Not empty
         $panels = Panels::create([new Panel('red'), new Panel('black')]);
-        $this->assertInstanceOf(Panels::class, $panels);
+        $this->assertInstanceOf(PanelsInterface::class, $panels);
         $this->assertNotEmpty($panels->getPanels());
         $this->assertCount(2, $panels->getPanels());
         $this->assertTrue($panels->hasPanels());
@@ -137,6 +138,7 @@ class PanelsTest extends TestCase
      * @covers \Mireon\SlidePanels\Panels\Panels::panel
      * @covers \Mireon\SlidePanels\Panels\Panels::addPanel
      * @covers \Mireon\SlidePanels\Panels\Panels::hasPanel
+     * @covers \Mireon\SlidePanels\Panels\Panels::createPanel
      *
      * @return void
      *
@@ -155,7 +157,7 @@ class PanelsTest extends TestCase
         $this->assertNotEmpty($panels->getPanels());
         $this->assertCount(1, $panels->getPanels());
         $this->assertTrue($panels->hasPanel('red'));
-        $this->assertInstanceOf(Panel::class, $panels->getPanel('red'));
+        $this->assertInstanceOf(PanelInterface::class, $panels->getPanel('red'));
 
         // Panels::setPanel()
         $panels = new Panels();
@@ -163,7 +165,21 @@ class PanelsTest extends TestCase
         $this->assertNotEmpty($panels->getPanels());
         $this->assertCount(1, $panels->getPanels());
         $this->assertTrue($panels->hasPanel('black'));
-        $this->assertInstanceOf(Panel::class, $panels->getPanel('black'));
+        $this->assertInstanceOf(PanelInterface::class, $panels->getPanel('black'));
+    }
+
+    /**
+     * Test for the createPanel method.
+     *
+     * @covers \Mireon\SlidePanels\Panels\Panels::createPanel
+     *
+     * @return void
+     *
+     * @throws Exception
+     */
+    public function testCreatePanel(): void
+    {
+        $this->assertInstanceOf(PanelInterface::class, (new Panels())->createPanel('black'));
     }
 
     /**

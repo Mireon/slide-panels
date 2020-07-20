@@ -24,8 +24,7 @@ export default class BodyAnimation {
      *
      * @return void
      */
-    public freeze(): void
-    {
+    public freeze(): void {
         this.element.classList.add('slide-panels__body_freeze');
     }
 
@@ -34,8 +33,7 @@ export default class BodyAnimation {
      *
      * @return void
      */
-    public unfreeze(): void
-    {
+    public unfreeze(): void {
         setTimeout(() => this.element.classList.remove('slide-panels__body_freeze'), 300);
     }
 }

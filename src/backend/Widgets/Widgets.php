@@ -5,7 +5,6 @@ namespace Mireon\SlidePanels\Widgets;
 use ArrayIterator;
 use Exception;
 use IteratorAggregate;
-use Mireon\SlidePanels\Renderer\Renderable;
 use Mireon\SlidePanels\Renderer\Renderer;
 use Mireon\SlidePanels\Renderer\RenderToString;
 use Traversable;
@@ -15,7 +14,7 @@ use Traversable;
  *
  * @package Mireon\SlidePanels\Widgets
  */
-class Widgets implements Renderable, IteratorAggregate
+class Widgets implements WidgetsInterface, IteratorAggregate
 {
     use RenderToString;
 
@@ -45,13 +44,13 @@ class Widgets implements Renderable, IteratorAggregate
      * @param WidgetInterface[] $widgets
      *   A list of widgets.
      *
-     * @return self
+     * @return static
      *
      * @throws Exception
      */
     public static function create(array $widgets = []): self
     {
-        return new self($widgets);
+        return new static($widgets);
     }
 
     /**
@@ -91,6 +90,24 @@ class Widgets implements Renderable, IteratorAggregate
     }
 
     /**
+     * @inheritDoc
+     */
+    public function getWidgets(): array
+    {
+        uasort($this->widgets, fn(WidgetInterface $a, WidgetInterface $b) => $a->getWeight() <=> $b->getWeight());
+
+        return $this->widgets;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function hasWidgets(): bool
+    {
+        return !empty($this->widgets);
+    }
+
+    /**
      * Adds a new widget to the list.
      *
      * @param WidgetInterface $widget
@@ -123,31 +140,27 @@ class Widgets implements Renderable, IteratorAggregate
             throw new Exception('Widget "' . get_class($widget) . '" is invalid.');
         }
 
-        $this->widgets[] = $widget;
+        if ($widget->hasKey()) {
+            $this->widgets[$widget->getKey()] = $widget;
+        } else {
+            $this->widgets[] = $widget;
+        }
     }
 
     /**
-     * Returns the list of widgets.
-     *
-     * @return WidgetInterface[]
+     * @inheritDoc
      */
-    public function getWidgets(): array
+    public function getWidget(string $key): ?WidgetInterface
     {
-        usort($this->widgets, function (WidgetInterface $a, WidgetInterface $b) {
-            return $a->getWeight() <=> $b->getWeight();
-        });
-
-        return $this->widgets;
+        return $this->widgets[$key] ?? null;
     }
 
     /**
-     * Checks if widgets exists.
-     *
-     * @return bool
+     * @inheritDoc
      */
-    public function hasWidgets(): bool
+    public function hasWidget(string $key): bool
     {
-        return !empty($this->widgets);
+        return isset($this->widgets[$key]);
     }
 
     /**
