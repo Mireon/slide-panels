@@ -27,6 +27,14 @@ class AccountAuthenticated implements PanelFactoryInterface
 
     /**
      * @inheritDoc
+     */
+    public function getFactories(): array
+    {
+        return [];
+    }
+
+    /**
+     * @inheritDoc
      *
      * @throws Exception
      */
@@ -36,7 +44,7 @@ class AccountAuthenticated implements PanelFactoryInterface
         $query = 'user[name]=User';
 
         $slidePanels
-            ->getPanel(Account::KEY)
+            ->panel(Account::KEY)
             ->widget(Menu::create()
                 ->item(Item::create('Profile', "$host/profile?$query"))
                 ->item(Item::create('Settings', "$host/settings?$query"))

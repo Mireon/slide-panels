@@ -25,6 +25,14 @@ class CatalogAfter implements PanelFactoryInterface
 
     /**
      * @inheritDoc
+     */
+    public function getFactories(): array
+    {
+        return [];
+    }
+
+    /**
+     * @inheritDoc
      *
      * @throws Exception
      */
@@ -33,7 +41,7 @@ class CatalogAfter implements PanelFactoryInterface
         $url = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/catalog';
 
         $slidePanels
-            ->getPanel(Catalog::KEY)
+            ->panel(Catalog::KEY)
             ->widget(Menu::create()
                 ->weight(15)
                 ->item(Item::create('Other', "$url/other")));

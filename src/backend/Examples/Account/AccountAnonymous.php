@@ -25,6 +25,14 @@ class AccountAnonymous implements PanelFactoryInterface
 
     /**
      * @inheritDoc
+     */
+    public function getFactories(): array
+    {
+        return [];
+    }
+
+    /**
+     * @inheritDoc
      *
      * @throws Exception
      */
@@ -34,7 +42,7 @@ class AccountAnonymous implements PanelFactoryInterface
         $query = 'user[name]=User';
 
         $slidePanels
-            ->getPanel(Account::KEY)
+            ->panel(Account::KEY)
             ->widget(Menu::create()
                 ->item(Item::create('Login', "$host/login?$query"))
                 ->item(Item::create('Register', "$host/register?$query")));

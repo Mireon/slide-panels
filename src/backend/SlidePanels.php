@@ -280,6 +280,7 @@ class SlidePanels implements SlidePanelsInterface
 
         if ($factory->doMake()) {
             $this->factories[$name] = $factory;
+            $this->addFactories($factory->getFactories());
         }
     }
 

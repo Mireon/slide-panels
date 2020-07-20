@@ -1,11 +1,7 @@
 <?php
 
 use Mireon\SlidePanels\Examples\Account\Account;
-use Mireon\SlidePanels\Examples\Account\AccountAnonymous;
-use Mireon\SlidePanels\Examples\Account\AccountAuthenticated;
 use Mireon\SlidePanels\Examples\Catalog\Catalog;
-use Mireon\SlidePanels\Examples\Catalog\CatalogAfter;
-use Mireon\SlidePanels\Examples\Catalog\CatalogBefore;
 use Mireon\SlidePanels\Levers\Lever;
 use Mireon\SlidePanels\SlidePanels;
 use Mireon\SlidePanels\Widgets\Header\Header;
@@ -16,11 +12,7 @@ require_once '../vendor/autoload.php'; // Attention!
 
 SlidePanels::getInstance()
     ->factory(Account::class)
-    ->factory(AccountAnonymous::class)
-    ->factory(AccountAuthenticated::class)
-    ->factory(Catalog::class)
-    ->factory(CatalogAfter::class)
-    ->factory(CatalogBefore::class);
+    ->factory(Catalog::class);
 
 SlidePanels::getInstance()
     ->panel('menu')

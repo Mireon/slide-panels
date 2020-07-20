@@ -24,13 +24,21 @@ class CatalogBefore implements PanelFactoryInterface
 
     /**
      * @inheritDoc
+     */
+    public function getFactories(): array
+    {
+        return [];
+    }
+
+    /**
+     * @inheritDoc
      *
      * @throws Exception
      */
     public function make(SlidePanelsInterface $slidePanels): void
     {
         $slidePanels
-            ->getPanel(Catalog::KEY)
+            ->panel(Catalog::KEY)
             ->widget(Html::create()
                 ->weight(5)
                 ->html('<span style="display: block; padding: 10px; color: #ababab;">The main catalog!</span>'));

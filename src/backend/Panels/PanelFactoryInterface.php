@@ -12,11 +12,19 @@ use Mireon\SlidePanels\SlidePanelsInterface;
 interface PanelFactoryInterface
 {
     /**
-     * If true is returned, the "make" method will be called.
+     * If true is returned, the "make" method will be called
+     * and all dependent factories will be added.
      *
      * @return bool
      */
     public function doMake(): bool;
+
+    /**
+     * Returns a list of dependent factories.
+     *
+     * @return PanelFactoryInterface[]|string[]
+     */
+    public function getFactories(): array;
 
     /**
      * Make panels and add widgets.

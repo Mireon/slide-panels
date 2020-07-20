@@ -30,17 +30,29 @@ class Account implements PanelFactoryInterface
 
     /**
      * @inheritDoc
+     */
+    public function getFactories(): array
+    {
+        return [
+            AccountAnonymous::class,
+            AccountAuthenticated::class,
+        ];
+    }
+
+    /**
+     * @inheritDoc
      *
      * @throws Exception
      */
     public function make(SlidePanelsInterface $slidePanels): void
     {
         $slidePanels
-            ->getPanel(self::KEY)
+            ->panel(self::KEY)
             ->side(Panel::RIGHT)
             ->widget(Header::create()
                 ->size(Header::BIG)
                 ->icon('fa fa-user')
                 ->text('Account'));
     }
+
 }

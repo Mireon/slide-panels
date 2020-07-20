@@ -96,13 +96,24 @@ use Mireon\SlidePanels\Widgets\Menu\Menu;
 class MainMenu implements PanelFactoryInterface
 {
     /**
-     * If true is returned, the "make" method will be called.
+     * If true is returned, the "make" method will be called
+     * and all dependent factories will be added.
      * 
      * @return bool 
      */
     public function doMake(): bool
     {
         return true;
+    }
+
+    /**
+     * Returns a list of dependent factories.
+     * 
+     * @return PanelFactoryInterface[]|string[]
+     */
+    public function getFactories(): array
+    {
+        return [];
     }
 
     /**

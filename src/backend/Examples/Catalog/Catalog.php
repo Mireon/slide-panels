@@ -33,6 +33,17 @@ class Catalog implements PanelFactoryInterface
 
     /**
      * @inheritDoc
+     */
+    public function getFactories(): array
+    {
+        return [
+            new CatalogAfter(),
+            new CatalogBefore(),
+        ];
+    }
+
+    /**
+     * @inheritDoc
      *
      * @throws Exception
      */
@@ -41,7 +52,7 @@ class Catalog implements PanelFactoryInterface
         $url = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/catalog';
 
         $slidePanels
-            ->getPanel(self::KEY)
+            ->panel(self::KEY)
             ->width(960)
             ->side(Panel::LEFT)
             ->widget(Close::create()
