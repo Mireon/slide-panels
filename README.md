@@ -21,11 +21,11 @@ $ composer require mireon/slide-panels
 
 #### CSS and JS
 
-The resource files are located in the folders:
+The resource files are located in the following paths:
 - `vendor/mireon/slide-panels/resources/assets/styles/slide-panels.min.css`
 - `vendor/mireon/slide-panels/resources/assets/scripts/slide-panels.min.js`
 
-Copy these files to the public directory and add them to a page.
+Copy these files to your the public directory and add them to a page.
 
 ```html
 <html>
@@ -38,7 +38,7 @@ Copy these files to the public directory and add them to a page.
 
 #### HTML
 
-To display panels, you must add the "SlidePanels" instance to a page. Print the instance in the end of the body tag.
+To display panels, you must print the "SlidePanels" instance on a page. Do this at the end of the body tag.
 
 ```html
 <html>
@@ -79,7 +79,9 @@ SlidePanels::getInstance()
 
 #### Add a panel via a panel factory
 
-You can find more examples of panel factories in the path `vendor/mireon/slide-panels/backend/Examples`.
+You can find more of panel factories in the path [vendor/mireon/slide-panels/backend/Examples](https://github.com/Mireon/slide-panels/tree/master/src/backend/Examples).
+
+Create a class that implements the "PanelFactoryInterface" interface.
 
 ```php
 <?php
@@ -131,7 +133,7 @@ class MainMenu implements PanelFactoryInterface
 }
 ```
 
-And add this factory to the "SlidePanels" instance
+And add it to the "SlidePanels" instance.
 
 ```php
 <?php
@@ -145,6 +147,14 @@ SlidePanels::getInstance()->factory(MainMenu::class);
 
 To open the panel, you need to add a lever to a page. A lever is any HTML tag that has required attributes. These are "data-element" with the "lever" value and "data-target" with a panel key. 
 
+```html
+<html>
+    <body>
+        <a href="#" data-element="lever" data-action="show" data-target="main">Main</a>
+    </body>
+</html>
+```
+
 A simple way to create a lever is to use the "Lever" class, for example: 
 
 ```html
@@ -155,19 +165,13 @@ A simple way to create a lever is to use the "Lever" class, for example:
 </html>
 ```
 
-```html
-<html>
-    <body>
-        <a href="#" data-element="lever" data-action="show" data-target="main">Main</a>
-    </body>
-</html>
-```
-
 ## Widgets
 
-Few widgets supplied in a box: Header, Menu, Html, Close. You can create your own widgets and add them to a panel. To create a widget, you need to implement the "WidgetInterface" interface.
+Few widgets supplied in a box: Header, Menu, Html, Close. You can create your own widgets and add them to a panel. To create a widget, you must create a class that implements the "WidgetInterface" interface.
 
 #### Header
+
+A HTML element containing an icon and text. A header can be small or big.
 
 ![The "Header" widget](docs/images/widgets-header.jpg?raw=true)
 
