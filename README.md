@@ -5,9 +5,7 @@
 [![License](https://img.shields.io/github/license/mireon/slide-panels?color=green)](https://github.com/Mireon/slide-panels)
 [![Release](https://img.shields.io/github/v/release/mireon/slide-panels?color=red)](https://github.com/Mireon/slide-panels)
 
-![The presentation](docs/movies/presentation.gif?raw=true)
-
-The code see in the file: [vendor/mireon/slide-panels/docs/examples/all.php](https://github.com/Mireon/slide-panels/tree/master/docs/examples/all.php)
+![The presentation](https://user-images.githubusercontent.com/46637530/87967494-911b2780-cac7-11ea-98d0-e24ef65dbcd4.gif?raw=true)
 
 ## Install
 
@@ -184,7 +182,7 @@ Few widgets supplied in a box: Header, Menu, Html, Close. You can create your ow
 
 A HTML element containing an icon and text. A header can be small or big.
 
-![The "Header" widget](docs/images/widgets-header.jpg?raw=true)
+![The "Header" widget](https://user-images.githubusercontent.com/46637530/87967512-98423580-cac7-11ea-8e30-04d86e724983.jpg?raw=true)
 
 ```php
 <?php
@@ -203,7 +201,7 @@ Header::create()
 
 A vertical list of items.
 
-![The "Menu" widget](docs/images/widgets-menu.jpg?raw=true)
+![The "Menu" widget](https://user-images.githubusercontent.com/46637530/87967514-98dacc00-cac7-11ea-8bf7-8d3a35d3e0e1.jpg?raw=true)
 
 ```php
 <?php
@@ -227,7 +225,7 @@ Menu::create()
 
 A lever to close a panel.
 
-![The "Close" widget](docs/images/widgets-close.jpg?raw=true)
+![The "Close" widget](https://user-images.githubusercontent.com/46637530/87967511-98423580-cac7-11ea-8e4f-965d540c72c6.jpg?raw=true)
 
 ```php
 <?php
@@ -245,7 +243,7 @@ Close::create('Close', 'fa fa-close')
 
 Output the raw HTML.
 
-![The "Html" widget](docs/images/widgets-html.jpg?raw=true)
+![The "Html" widget](https://user-images.githubusercontent.com/46637530/87967513-98dacc00-cac7-11ea-8054-a28a8d76fc51.jpg?raw=true)
 
 ```php
 <?php
@@ -261,12 +259,12 @@ Html::create()
 ## Examples
 
 - [vendor/mireon/slide-panels/src/backend/Examples](https://github.com/Mireon/slide-panels/tree/master/src/backend/Examples)
-- [vendor/mireon/slide-panels/docs/examples/all.php](https://github.com/Mireon/slide-panels/tree/master/docs/examples/all.php)
 
 ## Tests
 
 ```sh
 $ composer test
+$ composer test-cover
 ```
 
 ## License
