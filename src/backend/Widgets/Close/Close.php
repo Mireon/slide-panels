@@ -51,11 +51,11 @@ class Close extends Widget
      * @param string|null $icon
      *   An icon.
      *
-     * @return self
+     * @return static
      */
     public static function create(?string $text = null, ?string $icon = null): self
     {
-        return new self($text, $icon);
+        return new static($text, $icon);
     }
 
     /**

@@ -1,12 +1,12 @@
 <?php
 
 use Mireon\SlidePanels\Widgets\WidgetInterface;
-use Mireon\SlidePanels\Widgets\Widgets;
+use Mireon\SlidePanels\Widgets\WidgetsInterface;
 
 /**
  * Prints the widgets container.
  *
- * @var Widgets $widgets
+ * @var WidgetsInterface $widgets
  *   A widgets container.
  * @var WidgetInterface $widget
  *   A widget.

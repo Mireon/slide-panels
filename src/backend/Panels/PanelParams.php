@@ -3,8 +3,6 @@
 namespace Mireon\SlidePanels\Panels;
 
 use Exception;
-use Mireon\SlidePanels\Interfaces\Validated;
-use Mireon\SlidePanels\Renderer\Renderable;
 use Mireon\SlidePanels\Renderer\Renderer;
 use Mireon\SlidePanels\Renderer\RenderToString;
 
@@ -13,16 +11,16 @@ use Mireon\SlidePanels\Renderer\RenderToString;
  *
  * @package Mireon\SlidePanels\Panels
  */
-class PanelStyles implements Renderable, Validated
+class PanelParams implements PanelParamsInterface
 {
     use RenderToString;
 
     /**
      * The panel.
      *
-     * @var Panel|null
+     * @var PanelInterface|null
      */
-    private ?Panel $panel = null;
+    private ?PanelInterface $panel = null;
 
     /**
      * The panel width.
@@ -34,12 +32,56 @@ class PanelStyles implements Renderable, Validated
     /**
      * The constructor.
      *
-     * @param Panel $panel
+     * @param PanelInterface|null $panel
      *   A panel.
      */
-    public function __construct(Panel $panel)
+    public function __construct(?PanelInterface $panel = null)
+    {
+        $this->setPanel($panel);
+    }
+
+    /**
+     * Sets the panel.
+     *
+     * @param PanelInterface|null $panel
+     *   The own panel.
+     *
+     * @return self
+     */
+    public function panel(?PanelInterface $panel): self
+    {
+        $this->setPanel($panel);
+
+        return $this;
+    }
+
+    /**
+     * Sets the panel.
+     *
+     * @param PanelInterface|null $panel
+     *   The own panel.
+     *
+     * @return void
+     */
+    public function setPanel(?PanelInterface $panel): void
     {
         $this->panel = $panel;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getPanel(): ?PanelInterface
+    {
+        return $this->panel;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function hasPanel(): bool
+    {
+        return !is_null($this->panel);
     }
 
     /**
@@ -60,12 +102,7 @@ class PanelStyles implements Renderable, Validated
     }
 
     /**
-     * Sets the panel width.
-     *
-     * @param int $width
-     *   A panel width.
-     *
-     * @return void
+     * @inheritDoc
      *
      * @throws Exception
      */
@@ -79,9 +116,7 @@ class PanelStyles implements Renderable, Validated
     }
 
     /**
-     * Returns the panel width.
-     *
-     * @return int
+     * @inheritDoc
      */
     public function getWidth(): int
     {
@@ -93,9 +128,9 @@ class PanelStyles implements Renderable, Validated
      */
     public function render(): string
     {
-        return Renderer::render('panels/panel-styles', [
+        return Renderer::render('panels/panel-params', [
             'panel' => $this->panel,
-            'styles' => $this,
+            'params' => $this,
         ]);
     }
 
@@ -108,9 +143,7 @@ class PanelStyles implements Renderable, Validated
     }
 
     /**
-     * If true, styles print.
-     *
-     * @return bool
+     * @inheritDoc
      */
     public function doUse(): bool
     {

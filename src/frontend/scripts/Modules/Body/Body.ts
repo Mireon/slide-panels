@@ -24,8 +24,7 @@ export default class Body {
      *
      * @return void
      */
-    public freeze(): void
-    {
+    public freeze(): void {
         this.animation.freeze();
     }
 
@@ -34,8 +33,7 @@ export default class Body {
      *
      * @return void
      */
-    public unfreeze(): void
-    {
+    public unfreeze(): void {
         this.animation.unfreeze();
     }
 }

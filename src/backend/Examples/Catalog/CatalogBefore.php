@@ -3,8 +3,8 @@
 namespace Mireon\SlidePanels\Examples\Catalog;
 
 use Exception;
-use Mireon\SlidePanels\Designer\Designer;
-use Mireon\SlidePanels\Designer\FactoryInterface;
+use Mireon\SlidePanels\Panels\PanelFactoryInterface;
+use Mireon\SlidePanels\SlidePanelsInterface;
 use Mireon\SlidePanels\Widgets\Html\Html;
 
 /**
@@ -12,7 +12,7 @@ use Mireon\SlidePanels\Widgets\Html\Html;
  *
  * @package Mireon\SlidePanels\Examples\Catalog
  */
-class CatalogBefore implements FactoryInterface
+class CatalogBefore implements PanelFactoryInterface
 {
     /**
      * @inheritDoc
@@ -24,12 +24,20 @@ class CatalogBefore implements FactoryInterface
 
     /**
      * @inheritDoc
+     */
+    public function getFactories(): array
+    {
+        return [];
+    }
+
+    /**
+     * @inheritDoc
      *
      * @throws Exception
      */
-    public function make(Designer $designer): void
+    public function make(SlidePanelsInterface $slidePanels): void
     {
-        $designer
+        $slidePanels
             ->panel(Catalog::KEY)
             ->widget(Html::create()
                 ->weight(5)
