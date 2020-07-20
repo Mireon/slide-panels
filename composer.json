@@ -1,7 +1,7 @@
 {
     "name": "mireon/slide-panels",
     "description": "Dynamic slide panels.",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "keywords": ["slide", "slider", "panel", "slide panel", "slide menu"],
     "type": "library",
     "license": "MIT",
