@@ -79,7 +79,7 @@ SlidePanels::getInstance()
 
 #### Add a panel via a panel factory
 
-You can find more of panel factories in the path [vendor/mireon/slide-panels/backend/Examples](https://github.com/Mireon/slide-panels/tree/master/src/backend/Examples).
+You can find more of panel factories in the path [vendor/mireon/slide-panels/src/backend/Examples](https://github.com/Mireon/slide-panels/tree/master/src/backend/Examples).
 
 Create a class that implements the "PanelFactoryInterface" interface.
 
@@ -260,7 +260,7 @@ Html::create()
 
 ## Examples
 
-- [vendor/mireon/slide-panels/backend/Examples](https://github.com/Mireon/slide-panels/tree/master/src/backend/Examples)
+- [vendor/mireon/slide-panels/src/backend/Examples](https://github.com/Mireon/slide-panels/tree/master/src/backend/Examples)
 - [vendor/mireon/slide-panels/docs/examples/all.php](https://github.com/Mireon/slide-panels/tree/master/docs/examples/all.php)
 
 ## Tests
