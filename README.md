@@ -58,7 +58,7 @@ use Mireon\SlidePanels\Widgets\Header\Header;
 use Mireon\SlidePanels\Widgets\Menu\Item;
 use Mireon\SlidePanels\Widgets\Menu\Menu;
 
-$panel = SlidePanels::getInstance()
+SlidePanels::getInstance()
     ->panel('main')
     ->widget(Header::create('Main menu', 'fa fa-bars'))
     ->widget(Menu::create()
@@ -70,7 +70,7 @@ $panel = SlidePanels::getInstance()
         ->item(Item::create('Profile', 'https://example.com/profile')));
 ```
 
-#### Add a panel via a panel factory.
+#### Add a panel via a panel factory
 
 You can find more examples of panel factories in the path `vendor/mireon/slide-panels/backend/Examples`.
 
@@ -119,7 +119,7 @@ class MainMenu implements PanelFactoryInterface
 }
 ```
 
-And add this factory to the "SlidePanels" instance.
+And add this factory to the "SlidePanels" instance
 
 ```php
 <?php
@@ -141,6 +141,49 @@ A simple way to create a lever is to use the "Lever" class, for example:
         <?= Mireon\SlidePanels\Levers\Lever::show('Main', 'main'); ?>
     </body>
 </html>
+```
+
+## Widgets
+
+Few widgets supplied in a box: Header, Menu, Html, Close. You can create your own widgets and add them to a panel. To create a widget, you need to implement the "WidgetInterface" interface.
+
+#### Header
+
+![The "Header" widget](docs/images/widgets-header.jpg?raw=true)
+
+```php
+<?php
+
+use Mireon\SlidePanels\Widgets\Header\Header;
+
+Header::create()
+    ->key('main-menu-header')
+    ->weight(10)
+    ->icon('fa fa-bars')
+    ->text('Menu')
+    ->size(Header::BIG);
+```
+
+#### Menu
+
+![The "Header" widget](docs/images/widgets-menu.jpg?raw=true)
+
+```php
+<?php
+
+use Mireon\SlidePanels\Widgets\Menu\Item;
+use Mireon\SlidePanels\Widgets\Menu\Menu;
+
+Menu::create()
+    ->key('main-menu')
+    ->weight(10)
+    ->items([
+        Item::create('Catalog', 'https://example.com/catalog', 'fa fa-th'),
+        Item::create('News', 'https://example.com/News', 'fa fa-clock-o'),
+        Item::create('Services', 'https://example.com/services', 'fa fa-list-alt'),
+    ])
+    ->item(Item::create('Forum', 'https://example.com/forum', 'fa fa-headphones'))
+    ->item(Item::create('Profile', 'https://example.com/profile', 'fa fa-user-o'));
 ```
 
 ## Tests
