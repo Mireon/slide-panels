@@ -42,7 +42,7 @@ class Catalog implements PanelFactoryInterface
 
         $slidePanels
             ->getPanel(self::KEY)
-            ->width(320)
+            ->width(960)
             ->side(Panel::LEFT)
             ->widget(Close::create()
                 ->icon('fa fa-close')
