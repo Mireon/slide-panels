@@ -5,6 +5,10 @@
 [![License](https://img.shields.io/github/license/mireon/slide-panels?color=green)](https://github.com/Mireon/yandex-turbo)
 [![Release](https://img.shields.io/github/v/release/mireon/slide-panels?color=red)](https://github.com/Mireon/yandex-turbo)
 
+![The presentation](docs/movies/presentation.gif?raw=true)
+
+Code see in the directory: [vendor/mireon/slide-panels/docs/examples/index.php](https://github.com/Mireon/slide-panels/tree/master/docs/examples/index.php)
+
 ## Install
 
 Install via [Composer](https://getcomposer.org/):
@@ -238,6 +242,11 @@ Html::create()
     ->weight(5)
     ->html('<span style="padding: 10px; color: #ababab;">The main catalog!</span>');
 ```
+
+## Examples
+
+- Factories: [vendor/mireon/slide-panels/backend/Examples](https://github.com/Mireon/slide-panels/tree/master/src/backend/Examples)
+- Single page: [vendor/mireon/slide-panels/docs/pages/index.php](https://github.com/Mireon/slide-panels/tree/Issue-4/docs/index.php)
 
 ## Tests
 
