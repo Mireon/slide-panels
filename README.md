@@ -27,14 +27,14 @@ Copy these files to the public directory and add them to a page.
 <html>
     <head>
         <link href="https://example.com/css/slide-panels.min.css" rel="stylesheet" type="text/css">
-        <script src="https://example.com/css/js/slide-panels.min.js"></script>    
+        <script src="https://example.com/js/slide-panels.min.js"></script>    
     </head>
 </html>
 ```
 
 #### HTML
 
-To display panels, you must add the "SlidePanels" instance to a page. Add the instance to the end of the body tag.
+To display panels, you must add the "SlidePanels" instance to a page. Print the instance in the end of the body tag.
 
 ```html
 <html>
@@ -105,6 +105,8 @@ class MainMenu implements PanelFactoryInterface
      * @param SlidePanelsInterface $slidePanels
      *   The "SlidePanel" instance.
      *
+     * @return void
+     * 
      * @throws Exception
      */
     public function make(SlidePanelsInterface $slidePanels): void
@@ -145,6 +147,14 @@ A simple way to create a lever is to use the "Lever" class, for example:
 <html>
     <body>
         <?= Mireon\SlidePanels\Levers\Lever::show('Main', 'main'); ?>
+    </body>
+</html>
+```
+
+```html
+<html>
+    <body>
+        <a href="#" data-element="lever" data-action="show" data-target="main">Main</a>
     </body>
 </html>
 ```
