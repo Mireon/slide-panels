@@ -53,6 +53,7 @@ Add code like the following where it will executed.
 ```php
 <?php
 
+use Mireon\SlidePanels\Panels\Panel;
 use Mireon\SlidePanels\SlidePanels;
 use Mireon\SlidePanels\Widgets\Header\Header;
 use Mireon\SlidePanels\Widgets\Menu\Item;
@@ -60,6 +61,8 @@ use Mireon\SlidePanels\Widgets\Menu\Menu;
 
 SlidePanels::getInstance()
     ->panel('main')
+    ->width(320)
+    ->side(Panel::LEFT)
     ->widget(Header::create('Main menu', 'fa fa-bars'))
     ->widget(Menu::create()
         ->key('main-menu')
@@ -77,6 +80,7 @@ You can find more examples of panel factories in the path `vendor/mireon/slide-p
 ```php
 <?php
 
+use Mireon\SlidePanels\Panels\Panel;
 use Mireon\SlidePanels\Panels\PanelFactoryInterface;
 use Mireon\SlidePanels\SlidePanelsInterface;
 use Mireon\SlidePanels\Widgets\Header\Header;
@@ -107,6 +111,8 @@ class MainMenu implements PanelFactoryInterface
     {
         $slidePanels
             ->panel('main')
+            ->width(960)
+            ->side(Panel::RIGHT)
             ->widget(Header::create('Main menu', 'fa fa-bars'))
             ->widget(Menu::create()
                 ->key('main-menu')
@@ -157,16 +163,18 @@ Few widgets supplied in a box: Header, Menu, Html, Close. You can create your ow
 use Mireon\SlidePanels\Widgets\Header\Header;
 
 Header::create()
-    ->key('main-menu-header')
+    ->key('account-header')
     ->weight(10)
-    ->icon('fa fa-bars')
-    ->text('Menu')
+    ->icon('fa fa-user')
+    ->text('Account')
     ->size(Header::BIG);
 ```
 
 #### Menu
 
-![The "Header" widget](docs/images/widgets-menu.jpg?raw=true)
+A vertical list of items.
+
+![The "Menu" widget](docs/images/widgets-menu.jpg?raw=true)
 
 ```php
 <?php
@@ -184,6 +192,41 @@ Menu::create()
     ])
     ->item(Item::create('Forum', 'https://example.com/forum', 'fa fa-headphones'))
     ->item(Item::create('Profile', 'https://example.com/profile', 'fa fa-user-o'));
+```
+
+#### Close
+
+A lever to close a panel.
+
+![The "Close" widget](docs/images/widgets-close.jpg?raw=true)
+
+```php
+<?php
+
+use Mireon\SlidePanels\Widgets\Close\Close;
+
+Close::create('Close', 'fa fa-close')
+    ->key('panel-close')
+    ->weight(-10)
+    ->text('Close')
+    ->icon('fa fa-close');
+```
+
+#### Html
+
+Output the raw HTML.
+
+![The "Html" widget](docs/images/widgets-html.jpg?raw=true)
+
+```php
+<?php
+
+use Mireon\SlidePanels\Widgets\Html\Html;
+
+Html::create()
+    ->key('catalog-caption')
+    ->weight(5)
+    ->html('<span style="padding: 10px; color: #ababab;">The main catalog!</span>');
 ```
 
 ## Tests
